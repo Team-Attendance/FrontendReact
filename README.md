@@ -1,3 +1,15 @@
+## 1. 프로젝트 일정
+| schedule| 10월 3주 | 10월 4주 | 11월 1주 | 11월 2주 | 11월 3주 | 11월 4주 | 12월 1주 | 12월 2주 | 12월 3주 |
+| ---- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 주제,기능 선정 | :heavy_check_mark: |  |  |  |  |  |  |  |
+| 기능 및 DB구조 | :heavy_check_mark: | :heavy_check_mark:  |  |  |  |  |  |  |
+| 기능 구현 |  |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  |
+| 코드 리뷰 및 병합 |  |  |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  :heavy_check_mark: |  |
+| 프로젝트 추가작업 및 배포 시행 |  |  |  |  | | :heavy_check_mark: | :heavy_check_mark: |  :heavy_check_mark: |
+| 발표 준비 |  |  |  |  |  |  |  | :heavy_check_mark: | :heavy_check_mark:
+| 발표 |  |  |  |  |  |  |  |  | :heavy_check_mark:
+  
+<br/><br/>
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
