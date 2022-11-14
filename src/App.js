@@ -61,7 +61,6 @@ function App() {
       {/* 메인 영역 */}
       <Box component="main" sx={{ flexGrow: 1, pt: 8 }}>
         <Routes>
-          <Route path="/" element={<Test />}/>
 
           {/* 로그인 페이지 */}
           <Route path="/login" element={<LoginPage />}/>
@@ -89,8 +88,11 @@ function App() {
           
           {/*어드민 보고서 페이지 */}
           <Route path="/admin/report" element={<Report/>}/>
-          
+
+          {/* 사원 관리 페이지 */}
           <Route path='/admin/emp-management' element={<EmpManagement />} />
+          
+          {/* 휴가 승인 페이지 */}
           <Route path='/admin/leave-approval' element={<LeaveApproval />} />
 
         </Routes>

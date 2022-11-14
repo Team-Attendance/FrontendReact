@@ -14,6 +14,7 @@ const EmpList = ({empInfo}) => {
                 </tr>
                 {empInfo?.data?.length > 0 && empInfo.data.map((data, index) =>{
                     return(
+                        // Link to
                         <tr key={index}>
                             <td >{data.empNo}</td>
                             <td>{data.empName}</td>
