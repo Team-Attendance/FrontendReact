@@ -39,7 +39,8 @@ import { EmpLeaveInfoPage } from "./pages/emp/EmpLeaveInfoPage";
 import { EmpOddBizInfoPage } from "./pages/emp/EmpOddBizInfoPage";
 import EmpManagement from './pages/admin/EmpManagement';
 import LeaveApproval from './pages/admin/LeaveApproval';
-
+import { ConfigrationPage } from './pages/admin/ConfigrationPage';
+import { Report } from './pages/admin/Report';
 
 
 function App() {
@@ -83,6 +84,12 @@ function App() {
           {/* 사원 이상근태 현황 페이지 */}
           <Route path="/emp/odd-biz-info" element={<EmpOddBizInfoPage />}/>
 
+          {/*어드민 환경설정 페이지  */}
+          <Route path="/admin/configuration" element={<ConfigrationPage/>}/>
+          
+          {/*어드민 보고서 페이지 */}
+          <Route path="/admin/report" element={<Report/>}/>
+          
           <Route path='/admin/emp-management' element={<EmpManagement />} />
           <Route path='/admin/leave-approval' element={<LeaveApproval />} />
 

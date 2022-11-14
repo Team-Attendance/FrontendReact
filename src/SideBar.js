@@ -74,6 +74,7 @@ export function SideBar() {
     {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태 현황', path: 'emp4'}
   ]
   return(
+    
     <Drawer
         variant="permanent"
         sx={{
@@ -86,6 +87,7 @@ export function SideBar() {
         <Toolbar />
         <Box sx={{ overflow: 'auto', backgroundColor: '#00AAFF', minHeight: 'calc(100vh - 64px)' }}>
           <List>
+      
             <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
                 <img width={"100%"} height={"100%"} src='/user.jpg' alt='user'/>
