@@ -61,26 +61,24 @@ const Forget = styled.div`
 `
 
 
-export function LoginPage(){
+export function Login(){
 
   return (
-    <LoginForm>
-      <h1>AMATEUR10</h1>
-      <FormWrap>
-        <form action="/emp/main" method="post">
-          <input type="text" class="user-id" name="emp_no" placeholder="사원번호"
-         />
-          <input type="text" class="user-pw" name="emp_pwd" placeholder="비밀번호"
-          />
+        <LoginForm>
+          <h1>AMATEUR10</h1>
+          <FormWrap>
+            <form action="#" method="post">
+              <input type="text" class="emp_no" placeholder="사원번호"/>
+              <input type="text" class="emp_pwd" placeholder="비밀번호"/>
 
-          <input type="submit" class="login-submit" value="login"/>
-          <Forget>
-            <span>로그인 불가 시 근태 담당자에게 문의 바랍니다.</span>
-          </Forget>
-        </form>
-      </FormWrap>
-    </LoginForm>
-    )
-  };
-  
-export default LoginPage;
+              <input type="submit" class="login-submit" value="login"/>
+              <Forget>
+                <span>로그인 불가 시 근태 담당자에게 문의 바랍니다.</span>
+              </Forget>
+            </form>
+          </FormWrap>
+        </LoginForm>
+  );
+}
+
+export default Login;

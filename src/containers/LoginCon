@@ -1,0 +1,69 @@
+import { Api } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import LoginPage from "../pages/common/LoginPage";
+
+
+const LoginCon = ()=>{
+  const [error, setError] = useState(null);
+  const [iderr,setIderr] = useState();
+  const [tab, setTab]=useState("tab");
+  const dispatch = useDispatch();
+  // 로그인 암호화 시 사용
+  // const { login, register } = useSelector(({autj})=>{
+  //   return{
+  //     login : auth.login,
+  //     register: auth.register
+  //   };
+  // });
+
+  let loginInit = {emp_no:"", emp_pwd:""};
+  useEffect(()=>{
+    dispatch({form:'login', key:loginInit});
+  },[dispatch]);
+
+  // 로그인 인풋
+  const onLoginChange = (e) =>{
+    e.preventDefault();
+    const {value, emp_name} = e.target;
+    dispatch({
+      form:"login",
+      key : emp_name,
+      value,
+    });
+  }
+
+  // 로그인 submit
+  const onLogin = async (e) => {
+    e.preventDefault();
+    const {emp_no, emp_pwd} = login;
+
+    let data = { emp_no: emp_no, emp_pwd : emp_pwd};
+    api.empLogin(data).then((res)=>{
+        if(res.data.token){
+
+        }
+    })
+  }
+
+
+  return (
+    <div>
+      <LoginPage
+        login={login}
+        onLoginChange={onLoginChange}
+        onRegisterChange={onRegisterChange}
+        onLogin={onLogin}
+        error={error}
+        onChangeCheck={onChangeCheck}
+        onidCheck={onidCheck}
+        iderr={iderr}
+        register={register}
+        tab={tab}
+        onTab={onTab}
+        />
+    </div>
+  );
+}
+
+export default LoginCon;

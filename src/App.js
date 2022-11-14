@@ -37,34 +37,40 @@ import { EmpDailyAattendanceInfoPage } from "./pages/emp/EmpDailyAattendanceInfo
 import { EmpMonthlyAattendanceInfoPage } from "./pages/emp/EmpMonthlyAattendanceInfoPage";
 import { EmpLeaveInfoPage } from "./pages/emp/EmpLeaveInfoPage";
 import { EmpOddBizInfoPage } from "./pages/emp/EmpOddBizInfoPage";
+import LoginCon from './containers/LoginCon';
 
 
 
 function App() {
   return (
+
     <Box sx={{ display: 'flex' }}>
 
       {/* CSS 리셋 */}
       <GlobalStyles/>
 
       <CssBaseline />
+      <Routes>
+       <Route   path="/" element={<LoginPage />} exact/>
+     </Routes>
+
 
       {/* 헤더 */}
-      <Header/>
+      {/* <Header/> */}
       
       {/* 사이드 바 */}
-      <SideBar/>
+      {/* <SideBar/> */}
 
+     
       {/* 메인 영역 */}
       <Box component="main" sx={{ flexGrow: 1, pt: 8 }}>
         <Routes>
-          <Route path="/" element={<Test />}/>
+          {/* <Route path="/" element={<Test />}/> */}
 
-          {/* 로그인 페이지 */}
-          <Route path="/login" element={<LoginPage />}/>
 
           {/* 사원 메인 페이지 */}
           <Route path="/emp/main" element={<EmpMainPage />}/>
+         
 
           {/* 사원 정보 페이지 */}
           <Route path="/emp/emp-info" element={<EmpInfoPage />}/>
@@ -80,6 +86,13 @@ function App() {
 
           {/* 사원 이상근태 현황 페이지 */}
           <Route path="/emp/odd-biz-info" element={<EmpOddBizInfoPage />}/>
+
+          
+          {/* 관리자 메인 페이지
+          <Route path="/admin/main" element={<AdminMainPage />}/>
+
+           {/* 에러 페이지 */}
+           {/* <Route path="/error" element={<ErrorPage />}/>  */}
 
         </Routes>
       </Box>

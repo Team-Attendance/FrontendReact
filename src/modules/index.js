@@ -1,15 +1,13 @@
-// 파일이름을 index.js로 설저앟면 불러올 때 디렉터리 이름까지만 입력하여 불러올 수 있음
+// 파일이름을 index.js로 설정하면 불러올 때 디렉터리 이름까지만 입력하여 불러올 수 있음
 // ex) import rootReducer from './modules'
 
 import { combineReducers } from 'redux'
-import counter from './counter';
-import todos from './todos';
+import auth from './auth';
 
 
 // 루트 리듀서
 const rootReducer = combineReducers({
-  counter,
-  todos
+  auth
 });
 
 export default rootReducer;
