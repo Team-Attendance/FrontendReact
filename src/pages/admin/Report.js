@@ -1,5 +1,5 @@
 import { border } from "@mui/system";
-import "../../css/EmpManagementPage.css";
+import "../../css/Report.css";
 import "../../echart/PtoChart";
 import PtoChart from "../../echart/PtoChart";
 import OddChart from "../../echart/OddChart"
@@ -7,7 +7,7 @@ import WeekliyBizTimeChart from "../../echart/WeekliyBizTimeChart";
 import MonthliyOdd from "../../echart/MonthliyOdd";
 import LeaveAdjTable from "../../table/LeaveAdjTable";
 import OddAdjTable from "../../table/OddAdjTable";
-export function EmpManagementPage(){
+export function Report(){
 
     return(
         <div className="wrap">
@@ -29,7 +29,7 @@ export function EmpManagementPage(){
                 </div>
                 <div className="right_wrap">
                     <section className="right">
-                        <div class="box">
+                        <div className="box">
                             <div>
                                 <p>연차 사용률</p>
                                 <PtoChart/>

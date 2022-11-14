@@ -38,7 +38,7 @@ import { EmpMonthlyAattendanceInfoPage } from "./pages/emp/EmpMonthlyAattendance
 import { EmpLeaveInfoPage } from "./pages/emp/EmpLeaveInfoPage";
 import { EmpOddBizInfoPage } from "./pages/emp/EmpOddBizInfoPage";
 import { ConfigrationPage } from './pages/admin/ConfigrationPage';
-import { EmpManagementPage} from './pages/admin/EmpManagementPage';
+import { Report } from './pages/admin/Report';
 
 
 function App() {
@@ -85,8 +85,8 @@ function App() {
           {/*어드민 환경설정 페이지  */}
           <Route path="/admin/configuration" element={<ConfigrationPage/>}/>
           
-          {/*어드민 사원관리 페이지 */}
-          <Route path="/admin/EmpManagementPage" element={<EmpManagementPage/>}/>
+          {/*어드민 보고서 페이지 */}
+          <Route path="/admin/report" element={<Report/>}/>
           
         </Routes>
       </Box>
