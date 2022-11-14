@@ -1,20 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import rootReducer from './modules';
+import store from './redux';
 
-const store = createStore(rootReducer);
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
+// const store = createStore(rootReducer, composeWithDevTools());
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById("root")
+    </Provider>
+  </BrowserRouter>
 );
 
 reportWebVitals();

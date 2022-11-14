@@ -37,6 +37,10 @@ import { EmpDailyAattendanceInfoPage } from "./pages/emp/EmpDailyAattendanceInfo
 import { EmpMonthlyAattendanceInfoPage } from "./pages/emp/EmpMonthlyAattendanceInfoPage";
 import { EmpLeaveInfoPage } from "./pages/emp/EmpLeaveInfoPage";
 import { EmpOddBizInfoPage } from "./pages/emp/EmpOddBizInfoPage";
+import EmpManagement from './pages/admin/EmpManagement';
+import LeaveApproval from './pages/admin/LeaveApproval';
+import { ConfigrationPage } from './pages/admin/ConfigrationPage';
+import { Report } from './pages/admin/Report';
 import LoginCon from './containers/LoginCon';
 
 
@@ -65,7 +69,6 @@ function App() {
       {/* 메인 영역 */}
       <Box component="main" sx={{ flexGrow: 1, pt: 8 }}>
         <Routes>
-          {/* <Route path="/" element={<Test />}/> */}
 
 
           {/* 사원 메인 페이지 */}
@@ -88,11 +91,23 @@ function App() {
           <Route path="/emp/odd-biz-info" element={<EmpOddBizInfoPage />}/>
 
           
+          {/*어드민 환경설정 페이지  */}
+          <Route path="/admin/configuration" element={<ConfigrationPage/>}/>
+          
+          {/*어드민 보고서 페이지 */}
+          <Route path="/admin/report" element={<Report/>}/>
+
+          {/* 사원 관리 페이지 */}
+          <Route path='/admin/emp-management' element={<EmpManagement />} />
+          
           {/* 관리자 메인 페이지
           <Route path="/admin/main" element={<AdminMainPage />}/>
 
            {/* 에러 페이지 */}
            {/* <Route path="/error" element={<ErrorPage />}/>  */}
+
+          {/* 휴가 승인 페이지 */}
+          <Route path='/admin/leave-approval' element={<LeaveApproval />} />
 
         </Routes>
       </Box>

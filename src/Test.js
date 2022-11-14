@@ -1,5 +1,5 @@
-import React from 'react';
-import axios from 'axios';
+// import React from 'react';
+// import axios from 'axios';
 
 
 
@@ -16,18 +16,18 @@ import axios from 'axios';
   // })
   // .catch((Error)=>{console.log(Error)})
 
-export function Test(){
+// export function Test(){
 
-  axios.get('test/hashMap.do')
-  .then((Response)=>{
-    console.log(Response.data);
-  })
-  .catch((Error)=>{console.log(Error)})
+//   axios.get('test/hashMap.do')
+//   .then((Response)=>{
+//     console.log(Response.data);
+//   })
+//   .catch((Error)=>{console.log(Error)})
   
-  console.log("TestPage");
-  return (
-    <div>
-      <h1>Test</h1>
-    </div>
-  );
-}
+//   console.log("TestPage");
+//   return (
+//     <div>
+//       <h1>Test</h1>
+//     </div>
+//   );
+// }
