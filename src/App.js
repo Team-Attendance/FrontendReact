@@ -37,6 +37,8 @@ import { EmpDailyAattendanceInfoPage } from "./pages/emp/EmpDailyAattendanceInfo
 import { EmpMonthlyAattendanceInfoPage } from "./pages/emp/EmpMonthlyAattendanceInfoPage";
 import { EmpLeaveInfoPage } from "./pages/emp/EmpLeaveInfoPage";
 import { EmpOddBizInfoPage } from "./pages/emp/EmpOddBizInfoPage";
+import EmpManagement from './pages/admin/EmpManagement';
+import LeaveApproval from './pages/admin/LeaveApproval';
 
 
 
@@ -80,6 +82,9 @@ function App() {
 
           {/* 사원 이상근태 현황 페이지 */}
           <Route path="/emp/odd-biz-info" element={<EmpOddBizInfoPage />}/>
+
+          <Route path='/admin/emp-management' element={<EmpManagement />} />
+          <Route path='/admin/leave-approval' element={<LeaveApproval />} />
 
         </Routes>
       </Box>

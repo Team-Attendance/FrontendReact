@@ -11,8 +11,9 @@ import rootReducer from './modules';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { BrowserRouter } from 'react-router-dom';
+import store from './redux';
 
-const store = createStore(rootReducer, composeWithDevTools());
+// const store = createStore(rootReducer, composeWithDevTools());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
