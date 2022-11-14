@@ -1,0 +1,84 @@
+.wrap {
+    width: 100%;
+    height: 100vh;
+    padding: 30px;
+}
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.left-wrap {
+    width: 49%;
+    /* height: 100%; */
+    border:1px solid #4f80ff;
+}  
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+.emp-info,
+.leave-adj,
+.odd-adj {
+    width: 100%;
+    height: 33.3%;
+    overflow: auto;
+}
+.title {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+.table {
+    width: 100%;
+}
+
+
+.right_wrap {
+    width: 49%;
+    height: 100%;
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.box {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    border-radius: 20px;
+    /* padding: 10px; */
+    box-sizing: border-box;
+}
+.box > div {
+    width: 49%;
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+   
+}
+
+.box > div:first-child {
+    margin-right: 2%;
+}
+.box,
+.topp {
+    height: 33.3%;
+    border-radius: 20px;
+    /* padding: 10px; */
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.topp {
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}

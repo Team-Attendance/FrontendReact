@@ -18,6 +18,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import SettingsIcon from '@mui/icons-material/Settings';
 import styled from 'styled-components';
+import { Link } from '@mui/material';
 
 // Meterial UI
 const drawerWidth = 240;
@@ -57,7 +58,16 @@ const UserWork = styled.dl`
   }
 `
 export function SideBar() {
+  const adminMenu = [
+    {img: <PeopleAltIcon sx={{ color: 'white' }}/>, name: '사원 관리', path: 'admin1'},
+    {img: <CalendarMonthIcon sx={{ color: 'white' }}/>, name: '부서 일정', path: 'admin2'},
+    {img: <EventAvailableIcon sx={{ color: 'white' }}/>, name: '휴가 승인', path: 'admin3'},
+    {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태', path: 'admin4'},
+    {img: <SettingsIcon sx={{ color: 'white' }}/>, name: '환경설정', path: 'admin5'},
+  ]
+
   return(
+    
     <Drawer
         variant="permanent"
         sx={{
@@ -70,6 +80,7 @@ export function SideBar() {
         <Toolbar />
         <Box sx={{ overflow: 'auto', backgroundColor: '#00AAFF', minHeight: 'calc(100vh - 64px)' }}>
           <List>
+      
             <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
                 <img width={"100%"} height={"100%"} src='/user.jpg' alt='user'/>
@@ -91,30 +102,22 @@ export function SideBar() {
             </Box>
           </List>
           <Divider />
-          <List sx={{color: 'white'}}>
-            {['사원 관리', '부서 일정', '휴가 승인', '이상근태', '환경설정'].map((text, index) => (
-              <ListItem key={text} disablePadding>
+          <List>
+          {adminMenu.map((menu, index) => (
+              <Link to={menu.path} key={index}>
+              <ListItem key={index} disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
                     {
                       (function(){
-                        if(index === 0){
-                          return <PeopleAltIcon sx={{ color: 'white' }}/>
-                        }else if(index === 1){
-                          return <CalendarMonthIcon sx={{ color: 'white' }}/>
-                        }else if(index === 2){
-                          return <EventAvailableIcon sx={{ color: 'white' }}/>
-                        }else if(index === 3){
-                          return <WarningAmberIcon sx={{ color: 'white' }}/>
-                        }else if(index ===4){
-                          return <SettingsIcon sx={{ color: 'white' }}/>
-                        }
+                        return menu.img
                       })()
                     }
                   </ListItemIcon>
-                  <ListItemText primaryTypographyProps={{fontSize: '0.8rem', fontWeight: 'bold'}} primary={text} />
+                  <ListItemText primaryTypographyProps={{fontSize: '0.8rem', fontWeight: 'bold'}} primary={menu.name} />
                 </ListItemButton>
               </ListItem>
+              </Link>
             ))}
           </List>
           <Divider />
