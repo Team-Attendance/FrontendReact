@@ -7,14 +7,17 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Badge from '@mui/material/Badge';
+import { Link } from 'react-router-dom';
 
 export function Header() {
   return (
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
         <Toolbar sx={{ backgroundColor: '#00AAFF' }}>
+          <Link to='emp/main'>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '1px' }}>
             Amateur10
           </Typography>
+          </Link>
 
           <Box sx={{ margin: '0 10px' }}>
             192.168.40.4
