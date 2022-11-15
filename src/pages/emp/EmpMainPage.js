@@ -1,8 +1,8 @@
-import { SideBar } from '../../SideBar';
-import { Header } from '../../Header';
+import { SideBar } from '../../layout/SideBar';
+import { Header } from '../../layout/Header';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import GlobalStyles from '../../GlobalStyles';
+import GlobalStyles from '../../layout/GlobalStyles';
 
 export function EmpMainPage(){
 
@@ -14,10 +14,10 @@ export function EmpMainPage(){
 
     <CssBaseline />
          {/* 헤더 */}
-         <Header/>
+         {/* <Header/> */}
       
          {/* 사이드 바 */}
-         <SideBar/>
+         {/* <SideBar/> */}
     <div>
       <h1>Emp MainPage</h1>
     </div>

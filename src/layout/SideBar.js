@@ -63,7 +63,7 @@ export function SideBar() {
     {img: <PeopleAltIcon sx={{ color: 'white' }}/>, name: '사원 관리', path: '/admin/emp-management'},
     {img: <CalendarMonthIcon sx={{ color: 'white' }}/>, name: '부서 일정', path: 'admin2'},
     {img: <EventAvailableIcon sx={{ color: 'white' }}/>, name: '휴가 승인', path: '/admin/leave-approval'},
-    {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태', path: 'admin4'},
+    {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태', path: '/emp/daily-attendance-info'},
     {img: <SettingsIcon sx={{ color: 'white' }}/>, name: '환경설정', path: 'admin5'},
   ]
 

@@ -3,11 +3,13 @@
 
 import { combineReducers } from 'redux'
 import auth from './auth';
+import leaveModal from './leaveModal';
 
 
 // 루트 리듀서
 const rootReducer = combineReducers({
-  auth
+  auth,
+  leaveModal
 });
 
 export default rootReducer;

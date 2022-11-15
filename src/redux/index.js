@@ -3,6 +3,8 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { empInfo, leaveApprovalInfo } from './modules';
+import leaveModal from '../modules/leaveModal';
+import auth from '../modules/auth';
 
 
 const middlewares = [thunk];
@@ -10,7 +12,9 @@ const middlewares = [thunk];
 // 리듀서 합치기
 const reducers = combineReducers({
     empInfo,
-    leaveApprovalInfo
+    leaveApprovalInfo,
+    leaveModal,
+    auth
 });
 
 let store;

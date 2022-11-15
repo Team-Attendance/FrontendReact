@@ -25,23 +25,23 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import GlobalStyles from './GlobalStyles';
-import { SideBar } from './SideBar';
-import { Header } from './Header';
+import GlobalStyles from './layout/GlobalStyles';
+import {SideBar} from './layout/SideBar';
+import { Header } from './layout/Header';
 import {Test} from './Test'
 import { Route, Routes } from 'react-router-dom'
 import { LoginPage } from "./pages/common/LoginPage";
 import { EmpMainPage } from "./pages/emp/EmpMainPage";
 import { EmpInfoPage } from "./pages/emp/EmpInfoPage";
-import { EmpDailyAattendanceInfoPage } from "./pages/emp/EmpDailyAattendanceInfoPage";
-import { EmpMonthlyAattendanceInfoPage } from "./pages/emp/EmpMonthlyAattendanceInfoPage";
-import { EmpLeaveInfoPage } from "./pages/emp/EmpLeaveInfoPage";
-import { EmpOddBizInfoPage } from "./pages/emp/EmpOddBizInfoPage";
 import EmpManagement from './pages/admin/EmpManagement';
 import LeaveApproval from './pages/admin/LeaveApproval';
 import { ConfigrationPage } from './pages/admin/ConfigrationPage';
 import { Report } from './pages/admin/Report';
 import LoginCon from './containers/LoginCon';
+import {EmpMonthlyPage} from './pages/emp/EmpMonthlyIPage'
+import {EmpDailyPage} from './pages/emp/EmpDailyPage'
+import {EmpLeavePage} from './pages/emp/EmpLeavePage'
+import {EmpOddPage} from './pages/emp/EmpOddPage'
 
 
 
@@ -60,10 +60,10 @@ function App() {
 
 
       {/* 헤더 */}
-      {/* <Header/> */}
+      <Header/>
       
       {/* 사이드 바 */}
-      {/* <SideBar/> */}
+      <SideBar/>
 
      
       {/* 메인 영역 */}
@@ -79,16 +79,16 @@ function App() {
           <Route path="/emp/emp-info" element={<EmpInfoPage />}/>
 
           {/* 사원 근태 정보(일) 페이지 */}
-          <Route path="/emp/daily-attendance-info" element={<EmpDailyAattendanceInfoPage />}/>
+          <Route path="/emp/daily-attendance-info" element={<EmpDailyPage />}/>
 
           {/* 사원 근태 정보(월) 페이지 */}
-          <Route path="/emp/monthly-attendance-info" element={<EmpMonthlyAattendanceInfoPage />}/>
+          <Route path="/emp/monthly-attendance-info" element={<EmpMonthlyPage />}/>
 
           {/* 사원 휴가 현황 페이지 */}
-          <Route path="/emp/leave-info" element={<EmpLeaveInfoPage />}/>
+          <Route path="/emp/leave-info" element={<EmpLeavePage />}/>
 
           {/* 사원 이상근태 현황 페이지 */}
-          <Route path="/emp/odd-biz-info" element={<EmpOddBizInfoPage />}/>
+          <Route path="/emp/odd-biz-info" element={<EmpOddPage />}/>
 
           
           {/*어드민 환경설정 페이지  */}
