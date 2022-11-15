@@ -42,6 +42,7 @@ import {EmpMonthlyPage} from './pages/emp/EmpMonthlyIPage'
 import {EmpDailyPage} from './pages/emp/EmpDailyPage'
 import {EmpLeavePage} from './pages/emp/EmpLeavePage'
 import {EmpOddPage} from './pages/emp/EmpOddPage'
+import { AdminMainPage } from './pages/admin/AdminMainPage';
 
 
 
@@ -100,11 +101,11 @@ function App() {
           {/* 사원 관리 페이지 */}
           <Route path='/admin/emp-management' element={<EmpManagement />} />
           
-          {/* 관리자 메인 페이지
+          {/* 관리자 메인 페이지 */}
           <Route path="/admin/main" element={<AdminMainPage />}/>
 
-           {/* 에러 페이지 */}
-           {/* <Route path="/error" element={<ErrorPage />}/>  */}
+          {/* 에러 페이지 */}
+          {/* <Route path="/error" element={<ErrorPage />}/>  */}
 
           {/* 휴가 승인 페이지 */}
           <Route path='/admin/leave-approval' element={<LeaveApproval />} />

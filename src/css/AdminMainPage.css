@@ -1,0 +1,32 @@
+* {padding: 0; margin: 0; box-sizing: border-box;}
+
+.wrap {
+    height: calc(100vh - 32px); 
+    padding: 30px;
+}
+.wrap .frame {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+.wrap .frame .content {
+    height: 100%;
+    width: 32%;
+    border: 1px solid black; 
+    
+}
+.wrap .frame .content .document,
+.wrap .frame .content .calendar,
+.wrap .frame .content .chart,
+.wrap .frame .content .schedule {
+    height: 50%;
+    width: 100%;
+}
+.wrap .frame .content .calendar {
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,41 @@
+.emp_main {
+    background-color: white;
+    height: calc(100vh - 32px);
+    padding: 30px;
+}
+
+.emp_main .frame {
+display: flex;
+flex-direction: column;
+height: 100%;
+}
+
+.emp_main .frame .content {
+    display: flex;
+}
+.emp_main .frame .content:first-child {
+    height: 50%;
+}
+.emp_main .frame .content:last-child {
+    height: 50%;
+}
+
+.emp_main .frame .content .work_status,
+.emp_main .frame .content .work_chart {
+    width: 50%;
+    border: 1px solid black;
+
+}
+.emp_main .frame .content .work_calendar {
+    width: 50%;
+    border: 1px solid black;
+}
+.emp_main .frame .content .annual {
+    width: 50%;
+    border: 1px solid black;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}

@@ -1,27 +1,33 @@
-import { SideBar } from '../../layout/SideBar';
-import { Header } from '../../layout/Header';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import GlobalStyles from '../../layout/GlobalStyles';
-
+import React,{ useState } from "react";
+import "../../css/EmpMainPage.css"
+import EmpPieChart from "../../components/empMain/EmpPieChart";
+import EmpCalendar from "../../components/empMain/EmpCalendar";
+import EmpBarChart from "../../components/empMain/EmpBarChart";
 export function EmpMainPage(){
 
   return (
-    <Box sx={{ display: 'flex' }}>
-
-    {/* CSS 리셋 */}
-    <GlobalStyles/>
-
-    <CssBaseline />
-         {/* 헤더 */}
-         {/* <Header/> */}
-      
-         {/* 사이드 바 */}
-         {/* <SideBar/> */}
-    <div>
-      <h1>Emp MainPage</h1>
+    <div className="emp_main">
+        <div className="frame">
+            <div className="content">
+                <div className="work_status">
+                </div>
+                <div className="work_chart">
+                    < EmpBarChart />
+                </div>
+            </div>
+            <div className="content">
+                <div className="work_calendar">
+                    <h2>관리자 달력</h2>
+                    < EmpCalendar />
+                </div>
+                <div className="annual">
+                < EmpPieChart />
+                </div>
+            </div>
+        
+        </div>
     </div>
-     
-    </Box>
-  );
+);
+
+
 }
