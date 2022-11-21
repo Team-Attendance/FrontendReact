@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { formatHyphenFulldate } from "../modules/cal_function";
+import { useEffect } from "react";
 
 const ModalWrap = styled.div`
 `
@@ -86,6 +88,8 @@ const LeaveFormWrap = styled.div`
 `
 
 const LeaveModal = ({ data, view, onClose }) => {
+  
+  
   return (
     view === true ?
       <ModalWrap>
@@ -112,7 +116,7 @@ const LeaveModal = ({ data, view, onClose }) => {
                 </div>
                 <div className="form-item">
                   <h3>휴가일 선택</h3>
-                  <input type="date" /> - <input type="date" />
+                  <input type="date" value={formatHyphenFulldate(data.date)} readOnly/> - <input type="date" />
                 </div>
                 <div className="form-item">
                   <h3>신청사유</h3>

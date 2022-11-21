@@ -8,19 +8,20 @@ import React, { useEffect, useState, useCallback } from "react";
 import { initCalander, moveMonth, formatFulldate, formatDate } from "../../modules/cal_function";
 import { useSelector, useDispatch } from "react-redux";
 import { open, close } from "../../modules/leaveModal";
-// import { getPosts } from "../../modules/calanderStatus"
+import { setCalander } from "../../modules/calander"
+import { getStatusData } from "../../modules/calanderStatus"
 
 // styled
 const CalWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 23px 0;
+    // display: flex;
+    // justify-content: center;
+    // flex-wrap: wrap;
+    // margin: 23px 0;
     position: relative;
 `
 
 const CalTable = styled.table`
-    borderCollapse: collapse;
+    border-collapse: collapse;
     border: 1px solid lightgray;
 `
 const TableTitle = styled.td`
@@ -34,7 +35,7 @@ const TableTitle = styled.td`
 
 const CalItem = styled.td`
     font-size: 0.7rem;
-    width: 180px;
+    width: 168px;
     font-weight: bold;
     text-align: right;
     position: relative;
@@ -54,7 +55,7 @@ const CalItem = styled.td`
     }
 
     & div.cal-info{
-        min-height: 85px;
+        min-height: 83px;
         textAlign: center;
         display: flex;
         justify-content: center;
@@ -115,12 +116,30 @@ export function Calander() {
     const view = useSelector(state => state.leaveModal.view);
 
 
+
     const dispatch = useDispatch();
     const onOpen = useCallback(() => dispatch(open()), [dispatch]);
     const onClose = useCallback(() => dispatch(close()), [dispatch]);
 
+    //새로 추가됨
+    const onUpdate = useCallback((empNo, year, month) => dispatch(getStatusData(empNo, year, month)), [dispatch]);
 
-    // const onOen = useCallback(() => dispatch(getPosts()), [dispatch]);
+    const setTestCalander = useCallback(() => dispatch(setCalander()), [dispatch]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     const [calander, setCalander] = useState([]);
@@ -128,24 +147,25 @@ export function Calander() {
 
     useEffect(() => {
         setCalander(initCalander());
-        // console.log(onOen());
     }, [])
 
 
     useEffect(() => {
+        let number = 1;
         if (calander.length > 0) {
             axios.get('/calander-data', {
                 params: {
                     year: calander[6][0].thisYear,
                     month: (calander[6][1].thisMonth) + 1,
-                    empNo: 1
+                    empNo: number
                 }
             })
                 .then((Response) => {
                     setAllData(Response.data);
+                    onUpdate(number, calander[6][0].thisYear, (calander[6][1].thisMonth) + 1)
                 })
         }
-    }, [calander])
+    }, [calander, onUpdate])
 
     const beforeMonth = () => {
         setCalander(moveMonth(calander[6][0], calander[6][1], 'prev', calander[6][2]));
@@ -157,13 +177,36 @@ export function Calander() {
 
 
 
+
+
+
+
+
+
+
+
+    const timetable = (allData, data) => {
+        return (
+            allData.empTimeTable.map((emp) => {
+                return (
+                    formatFulldate(formatDate(emp.empTimeDate)) === formatFulldate(data.date) ?
+                        <>
+                            출근 : {emp.empGetInto} <br />
+                            퇴근 : {emp.empGetOff}
+                        </>
+                        :
+                        <></>
+                );
+            }));
+    }
+
+
     return (
-        <div>
+        <div style={{ width: '73%' }}>
             <LeaveModal data={data} view={view} onClose={onClose} />
             {calander.length > 0 && allData.empTimeTable && allData.oddBizHour && allData.empLeave ?
-            
+
                 <CalWrapper>
-                    {console.log(formatFulldate(calander[6][2].nowDate))}
                     <CalTable>
                         <tbody>
                             <tr>
@@ -197,8 +240,8 @@ export function Calander() {
                                                             }
                                                         }).join('')
                                                     }
-                                                        
-                                                         onClick={(e) => {  onOpen()}}>
+
+                                                        onClick={(e) => { onOpen() }}>
 
                                                         <CalDay>
                                                             <span
@@ -211,7 +254,7 @@ export function Calander() {
                                                             <div style={{ lineHeight: '20px' }}>
                                                                 <p style={{ textAlign: 'center' }}>
 
-                                                                    {allData.empTimeTable.map((emp) => {
+                                                                    {/* {allData.empTimeTable.map((emp) => {
                                                                         return (
                                                                             formatFulldate(formatDate(emp.empTimeDate)) === formatFulldate(data.date) ?
                                                                                 <>
@@ -221,8 +264,8 @@ export function Calander() {
                                                                                 :
                                                                                 <></>
                                                                         );
-                                                                    })}
-
+                                                                    })} */}
+                                                                    {timetable(allData, data)}
 
                                                                     {/* 이상 근태 체크 */}
                                                                     {allData.oddBizHour.map((biz) => {

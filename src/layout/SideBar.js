@@ -57,6 +57,16 @@ const UserWork = styled.dl`
     text-align: center;
   }
 `
+
+const SideWrap = styled.div`
+  background-color: #00AAFF;
+  height: 100vh;
+  overflow-y: scroll;
+  padding-top: 64px;
+  &.scroll-hidden::-webkit-scrollbar {
+    display: none;
+}
+`
 export function SideBar() {
 
   const adminMenu = [
@@ -84,8 +94,8 @@ export function SideBar() {
           
         }}
       >
-        <Toolbar />
-        <Box sx={{ overflow: 'auto', backgroundColor: '#00AAFF', minHeight: 'calc(100vh - 64px)' }}>
+        
+        <SideWrap className="scroll-hidden">
           <List>
       
             <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
@@ -147,7 +157,7 @@ export function SideBar() {
             ))}
           </List>
           <Divider />
-        </Box>
+        </SideWrap>
       </Drawer>
   );
 }
