@@ -14,7 +14,7 @@ height: 100%;
     display: flex;
 }
 .emp_main .frame .content:first-child {
-    height: 50%;
+    height: 51%;
 }
 .emp_main .frame .content:last-child {
     height: 50%;
