@@ -1,49 +1,48 @@
 import Types from "../../ActionConstants"
 
 const initialState = {
-    leaveApprovalInfo: {
+    oddApprovalInfo: {
         loading: false,
         data: {
             empNo: '',
             empName: '',
             empPosition: '',
-            leaveAdjDate: '',
-            leaveType: '',
-            leaveDetail: '',
-            leaveStartDate: '',
-            leaveEndDate: '',
-            leaveAdjState: '',
-            leaveAdjApproDate: '',
-            leaveAdjAppro: ''
+            oddBizAdjDate: '',
+            oddBizType: '',
+            oddBizAdjDetail: '',
+            oddBizDate: '',
+            oddBizAdjState: '',
+            oddBizAdjApproDate: '',
+            oddBizAdjAppro: ''
         }
     }
 }
 
 const reducer = (state = initialState, {type, payload}) => {
     switch(type) {
-        case Types.GET_LEAVE_APPROVAL:
+        case Types.GET_ODD_APPROVAL:
             return  {
                 ...state,
-                leaveApprovalInfo: {
-                    ...state.leaveApprovalInfo,
+                oddApprovalInfo: {
+                    ...state.oddApprovalInfo,
                     loading: true,
                     data: payload
                 }
             }
-        case Types.GET_LEAVE_APPROVAL_SUCCESS:
+        case Types.GET_ODD_APPROVAL_SUCCESS:
             return  {
                 ...state,
-                leaveApprovalInfo: {
-                    ...state.leaveApprovalInfo,
+                oddApprovalInfo: {
+                    ...state.oddApprovalInfo,
                     loading: false,
                     data: payload
                 }
             }
-        case Types.GET_LEAVE_APPROVAL_FAILURE:
+        case Types.GET_ODD_APPROVAL_FAILURE:
             return  {
                 ...state,
-                leaveApprovalInfo: {
-                    ...state.leaveApprovalInfo,
+                oddApprovalInfo: {
+                    ...state.oddApprovalInfo,
                     loading: false,
                     error: payload
                 }

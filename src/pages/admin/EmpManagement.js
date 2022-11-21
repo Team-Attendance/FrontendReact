@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../../components/EmpManagement/SearchBar";
+import SearchBar from "../../components/SearchBar";
 import EmpActions from "../../redux/modules/EmpManagement/EmpActions";
 import EmpList from "../../components/EmpManagement/EmpList"
 
@@ -11,18 +11,15 @@ const EmpManagement = () => {
 
     useEffect(() => {
         dispatch(EmpActions.getAllEmps())
+        // EmpActions.getAllEmps()
     }, [])
 
-    const onSubmit = async (query, target, option) => {
-
+    const onSubmit = (query, option) => {
         if(query === ''){
             dispatch(EmpActions.getAllEmps())
-        } else{
-            if(option === 'name'){
-                dispatch(EmpActions.searchEmpByName(query, target))
-            } else if(option === 'empno'){
-                dispatch(EmpActions.searchEmpByNum(query, target))
-            }
+        } 
+        else{
+            dispatch(EmpActions.searchEmp(option, query))
         }
 
     }

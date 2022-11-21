@@ -43,6 +43,7 @@ import {EmpDailyPage} from './pages/emp/EmpDailyPage'
 import {EmpLeavePage} from './pages/emp/EmpLeavePage'
 import {EmpOddPage} from './pages/emp/EmpOddPage'
 import { AdminMainPage } from './pages/admin/AdminMainPage';
+import OddApproval from './pages/admin/OddApproval';
 
 
 
@@ -109,6 +110,10 @@ function App() {
 
           {/* 휴가 승인 페이지 */}
           <Route path='/admin/leave-approval' element={<LeaveApproval />} />
+
+          {/* 이상 근태 승인 페이지 */}
+          <Route path='/admin/odd-approval' element={<OddApproval />} />
+
 
         </Routes>
       </Box>
