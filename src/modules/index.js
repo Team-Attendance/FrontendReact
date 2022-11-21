@@ -4,12 +4,13 @@
 import { combineReducers } from 'redux'
 import auth from './auth';
 import leaveModal from './leaveModal';
-
+import calanderStatus from './calanderStatus';
 
 // 루트 리듀서
 const rootReducer = combineReducers({
   auth,
-  leaveModal
+  leaveModal,
+  calanderStatus
 });
 
 export default rootReducer;

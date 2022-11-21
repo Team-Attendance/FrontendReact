@@ -5,7 +5,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { empInfo, leaveApprovalInfo } from './modules';
 import leaveModal from '../modules/leaveModal';
 import auth from '../modules/auth';
-
+import calanderStatus from '../modules/calanderStatus';
+import calander from '../modules/calander';
 
 const middlewares = [thunk];
 
@@ -14,7 +15,8 @@ const reducers = combineReducers({
     empInfo,
     leaveApprovalInfo,
     leaveModal,
-    auth
+    calanderStatus,
+    calander
 });
 
 let store;

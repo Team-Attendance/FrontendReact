@@ -11,30 +11,32 @@ import { Link } from 'react-router-dom';
 
 export function Header() {
   return (
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
-        <Toolbar sx={{ backgroundColor: '#00AAFF' }}>
+    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
+      <Toolbar sx={{ backgroundColor: '#00AAFF' }}>
+
+        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '1px' }}>
           <Link to='emp/main'>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '1px' }}>
             Amateur10
-          </Typography>
           </Link>
+        </Typography>
 
-          <Box sx={{ margin: '0 10px' }}>
-            192.168.40.4
-          </Box>
 
-           {/* 아이콘 버튼 + 알럿 */}
-           <IconButton color='inherit'>
-            <Badge badgeContent={13} color="error">
-              <NotificationsNoneIcon />
-            </Badge>
-           </IconButton>
+        <Box sx={{ margin: '0 10px' }}>
+          192.168.40.4
+        </Box>
 
-           {/* 로그아웃 버튼 */}
-           <IconButton color='inherit'>
-            <LogoutIcon/>
-           </IconButton>
-        </Toolbar>
-      </AppBar>
+        {/* 아이콘 버튼 + 알럿 */}
+        <IconButton color='inherit'>
+          <Badge badgeContent={13} color="error">
+            <NotificationsNoneIcon />
+          </Badge>
+        </IconButton>
+
+        {/* 로그아웃 버튼 */}
+        <IconButton color='inherit'>
+          <LogoutIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   );
 }
