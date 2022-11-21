@@ -18,11 +18,11 @@ const LeaveApprovalModal = (data) => {
     }
 
     const approveButton = () => {
-        onSubmit(data.data.empNo, 1)
+        // onSubmit(data.data.empNo, 1)
     }
 
     const rejectButton = () => {
-        onSubmit(data.data.empNo, 2)
+        // onSubmit(data.data.empNo, 2)
     }
 
     const onSubmit = (empNo, state) => {
