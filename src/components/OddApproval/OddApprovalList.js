@@ -1,13 +1,22 @@
 import { useEffect, useRef, useState } from "react"
+import Modal from "../Modal/Modal"
+import OddApprovalModal from "../Modal/OddApprovalModal"
 import { GridView, LocalDataProvider } from 'realgrid'
 import { columns, fields } from './realgrid-data'
 
-import 'realgrid/dist/realgrid-style.css'
+const OddApprovalList = ({oddApprovalInfo}) => {
 
-const EmpList = ({empInfo}) => {
     const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
+
+    const [modal, setModal] = useState(false)
+    const [data, setData] = useState({})
+
+    const openModal = (data) => {
+        setData(data)
+        setModal(!modal)
+    }
 
     useEffect(() => {
         const container = realgridElement.current
@@ -18,9 +27,14 @@ const EmpList = ({empInfo}) => {
         dp.setFields(fields)
         gv.setColumns(columns)
         gv.footer.visible = false
-        dp.setRows(empInfo.data)
+        dp.setRows(oddApprovalInfo.data)
         gv.setEditOptions({editable: false})
-
+        gv.onCellClicked = (grid, clickData) => {
+            if(clickData.itemIndex === undefined){
+                return;
+            }
+            openModal(oddApprovalInfo.data[clickData.itemIndex])
+        }
         setDataProvider(dp)
         setGridView(gv)
     
@@ -29,15 +43,20 @@ const EmpList = ({empInfo}) => {
           gv.destroy()
           dp.destroy()
         }
-      }, [empInfo.data])
+      }, [oddApprovalInfo.data])
 
     return (
         <div>
-            <div
+            {modal&&(
+                <Modal closeModal={() => setModal(!modal)} >
+                    <OddApprovalModal data={data}/>
+                </Modal>
+            )}
+             <div
                 style={{ height: '300px', width: '100%' }}
                 ref={realgridElement}></div>
         </div>
     )
 }
 
-export default EmpList
+export default OddApprovalList

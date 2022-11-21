@@ -9,7 +9,7 @@ const CLOSE = 'leaveModal/CLOSE';
 
 // 액션 생성 함수
 // export는 여러개 가능
-export const open = () => ({ type: OPEN });
+export const open = (calanderDay) => ({ type: OPEN, data: calanderDay });
 export const close = () => ({type: CLOSE});
 
 
@@ -32,8 +32,8 @@ const initialState = {
 // v2 리듀서 함수(handleActions 함수 사용)
 const leaveModal = handleActions(
   {
-    [OPEN]: (state, action) => ({...state ,view: true}),
-    [CLOSE]: (state, action) => ({...state ,view: false}),
+    [OPEN]: (state, action) => ({...state , data: action.data , view: true}),
+    [CLOSE]: (state, action) => ({...state , view: false}),
   },
   initialState,
 )

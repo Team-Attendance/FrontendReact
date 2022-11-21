@@ -10,9 +10,16 @@ const LeaveApprovalType = {
     GET_LEAVE_APPROVAL_FAILURE: 'GET_LEAVE_APPROVAL_FAILURE',
 }
 
+const OddApprovalType = {
+    GET_ODD_APPROVAL: 'GET_ODD_APPROVAL',
+    GET_ODD_APPROVAL_SUCCESS: 'GET_ODD_APPROVAL_SUCCESS',
+    GET_ODD_APPROVAL_FAILURE: 'GET_ODD_APPROVAL_FAILURE',
+}
+
 const Types = {
     ...EmpType,
-    ...LeaveApprovalType
+    ...LeaveApprovalType,
+    ...OddApprovalType
 }
 
 export default Types;

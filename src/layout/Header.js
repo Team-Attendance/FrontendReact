@@ -19,22 +19,22 @@ export function Header() {
             </Link>
           </Typography>
 
-          <Box sx={{ margin: '0 10px' }}>
-            192.168.40.4
-          </Box>
+        <Box sx={{ margin: '0 10px' }}>
+          192.168.40.4
+        </Box>
 
-           {/* 아이콘 버튼 + 알럿 */}
-           <IconButton color='inherit'>
-            <Badge badgeContent={13} color="error">
-              <NotificationsNoneIcon />
-            </Badge>
-           </IconButton>
+        {/* 아이콘 버튼 + 알럿 */}
+        <IconButton color='inherit'>
+          <Badge badgeContent={13} color="error">
+            <NotificationsNoneIcon />
+          </Badge>
+        </IconButton>
 
-           {/* 로그아웃 버튼 */}
-           <IconButton color='inherit'>
-            <LogoutIcon/>
-           </IconButton>
-        </Toolbar>
-      </AppBar>
+        {/* 로그아웃 버튼 */}
+        <IconButton color='inherit'>
+          <LogoutIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   );
 }

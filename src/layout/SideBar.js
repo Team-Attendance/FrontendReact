@@ -57,6 +57,16 @@ const UserWork = styled.dl`
     text-align: center;
   }
 `
+
+const SideWrap = styled.div`
+  background-color: #00AAFF;
+  height: 100vh;
+  overflow-y: scroll;
+  padding-top: 64px;
+  &.scroll-hidden::-webkit-scrollbar {
+    display: none;
+}
+`
 export function SideBar() {
 
   const adminMenu = [
@@ -64,12 +74,12 @@ export function SideBar() {
     {img: <CalendarMonthIcon sx={{ color: 'white' }}/>, name: '부서 일정', path: 'admin2'},
     {img: <EventAvailableIcon sx={{ color: 'white' }}/>, name: '휴가 승인', path: '/admin/leave-approval'},
     {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태', path: '/emp/daily-attendance-info'},
-    {img: <SettingsIcon sx={{ color: 'white' }}/>, name: '환경설정', path: 'admin5'},
+    {img: <SettingsIcon sx={{ color: 'white' }}/>, name: '환경설정', path: '/admin/configuration'},
   ]
 
   const empMenu = [
     {img: <PersonIcon sx={{ color: 'white' }}/>, name: '나의 정보', path: 'emp1'},
-    {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황', path: 'emp2'},
+    {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황', path: '/admin/odd-approval'},
     {img: <FlightIcon sx={{ color: 'white' }}/>, name: '휴가 현황', path: 'emp3'},
     {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태 현황', path: 'emp4'}
   ]
@@ -84,13 +94,13 @@ export function SideBar() {
           
         }}
       >
-        <Toolbar />
-        <Box sx={{ overflow: 'auto', backgroundColor: '#00AAFF', minHeight: 'calc(100vh - 64px)' }}>
+        
+        <SideWrap className="scroll-hidden">
           <List>
       
             <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
-                <img width={"100%"} height={"100%"} src='/user.jpg' alt='user'/>
+                <img width={"100%"} height={"100%"} src='' alt='user'/>
               </UserImage>
               <Box>
                 <UserInfo>
@@ -147,7 +157,7 @@ export function SideBar() {
             ))}
           </List>
           <Divider />
-        </Box>
+        </SideWrap>
       </Drawer>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LeaveApprovalList from "../../components/LeaveApproval/LeaveApprovalList";
+import SearchBar from "../../components/SearchBar";
 import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprovalActions";
 
 const LeaveApproval = () => {
@@ -10,12 +11,23 @@ const LeaveApproval = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(LeaveApprovalActions.getAllLeaveRequest())
+        dispatch(LeaveApprovalActions.getAllLeaveApproval())
     }, [])
+
+    const onSubmit = (query, option) => {
+
+        if(query === ''){
+            dispatch(LeaveApprovalActions.getAllLeaveApproval())
+        } else{
+            dispatch(LeaveApprovalActions.searchLeaveApproval(option, query))
+        }
+
+    }
 
     return (
         <div>
-            <LeaveApprovalList leaveAppovalInfo={leaveApprovalInfo} />
+            <SearchBar onSubmit={onSubmit} />
+            <LeaveApprovalList leaveApprovalInfo={leaveApprovalInfo} />
         </div>
     )
 }

@@ -3,24 +3,23 @@ import React, { useCallback, useState } from "react";
 const SearchBar = ({onSubmit}) => {
 
     const [query, setQuery] = useState('')
-    const [target, setTarget] = useState('')
-    const [option, setOption] = useState('name')
+    const [option, setOption] = useState('emp_name')
 
     const onQueryChange = useCallback((e) => {
         setQuery(e.target.value);
     }, [query])
 
     const SearchButtonClick = useCallback(() => {
-        onSubmit(query, target, option)
+        onSubmit(query, option)
         // setQuery('')
-    }, [onSubmit, query, target,option])
+    }, [onSubmit, query, option])
 
     const EnterKeyPress = useCallback((e) => {
         if (e.key === 'Enter') {
-            onSubmit(query, target, option)
+            onSubmit(query, option)
             // setQuery('')
         }
-    }, [onSubmit, query, target,option])
+    }, [onSubmit, query, option])
 
     const handleSelect = (e) => {
         setOption(e.target.value)
@@ -50,8 +49,8 @@ const SearchBar = ({onSubmit}) => {
 
             <div>
                 <select onChange={handleSelect}>
-                    <option value={'name'}>이름</option>
-                    <option value={'empno'}>사번</option>
+                    <option value={'emp_name'}>이름</option>
+                    <option value={'emp_no'}>사번</option>
                 </select>
                 <input
                     placeholder="사원 검색"

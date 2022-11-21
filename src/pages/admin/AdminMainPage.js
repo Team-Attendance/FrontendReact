@@ -1,10 +1,10 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import BarChart from "../../components/adminMain/BarChart";
 import Calendars from "../../components/adminMain/Calendars";
 import "../../css/AdminMainPage.css"
 
 
-export function AdminMainPage(){
+export function AdminMainPage() {
 
     return (
         <div className="wrap">
@@ -28,12 +28,12 @@ export function AdminMainPage(){
                     </div>
                 </div>
                 <div className="content">
-                     <p className="title">출근기록</p>
+                    <p className="title">출근기록</p>
 
                 </div>
             </div>
         </div>
     );
 
-    
+
 }
