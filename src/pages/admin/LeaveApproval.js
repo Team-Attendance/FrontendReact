@@ -30,8 +30,7 @@ const LeaveApproval = () => {
             <SearchBar onSubmit={onSubmit} />
             <LeaveApprovalList 
                 leaveApprovalInfo={leaveApprovalInfo}
-                flag={flag}
-                setFlag={setFlag}
+                changeFlag ={() => setFlag(!flag)}
              />
         </div>
     )

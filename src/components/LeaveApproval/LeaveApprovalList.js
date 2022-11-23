@@ -9,7 +9,7 @@ import { columns, fields } from './realgrid-data'
 
 import 'realgrid/dist/realgrid-sky-blue.css'
 
-const LeaveApprovalList = ({leaveApprovalInfo, flag, setFlag}) => {
+const LeaveApprovalList = ({leaveApprovalInfo, changeFlag}) => {
     
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
@@ -62,8 +62,7 @@ const LeaveApprovalList = ({leaveApprovalInfo, flag, setFlag}) => {
                     <LeaveApprovalModal
                         closeModal={() => setModal(!modal)}
                         data={data}
-                        flag={flag}
-                        setFlag={setFlag}/>
+                        changeFlag={changeFlag}/>
                 </Modal>
             )}
             <div

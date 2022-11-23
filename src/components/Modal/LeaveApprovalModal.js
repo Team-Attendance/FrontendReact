@@ -7,7 +7,7 @@ import {updateLeaveApproval} from '../../api/LeaveApprovalAPI'
 import './leaveApprovalModal.scss'
 // components 
 
-const LeaveApprovalModal = ({data, closeModal,flag,setFlag}) => {
+const LeaveApprovalModal = ({data, closeModal,changeFlag}) => {
 
     // const dispatch = useDispatch()
 
@@ -28,7 +28,7 @@ const LeaveApprovalModal = ({data, closeModal,flag,setFlag}) => {
 
         updateLeaveApproval(update)
         closeModal()
-        setFlag(!flag)
+        changeFlag()
         
     }
 
