@@ -1,14 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprovalActions";
+
+import {updateLeaveApproval} from '../../api/LeaveApprovalAPI'
 // style
+import './leaveApprovalModal.scss'
 // components 
 
-const LeaveApprovalModal = (data) => {
-    // const {leaveApprovalInfo} = useSelector((state) => state.leaveApprovalInfo)
-    // console.log(leaveApprovalInfo)
+const LeaveApprovalModal = ({data, closeModal,flag,setFlag}) => {
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
+
 
     const dateFormatting = (millisec) =>{
         // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
@@ -16,38 +18,43 @@ const LeaveApprovalModal = (data) => {
         
         return date
     }
+    
+    const changeState = (s) => {
+        const update = {
+            'empNo': data.empNo,
+            'state': s,
+            'startDate': data.leaveStartDate
+        }
 
-    const approveButton = () => {
-        // onSubmit(data.data.empNo, 1)
-    }
-
-    const rejectButton = () => {
-        // onSubmit(data.data.empNo, 2)
-    }
-
-    const onSubmit = (empNo, state) => {
-        dispatch(LeaveApprovalActions.updateLeaveApproval(empNo, state))
+        updateLeaveApproval(update)
+        closeModal()
+        setFlag(!flag)
+        
     }
 
     return(
         <div className="myPage">
             <main className="main">
               <div className="infoBox">
-                  <p className="infoTitle">휴가 신청</p>
+                  <h1 className="infoTitle">휴가 신청</h1>
                   <hr />
                   <div className="infoContent">
                       <ul className="infoUl">
-                          <li className="infoLi"><label className="infoLabel">이름</label> <input className="infoInput" value={data.data.empName} readOnly/></li>
-                          <li className="infoLi"><label className="infoLabel">사번</label> <input className="infoInput" value={data.data.empNo} readOnly /></li>
-                          <li className="infoLi"><label className="infoLabel">직급</label> <input className="infoInput" value={data.data.empPosition} readOnly /></li>
-                          <li className="infoLi"><label className="infoLabel"> 신청 일자</label> <input className="infoInput" value={dateFormatting(data.data.leaveAdjDate)} readOnly /></li>
-                          <li className="infoLi"><label className="infoLabel"> 휴가 시작 일자</label> <input className="infoInput" value={dateFormatting(data.data.leaveStartDate)} readOnly /></li>
-                          <li className="infoLi"><label className="infoLabel"> 휴가 종료 일자</label> <input className="infoInput" value={dateFormatting(data.data.leaveEndDate)} readOnly /></li>
-                          <li className="infoLi"><label className="infoLabel">휴가 종류</label> <input className="infoInput" value={data.data.leaveType} readOnly /></li>                          
-                          <li className="infoLi"><label className="infoLabel">휴가 사유</label> <input className="infoInput" value={data.data.leaveDetail} readOnly /></li>                          
-                          <button className="pwChange" onClick={approveButton}>승인</button>
-                          <button className="pwChange" onClick={rejectButton}>반려</button>
+                          <li className="infoLi"><div className="infoLabel">이름</div> <div className="infoInput">{data.empName}</div></li>
+                          <li className="infoLi"><div className="infoLabel">직급</div> <div className="infoInput">{data.empPosition}</div></li>
+                          <li className="infoLi"><div className="infoLabel">사번</div> <div className="infoInput"  readOnly>{data.empNo}</div></li>
+                          <li className="infoLi"><div className="infoLabel"> 신청 일자</div> <div className="infoInput">{dateFormatting(data.leaveAdjDate)}</div></li>
+                          <li className="infoLi"><div className="infoLabel"> 휴가 시작 일자</div> <div className="infoInput">{dateFormatting(data.leaveStartDate)}</div></li>
+                          <li className="infoLi"><div className="infoLabel"> 휴가 종료 일자</div> <div className="infoInput" >{dateFormatting(data.leaveEndDate)}</div></li>
+                          <li className="infoLi"><div className="infoLabel">휴가 종류</div> <div className="infoInput">{data.leaveType} </div></li>                          
+                          <li className="infoLi"><div className="infoLabel">휴가 사유</div> <div className="infoInput">{data.leaveDetail}</div></li>                          
                       </ul>
+                      {!data.leaveAdjState &&(
+                      <div className="button">
+                          <button className="pwChange" onClick={()=>changeState(1)}>승인</button>
+                          <button className="pwChange" onClick={()=>changeState(2)}>반려</button>
+                      </div>
+                      )}
                   </div>
               </div>
             </main>

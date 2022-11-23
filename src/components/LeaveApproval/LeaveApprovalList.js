@@ -7,9 +7,9 @@ import LeaveApprovalModal from '../Modal/LeaveApprovalModal';
 import { GridView, LocalDataProvider } from 'realgrid'
 import { columns, fields } from './realgrid-data'
 
-import 'realgrid/dist/realgrid-style.css'
+import 'realgrid/dist/realgrid-sky-blue.css'
 
-const LeaveApprovalList = ({leaveApprovalInfo}) => {
+const LeaveApprovalList = ({leaveApprovalInfo, flag, setFlag}) => {
     
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
@@ -31,9 +31,12 @@ const LeaveApprovalList = ({leaveApprovalInfo}) => {
       gv.setDataSource(dp)
       dp.setFields(fields)
       gv.setColumns(columns)
-      gv.footer.visible = false
       dp.setRows(leaveApprovalInfo.data)
+      // realGrid 설정
+      gv.footer.visible = false
       gv.setEditOptions({editable: false})
+      gv.setStateBar({visible: false})
+      gv.setCheckableExpression("values['leaveAdjState']='0'",true)
       gv.onCellClicked = (grid, clickData) => {
         if(clickData.itemIndex === undefined){
             return;
@@ -56,7 +59,11 @@ const LeaveApprovalList = ({leaveApprovalInfo}) => {
         <div>
             {modal&&(
                 <Modal closeModal={() => setModal(!modal)} >
-                    <LeaveApprovalModal data={data}/>
+                    <LeaveApprovalModal
+                        closeModal={() => setModal(!modal)}
+                        data={data}
+                        flag={flag}
+                        setFlag={setFlag}/>
                 </Modal>
             )}
             <div

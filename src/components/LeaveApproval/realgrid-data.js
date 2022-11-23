@@ -53,10 +53,7 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: {
-        text: "신청일자",
-        showTooltip: false,
-    }
+    header: { text: "신청일자" }
 },{
     name: "empNo",
     fieldName: "empNo",
@@ -65,10 +62,7 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: {
-        text: "사번",
-        showTooltip: false,
-    }
+    header: { text: "사번" }
 },{
     name: "empName",
     fieldName: "empName",
@@ -77,14 +71,9 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: {
-        text: "이름",
-        showTooltip: true,
-        tooltip:'<span style="color: red;">이름</span>',
-    },
+    header: { text: "이름" },
     renderer: {
-        type:"text",
-        showTooltip: true
+        type:"text"
     }
 }, {
     name: "empPosition",
@@ -94,10 +83,7 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: {
-        text: "직급",
-        showTooltip: false,
-    }
+    header: { text: "직급" }
 }, {
     name: "leaveType",
     fieldName: "leaveType",
@@ -106,10 +92,7 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: {
-        text: "휴가 종류",
-        showTooltip: false,
-    }
+    header: { text: "휴가 종류" }
 }, {
     name: "leaveStartDate",
     fieldName: "leaveStartDate",
@@ -127,7 +110,7 @@ export const columns = [{
     styles: {
         "textAlignment": "center"
     },
-    header: "휴가 종료 일자"
+    header: {text: "휴가 종료 일자"}
 },{
     name: "leaveAdjState",
     fieldName: "leaveAdjState",
@@ -136,7 +119,7 @@ export const columns = [{
     styles: {
         "textAlignment": "center"
     },
-    header: "상태",
+    header: {text: "상태"},
     displayCallback: (grid, index, value) =>{
         switch (value) {
             case '0':
@@ -157,11 +140,7 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: {
-        text: "결재 일자",
-        showTooltip: false,
-    },
-    numberFormat: '0'
+    header: { text: "결재 일자" }
 },{
     name: "leaveAdjAppro",
     fieldName: "leaveAdjAppro",

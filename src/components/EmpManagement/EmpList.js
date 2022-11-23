@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { GridView, LocalDataProvider } from 'realgrid'
 import { columns, fields } from './realgrid-data'
 
-import 'realgrid/dist/realgrid-style.css'
+// import 'realgrid/dist/realgrid-style.css'
 
 const EmpList = ({empInfo}) => {
     const [dataProvider, setDataProvider] = useState(null)
