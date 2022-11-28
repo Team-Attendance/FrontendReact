@@ -2,7 +2,7 @@
 // ex) import rootReducer from './modules'
 
 import { combineReducers } from 'redux'
-import auth from './auth';
+import auth from '../redux/modules/Login/auth';
 import leaveModal from './leaveModal';
 import calanderStatus from './calanderStatus';
 

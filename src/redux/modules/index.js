@@ -1,3 +1,5 @@
 export {default as empInfo} from './EmpManagement/EmpReducer'
 export {default as leaveApprovalInfo} from './LeaveApproval/LeaveApprovalReducer'
 export {default as oddApprovalInfo} from './OddApproval/OddApprovalReducer'
+export {default as EmpRegistration} from '../../pages/admin/EmpRegistration'
+export {default as empInfoDetail} from './EmpInfo/EmpInfoReducer'

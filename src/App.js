@@ -27,14 +27,13 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import GlobalStyles from './layout/GlobalStyles';
 import { Route, Routes } from 'react-router-dom'
-import { LoginPage } from "./pages/common/LoginPage";
+import  LoginPage  from "./pages/LoginPage";
 import { EmpMainPage } from "./pages/emp/EmpMainPage";
-import { EmpInfoPage } from "./pages/emp/EmpInfoPage";
+import EmpInfoPage  from "./pages/emp/EmpInfoPage";
 import EmpManagement from './pages/admin/EmpManagement';
 import LeaveApproval from './pages/admin/LeaveApproval';
 import { ConfigrationPage } from './pages/admin/ConfigrationPage';
 import { Report } from './pages/admin/Report';
-import LoginCon from './containers/LoginCon';
 import { EmpMonthlyPage } from './pages/emp/EmpMonthlyIPage'
 import { EmpDailyPage } from './pages/emp/EmpDailyPage'
 import { EmpLeavePage } from './pages/emp/EmpLeavePage'
@@ -42,6 +41,7 @@ import { EmpOddPage } from './pages/emp/EmpOddPage'
 import { AdminMainPage } from './pages/admin/AdminMainPage';
 import OddApproval from './pages/admin/OddApproval';
 import MainLayout from './layout/MainLayout';
+import EmpRegistration from './pages/admin/EmpRegistration';
 
 
 function App() {
@@ -89,6 +89,9 @@ function App() {
 
           {/* 사원 관리 페이지 */}
           <Route path='/admin/emp-management' element={<EmpManagement />} />
+
+          {/*사원 정보 등록 */}
+          <Route path='/admin/emp-registration' element={<EmpRegistration />} />
 
           {/* 관리자 메인 페이지 */}
           <Route path="/admin/main" element={<AdminMainPage />} />

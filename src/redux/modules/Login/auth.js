@@ -17,13 +17,11 @@ export const changeField = createAction(
 );
 
 export const changeFields = createAction(CHANGE_FIELDS);
-export const initializerForm = createAction(INITIALIZE_FORM, (form) => form);
-export const changeInput = createAction(CHANGE_INPUT);
 
 const initialState = {
   login:{
-    emp_no:"",
-    emp_pwd:"",
+    empNo:"",
+    empPwd:"",
   },
 };
 
