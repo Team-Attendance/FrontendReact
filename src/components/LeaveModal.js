@@ -1,139 +1,180 @@
-import styled from "styled-components";
+import axios from "axios";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { formatHyphenFulldate } from "../modules/cal_function";
-import { useEffect } from "react";
+import { formatFulldate, formatHyphenFulldate } from "../modules/cal_function";
+import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useCallback } from "react";
+import { close } from "../modules/leaveModal";
+import "./leaveModal.scss";
+import { getStatusData } from "../modules/calendarStatus";
 
-const ModalWrap = styled.div`
-`
+const LeaveModal = () => {
+  const [showEndDate, setShowEndDate] = useState(true);
+  const [showLeaveCompletion, setShowLeaveCompletion] = useState(false);
 
-const OpacityArea = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: whitesmoke;
-  left: 0;
-  top: 0;
-  opacity: 0.7;
-  z-index: 1;
-`
+  const leaveStartDate = useRef();
+  const leaveEndDate = useRef();
+  const leaveType = useRef();
+  const leaveDetail = useRef();
 
-const ModalArea = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  transition: 2s;
+  const leaveModalData = useSelector(state => state.leaveModal.data);
+  const leaveModalView = useSelector(state => state.leaveModal.view);
 
-  &.open{
-    opacity: 1;
-  }
-`
 
-const LeaveFormWrap = styled.div`
-  width: 600px;
-  padding: 40px 30px;
-  border: 1px solid lightgray;
-  box-shadow: 0px 0px 7px 1px lightgray;
-  position: absolute;
-  left: calc(50% - 300px);
-  top: 100px;
-  background-color: white;
-  z-index: 3;
+  const year = useSelector(state => state.calendar.year);
+  const month = useSelector(state => state.calendar.month);
 
-  & h1, & h3{
-    font-weight: bold;
+
+  const dispatch = useDispatch();
+  const onClose = useCallback(() => dispatch(close()), [dispatch]);
+
+  const onUpdate = useCallback((empNo, year, month) => dispatch(getStatusData(empNo, year, month)), [dispatch]);
+
+  const changeLeaveType = (e) => {
+    (e.target.value === "morning" || e.target.value === "afternoon") ? setShowEndDate(false) : setShowEndDate(true);
   }
 
-  & h1{
-    font-size: 1.2rem;
-    border-bottom: 2px solid gray;
-    padding-bottom: 7px;
+
+  const leaveRegistration = () => {
+    axios.post('/emp-leave', {
+      leaveStartDate: leaveStartDate.current.value,
+      leaveEndDate: leaveEndDate.current != null && leaveEndDate.current.value,
+      empNo: 1,
+      leaveType: leaveType.current.value,
+      leaveDetail: leaveDetail.current.value,
+
+    }).then(
+      (response) => {
+        let result = response.data;
+        if (result) {
+          setShowLeaveCompletion(true);
+        } else {
+          alert("남은 휴가 일수가 부족합니다.");
+        }
+      }
+    );
   }
 
-  & h3{
-    font-size: 0.8rem;
-    margin-bottom: 5px;
-  }
+  const checkLeave = () => {
+    const startDate = new Date(leaveStartDate.current.value);
+    let endDate;
+    let diffDate;
 
-  & div.form-item{
-    margin: 20px 0;
+    if (leaveEndDate.current != null) {
+      endDate = new Date(leaveEndDate.current.value);
+      diffDate = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24);
 
-    & input, & select{
-      width: 200px;
-      height: 35px;
-      padding: 3px 10px;
-      outline: none;
+      leaveType.current.value === "" ? alert("휴가 종류를 선택하세요.")
+        : leaveEndDate.current.value === "" ? alert("휴가 종료일을 선택하세요.")
+          : formatFulldate(leaveStartDate.current.value) > formatFulldate(leaveEndDate.current.value) ? alert("휴가 종료일이 잘못 설정 되었습니다.")
+            : endDate.getDay() === 0 || endDate.getDay() === 6 ? alert("휴가 종료일은 평일만 가능합니다.")
+              : (startDate.getDay() > endDate.getDay()) || (8 - startDate.getDay() <= diffDate) ? alert("휴가 신청일과 동일한 주까지 신청이 가능합니다.")
+                : (leaveDetail.current.value).trim() === "" ? alert("휴가 사유를 입력해주세요.")
+                  : axios.get('/leave-check', {
+                    params: {
+                      date: leaveEndDate.current != null && leaveEndDate.current.value,
+                      empNo: 1
+                    }
+                  }).then(
+                    (response) => {
+                      let result = response.data;
+                      if (result) {
+                        alert("휴가 종료일과 중복되는 휴가 신청이 이미 존재합니다.");
+                      } else {
+                        leaveRegistration();
+                      }
+                    }
+                  );
+    } else {
+      leaveType.current.value === "" ? alert("휴가 종류를 선택하세요.")
+        : (leaveDetail.current.value).trim() === "" ? alert("휴가 사유를 입력해주세요.")
+          : leaveRegistration();
     }
-
-    & textarea{
-      width: 100%;
-      height: 300px;
-      resize: none;
-      padding: 15px;
-      outline: none;
-    }
   }
 
-  & input[type=submit]{
-    width: 100%;
-    padding: 10px 0;
-    background-color: whitesmoke;
-    border: 1px solid lightgray;
-    color: black;
-    font-weight: bold;
-  }
-`
-
-const LeaveModal = ({ data, view, onClose }) => {
-  
-  
-  return (
-    view === true ?
-      <ModalWrap>
-        <OpacityArea onClick={onClose}></OpacityArea>
-        <ModalArea className={view === true && "open"}>
-          <LeaveFormWrap>
-            <IconButton size="small" sx={{position: 'absolute', right: '20px', top: '20px'}} onClick={onClose}>
+  // 휴가 신청 페이지
+  const firstPage = () => {
+    return (
+      <div>
+        <div className="opacity-area" onClick={onClose}></div>
+        <div className="modal-area">
+          <div className="leave-form-wrap">
+            <IconButton size="small" sx={{ position: 'absolute', right: '20px', top: '20px' }} onClick={onClose}>
               <CloseIcon />
             </IconButton>
-            
+
             <div>
               <h1>휴가신청</h1>
             </div>
             <div>
-              <form>
-                <div className="form-item">
-                  <h3>휴가종류</h3>
-                  <select>
-                    <option>휴가 종류를 선택하세요</option>
-                    <option>연차</option>
-                    <option>오전 반차</option>
-                    <option>오후 반차</option>
-                  </select>
-                </div>
-                <div className="form-item">
-                  <h3>휴가일 선택</h3>
-                  <input type="date" value={formatHyphenFulldate(data.date)} readOnly/> - <input type="date" />
-                </div>
-                <div className="form-item">
-                  <h3>신청사유</h3>
-                  <textarea placeholder="신청 사유를 입력하세요">
+              <div className="form-item">
+                <h3>휴가종류</h3>
+                <select ref={leaveType} onChange={changeLeaveType}>
+                  <option value="">휴가 종류를 선택하세요</option>
+                  <option value="normal">연차</option>
+                  <option value="morning">오전반차</option>
+                  <option value="afternoon">오후반차</option>
+                </select>
+              </div>
+              <div className="form-item">
+                <h3>휴가일 선택</h3>
+                <input ref={leaveStartDate} type="date" value={formatHyphenFulldate(leaveModalData.date)} readOnly />
+                {showEndDate && <>&nbsp;-&nbsp;<input ref={leaveEndDate} type="date" /></>}
 
-                  </textarea>
-                </div>
-                <div>
-                  <input type="submit" value="신청하기" />
-                </div>
-              </form>
+              </div>
+              <div className="form-item">
+                <h3>신청사유</h3>
+                <textarea ref={leaveDetail} placeholder="신청 사유를 입력하세요">
+
+                </textarea>
+              </div>
+              <div>
+                <input type="button" value="신청하기" onClick={checkLeave} />
+              </div>
             </div>
-          </LeaveFormWrap>
-        </ModalArea>
-      </ModalWrap>
-      :
-      <></>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 휴가 신청 후 페이지
+  const secondPage = () => {
+    return (
+      <div>
+        <div className="opacity-area" onClick={() => { setShowLeaveCompletion(false); onClose(); }}></div>
+        <div>
+          <div className="leave-form-wrap check">
+            <IconButton size="small" sx={{ position: 'absolute', right: '20px', top: '20px' }} onClick={() => { setShowLeaveCompletion(false); onClose(); }}>
+              <CloseIcon />
+            </IconButton>
+            <div>
+              <h1>휴가신청</h1>
+            </div>
+            <div>
+              <div className="form-item">
+                <h3>휴가 신청이 완료 되었습니다.</h3>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <input type="button" value="휴가 현황 페이지로 이동" onClick={() => { }} />
+                <input type="button" value="확인" onClick={() => { setShowLeaveCompletion(false); onClose(); onUpdate(1, year, month); }} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    leaveModalView === true &&
+    <div>
+      {showLeaveCompletion === false && firstPage()}
+
+      {showLeaveCompletion === true && secondPage()}
+    </div>
   );
 }
 

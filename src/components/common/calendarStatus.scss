@@ -1,0 +1,170 @@
+.odd-biz-wrap {
+  width: 60%;
+  height: 100%;
+  font-size: 0.8rem;
+  padding-right: 20px;
+
+  & h2 {
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  & .odd-status-item-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    border: 1px solid lightgray;
+
+    & .odd-status-item {
+      width: 19%;
+      border-radius: 10px;
+      background-color: white;
+      position: relative;
+
+      & h4 {
+        position: absolute;
+        left: 10px;
+        top: 8px;
+        font-weight: bold;
+      }
+
+      &>div {
+        text-align: center;
+        padding-top: 25px;
+        padding-bottom: 10px;
+      }
+
+      &.normal {
+        background-color: white;
+      }
+
+      &.morning {
+        background-color: white;
+      }
+
+      &.afternoon {
+        background-color: white;
+      }
+
+      &.remainder {
+        background-color: white;
+      }
+
+      & span {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+
+  }
+}
+
+
+
+
+
+
+
+.leave-status-wrap {
+  width: 40%;
+  height: 100%;
+  font-size: 0.8rem;
+  padding-left: 20px;
+
+  & h3 {
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  & .leave-status-item-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    border: 1px solid lightgray;
+
+    & .leave-status-item {
+      width: 32%;
+      border-radius: 10px;
+      background-color: white;
+      position: relative;
+
+      & h4 {
+        position: absolute;
+        left: 10px;
+        top: 8px;
+        font-weight: bold;
+      }
+
+      &>div {
+        text-align: center;
+        padding-top: 25px;
+        padding-bottom: 10px;
+      }
+
+      &.normal {
+        background-color: white;
+      }
+
+      &.morning {
+        background-color: white;
+      }
+
+      &.afternoon {
+        background-color: white;
+      }
+
+      &.remainder {
+        background-color: white;
+      }
+
+      & span {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+
+
+
+
+.odd-status-item2 {
+  width: 20%;
+  border-radius: 10px;
+  position: relative;
+
+  &.normal {
+    background-color: white;
+  }
+
+  &.odd-biz {
+    background-color: white;
+  }
+
+  &.percent {
+    background-color: white;
+  }
+
+  & h4 {
+    font-size: 0.8rem;
+    font-weight: bold;
+    background-color: lightskyblue;
+    line-height: 30px;
+    text-align: left;
+    padding-left: 15px;
+
+  }
+
+  &>div {
+    text-align: center;
+    line-height: 40px;
+  }
+
+  & span {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}
