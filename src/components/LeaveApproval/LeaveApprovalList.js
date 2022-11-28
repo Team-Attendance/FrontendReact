@@ -22,6 +22,8 @@ const LeaveApprovalList = ({leaveApprovalInfo, changeFlag}) => {
     const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
+
+    const approver = localStorage.getItem("empName")
   
     useEffect(() => {
       const container = realgridElement.current
@@ -89,7 +91,7 @@ const LeaveApprovalList = ({leaveApprovalInfo, changeFlag}) => {
             'state': s,
             'startDate': leaveApprovalInfo.data[i].leaveStartDate,
             'endDate': leaveApprovalInfo.data[i].leaveEndDate,
-            'approver': '최정현'
+            'approver': approver
             })
         }
         await updateLeaveApproval(rowDatas)

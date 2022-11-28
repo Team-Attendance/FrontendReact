@@ -18,6 +18,8 @@ const OddApprovalList = ({oddApprovalInfo, changeFlag}) => {
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
 
+    const approver = localStorage.getItem("empName")
+
     useEffect(() => {
         const container = realgridElement.current
         const dp = new LocalDataProvider(true)
@@ -81,7 +83,7 @@ const OddApprovalList = ({oddApprovalInfo, changeFlag}) => {
             'state': s,
             'type': oddApprovalInfo.data[i].oddBizType,
             'oddBizDate': oddApprovalInfo.data[i].oddBizDate,
-            'approver': '최정현'
+            'approver': approver
             })
         }
         await updateOddApproval(rowDatas)

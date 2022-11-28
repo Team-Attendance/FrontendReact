@@ -5,6 +5,9 @@ import './ApprovalModal.scss'
 
 const LeaveApprovalModal = ({data, closeModal,changeFlag}) => {
 
+    const approver = localStorage.getItem("empName")
+  
+
     const dateFormatting = (millisec) =>{
         // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
         const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '/')
@@ -18,7 +21,7 @@ const LeaveApprovalModal = ({data, closeModal,changeFlag}) => {
             'state': s,
             'startDate': data.leaveStartDate,
             'endDate': data.leaveEndDate,
-            'approver': '최정현'
+            'approver': approver
         }]
 
         await updateLeaveApproval(update)

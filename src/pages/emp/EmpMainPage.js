@@ -10,7 +10,6 @@ export function EmpMainPage(){
 
     // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
     let empNo = localStorage.getItem('empNo');
-    console.log(localStorage.getItem('empNo'));
     const dispatch = useDispatch()
 
 
