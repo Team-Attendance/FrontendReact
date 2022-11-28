@@ -7,6 +7,7 @@ import leaveModal from '../modules/leaveModal';
 import auth from '../modules/auth';
 import calanderStatus from '../modules/calanderStatus';
 import calander from '../modules/calander';
+import test from '../modules/eChart';
 
 const middlewares = [thunk];
 
@@ -18,7 +19,9 @@ const reducers = combineReducers({
     calanderStatus,
     calander,
     oddApprovalInfo,
-    auth
+    auth,
+    test
+    
 });
 
 let store;

@@ -20,6 +20,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+
+
 // Meterial UI
 const drawerWidth = 240;
 
@@ -83,6 +85,7 @@ export function SideBar() {
     {img: <FlightIcon sx={{ color: 'white' }}/>, name: '휴가 현황', path: 'emp3'},
     {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태 현황', path: 'emp4'}
   ]
+
   return(
     
     <Drawer
@@ -114,7 +117,7 @@ export function SideBar() {
                   <dd>-</dd>
                 </UserWork>
                 {/* <IntoButton>출근</IntoButton> */}
-                <Button variant="contained" color='primary' sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
+                <Button  variant="contained" color='primary' sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
               </Box>
             </Box>
           </List>
