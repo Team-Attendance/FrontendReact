@@ -3,7 +3,8 @@ import { GridView, LocalDataProvider } from 'realgrid'
 import { columns, fields } from './realgrid-data'
 import '../../css/RealGrid.scss'
 import '../../css/ApprovalList.scss'
-// import 'realgrid/dist/realgrid-style.css'
+
+import 'realgrid/dist/realgrid-sky-blue.css'
 
 const EmpList = ({empInfo}) => {
 

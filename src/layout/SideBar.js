@@ -75,13 +75,13 @@ export function SideBar() {
     {img: <PeopleAltIcon sx={{ color: 'white' }}/>, name: '사원 관리', path: '/admin/emp-management'},
     {img: <CalendarMonthIcon sx={{ color: 'white' }}/>, name: '부서 일정', path: 'admin2'},
     {img: <EventAvailableIcon sx={{ color: 'white' }}/>, name: '휴가 승인', path: '/admin/leave-approval'},
-    {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태', path: '/emp/daily-attendance-info'},
+    {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태', path: '/admin/odd-approval'},
     {img: <SettingsIcon sx={{ color: 'white' }}/>, name: '환경설정', path: '/admin/configuration'},
   ]
 
   const empMenu = [
     {img: <PersonIcon sx={{ color: 'white' }}/>, name: '나의 정보', path: '/emp/emp-info'},
-    {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황', path: '/admin/odd-approval'},
+    {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황', path: '/emp/daily-attendance-info'},
     {img: <FlightIcon sx={{ color: 'white' }}/>, name: '휴가 현황', path: 'emp3'},
     {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태 현황', path: 'emp4'}
   ]

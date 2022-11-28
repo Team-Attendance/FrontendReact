@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { GridView, LocalDataProvider } from 'realgrid'
 import { columns, fields } from './realgrid-dataAuth'
 
-import 'realgrid/dist/realgrid-style.css'
+import 'realgrid/dist/realgrid-sky-blue.css'
 
 const EmpAuthList = ({empAuthInfo}) => {
     const [dataProvider, setDataProvider] = useState(null)
