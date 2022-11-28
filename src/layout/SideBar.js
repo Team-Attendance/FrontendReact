@@ -20,6 +20,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+
+
 // Meterial UI
 const drawerWidth = 240;
 
@@ -88,6 +90,7 @@ export function SideBar() {
   const deptName = localStorage.getItem("deptName");
 
 
+
   return(
     
     <Drawer
@@ -119,7 +122,7 @@ export function SideBar() {
                   <dd>-</dd>
                 </UserWork>
                 {/* <IntoButton>출근</IntoButton> */}
-                <Button variant="contained" color='primary' sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
+                <Button  variant="contained" color='primary' sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
               </Box>
             </Box>
           </List>

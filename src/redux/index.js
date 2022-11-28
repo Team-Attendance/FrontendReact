@@ -7,6 +7,7 @@ import leaveModal from '../modules/leaveModal';
 import auth from './modules/Login/auth';
 import calanderStatus from '../modules/calanderStatus';
 import calander from '../modules/calander';
+import test from '../modules/eChart';
 
 const middlewares = [thunk];
 
@@ -24,7 +25,9 @@ const reducers = combineReducers({
     adminAuthInfo,
     empBizInfo,
     EmpLeavInfo,
-    EmpOddInfo
+    EmpOddInfo,
+    test
+    
 });
 
 let store;

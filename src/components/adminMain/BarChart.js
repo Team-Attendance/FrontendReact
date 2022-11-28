@@ -3,19 +3,6 @@ import ReactEchart from "echarts-for-react"
 
 
 
-
-  // axios.get('test/home.do')
-  // .then((Response)=>{
-  //   if(Response.data === 'ok'){
-  //     alert("ok");
-  //     window.location.href = "http://www.google.com";
-  //   }
-    
-    
-  // })
-  // .catch((Error)=>{console.log(Error)})
-
-
 export default function BarChart(){
 
   const eChartsOption = {

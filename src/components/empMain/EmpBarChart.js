@@ -1,20 +1,11 @@
 import React,{ useState } from 'react';
 import ReactEchart from "echarts-for-react"
+import { useSelector } from 'react-redux';
 
-  // axios.get('test/home.do')
-  // .then((Response)=>{
-  //   if(Response.data === 'ok'){
-  //     alert("ok");
-  //     window.location.href = "http://www.google.com";
-  //   }
-    
-    
-  // })
-  // .catch((Error)=>{console.log(Error)})
 
 
 export default function EmpBarChart(){
-  
+  const data = useSelector(state => state.test.data);
 
   const eChartsOptions = {
     title: {
@@ -45,17 +36,17 @@ export default function EmpBarChart(){
       {
         name: '정상근무',
         type: 'bar',
-        data: [20]
+        data: [data != null && data.oddBizHourCount.normalCount]
       },
       {
         name: '이상근태',
         type: 'bar',
-        data: [8],
+        data: [data != null && data.oddBizHourCount.oddBizCount],
       },
           {
         name: '휴가',
         type: 'bar',
-        data: [2]
+        data: [data != null && data.oddBizHourCount.leaveCount]
       },
       {
   
