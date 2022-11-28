@@ -32,7 +32,7 @@ import { EmpMainPage } from "./pages/emp/EmpMainPage";
 import { EmpInfoPage } from "./pages/emp/EmpInfoPage";
 import EmpManagement from './pages/admin/EmpManagement';
 import LeaveApproval from './pages/admin/LeaveApproval';
-import { ConfigrationPage } from './pages/admin/ConfigrationPage';
+import { ConfigurationPage } from './pages/admin/ConfigurationPage';
 import { Report } from './pages/admin/Report';
 import LoginCon from './containers/LoginCon';
 import { EmpMonthlyPage } from './pages/emp/EmpMonthlyIPage'
@@ -82,7 +82,7 @@ function App() {
 
 
           {/*어드민 환경설정 페이지  */}
-          <Route path="/admin/configuration" element={<ConfigrationPage />} />
+          <Route path="/admin/configuration" element={<ConfigurationPage />} />
 
           {/*어드민 보고서 페이지 */}
           <Route path="/admin/report" element={<Report />} />

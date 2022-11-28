@@ -1,3 +1,28 @@
+const ConfigurationType = {
+    GET_CONFIG: 'GET_CONFIG',
+    GET_CONFIG_SUCCESS: 'GET_CONFIG_SUCCESS',
+    GET_CONFIG_FAILURE: 'GET_CONFIG_FAILURE',
+    
+    GET_CONFIG_RESULT: 'GET_CONFIG_RESULT',
+    GET_CONFIG_RESULT_SUCCESS: 'GET_CONFIG_RESULT_SUCCESS',
+    GET_CONFIG_RESULT_FAILURE: 'GET_CONFIG_RESULT_FAILURE',
+
+    GET_CONFIG_BIZ: 'GET_CONFIG_BIZ',
+    GET_CONFIG_BIZ_SUCCESS: 'GET_CONFIG_BIZ_SUCCESS',
+    GET_CONFIG_BIZ_FAILURE: 'GET_CONFIG_BIZ_FAILURE',
+}
+
+const ReportType = {
+    GET_REPORT_LEAVE: 'GET_REPORT_LEAVE',
+    GET_REPORT_LEAVE_SUCCESS: 'GET_REPORT_LEAVE_SUCCESS',
+    GET_REPORT_LEAVE_FAILURE: 'GET_REPORT_LEAVE_FAILURE',
+
+    GET_REPORT_Odd: 'GET_REPORT_Odd',
+    GET_REPORT_Odd_SUCCESS: 'GET_REPORT_Odd_SUCCESS',
+    GET_REPORT_Odd_FAILURE: 'GET_REPORT_Odd_FAILURE',
+
+}
+
 const EmpType = {
     GET_EMP: 'GET_EMP',
     GET_EMP_SUCCESS: 'GET_EMP_SUCCESS',
@@ -19,7 +44,9 @@ const OddApprovalType = {
 const Types = {
     ...EmpType,
     ...LeaveApprovalType,
-    ...OddApprovalType
+    ...OddApprovalType,
+    ...ConfigurationType,
+    ...ReportType
 }
 
 export default Types;

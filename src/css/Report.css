@@ -1,12 +1,13 @@
 .wrap {
     width: 100%;
-    height: 100vh;
-    padding: 30px;
+    height: 100%;
+    overflow: auto;
 }
 .container {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    
 }
 .left-wrap {
     width: 49%;
@@ -16,9 +17,10 @@
 .left {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     width: 100%;
     height: 100%;
+    margin: 30px;
 }
 .emp-info,
 .leave-adj,
@@ -26,6 +28,31 @@
     width: 100%;
     height: 33.3%;
     overflow: auto;
+}
+
+
+.mini {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    border: 1px solid #000;
+
+}
+.image {
+    height: 100%;
+    width: 25%;
+    border: 1px solid #000;
+}
+.emptable {
+    height: 100%;
+    width: 75%;
+    border: 1px solid red;
+    
+}
+
+.emptable th, .emptable td{
+    height: 0;
+    vertical-align: center!important;
 }
 .title {
     margin-bottom: 10px;
@@ -81,4 +108,40 @@
     border-radius: 20px;
     padding: 10px;
     box-sizing: border-box;
+}
+
+.table {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000;
+    
+}
+.background {
+    background-color: bisque;
+    
+}
+
+.tablerow {
+    padding: auto;
+}
+
+.center {
+    text-align: center;
+}
+
+thead {
+    height: 30;
+}
+
+.tablerow {
+    height: 30px;
+}
+
+.butt {
+    width: 80px;
+    height: 30px;
+    border:1px solid black;
+    align-content: center;
+    border-radius: 5px;
+    
 }
