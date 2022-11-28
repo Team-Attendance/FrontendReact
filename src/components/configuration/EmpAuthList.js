@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react"
 import { GridView, LocalDataProvider } from 'realgrid'
-import { columns, fields } from '../table/realgrid-dataLeave'
+import { columns, fields } from './realgrid-dataAuth'
 
 import 'realgrid/dist/realgrid-style.css'
 
-const LeaveAdjTable = ({EmpLeavInfo}) => {
+const EmpAuthList = ({empAuthInfo}) => {
     const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
+    console.log(empAuthInfo)
 
     useEffect(() => {
         const container = realgridElement.current
@@ -18,7 +19,7 @@ const LeaveAdjTable = ({EmpLeavInfo}) => {
         dp.setFields(fields)
         gv.setColumns(columns)
         gv.footer.visible = false
-        dp.setRows(EmpLeavInfo.data)
+        dp.setRows(empAuthInfo.data)
         gv.setEditOptions({editable: false})
 
         setDataProvider(dp)
@@ -29,15 +30,15 @@ const LeaveAdjTable = ({EmpLeavInfo}) => {
           gv.destroy()
           dp.destroy()
         }
-      }, [EmpLeavInfo.data])
+      }, [empAuthInfo.data])
 
     return (
         <div>
             <div
-                style={{ height: '210px', width: '700px' }}
+                style={{ height: '372px', width: '360px' }}
                 ref={realgridElement}></div>
         </div>
     )
 }
 
-export default LeaveAdjTable;
+export default EmpAuthList;
