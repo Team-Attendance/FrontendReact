@@ -8,33 +8,60 @@ import IconButton from '@mui/material/IconButton';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Badge from '@mui/material/Badge';
 import { Link } from 'react-router-dom';
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export function Header() {
+
+    const logout = () => {
+        localStorage.setItem("ACCESS_TOKEN", null);
+        localStorage.setItem("empNo", undefined);
+        localStorage.setItem("deptName", undefined);
+        localStorage.setItem("empName", undefined);
+        localStorage.setItem("empPosition", undefined);
+        localStorage.setItem("empAuthority", null);
+        window.location.href = "/";
+    };
+
+    // 아이피주소 호출
+    const [ ip , setIp ] = useState();
+    useEffect( () => {
+        axios.get('https://api.ipify.org?format=json/')
+            .then((res) => {
+                setIp(res.data)
+                console.log(res);
+            })
+    },[])
+
+
+
+
   return (
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
         <Toolbar sx={{ backgroundColor: '#00AAFF' }}>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '1px' }}>
-            <Link to='emp/main'>
-              Amateur10
-            </Link>
+          <Link to='emp/main'>
+          <Typography variant="h6" noWrap component="div"
+             sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '1px' }}>
+            Amateur10
           </Typography>
+          </Link>
 
-        <Box sx={{ margin: '0 10px' }}>
-          192.168.40.4
-        </Box>
+          <Box sx={{ margin: '0 10px' }}>
+              {ip}
+          </Box>
 
-        {/* 아이콘 버튼 + 알럿 */}
-        <IconButton color='inherit'>
-          <Badge badgeContent={13} color="error">
-            <NotificationsNoneIcon />
-          </Badge>
-        </IconButton>
+           {/* 아이콘 버튼 + 알럿 */}
+           <IconButton color='inherit'>
+            <Badge badgeContent={13} color="error">
+              <NotificationsNoneIcon />
+            </Badge>
+           </IconButton>
 
-        {/* 로그아웃 버튼 */}
-        <IconButton color='inherit'>
-          <LogoutIcon />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
+           {/* 로그아웃 버튼 */}
+           <IconButton color='inherit'>
+            <LogoutIcon onClick={()=>{logout();}}/>
+           </IconButton>
+        </Toolbar>
+      </AppBar>
   );
 }

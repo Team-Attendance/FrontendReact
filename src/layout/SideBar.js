@@ -78,11 +78,16 @@ export function SideBar() {
   ]
 
   const empMenu = [
-    {img: <PersonIcon sx={{ color: 'white' }}/>, name: '나의 정보', path: 'emp1'},
+    {img: <PersonIcon sx={{ color: 'white' }}/>, name: '나의 정보', path: '/emp/emp-info'},
     {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황', path: '/admin/odd-approval'},
     {img: <FlightIcon sx={{ color: 'white' }}/>, name: '휴가 현황', path: 'emp3'},
     {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태 현황', path: 'emp4'}
   ]
+
+  const empName = localStorage.getItem("empName");
+  const deptName = localStorage.getItem("deptName");
+
+
   return(
     
     <Drawer
@@ -104,8 +109,8 @@ export function SideBar() {
               </UserImage>
               <Box>
                 <UserInfo>
-                  김경욱 연구원<br/>
-                  아마란스 그룹 개발 2부<br/>
+                  {empName} 연구원<br/>
+                  {deptName} 부서<br/>
                 </UserInfo>
                 <UserWork>
                   <dt>출근 시간</dt>

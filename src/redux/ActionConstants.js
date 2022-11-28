@@ -16,10 +16,26 @@ const OddApprovalType = {
     GET_ODD_APPROVAL_FAILURE: 'GET_ODD_APPROVAL_FAILURE',
 }
 
+const EmpInfoType = {
+    POST_EMP_INFO : 'POST_EMP_INFO',
+    POST_EMP_INFO_SUCCESS : 'POST_EMP_INFO_SUCCESS',
+    POST_EMP_INFO_FAILURE : 'POST_EMP_INFO_FAILURE',
+    GET_EMPINFO : 'GET_EMPINFO',
+    GET_EMPINFO_SUCCESS : 'GET_EMPINFO_SUCCESS',
+    GET_EMPINFO_FAILURE : 'GET_EMPINFO_FAILURE',
+    
+}
+const LoginType = {
+    POST_LOGINEMP : 'POST_LOGINEMP',
+    POST_LOGINEMP_SUCCESS : 'POST_LOGINEMP_SUCCESS',
+    POST_LOGINEMP_FAILURE : 'POST_LOGINEMP_FAILURE',}
+
 const Types = {
     ...EmpType,
     ...LeaveApprovalType,
-    ...OddApprovalType
+    ...OddApprovalType,
+    ...EmpInfoType,
+    ...LoginType
 }
 
 export default Types;

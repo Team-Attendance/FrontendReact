@@ -1,9 +1,25 @@
-import React,{ useState } from "react";
+import React, {useEffect, useState} from "react";
 import "../../css/EmpMainPage.css"
 import EmpPieChart from "../../components/empMain/EmpPieChart";
 import EmpCalendar from "../../components/empMain/EmpCalendar";
 import EmpBarChart from "../../components/empMain/EmpBarChart";
+import {useDispatch, useSelector} from "react-redux";
+import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 export function EmpMainPage(){
+
+
+    // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
+    let empNo = localStorage.getItem('empNo');
+    console.log(localStorage.getItem('empNo'));
+    const dispatch = useDispatch()
+
+
+
+    useEffect(() => {
+        dispatch(EmpInfoActions.getInfoDetail(empNo))
+        
+    }, [])
+
 
   return (
     <div className="emp_main">

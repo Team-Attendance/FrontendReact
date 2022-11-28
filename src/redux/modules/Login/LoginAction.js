@@ -1,18 +1,19 @@
 import axios from "axios";
 
+const LoginAction = axios.create();
 
-const client = axios.create();
-
-// localhost
-client.defaults.baseURL= "http://localhost:8080/";
+// linux
+LoginAction.defaults.baseURL = "http://localhost:8080/";
+LoginAction.defaults.headers.common["Authorization"] =
+  "Bearer " + localStorage.getItem("ACCESS_TOKEN");
 
 // 인터셉터 설정
-client.interceptors.response.use(
+LoginAction.interceptors.response.use(
   (response) => {
-    // 요청 성공 시 특정 작업 수행
     return response;
   },
   (error) => {
+    
     // 요청 실패 시 특정 작업 수행
     // 400 ~ 500
     if (error.response.status === 400) {
@@ -33,4 +34,4 @@ client.interceptors.response.use(
   }
 );
 
-export default client;
+export default LoginAction;

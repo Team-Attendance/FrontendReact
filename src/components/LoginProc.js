@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+
+
 const LoginForm = styled.div`
   width: 500px;
   border: 1px solid gray;
@@ -59,28 +61,28 @@ const Forget = styled.div`
     color: gray;
   }
 `
-
-
-export function LoginPage(){
+const LoginProc = ({
+   onLogin, login, error, iderr,
+   onLoginChange,
+  }) => {
+  const pwd_reg = "^[~!@#$%^&*()_+|<>?:{}a-z0-9A-Z]{8,16}$";
 
   return (
     <LoginForm>
       <h1>AMATEUR10</h1>
-      <FormWrap>
-        <form action="/emp/main" method="post">
-          <input type="text" class="user-id" name="emp_no" placeholder="사원번호"
-         />
-          <input type="text" class="user-pw" name="emp_pwd" placeholder="비밀번호"
-          />
+      <FormWrap >
+        <form onSubmit={onLogin}>
+          <input type="text"  name="empNo" placeholder="사원번호" autoComplete="off" onChange={onLoginChange} value={login.empNo} required/>
+          <input type="password" name="empPwd" placeholder="비밀번호" onChange={onLoginChange} value={login.empPwd} required="reqired"  />
 
-          <input type="submit" class="login-submit" value="login"/>
+          <button type="submit" class="login-submit" value="LOGIN" >로그인</button>
           <Forget>
             <span>로그인 불가 시 근태 담당자에게 문의 바랍니다.</span>
           </Forget>
         </form>
       </FormWrap>
     </LoginForm>
-    )
-  };
-  
-export default LoginPage;
+  );
+}
+
+export default LoginProc;
