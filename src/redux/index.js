@@ -5,9 +5,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { empInfo, leaveApprovalInfo, oddApprovalInfo } from './modules';
 import leaveModal from '../modules/leaveModal';
 import auth from '../modules/auth';
-import calanderStatus from '../modules/calanderStatus';
-import calander from '../modules/calander';
-
+import calendarStatus from '../modules/calendarStatus';
+import calendar from '../modules/calendar';
+import deptCalendar from '../modules/deptCalendar';
 const middlewares = [thunk];
 
 // 리듀서 합치기
@@ -15,8 +15,9 @@ const reducers = combineReducers({
     empInfo,
     leaveApprovalInfo,
     leaveModal,
-    calanderStatus,
-    calander,
+    calendarStatus,
+    calendar,
+    deptCalendar,
     oddApprovalInfo,
     auth
 });

@@ -5,55 +5,36 @@ import { handleActions } from 'redux-actions'
 
 // 액션 타입
 //               모듈 이름 / 액션 이름
-const UPDATE = 'calanderStatus/UPDATE';
-const LODING = 'calanderStatus/LODING';
-const ERROR = 'calanderStatus/ERROR';
+const UPDATE = 'test/UPDATE';
+const ERROR = 'test/ERROR';
 
 // 액션 생성 함수
 // export는 여러개 가능
 export const update = () => ({ type: UPDATE });
-export const loding = () => ({ type: LODING });
 export const error = () => ({ type: ERROR });
 
 // 초기 상태값 설정(리덕스에서 관리 할 상태 정의)
 const initialState = {
   data: null,
-  month: 0,
-  loading: true
 };
 
 
 
 
-export const getStatusData = (empNo, year, month) =>  dispatch => {
-  dispatch({
-    type: LODING,
-  });
+export const getChartData = (empNo, year, month) =>  dispatch => {
 
-  const calYear = year;
-  const calMonth = month;
 
-  if(month === 0){
-    calMonth = 12;
-    calYear -= 1;
-  }else if(month === 13){
-    calMonth = 1;
-    calYear += 1;
-  }
-
-  axios.get('/calander-status-data', {
+  axios.get('/emp-main-data', {
     params: {
       empNo: empNo,
-      year: calYear,
-      month: calMonth
+      year: year,
+      month: month
     }
   }).then(
     (response) => {
       dispatch({
         type: UPDATE, 
-        data: response.data,
-        month: calMonth,
-        loading: true
+        data: response.data
       })
     }
   ).catch(error => {
@@ -70,13 +51,12 @@ export const getStatusData = (empNo, year, month) =>  dispatch => {
 
 
 // v2 리듀서 함수(handleActions 함수 사용)
-const calanderStatus = handleActions(
+const test = handleActions(
   {
-    [UPDATE]: (state, action) => ({ ...state, data: action.data, month: action.month, loading: action.loading }),
-    [LODING]: (state, action) => ({ ...state, loading: false}),
+    [UPDATE]: (state, action) => ({ ...state, data: action.data}),
   },
   initialState,
 )
 
 // export default는 한개만 가능
-export default calanderStatus;
+export default test;

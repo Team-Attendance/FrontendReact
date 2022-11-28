@@ -1,9 +1,11 @@
 import ReactEchart from "echarts-for-react"
+import { useSelector } from "react-redux";
 
 export default function CalLeaveChart(){
-
-  console.log()
+  const year = useSelector(state => state.calendar.year);
+  const leaveUtilzition = useSelector(state => state.calendarStatus.data.leaveUtilzition);
   
+
   const eChartsOption = {
 
     tooltip: {
@@ -18,9 +20,9 @@ export default function CalLeaveChart(){
     },
 
     series:  {
-      name: '휴가 사용률',
+      name: `${year}년 휴가 사용률`,
       type: 'pie',
-      startAngle: '-35',
+      startAngle: '90',
       radius: ['45%', '75%'],
       avoidLabelOverlap: false,
       itemStyle: {
@@ -48,11 +50,24 @@ export default function CalLeaveChart(){
       labelLine: {
         show: false
       },
-      data: [
-        { value: 20, name: '잔여 휴가', itemStyle : {color: 'gray'}},
-        { value: 10, name: '사용 휴가', itemStyle : {color: '#0080ff '}},
-        
-      ]
+      data: 
+
+      leaveUtilzition === null ?
+          [
+            { name: '사용 휴가', itemStyle: { color: '#0080ff' } },
+            { value: 0, name: '잔여 휴가', itemStyle: { color: '#afafaf' } },
+          ]
+          :
+          leaveUtilzition.leftover_num === 0 ?
+          [
+            { value: leaveUtilzition != null ? leaveUtilzition.use_num : 0, name: '사용 휴가', itemStyle: { color: '#0080ff' } },
+            { name: '잔여 휴가', itemStyle: { color: '#afafaf' } },
+          ]
+          :
+          [
+            { value: leaveUtilzition != null ? leaveUtilzition.use_num : 0, name: '사용 휴가', itemStyle: { color: '#0080ff' } },
+            { value: leaveUtilzition != null ? leaveUtilzition.leftover_num : 0, name: '잔여 휴가', itemStyle: { color: '#afafaf' } },
+          ]
     },
   };
 

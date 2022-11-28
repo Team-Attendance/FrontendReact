@@ -100,7 +100,7 @@ export function SideBar() {
       
             <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
-                <img width={"100%"} height={"100%"} src='' alt='user'/>
+                <img width={"100%"} height={"100%"} src='' alt=''/>
               </UserImage>
               <Box>
                 <UserInfo>
