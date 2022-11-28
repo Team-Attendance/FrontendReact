@@ -1,0 +1,31 @@
+.searchBar-wrap{
+    // justify-content: center;
+
+    .search{
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1em 0;
+
+        select {
+            height: 30px;
+            width: 5%;
+            // text-align: center;
+        }
+
+        input {
+            height: 30px;
+            width: 50%;
+            margin: 1em;
+        }
+        button {
+            font-weight: bold;
+            border: 1px lightgray solid;
+            width: 60px;
+            margin-left: 1em;
+            padding: 5px 0;
+            background-color: whitesmoke;
+        }
+    }
+}

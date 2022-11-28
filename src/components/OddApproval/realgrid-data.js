@@ -27,7 +27,7 @@ export const fields = [{
     datetimeFormat: "yyyyMMdd"
 },
 {
-    fieldName: 'obbBizAdjState',
+    fieldName: 'oddBizAdjState',
     dataType: ValueType.TEXT
 },
 {
@@ -44,7 +44,7 @@ export const columns = [{
     name: "oddBizAdjDate",
     fieldName: "oddBizAdjDate",
     type: "data",
-    width: "120",
+    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -68,24 +68,21 @@ export const columns = [{
     name: "empName",
     fieldName: "empName",
     type: "data",
-    width: "80",
+    width: "100",
     styles: {
         textAlignment: "center"
     },
     header: {
-        text: "이름",
-        showTooltip: true,
-        tooltip:'<span style="color: red;">이름</span>',
+        text: "이름"
     },
     renderer: {
-        type:"text",
-        showTooltip: true
+        type:"text"
     }
 }, {
     name: "empPosition",
     fieldName: "empPosition",
     type: "data",
-    width: "80",
+    width: "130",
     styles: {
         textAlignment: "center"
     },
@@ -97,7 +94,7 @@ export const columns = [{
     name: "oddBizType",
     fieldName: "oddBizType",
     type: "data",
-    width: "80",
+    width: "100",
     styles: {
         textAlignment: "center"
     },
@@ -109,7 +106,7 @@ export const columns = [{
     name: "oddBizDate",
     fieldName: "oddBizDate",
     type: "data",
-    width: "120",
+    width: "150",
     styles: {
         "textAlignment": "center"
     },
@@ -118,11 +115,25 @@ export const columns = [{
     name: "oddBizAdjState",
     fieldName: "oddBizAdjState",
     type: "data",
-    width: "80",
+    width: "100",
     styles: {
         "textAlignment": "center"
     },
     header: "상태",
+    styleCallback: (grid, dataCell) => {
+        switch(dataCell.value){
+            case '1':
+                return {
+                    styleName: 'approved'
+                }
+            case '2':
+                return {
+                    styleName: 'rejected'
+                }
+            default:
+                return
+        }
+    },
     displayCallback: (grid, index, value) =>{
         switch (value) {
             case '0':
@@ -139,7 +150,7 @@ export const columns = [{
     name: "oddBizAdjApproDate",
     fieldName: "oddBizAdjApproDate",
     type: "data",
-    width: "120",
+    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -152,7 +163,7 @@ export const columns = [{
     name: "oddBizAdjAppro",
     fieldName: "oddBizAdjAppro",
     type: "data",
-    width: "80",
+    width: "100",
     styles: {
         textAlignment: "center"
     },

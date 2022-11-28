@@ -7,3 +7,6 @@ export const getAllOddApproval = () => {
 export const getOddApproval = (option,query) => {
     return axios.get(`${API_URL}/odd-approval/${option}=${query}`)
 }
+export const updateOddApproval = (data) => {
+    return axios.put(`${API_URL}/odd-approval/update/`, data)
+}

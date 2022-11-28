@@ -1,0 +1,48 @@
+.real-grid{
+    display: flex;
+    justify-content: center;
+    height: 550px;
+    width: 80%;
+
+    .rg-root.rg-grid{
+      font-size: 0.8em;
+      justify-content: center;
+      left: 200px;
+      border: none;
+      background-color: white;
+    }
+    .rg-root .rg-table, 
+    .rg-root .rg-table td,
+    .rg-root .rg-body .rg-table td{
+      vertical-align: middle;
+      height: 50px;
+    }
+    .rg-checkbox{
+      height: 15px;
+      width: 15px;
+    }
+  }
+  .state-button{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: 11.1%;
+    margin-top: 1.5em;
+    // margin-right: 10em;
+    .state{
+      font-weight: bold;
+      border: 1px lightgray solid;
+      width: 70px;
+      margin: 0 1em;
+      padding: 10px 0;
+      background-color: whitesmoke;
+    }
+  }
+
+  .approved {
+    background-color: #D4EEEB;
+  }
+  
+  .rejected {
+    background-color: #FBCBC5;
+  }

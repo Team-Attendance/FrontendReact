@@ -49,7 +49,7 @@ export const columns = [{
     name: "leaveAdjDate",
     fieldName: "leaveAdjDate",
     type: "data",
-    width: "120",
+    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -67,7 +67,7 @@ export const columns = [{
     name: "empName",
     fieldName: "empName",
     type: "data",
-    width: "80",
+    width: "100",
     styles: {
         textAlignment: "center"
     },
@@ -79,7 +79,7 @@ export const columns = [{
     name: "empPosition",
     fieldName: "empPosition",
     type: "data",
-    width: "80",
+    width: "130",
     styles: {
         textAlignment: "center"
     },
@@ -88,7 +88,7 @@ export const columns = [{
     name: "leaveType",
     fieldName: "leaveType",
     type: "data",
-    width: "80",
+    width: "120",
     styles: {
         textAlignment: "center"
     },
@@ -97,7 +97,7 @@ export const columns = [{
     name: "leaveStartDate",
     fieldName: "leaveStartDate",
     type: "data",
-    width: "120",
+    width: "150",
     styles: {
         "textAlignment": "center"
     },
@@ -106,7 +106,7 @@ export const columns = [{
     name: "leaveEndDate",
     fieldName: "leaveEndDate",
     type: "data",
-    width: "120",
+    width: "150",
     styles: {
         "textAlignment": "center"
     },
@@ -120,12 +120,26 @@ export const columns = [{
         "textAlignment": "center"
     },
     header: {text: "상태"},
+    styleCallback: (grid, dataCell) => {
+        switch(dataCell.value){
+            case '1':
+                return {
+                    styleName: 'approved'
+                }
+            case '2':
+                return {
+                    styleName: 'rejected'
+                }
+            default:
+                return
+        }
+    },
     displayCallback: (grid, index, value) =>{
         switch (value) {
             case '0':
                 return '대기'
             case '1':
-                return '승인';
+                return '승인'
             case '2':
                 return '반려'
             default:
@@ -136,7 +150,7 @@ export const columns = [{
     name: "leaveAdjApproDate",
     fieldName: "leaveAdjApproDate",
     type: "data",
-    width: "120",
+    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -145,7 +159,7 @@ export const columns = [{
     name: "leaveAdjAppro",
     fieldName: "leaveAdjAppro",
     type: "data",
-    width: "80",
+    width: "100",
     styles: {
         textAlignment: "center"
     },

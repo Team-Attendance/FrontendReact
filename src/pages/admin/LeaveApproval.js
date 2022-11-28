@@ -13,7 +13,7 @@ const LeaveApproval = () => {
 
     useEffect(() => {
         dispatch(LeaveApprovalActions.getAllLeaveApproval())
-    }, [flag])
+    }, [dispatch, flag])
 
     const onSubmit = (query, option) => {
 

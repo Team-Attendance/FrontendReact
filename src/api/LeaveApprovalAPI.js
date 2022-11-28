@@ -7,7 +7,6 @@ export const getAllLeaveApproval = () => {
 export const getLeaveApproval = (option,query) => {
     return axios.get(`${API_URL}/leave-approval/${option}=${query}`)
 }
-
 export const updateLeaveApproval = (data) => {
-    return axios.put(`${API_URL}/leave-approval/update`, data)
+    return axios.put(`${API_URL}/leave-approval/update/`, data)
 }

@@ -12,7 +12,7 @@ const EmpManagement = () => {
     useEffect(() => {
         dispatch(EmpActions.getAllEmps())
         // EmpActions.getAllEmps()
-    }, [])
+    }, [dispatch])
 
     const onSubmit = (query, option) => {
         if(query === ''){

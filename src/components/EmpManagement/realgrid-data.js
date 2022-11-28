@@ -21,7 +21,7 @@ export const columns = [{
     name: "empNo",
     fieldName: "empNo",
     type: "data",
-    width: "100",
+    width: "260",
     styles: {
         textAlignment: "center"
     },
@@ -33,24 +33,18 @@ export const columns = [{
     name: "empName",
     fieldName: "empName",
     type: "data",
-    width: "80",
+    width: "260",
     styles: {
         textAlignment: "center"
     },
     header: {
-        text: "이름",
-        showTooltip: true,
-        tooltip:'<span style="color: red;">이름</span>',
-    },
-    renderer: {
-        type:"text",
-        showTooltip: true
+        text: "이름"
     }
 }, {
     name: "deptName",
     fieldName: "deptName",
     type: "data",
-    width: "80",
+    width: "250",
     styles: {
         textAlignment: "center"
     },
@@ -62,7 +56,7 @@ export const columns = [{
     name: "empPosition",
     fieldName: "empPosition",
     type: "data",
-    width: "80",
+    width: "310",
     styles: {
         textAlignment: "center"
     },

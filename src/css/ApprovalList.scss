@@ -1,0 +1,23 @@
+
+
+.list-wrap{
+  justify-content: center;
+  
+  .page-button {
+    font-size: 0.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: -3%;
+    margin-top: 1em;
+    .prev, .next {
+      font-weight: bold;
+      border: 1px lightgray solid;
+      width: 5%;
+      margin: 0 2em;
+      padding: 10px 0;
+      background-color: whitesmoke;
+    }
+  } 
+}
