@@ -5,14 +5,13 @@ import { handleActions } from 'redux-actions'
 
 // 액션 타입
 //               모듈 이름 / 액션 이름
-const UPDATE = 'test/UPDATE';
-const ERROR = 'test/ERROR';
+const UPDATE = 'pto/UPDATE';
+const ERROR = 'pto/ERROR';
 
 // 액션 생성 함수
 // export는 여러개 가능
 export const update = () => ({ type: UPDATE });
 export const error = () => ({ type: ERROR });
-
 // 초기 상태값 설정(리덕스에서 관리 할 상태 정의)
 const initialState = {
   data: null,
@@ -21,14 +20,13 @@ const initialState = {
 
 
 
-export const getChartData = (empNo, year, month) =>  dispatch => {
+export const getPtoData = (empNo, ptoYrNo) =>  dispatch => {
 
 
-  axios.get('/emp-main-data', {
+  axios.get('/emp-main', {
     params: {
       empNo: empNo,
-      year: year,
-      month: month
+      ptoYrNo: ptoYrNo,
     }
   }).then(
     (response) => {
@@ -51,7 +49,7 @@ export const getChartData = (empNo, year, month) =>  dispatch => {
 
 
 // v2 리듀서 함수(handleActions 함수 사용)
-const test = handleActions(
+const pto = handleActions(
   {
     [UPDATE]: (state, action) => ({ ...state, data: action.data}),
   },
@@ -59,4 +57,4 @@ const test = handleActions(
 )
 
 // export default는 한개만 가능
-export default test;
+export default pto;

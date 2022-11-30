@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import ConfigurationActions from "../../redux/modules/configuration/ConfigurationActions";
 import EmpAuthList from "../../components/configuration/EmpAuthList";
 import AdminAuthList from "../../components/configuration/AdminAuthList";
+
+
 export function ConfigurationPage() {
     const { empAuthInfo } =  useSelector((state) => state.empAuthInfo)
     const { adminAuthInfo } = useSelector((state) => state.adminAuthInfo)
@@ -18,7 +20,7 @@ export function ConfigurationPage() {
         dispatch(ConfigurationActions.getResultEmp())
         dispatch(ConfigurationActions.getAuthEmp())
        dispatch(ConfigurationActions.getEmpBiz())
-    }, [])
+    }, [dispatch])
    
     
    
@@ -26,26 +28,26 @@ export function ConfigurationPage() {
     
     
     return (
-        <div className="wrap">
+        <div className="wrapp">
           
 
                 <div className="vbox">
                    <div className="vbox1">
-                    <div className="vbox1-1"> <p>정규 출/퇴근시간 설정</p>
+                    <div className="vbox1-1"> 
                         <span>정규 출근시간 설정</span><input className="time" type="time"/> 
                         <span>정규 퇴근시간 설정</span><input className="time" type="time"/>  
                         <br/>
-                        <span>기존 정규 출퇴근 시간{empBizInfo?.data?.length > 0 &&  empBizInfo.data.map((data) => {
+                        <span>기존 정규 출퇴근 시간( {empBizInfo?.data?.length > 0 &&  empBizInfo.data.map((data) => {
                                         
                                     return(
                                         <tr>
                                         
-                                        <td>{data.bhGetInto}</td>
+                                        <td>{data.bhGetInto} ~</td>
                                         <td>{data.bhGetOff}</td>
                                         
                                         </tr>
                                     );
-                            })}</span>
+                            })} )</span>
                             <br/>
                         <button className="register1">설정</button>
                      
@@ -55,10 +57,7 @@ export function ConfigurationPage() {
                     <div className="vbox2">
                         <div className="vbox2-1">
                             <input className="input" placeholder="이름을 입력해 주세요"/> <button className="register" >검색</button> <br/> 
-                            <span className="empinfo">사번</span>
-                            <span className="empinfo">이름</span>
-                            <span className="empinfo">부서</span>
-                            <span className="empinfo">직급</span>
+                           
                                
                                <div className="authresult">
                                 <EmpAuthList empAuthInfo = {empAuthInfo}/>
@@ -76,10 +75,7 @@ export function ConfigurationPage() {
                             </div>
                         <div className="vbox2-1">
                             <input className="input" placeholder="이름을 입력해 주세요"/> <button className="register">검색</button> <br/>
-                            <span className="empinfo">사번</span>
-                            <span className="empinfo">이름</span>
-                            <span className="empinfo">부서</span>
-                            <span className="empinfo">직급</span>
+                           
                             
                             <div className="authresult">
                             <AdminAuthList adminAuthInfo = {adminAuthInfo}/>

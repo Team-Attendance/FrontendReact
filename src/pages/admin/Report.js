@@ -6,21 +6,39 @@ import WeekliyBizTimeChart from "../../echart/WeekliyBizTimeChart";
 import MonthliyOdd from "../../echart/MonthliyOdd";
 import LeaveAdjTable from "../../table/LeaveAdjTable";
 import OddAdjTable from "../../table/OddAdjTable";
+import EmpInfoTable from "../../table/EmpInfoTable";
 import ReportAction from "../../redux/modules/report/ReportAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-
+import { useEffect, useCallback, useState } from "react";
+import { getPtoData } from "../../modules/pto";
+import { getChartData } from "../../modules/eChart";
+import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
+import axios from "axios";
+import { API_URL } from "../../utils/constants/Config";
 export function Report(){
-
-    const { EmpLeavInfo } =  useSelector((state) => state.EmpLeavInfo)
-    const { EmpOddInfo } =  useSelector((state) => state.EmpOddInfo)
+    
+    let empNo = localStorage.getItem("empNo");
     
     const dispatch = useDispatch();
+    const [empInfoDetail , setEmpInfoDetail] = useState([{}])
+    const { EmpLeavInfo } =  useSelector((state) => state.EmpLeavInfo)
+    const { EmpOddInfo } =  useSelector((state) => state.EmpOddInfo) 
+    const ptochart = useCallback(() => dispatch(getPtoData(1, 2022)), [dispatch]);
+    const oddchart = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);
+   
     useEffect(() => {
-        
+        axios.get(API_URL+"/emp/emp-info/"+empNo)
+        .then((res)=>{
+          
+          setEmpInfoDetail(res.data);
+        dispatch(EmpInfoActions.getInfoDetail(empNo))
         dispatch(ReportAction.getEmpOdd())
-       dispatch(ReportAction.getEmpLeave())
-    }, [])
+       dispatch(ReportAction.getEmpLeave())   
+       ptochart();
+       oddchart();
+    })
+    }, [dispatch, empNo, oddchart, ptochart])
+   
 
     return(
         <div className="wrap">
@@ -29,61 +47,14 @@ export function Report(){
                     <section className="left">
                         <div className="emp-info">
                             
-                            <h3 className="title"></h3>
+                           
                                 <div className="mini">
                                     
                                     <div className="image">
                                     </div>
                                   
                                    <div className="emptable">
-                                        <table className="table">
-                                        
-                                            <thead className="tablerow">
-                                                <tr >
-                                                    
-                                                    <th className="background">이름</th>
-                                                    <td>empName</td>
-                                                    <th className="background">사번</th>
-                                                    <td>enpNo</td>
-                                                </tr>
-                                            </thead>
-
-                                             <thead className="tablerow">
-                                                
-                                                <tr >
-                                                    <th className="background">부서</th>
-                                                    <td>deptName</td>
-                                                    <th className="background">직급</th>
-                                                    <td>empPosition</td>
-                                                </tr>
-                                                </thead>
-
-                                                <thead className="tablerow">
-                                                <tr >
-                                                <th className="background">이메일</th>
-                                                <td>empEmail</td>
-                                                <th className="background">휴대폰번호</th>
-                                                <td>empPhone</td>
-                                                </tr>
-                                                </thead>
-                                                <thead className="tablerow">
-                                                <tr >
-                                                <td className="background">사내번호</td>
-                                                <td>emp</td>
-                                                <td className="background">비상연락망</td>
-                                                <td>empContactList</td>
-                                                </tr>
-                                                </thead>
-                                                <thead className="tablerow">
-                                                <tr >
-                                                <td className="background">입사일자</td>
-                                                <td className="center">empFirstDayOfWork</td>
-                                                
-                                                
-                                                
-                                                </tr>
-                                                </thead>
-                                        </table>
+                                            <EmpInfoTable empInfoDetail= {empInfoDetail} />
                                         <button className="butt">수정하기</button>
 
                                    </div>
@@ -111,7 +82,7 @@ export function Report(){
                             </div>
                             <div>
                                 <p>이상근태율</p>
-                                <OddChart/>
+                                <OddChart  />
                             </div>
                         </div>
                         <div className="topp">

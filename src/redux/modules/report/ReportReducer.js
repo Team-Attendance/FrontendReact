@@ -21,7 +21,14 @@ const initialState = {
             oddBizAdjState: '',
             oddBizAdjAppro: ''
         }
-    }
+    },
+
+    EmpInfo: {
+        loading: false,
+        data: {          
+            data:null
+        }
+    },
 
   
     
@@ -86,6 +93,35 @@ const reducer = (state = initialState, {type, payload}) => {
                         }
                     }
                 }
+                case Types.GET_REPORT_EMP:
+                    return {
+                        ...state,
+                        EmpInfo: {
+                            ...state.EmpInfo,
+                            loading: true,
+                            data: payload
+                        }
+                    }
+                case Types.GET_REPORT_EMP_SUCCESS:
+                    return {
+                        ...state,
+                        EmpInfo: {
+                            ...state.EmpInfo,
+                            loading: false,
+                            data: payload
+                        }
+                    }
+                case Types.GET_REPORT_EMP_FAILURE:
+                    return {
+                        ...state,
+                        EmpInfo: {
+                            ...state.EmpInfo,
+                            loading: false,
+                            data: {
+                                error: payload
+                            }
+                        }
+                    }
             
                 
                   

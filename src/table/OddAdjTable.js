@@ -34,7 +34,7 @@ const LeaveAdjTable = ({EmpOddInfo}) => {
     return (
         <div>
             <div
-                style={{ height: '210px', width: '700px' }}
+                style={{ height: '210px', width: '665px' }}
                 ref={realgridElement}></div>
         </div>
     )
