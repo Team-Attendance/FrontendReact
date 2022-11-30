@@ -10,6 +10,7 @@ import CalOddBizChart from "./CalOddBizChart";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import { Calendar } from "../../components/common/Calendar";
 import { DeptCalendar } from "../../components/common/DeptCalender";
+import { setDeptCalendar } from "../../modules/deptCalendar";
 
 
 
@@ -21,17 +22,19 @@ export function EmpDailyPage() {
   // store 변수
   const calendar = useSelector(state => state.calendar.calendar);
   const calendarData = useSelector(state => state.calendar.data);
+
   const year = useSelector(state => state.calendar.year);
   const month = useSelector(state => state.calendar.month);
   const nowDate = useSelector(state => state.calendar.nowDate);
   const statusData = useSelector(state => state.calendarStatus.data);
 
-  
+
   const [showDeptCalendar, setShowDeptCalendar] = useState(true);
 
   // store 함수
   const dispatch = useDispatch();
   const setCompoCalendar = useCallback(() => dispatch(setCalendar(1)), [dispatch]);
+  const setDeptCompoCalendar = useCallback(() => dispatch(setDeptCalendar(1)), [dispatch]);
 
   const closeModal = useCallback(() => dispatch(close()), [dispatch]);
   const onUpdate = useCallback((empNo, year, month) => dispatch(getStatusData(empNo, year, month)), [dispatch]);
@@ -39,7 +42,8 @@ export function EmpDailyPage() {
   useEffect(() => {
     closeModal();
     setCompoCalendar();
-  }, [closeModal, setCompoCalendar])
+    setDeptCompoCalendar();
+  }, [closeModal, setCompoCalendar, setDeptCompoCalendar])
 
   useEffect(() => {
     if (year !== 0 && month !== 0) {
@@ -50,19 +54,19 @@ export function EmpDailyPage() {
   return (
     <>
       {calendar && calendarData && year && month && nowDate && statusData &&
-      
+
         <div style={{ position: 'relative', minHeight: 'calc(100vh - 64px)', padding: '30px', display: 'flex', flexWrap: 'wrap' }}>
           <div style={{ marginBottom: '10px' }}>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}><EventAvailableIcon sx={{marginRight: '3px'}}/><span style={{verticalAlign: 'text-bottom'}}>일별 근태 현황</span></h2>
+            <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}><EventAvailableIcon sx={{ marginRight: '3px' }} /><span style={{ verticalAlign: 'text-bottom' }}>일별 근태 현황</span></h2>
           </div>
 
           <div style={{ width: '100%', marginBottom: '27px' }}>
             <CalendarStatus />
           </div>
 
-          
+
           {
-            showDeptCalendar === true ? <Calendar setShowDeptCalendar={setShowDeptCalendar}/> : <DeptCalendar setShowDeptCalendar={setShowDeptCalendar}/>
+            showDeptCalendar === true ? <Calendar setShowDeptCalendar={setShowDeptCalendar} /> : <DeptCalendar setShowDeptCalendar={setShowDeptCalendar} />
           }
           <div style={{ width: '27%', paddingLeft: '35px' }}>
 
@@ -73,8 +77,8 @@ export function EmpDailyPage() {
                   <CalOddBizChart />
                 </div>
               </div>
-              <p style={{ width: '50px', height: '50px', position: 'absolute', top: '46%', left: 'calc(50% - 25px)', textAlign: 'center', fontWeight: 'bold', fontSize: '1rem' }}>
-                <span>근태율</span><br />
+              <p style={{ width: '90px', height: '50px', position: 'absolute', top: '46%', left: 'calc(50% - 45px)', textAlign: 'center', fontWeight: 'bold', fontSize: '1rem' }}>
+                <span>이상근태율</span><br />
                 <span>{statusData.oddBizHourCount.oddBizCount === 0 || statusData.oddBizHourCount.normalCount === 0 ? 0 : Math.round(((statusData.oddBizHourCount.oddBizCount / (statusData.oddBizHourCount.normalCount + statusData.oddBizHourCount.oddBizCount)) * 100) * 10) / 10}%</span>
               </p>
             </div>
