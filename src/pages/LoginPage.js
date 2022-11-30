@@ -7,8 +7,6 @@ import * as api from "../api/EmpAPI";
 
 
 const LoginPage = () => {
-
-  
   const [error, setError] = useState(null);
   const [iderr,setIderr]=useState();
   const [tab,setTab]=useState("tab1");
@@ -56,6 +54,7 @@ const LoginPage = () => {
       "empPwd" : empPwd,
     }; 
 
+
    api.Login(data).then((res) => {
       if(res.data.empToken){
         localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
@@ -63,40 +62,39 @@ const LoginPage = () => {
         localStorage.setItem("deptName", res.data.deptName);
         localStorage.setItem("empName", res.data.empName);
         localStorage.setItem("empPosition", res.data.empPosition);
-        localStorage.setItem("empAuthority", res.data.empAuthority);
 
-        console.log('로그인 성공')
-        setTimeout(()=>{
-          window.location.href = "/emp/main";
-        },1500)
+        window.location.href = "/emp/main";
+
       }else{
-        console.log('로그인 실패')
-        setTimeout(()=>{
+          alert("로그인 실패했습니다.");
           window.location.reload();
-        },1800)
       }
     })
   }
 
   const onTab = (e) => {
     dispatch(changeFields({form:'login', key:loginInit}));
-    setIderr();
-    setError();
     setTab(e.target.value);
   }
   
   return (
-    <div>
-      <LoginProc
-        login={ login }
-        onLoginChange = { onLoginChange }
-        onLogin = { onLogin }
-        error = {error}
-        iderr={iderr}
-        tab={tab}
-        onTab={onTab}
-      />
-    </div>
+      <div style={{width:'100%', height:'100vh', display: 'flex'}}>
+          <div style={{width:'50%', height:'100%', backgroundImage: 'url("./background.jpg")', backgroundSize: 'cover'}}>
+
+          </div>
+          <div style={{width:'50%', height:'100%', margin: '0 auto'}}>
+              <LoginProc
+                  login={login}
+                  onLoginChange={onLoginChange}
+                  onLogin={onLogin}
+                  error={error}
+                  iderr={iderr}
+                  tab={tab}
+                  onTab={onTab}
+              />
+          </div>
+
+      </div>
   );
     
 };

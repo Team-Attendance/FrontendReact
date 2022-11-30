@@ -1,6 +1,7 @@
 import {  useState } from "react";
 import { postEmpRegist } from "../../api/EmpAPI";
-
+import '../../css/empInfo.scss'
+import CoPresentIcon from '@mui/icons-material/CoPresent';
 
 const EmpRegistration =()=>{
  
@@ -55,64 +56,75 @@ const EmpRegistration =()=>{
   }
 
   return(
-    <div>
-       <div>
-         <h3 id='empRegist'>사원정보 등록</h3>
-       </div>
-       <div>
-         <div>
-           <h5> 부서명   
-             <select name='deptName' onChange={handleDeptName}  >
-               <option value={'none'}>부서</option>
-               <option value={'인사'}>인사</option>
-               <option value={'인사'}>영업</option>
-               <option value={'회계'}>회계</option>
-               <option value={'경영지원'}>경영지원</option>
-               <option value={'개발'}>개발</option>
-             </select>
-           </h5>
-         </div>
+    <div className="empInfo">
+      <div>
+        <h1 className="infoTitle" ><CoPresentIcon/><span>사원 등록</span>
+        </h1>
+      </div>
+      <div className="infoBox">
+          <div className="infoContent">
+              <div className="infoUl">
+                   <li className="infoLi"> <div className="infoLabel"> 부서명 </div>
+                       <select className="infoInput" name='deptName' onChange={handleDeptName} >
+                           <option value={'none'}>부서</option>
+                           <option value={'인사'}>인사</option>
+                           <option value={'인사'}>영업</option>
+                           <option value={'회계'}>회계</option>
+                           <option value={'경영지원'}>경영지원</option>
+                           <option value={'개발'}>개발</option>
+                     </select>
+                  </li>
+                  <li className="infoLi"> <div className="infoLabel"> 사원이름</div>
+                      <input className="infoInput" type="text" name='empName' placeholder='사원이름' onChange={handleEmpName}></input>
+                  </li>
+                  <li className="infoLi"> <div className="infoLabel"> 비밀번호</div>
+                      <input className="infoInput" type="password" name='empPwd' placeholder='비밀번호' onChange={handleEmpPwd}></input>
+                  </li>
 
-         <div>
-           <h5>사원이름  <input type='text' name='empName' placeholder='사원이름' onChange={handleEmpName}></input></h5> 
-         </div>
-         <div>
-           <h5>비밀번호  <input type='password' name='empPwd' placeholder='비밀번호' onChange={handleEmpPwd}></input> </h5>
-         </div>
-         <div>
-           <h5> 직급  
-             <select nane='empPosition' onChange={handleEmpPosition}>
-               <option value={'none'}>직급</option>
-               <option value={'수석연구원'}>수석연구원</option>
-               <option value={'책임연구원'}>책임연구원</option>
-               <option value={'선임연구원'}>선임연구원</option>
-               <option value={'연구원'}>연구원</option>
-               <option value={'연구보조원'}>연구보조원</option>
-             </select>
-           </h5>
-         </div>
-         <div>
-           <h5>사원사진  / QR CODE </h5>
-         </div>
-         <div>
-           <h5>메일주소  <input type='text' name='empEmail' placeholder='메일주소' onChange={handleEmpEmail}></input> </h5>
-         </div>
-         <div>
-           <h5>생년월일  <input type='text' name='empBirth' placeholder='YYYY-MM-DD' onChange={handleEmpBirth}></input></h5>
-         </div>
-         <div>
-           <h5>휴대폰번호  <input type='text' name='empCellPhone' placeholder='010-0000-0000' onChange={handleEmpCellPhone} ></input></h5>
-         </div>
-         <div>
-           <h5>사내번호  <input type='text' name='empOfficePhone' placeholder='사원입력' readOnly></input></h5>
-         </div>
-         <div>
-           <h5>비상연락  <input type='text' name='empContactList' placeholder='사원입력' readOnly></input></h5>
+                  <li className="infoLi"> <div className="infoLabel"> 직급 </div>
+                      <select className="infoInput" name='empPosition' onChange={handleEmpPosition} >
+                          <option value={'none'}>직급</option>
+                          <option value={'수석연구원'}>수석연구원</option>
+                          <option value={'책임연구원'}>책임연구원</option>
+                          <option value={'선임연구원'}>선임연구원</option>
+                          <option value={'연구원'}>>선임연구원</option>
+                          <option value={'연구원'}>연구원</option>
+                          <option value={'연구보조원'}>연구보조원</option>
+                      </select>
+                  </li>
+
+                  <li className="infoLi"> <div className="infoLabel"> 메일주소</div>
+                          <input className="infoInput" type="text" name='empEmail' placeholder='메일주소' onChange={handleEmpEmail}></input>
+                      </li>
+
+                  <li className="infoLi"> <div className="infoLabel"> 생년월일</div>
+                      <input className="infoInput" type="text" name='empBirth' placeholder='YYYY-MM-DD' onChange={handleEmpBirth}></input>
+                  </li>
+                  <li className="infoLi">
+                      <div className="infoLabel"> 생년월일</div>
+                      <input className="infoInput" type="text" name='empBirth' placeholder='YYYY-MM-DD' onChange={handleEmpBirth}></input>
+                  </li>
+                  <li className="infoLi">
+                      <div className="infoLabel"> 휴대폰번호</div>
+                      <input className="infoInput" type="text" name='empCellPhone' placeholder='010-0000-0000' onChange={handleEmpCellPhone}></input>
+                  </li>
+                  <li className="infoLi">
+                      <div className="infoLabel"> 사내번호</div>
+                      <input className="infoInput"name='empOfficePhone' placeholder='사원입력'readOnly></input>
+                  </li>
+                  <li className="infoLi">
+                      <div className="infoLabel"> 비상연락</div>
+                      <input className="infoInput" type="text" name='empContactList' placeholder='사원입력'readOnly></input>
+                  </li>
+
+                  <div className="button">
+                      <button className="pwChange" onClick={handleRegist} value='등록' name='empRegistSubmit'>  <a href="/admin/emp-management"> 등록</a></button>
+                  </div>
+
+              </div>
          </div>
        </div>
-       <div>
-         <a href="/admin/emp-management"><input type='button' value='등록' name='empRegistSubmit' onClick={handleRegist} /></a>
-       </div>
+
      
    </div>
    );

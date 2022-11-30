@@ -11,15 +11,19 @@ export function EmpMainPage() {
 
 
     // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
-    let empNo = localStorage.getItem('empNo');
+    let empNo = localStorage.getItem("empNo");
     const dispatch = useDispatch()
+
+
 
     const setCompoCalander = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);
 
     useEffect(() => {
         dispatch(EmpInfoActions.getInfoDetail(empNo))
-        setCompoCalander();
+        // setCompoCalander();
     }, []);
+
+
     return (
         <div className="emp_main">
             <div className="frame">
@@ -28,6 +32,7 @@ export function EmpMainPage() {
                     </div>
                     <div className="work_chart">
                         < EmpBarChart />
+
                     </div>
                 </div>
                 <div className="content">

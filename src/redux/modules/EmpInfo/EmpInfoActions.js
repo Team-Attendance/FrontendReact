@@ -2,14 +2,11 @@ import * as EmpAPI from "../../../api/EmpAPI"
 import Types from "../../ActionConstants"
 
 const EmpInfoActions = {
-  getInfoDetail: (empNo) => async(dispatch)=>{
+  getInfoDetail: (empToken) => async(dispatch)=>{
     
     dispatch({type: Types.GET_EMPINFO})
     try {
-        const empNo = {
-            empNo: localStorage.getItem("empNo"),
-        };
-        const empInfo = await EmpAPI.getEmpinfo(empNo)
+        const empInfo = await EmpAPI.getEmpinfo(empToken)
         dispatch({
             type: Types.GET_EMPINFO_SUCCESS,
             payload: empInfo.data
@@ -19,9 +16,7 @@ const EmpInfoActions = {
           type: Types.GET_EMPINFO_FAILURE,
           payload: error.toString()
       })
-    }  
-
-    
+    }
   },
   getAllEmps: () => async(dispatch) =>{
     dispatch({ type: Types.GET_EMP})
