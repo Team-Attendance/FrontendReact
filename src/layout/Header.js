@@ -10,27 +10,26 @@ import Badge from '@mui/material/Badge';
 import { Link } from 'react-router-dom';
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {API_URL} from "../utils/constants/Config";
 
 export function Header() {
 
     const logout = () => {
-        localStorage.setItem("ACCESS_TOKEN", null);
-        localStorage.setItem("empNo", undefined);
-        localStorage.setItem("deptName", undefined);
-        localStorage.setItem("empName", undefined);
-        localStorage.setItem("empPosition", undefined);
-        localStorage.setItem("empAuthority", null);
+        localStorage.clear();
         window.location.href = "/";
     };
 
     // 아이피주소 호출
-    const [ ip , setIp ] = useState();
-    useEffect( () => {
-        axios.get('https://api.ipify.org?format=json/')
-            .then((res) => {
-                setIp(res.data)
-            })
-    },[])
+    // const [ ip , setIp ] = useState();
+
+    // useEffect( () => {
+    //     axios.get('https://api.ipify.org?format=json/')
+    //         .then((res) => {
+    //             setIp(res.data)
+    //             console.log(res);
+    //         })
+    // },[])
 
 
 
@@ -46,7 +45,7 @@ export function Header() {
           </Link>
 
           <Box sx={{ margin: '0 10px' }}>
-              {ip}
+
           </Box>
 
            {/* 아이콘 버튼 + 알럿 */}

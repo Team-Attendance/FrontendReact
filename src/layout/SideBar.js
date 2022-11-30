@@ -86,10 +86,10 @@ export function SideBar() {
     {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태 현황', path: '/emp/odd-info'}
   ]
 
+
   const empName = localStorage.getItem("empName");
+  const position = localStorage.getItem("empPosition")
   const deptName = localStorage.getItem("deptName");
-
-
 
   return(
     
@@ -112,7 +112,7 @@ export function SideBar() {
               </UserImage>
               <Box>
                 <UserInfo>
-                  {empName} 연구원<br/>
+                  {empName} {position}<br/>
                   {deptName} 부서<br/>
                 </UserInfo>
                 <UserWork>

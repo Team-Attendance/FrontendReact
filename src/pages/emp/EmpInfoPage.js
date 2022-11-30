@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import axios from "axios";
 import {API_URL} from "../../utils/constants/Config";
-
+import '../../css/empInfo.scss'
+import CoPresentIcon from '@mui/icons-material/CoPresent';
 
 
 const EmpInfoPage = () => {
@@ -11,63 +11,52 @@ const EmpInfoPage = () => {
   let empNo = localStorage.getItem("empNo");
   const dispatch = useDispatch()
   const [empInfoDetail , setEmpInfoDetail] = useState([{}])
-    
+
 
   useEffect(() => {
     axios.get(API_URL+"/emp/emp-info/"+empNo)
         .then((res)=>{
-          
           setEmpInfoDetail(res.data);
         })
   }, [empNo])
 
+  const dateFormatting = (millisec) =>{
+    // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
+    const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '-')
+
+    return date
+  }
+
+
     return (
 
-      <div>
-        {/* store 호출 전 데이터 출력 방지 */}
-        {empNo > 0 &&
-        <>
-        <div>
-          
-          <h3 id='empIfo'>사원정보</h3>
-        </div>
-        <div>
+        <div className="empInfo">
           <div>
-            <h5> 부서명 : {empInfoDetail.deptName} </h5>
+              <h1 className="infoTitle" ><CoPresentIcon/><span>사원 정보</span>
+            </h1>
           </div>
-
-          <div>
-            <h5>사원이름 :  {empInfoDetail.empName}</h5>
-          </div>
-
-          <div>
-            <h5> 직급 :  {empInfoDetail.empPosition} </h5>
-          </div>
-          <div>
-            <h5>사원사진  / QR CODE </h5>
-          </div>
-          <div>
-            <h5>메일주소 :{empInfoDetail.empEmail}</h5>
-          </div>
-          <div>
-            <h5>생년월일 :  {empInfoDetail.empBirth}</h5>
-          </div>
-          <div>
-            <h5>휴대폰번호 {empInfoDetail.empCellPhone}</h5>
-          </div>
-          <div>
-            <h5>사내번호  <input type='text' name='empOfficePhone' placeholder='사내번호' ></input></h5>
-          </div>
-          <div>
-            <h5>비상연락  <input type='text' name='empContactList' placeholder='비상연락망' ></input></h5>
+          <div className="infoBox">
+            <div className="infoContent">
+              <ul className="infoUl">
+                <li className="infoLi"><div className="infoLabel">사번</div> <div className="infoInput"  readOnly>{empInfoDetail.empNo}</div></li>
+                <li className="infoLi"><div className="infoLabel">이름</div> <div className="infoInput" readOnly>{empInfoDetail.empName}</div></li>
+                <li className="infoLi"><div className="infoLabel">직급</div> <div className="infoInput" readOnly>{empInfoDetail.empPosition}</div></li>
+                <li className="infoLi"><div className="infoLabel">생년월일</div> <div className="infoInput">{empInfoDetail.empBirth}</div></li>
+                <li className="infoLi"><div className="infoLabel">메일주소</div> <div className="infoInput">{empInfoDetail.empEmail}</div></li>
+                <li className="infoLi"><div className="infoLabel">휴대폰번호</div> <div className="infoInput" >{empInfoDetail.empCellPhone}</div></li>
+                <li className="infoLi"><div className="infoLabel">사내번호</div> <div className="infoInput">{empInfoDetail.empOfficePhone}</div></li>
+                <li className="infoLi"><div className="infoLabel">비상연락</div> <div className="infoInput">{empInfoDetail.empContactList}</div></li>
+                <li className="infoLi"><div className="infoLabel">입사일자</div> <div className="infoInput">{dateFormatting(empInfoDetail.empFirstDayOfWork)}</div></li>
+              </ul>
+              {empInfoDetail.empOfficePhone &&(
+                  <div className="button">
+                    <button className="pwChange" >수정</button>
+                    <button className="pwChange" >확인</button>
+                  </div>
+              )}
+            </div>
           </div>
         </div>
-        <div>
-          <a href="/admin/emp-management"><input type='button' value='등록' name='empRegistSubmit'  /></a>
-        </div>
-      </>
-    }
-  </div>
     )
   }
 
