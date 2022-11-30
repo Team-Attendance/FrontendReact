@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 
 export default function EmpBarChart(){
-  const data = useSelector(state => state.test.data);
+  const data = useSelector(state => state.eChart.data);
 
   const eChartsOptions = {
     title: {

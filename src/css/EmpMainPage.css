@@ -1,7 +1,7 @@
 .emp_main {
     background-color: white;
     height: calc(100vh - 32px);
-    padding: 30px;
+    padding: 35px;
 }
 
 .emp_main .frame {
@@ -24,8 +24,12 @@ height: 100%;
 .emp_main .frame .content .work_chart {
     width: 50%;
     border: 1px solid black;
+    padding: 40px;
 
 }
+
+
+
 .emp_main .frame .content .work_calendar {
     width: 50%;
     border: 1px solid black;
@@ -38,4 +42,15 @@ height: 100%;
 .title {
     font-size: 24px;
     margin-bottom: 10px;
+}
+
+.leaveSign {
+
+    width: 10px;
+    border: 1px solid blue;
+    display: inline;
+}
+
+.name {
+   font-size: 26px;
 }

@@ -2,7 +2,7 @@ import React,{ useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar'
 
-export default function Calendars() {
+export default function AdminCalendars() {
 
     const [value, onChange] = useState(new Date());
 

@@ -8,7 +8,9 @@ import auth from './modules/Login/auth';
 import calendarStatus from '../modules/calendarStatus';
 import calendar from '../modules/calendar';
 import deptCalendar from '../modules/deptCalendar';
-import test from '../modules/eChart';
+import eChart from '../modules/eChart';
+import pto from '../modules/pto';
+import adminMain from '../modules/adminMain';
 const middlewares = [thunk];
 
 // 리듀서 합치기
@@ -27,8 +29,9 @@ const reducers = combineReducers({
     empBizInfo,
     EmpLeavInfo,
     EmpOddInfo,
-    test
-    
+    eChart,
+    pto,
+    adminMain
 });
 
 let store;
