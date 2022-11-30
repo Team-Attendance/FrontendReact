@@ -67,7 +67,8 @@ const EmpLeaveList = ({ empLeaveInfo }) => {
                 <Modal closeModal={() => setModal(!modal)} >
                     <LeaveApprovalModal
                         closeModal={() => setModal(!modal)}
-                        data={data} />
+                        data={data}
+                        auth={0} />
                 </Modal>
             )}
             <div className='grid-wrap'>

@@ -93,6 +93,7 @@ const LeaveApprovalList = ({ leaveApprovalInfo, changeFlag }) => {
                     <LeaveApprovalModal
                         closeModal={() => setModal(!modal)}
                         data={data}
+                        auth={1}
                         changeFlag={changeFlag} />
                 </Modal>
             )}

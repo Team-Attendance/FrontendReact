@@ -12,3 +12,4 @@ export {default as EmpOddInfo} from './report/ReportReducer'
 
 export {default as empLeaveInfo} from './EmpLeave/EmpLeaveReducer'
 export {default as empOddInfo} from './EmpOdd/EmpOddReducer'
+export {default as countInfo} from './CountApproval/CountApprovalReducer'

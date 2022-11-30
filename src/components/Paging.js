@@ -1,9 +1,9 @@
 const Paging = (totalData, dataPerPage, pageCount, currentPage, gridView) => {
-    console.log("currentPage : " + currentPage);
+    // console.log("currentPage : " + currentPage);
     const totalPage = Math.ceil(totalData / dataPerPage) // 총 페이지 수
     const pageGroup = Math.ceil(currentPage / pageCount)  // 페이지 그룹
 
-    console.log("pageGroup : " + pageGroup);
+    // console.log("pageGroup : " + pageGroup);
 
     let last = pageGroup * pageCount    // 화면에 보여질 마지막 페이지 번호
     if(last > totalPage){
@@ -14,10 +14,10 @@ const Paging = (totalData, dataPerPage, pageCount, currentPage, gridView) => {
     let next = last + 1
     let prev = first - 1
 
-    console.log("last : " + last);
-    console.log("first : " + first);
-    console.log("next : " + next);
-    console.log("prev : " + prev);
+    // console.log("last : " + last);
+    // console.log("first : " + first);
+    // console.log("next : " + next);
+    // console.log("prev : " + prev);
 
     let html = ""
 

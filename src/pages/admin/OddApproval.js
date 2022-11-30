@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OddApprovalList from "../../components/OddApproval/OddApprovalList";
+import OddStatus from "../../components/OddApproval/OddStatus";
 import SearchBar from "../../components/SearchBar";
+import CountApprovalActions from "../../redux/modules/CountApproval/CountApprovalActions";
 import OddApprovalActions from "../../redux/modules/OddApproval/OddApprovalActions";
 
 const OddApproval = () => {
@@ -13,6 +15,7 @@ const OddApproval = () => {
 
     useEffect(() => {
         dispatch(OddApprovalActions.getAllOddApproval())
+        dispatch(CountApprovalActions.countOddApproval(new Date().getFullYear()))
     }, [dispatch, flag])
 
     const onSubmit = (query, option) => {
@@ -27,6 +30,7 @@ const OddApproval = () => {
 
     return (
         <div>
+            <OddStatus />
             <SearchBar onSubmit={onSubmit} />
             <OddApprovalList
                 oddApprovalInfo={oddApprovalInfo}

@@ -67,6 +67,12 @@ const EmpOddType = {
     GET_EMP_ODD_FAILURE: 'GET_EMP_ODD_FAILURE'
 }
 
+const countType = {
+    GET_APPROVAL_COUNT: 'GET_APPROVAL_COUNT',
+    GET_APPROVAL_COUNT_SUCCESS: 'GET_APPROVAL_COUNT_SUCCESS',
+    GET_APPROVAL_COUNT_FAILURE: 'GET_APPROVAL_COUNT_FAILURE'
+}
+
 const Types = {
     ...EmpType,
     ...LeaveApprovalType,
@@ -76,7 +82,8 @@ const Types = {
     ...ConfigurationType,
     ...ReportType,
     ...EmpLeaveType,
-    ...EmpOddType
+    ...EmpOddType,
+    ...countType
 }
 
 export default Types;

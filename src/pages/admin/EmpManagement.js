@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar";
 import EmpActions from "../../redux/modules/EmpManagement/EmpActions";
 import EmpList from "../../components/EmpManagement/EmpList"
-import EmpRegistration from "./EmpRegistration";
 import { useNavigate } from "react-router-dom";
 
 

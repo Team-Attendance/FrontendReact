@@ -10,3 +10,6 @@ export const getLeaveApproval = (option,query) => {
 export const updateLeaveApproval = (data) => {
     return axios.put(`${API_URL}/leave-approval/update/`, data)
 }
+export const countApproval = (year) => {
+    return axios.get(`${API_URL}/leave-approval/count/${year}`)
+}

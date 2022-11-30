@@ -61,7 +61,8 @@ const EmpOddList = ({ empOddInfo }) => {
                 <Modal closeModal={() => setModal(!modal)} >
                     <OddApprovalModal
                         closeModal={() => setModal(!modal)}
-                        data={data} />
+                        data={data}
+                        auth={0} />
                 </Modal>
             )}
             <div className="grid-wrap">

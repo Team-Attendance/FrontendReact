@@ -10,3 +10,6 @@ export const getOddApproval = (option,query) => {
 export const updateOddApproval = (data) => {
     return axios.put(`${API_URL}/odd-approval/update/`, data)
 }
+export const countApproval = (year) => {
+    return axios.get(`${API_URL}/odd-approval/count/${year}`)
+}
