@@ -1,13 +1,10 @@
 .real-grid{
-    display: flex;
-    justify-content: center;
-    height: 550px;
-    width: 80%;
+    height: 450px;
+    margin: 0 auto;
 
     .rg-root.rg-grid{
       font-size: 0.8em;
-      justify-content: center;
-      left: 200px;
+      text-align: center;
       border: none;
       background-color: white;
     }
@@ -15,27 +12,14 @@
     .rg-root .rg-table td,
     .rg-root .rg-body .rg-table td{
       vertical-align: middle;
-      height: 50px;
+      height: 40px;
     }
+    // .rg-root .rg-body .rg-table .rg-data-cell{
+    //   background-color: white;
+    // }
     .rg-checkbox{
       height: 15px;
       width: 15px;
-    }
-  }
-  .state-button{
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    right: 11.1%;
-    margin-top: 1.5em;
-    // margin-right: 10em;
-    .state{
-      font-weight: bold;
-      border: 1px lightgray solid;
-      width: 70px;
-      margin: 0 1em;
-      padding: 10px 0;
-      background-color: whitesmoke;
     }
   }
 

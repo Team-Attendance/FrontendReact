@@ -6,18 +6,6 @@ export const fields = [{
     datetimeFormat: "yyyyMMdd"
 },
 {
-    fieldName: 'empNo',
-    dataType: ValueType.TEXT,
-},
-{
-    fieldName: 'empName',
-    dataType: ValueType.TEXT,
-},
-{
-    fieldName: 'empPosition',
-    dataType: ValueType.TEXT
-},
-{
     fieldName: 'oddBizType',
     dataType: ValueType.TEXT
 },
@@ -53,44 +41,6 @@ export const columns = [{
         showTooltip: false,
     }
 },{
-    name: "empNo",
-    fieldName: "empNo",
-    type: "data",
-    width: "100",
-    styles: {
-        textAlignment: "center"
-    },
-    header: {
-        text: "사번",
-        showTooltip: false,
-    }
-},{
-    name: "empName",
-    fieldName: "empName",
-    type: "data",
-    width: "100",
-    styles: {
-        textAlignment: "center"
-    },
-    header: {
-        text: "이름"
-    },
-    renderer: {
-        type:"text"
-    }
-}, {
-    name: "empPosition",
-    fieldName: "empPosition",
-    type: "data",
-    width: "130",
-    styles: {
-        textAlignment: "center"
-    },
-    header: {
-        text: "직급",
-        showTooltip: false,
-    }
-}, {
     name: "oddBizType",
     fieldName: "oddBizType",
     type: "data",

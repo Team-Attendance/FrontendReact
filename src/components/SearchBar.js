@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import '../css/SearchBar.scss'
 
-const SearchBar = ({onSubmit}) => {
+const SearchBar = ({ onSubmit }) => {
 
     const [query, setQuery] = useState('')
     const [option, setOption] = useState('emp_name')

@@ -5,6 +5,7 @@ import { formatDate,  formatHyphenFulldate, formatHyphenToKorean } from "../modu
 import "./leaveModal.scss";
 import { useRef } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const OddBizModal = ({ oddBizData, showOddBizModal, setShowOddBizModal }) => {
@@ -103,7 +104,7 @@ const OddBizModal = ({ oddBizData, showOddBizModal, setShowOddBizModal }) => {
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <input type="button" value="이상근태 현황 페이지로 이동" onClick={() => { }} />
+                <Link to="/emp/odd-info"><input type="button" value="이상근태 현황 페이지로 이동" /></Link>
                 <input type="button" value="확인" onClick={() => { setShowOddBizModal(false); setShowOddBizCompletion(false); }} />
               </div>
             </div>

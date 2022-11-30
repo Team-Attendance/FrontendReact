@@ -1,23 +1,43 @@
 
 
 .list-wrap{
-  justify-content: center;
+  height: 100%;
   
-  .page-button {
-    font-size: 0.8em;
+  .grid-wrap{
+    margin-top: 2em;
+  }
+
+  .state-button{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    bottom: -3%;
-    margin-top: 1em;
-    .prev, .next {
+    justify-content: flex-end;
+    margin: 1em auto;
+    .state{
+      font-size: 0.8em;
       font-weight: bold;
       border: 1px lightgray solid;
-      width: 5%;
-      margin: 0 2em;
-      padding: 10px 0;
+      width: 90px;
+      margin-left:1.5em;
+      padding: 7px;
       background-color: whitesmoke;
     }
-  } 
+  }
+  
+  #paging {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    span{
+      display: flex;
+      justify-content: center;
+      background-color: whitesmoke;
+      border: 1px lightgray solid;
+      padding: 0.1em 0.8em;
+      cursor: pointer;
+      font-size: 1em;
+      
+    }
+    span:hover{
+      background-color: lightgray;
+    }
+  }
 }

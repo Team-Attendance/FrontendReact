@@ -8,6 +8,7 @@ import { useCallback } from "react";
 import { close } from "../modules/leaveModal";
 import "./leaveModal.scss";
 import { getStatusData } from "../modules/calendarStatus";
+import { Link } from "react-router-dom";
 
 const LeaveModal = () => {
   const [showEndDate, setShowEndDate] = useState(true);
@@ -158,7 +159,7 @@ const LeaveModal = () => {
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <input type="button" value="휴가 현황 페이지로 이동" onClick={() => { }} />
+                <Link to="/emp/leave-info"><input type="button" value="휴가 현황 페이지로 이동" /></Link>
                 <input type="button" value="확인" onClick={() => { setShowLeaveCompletion(false); onClose(); onUpdate(1, year, month); }} />
               </div>
             </div>

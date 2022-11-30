@@ -11,36 +11,35 @@ import { useNavigate } from "react-router-dom";
 const EmpManagement = () => {
 
     // 사원등록 페이지 이동
-    const navigate  = useNavigate();
-    const handlerClick=()=>{
+    const navigate = useNavigate();
+    const handlerClick = () => {
         navigate("/admin/emp-registration");
     }
-    
-    const {empInfo} = useSelector((state) => state.empInfo)
+
+    const { empInfo } = useSelector((state) => state.empInfo)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(EmpActions.getAllEmps())
-        // EmpActions.getAllEmps()
     }, [dispatch])
 
     const onSubmit = (query, option) => {
-        if(query === ''){
+        if (query === '') {
             dispatch(EmpActions.getAllEmps())
-        } 
-        else{
+        }
+        else {
             dispatch(EmpActions.searchEmp(option, query))
         }
 
     }
-    
+
     return (
         <div>
-            <SearchBar onSubmit={onSubmit}/>
-            <div  align="right">
+            <SearchBar onSubmit={onSubmit} />
+            <div align="right">
                 <button onClick={handlerClick}> 사원등록</button>
             </div>
-            <EmpList empInfo = {empInfo}/>
+            <EmpList empInfo={empInfo} />
         </div>
     )
 }

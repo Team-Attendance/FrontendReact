@@ -6,7 +6,7 @@ import OddApprovalActions from "../../redux/modules/OddApproval/OddApprovalActio
 
 const OddApproval = () => {
 
-    const {oddApprovalInfo} = useSelector((state) => state.oddApprovalInfo)
+    const { oddApprovalInfo } = useSelector((state) => state.oddApprovalInfo)
     const [flag, setFlag] = useState(false)
 
     const dispatch = useDispatch()
@@ -17,9 +17,9 @@ const OddApproval = () => {
 
     const onSubmit = (query, option) => {
 
-        if(query === ''){
+        if (query === '') {
             dispatch(OddApprovalActions.getAllOddApproval())
-        } else{
+        } else {
             dispatch(OddApprovalActions.searchOddApproval(option, query))
         }
 
@@ -28,9 +28,9 @@ const OddApproval = () => {
     return (
         <div>
             <SearchBar onSubmit={onSubmit} />
-            <OddApprovalList 
-                oddApprovalInfo={oddApprovalInfo} 
-                changeFlag={() => setFlag(!flag)}/>
+            <OddApprovalList
+                oddApprovalInfo={oddApprovalInfo}
+                changeFlag={() => setFlag(!flag)} />
         </div>
     )
 }

@@ -9,3 +9,6 @@ export {default as adminAuthInfo} from './configuration/ConfigurationReducer'
 export {default as empBizInfo } from './configuration/ConfigurationReducer'
 export {default as EmpLeavInfo} from './report/ReportReducer'
 export {default as EmpOddInfo} from './report/ReportReducer'
+
+export {default as empLeaveInfo} from './EmpLeave/EmpLeaveReducer'
+export {default as empOddInfo} from './EmpOdd/EmpOddReducer'

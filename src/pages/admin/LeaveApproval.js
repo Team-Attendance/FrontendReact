@@ -6,7 +6,7 @@ import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprova
 
 const LeaveApproval = () => {
 
-    const {leaveApprovalInfo} = useSelector((state) => state.leaveApprovalInfo)
+    const { leaveApprovalInfo } = useSelector((state) => state.leaveApprovalInfo)
     const [flag, setFlag] = useState(false)
 
     const dispatch = useDispatch()
@@ -17,9 +17,9 @@ const LeaveApproval = () => {
 
     const onSubmit = (query, option) => {
 
-        if(query === ''){
+        if (query === '') {
             dispatch(LeaveApprovalActions.getAllLeaveApproval())
-        } else{
+        } else {
             dispatch(LeaveApprovalActions.searchLeaveApproval(option, query))
         }
 
@@ -28,10 +28,10 @@ const LeaveApproval = () => {
     return (
         <div>
             <SearchBar onSubmit={onSubmit} />
-            <LeaveApprovalList 
+            <LeaveApprovalList
                 leaveApprovalInfo={leaveApprovalInfo}
-                changeFlag ={() => setFlag(!flag)}
-             />
+                changeFlag={() => setFlag(!flag)}
+            />
         </div>
     )
 }

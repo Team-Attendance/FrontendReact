@@ -1,8 +1,25 @@
-export function EmpOddPage(){
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import EmpOddList from "../../components/EmpOdd/EmpOddList";
+import EmpOddActions from "../../redux/modules/EmpOdd/EmpOddActions";
 
-  return (
-    <div>
-      <h1>Emp OddPage</h1>
-    </div>
-  );
+const EmpOddPage = () => {
+
+    const { empOddInfo } = useSelector((state) => state.empOddInfo)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const empNo = localStorage.getItem("empNo")
+        dispatch(EmpOddActions.getOddRequest(empNo))
+    }, [dispatch])
+
+    return (
+        <div>
+            <EmpOddList
+                empOddInfo={empOddInfo} />
+        </div>
+    )
 }
+
+export default EmpOddPage

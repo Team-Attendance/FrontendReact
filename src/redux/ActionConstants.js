@@ -55,6 +55,18 @@ const LoginType = {
     POST_LOGINEMP_SUCCESS : 'POST_LOGINEMP_SUCCESS',
     POST_LOGINEMP_FAILURE : 'POST_LOGINEMP_FAILURE',}
 
+const EmpLeaveType = {
+    GET_EMP_LEAVE: 'GET_EMP_LEAVE',
+    GET_EMP_LEAVE_SUCCESS: 'GET_EMP_LEAVE_SUCCESS',
+    GET_EMP_LEAVE_FAILURE: 'GET_EMP_LEAVE_FAILURE'
+}
+
+const EmpOddType = {
+    GET_EMP_ODD: 'GET_EMP_ODD',
+    GET_EMP_ODD_SUCCESS: 'GET_EMP_ODD_SUCCESS',
+    GET_EMP_ODD_FAILURE: 'GET_EMP_ODD_FAILURE'
+}
+
 const Types = {
     ...EmpType,
     ...LeaveApprovalType,
@@ -62,7 +74,9 @@ const Types = {
     ...EmpInfoType,
     ...LoginType,
     ...ConfigurationType,
-    ...ReportType
+    ...ReportType,
+    ...EmpLeaveType,
+    ...EmpOddType
 }
 
 export default Types;

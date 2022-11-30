@@ -5,74 +5,55 @@ import '../../css/RealGrid.scss'
 import '../../css/ApprovalList.scss'
 
 import 'realgrid/dist/realgrid-sky-blue.css'
+import Paging from "../Paging"
 
-const EmpList = ({empInfo}) => {
-
-  
-  const [page, setPage] = useState(1)
-  const [pageCount, setPageCount] = useState(1) 
+const EmpList = ({ empInfo }) => {
 
   const [dataProvider, setDataProvider] = useState(null)
   const [gridView, setGridView] = useState(null)
   const realgridElement = useRef(null)
 
   useEffect(() => {
-      const container = realgridElement.current
-      const dp = new LocalDataProvider(true)
-      const gv = new GridView(container)
-  
-      gv.setDataSource(dp)
-      dp.setFields(fields)
-      gv.setColumns(columns)
-      dp.setRows(empInfo.data)
-      // realGrid 설정
-      gv.footer.visible = false
-      gv.setEditOptions({editable: false})
-      gv.setRowIndicator({visible: false})
-      gv.setStateBar({visible: false})
-      gv.setCheckBar({width: 50})
-      gv.displayOptions.selectionStyle="rows"
+    const container = realgridElement.current
+    const dp = new LocalDataProvider(true)
+    const gv = new GridView(container)
 
-      gv.setPaging(true, 10)
-      setPageCount(gv.getPageCount()) 
+    gv.setDataSource(dp)
+    dp.setFields(fields)
+    gv.setColumns(columns)
+    dp.setRows(empInfo.data)
+    // realGrid 설정
+    gv.footer.visible = false
+    gv.setEditOptions({ editable: false })
+    gv.setRowIndicator({ visible: false })
+    gv.setStateBar({ visible: false })
+    gv.setCheckBar({ visible: false })
+    gv.displayOptions.selectionStyle = "rows"
 
-      setDataProvider(dp)
-      setGridView(gv)
-  
-      return () => {
-        dp.clearRows()
-        gv.destroy()
-        dp.destroy()
-      }
+    gv.setPaging(true, 10)
+    Paging(dp.getRowCount(), 10, 5, 1, gv)
+
+    setDataProvider(dp)
+    setGridView(gv)
+
+    return () => {
+      dp.clearRows()
+      gv.destroy()
+      dp.destroy()
+    }
   }, [empInfo.data])
 
-    // 페이징 처리
-    if(gridView !== null){
-      gridView.onPageChanged = (grid, page) => {
-          setPage(page + 1)
-      }
-    }
-    const setPrevPage = () => {
-      gridView.setPage(gridView.getPage() - 1)
-    }
-    const setNextPage = () => {
-      gridView.setPage(gridView.getPage() + 1)
-    }
-
   return (
-      <div className="list-wrap">
-          <div className="real-grid"
-              // style={{ height: '300px', width: '100%' }}
-              ref={realgridElement}></div>
-          <div className="page-button">
-            <button className="prev" onClick={setPrevPage}>이전</button>
-            <span>{page}</span>
-            /
-            <span>{pageCount}</span>
-            <button className="next" onClick={setNextPage}>다음</button>
+    <div className="list-wrap">
+      <div className="grid-wrap">
+        <div className="real-grid" style={{ width: '750px' }}
+          ref={realgridElement}>
         </div>
       </div>
-      
+      <div id='paging'
+        style={{ float: 'left', height: '100%', paddingTop: '20px' }}> - </div>
+    </div>
+
   )
 }
 
