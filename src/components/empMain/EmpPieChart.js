@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 import ReactEchart from "echarts-for-react"
-import { color } from 'echarts';
+import { useSelector } from 'react-redux';
+
 
   // axios.get('test/home.do')
   // .then((Response)=>{
@@ -15,7 +16,8 @@ import { color } from 'echarts';
 
 
 export default function EmpPieChart(){
-  
+
+  const data = useSelector(state => state.pto.data);
 
   const eChartsOptions = {
 
@@ -53,9 +55,8 @@ export default function EmpPieChart(){
         show: false
       },
       data: [
-        { value: 50, name: '전체 연차'},
-        { value: 50, name: '잔여 연차'},
-        { value: 50, name: '사용 연차'},
+        { value: [data != null && data.Pto[0].pto_left_num], name: '사용 연차'},
+        { value: [data != null && data.Pto[0].pto_use_num], name: '잔여 연차'},
       ]
     },
   };
@@ -63,9 +64,9 @@ export default function EmpPieChart(){
   return (  
     <div>
       <h1>연차 사용 근황 </h1>
-      <h2>전체 연차: 15일 </h2>
-      <h2>잔여 연차: 12.5일 </h2>
-      <h2>사용 연차: 2.5일 </h2>
+      <h2>전체 연차: {data != null && data.Pto[0].pto_yr_no}일 </h2>
+      <h2>잔여 연차: {data != null && data.Pto[0].pto_left_num}일</h2>
+      <h2>사용 연차: {data != null && data.Pto[0].pto_use_num}일 </h2>
       <ReactEchart option={eChartsOptions} />
     </div>
   );

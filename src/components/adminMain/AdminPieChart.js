@@ -1,9 +1,11 @@
 import React,{ useState } from 'react';
 import ReactEchart from "echarts-for-react"
+import { useSelector } from 'react-redux';
 
 
 
-export default function BarChart(){
+export default function AdminPieChart(){
+  const data = useSelector(state => state.adminMain.data)
 
   const eChartsOption = {
 
@@ -40,11 +42,9 @@ export default function BarChart(){
         show: false
       },
       data: [
-        { value: 20, name: '미 출근'},
-        { value: 40, name: '출근'},
-        { value: 50, name: '휴가'},
-        { value: 60, name: '외근'},
-        { value: 50, name: '출장'}
+        { value: [data != null && data.admin.TodayStartCount], name: '출근'},
+        { value: [data != null && data.admin.TodayNotStartCount], name: '미 출근'},
+        { value: [data != null && data.admin.LeaveSignCount], name: '휴가'},
       ]
     },
 };

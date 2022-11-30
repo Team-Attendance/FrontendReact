@@ -1,36 +1,48 @@
-import React, { useState } from "react";
-import BarChart from "../../components/adminMain/BarChart";
-import Calendars from "../../components/adminMain/Calendars";
+import React, { useCallback, useEffect, useState } from "react";
+import AdminCalendar from "../../components/adminMain/AdminCalendar";
+import AdminPieChart from "../../components/adminMain/AdminPieChart";
+import AdminInfo from "../../components/adminMain/AdminInfo";
+import AdminDocument from "../../components/adminMain/AdminDocument";
 import "../../css/AdminMainPage.css"
+import { getAdminData } from "../../modules/adminMain";
+import {useDispatch, useSelector} from "react-redux";
+import { getChartData } from "../../modules/eChart";
+
+
 
 
 export function AdminMainPage() {
 
+    const dispatch = useDispatch()
+    const adminMain = useCallback(() => dispatch(getAdminData(1)), [dispatch]);
+    const chart = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);
+
+    useEffect(() => {
+        adminMain();
+        chart();
+    }, []);
+
     return (
-        <div className="wrap">
+        <div className="emp_main">
             <div className="frame">
                 <div className="content">
-                    <div className="document">
-                        <p className="title">대기문서</p>
+                    <div className="work_status">
+                        < AdminInfo/>
                     </div>
-                    <div className="calendar">
-                        <p className="title">관리자 달력</p>
-                        <Calendars />
-                    </div>
-                </div>
-                <div className="content">
-                    <div className="chart">
-                        <p className="title">근무현황</p>
-                        <BarChart />
-                    </div>
-                    <div className="schedule">
-                        <p className="title">주간스케줄</p>
+                    <div className="work_chart">
+                        < AdminPieChart />
                     </div>
                 </div>
                 <div className="content">
-                    <p className="title">출근기록</p>
+                    <div className="work_calendar">
+                        <h2>관리자 달력</h2>
+                        < AdminCalendar />
+                    </div>
+                    <div className="annual">
+                        < AdminDocument />
+                    </div>
+                </div>
 
-                </div>
             </div>
         </div>
     );

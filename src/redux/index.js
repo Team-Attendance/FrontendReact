@@ -10,6 +10,7 @@ import calendar from '../modules/calendar';
 import deptCalendar from '../modules/deptCalendar';
 import eChart from '../modules/eChart';
 import pto from '../modules/pto';
+import adminMain from '../modules/adminMain';
 const middlewares = [thunk];
 
 // 리듀서 합치기
@@ -34,9 +35,7 @@ const reducers = combineReducers({
     empLeaveInfo,
     empOddInfo,
     countInfo,
-
-   
-    
+    adminMain
 });
 
 let store;
