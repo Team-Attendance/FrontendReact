@@ -6,9 +6,6 @@ const EmpInfoActions = {
     
     dispatch({type: Types.GET_EMPINFO})
     try {
-        const empNo = {
-            empNo: localStorage.getItem("empNo"),
-        };
         const empInfo = await EmpAPI.getEmpinfo(empNo)
         dispatch({
             type: Types.GET_EMPINFO_SUCCESS,

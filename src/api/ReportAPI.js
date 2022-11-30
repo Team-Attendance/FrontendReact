@@ -8,3 +8,7 @@ export const getEmpLeave = () => {
 export const getEmpOdd = () => {
     return axios.get(`${API_URL}/odd-approval/all`)
 }
+
+export const getEmpInfo = (empNo) =>{
+    return axios.get(`${API_URL}/report/empno=${empNo}`)
+}

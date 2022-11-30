@@ -18,7 +18,7 @@ export function EmpMainPage() {
 
     useEffect(() => {
         dispatch(EmpInfoActions.getInfoDetail(empNo))
-        setCompoCalander();
+        // setCompoCalander();
     }, []);
     return (
         <div className="emp_main">
@@ -27,7 +27,7 @@ export function EmpMainPage() {
                     <div className="work_status">
                     </div>
                     <div className="work_chart">
-                        < EmpBarChart />
+                        {/* < EmpBarChart /> */}
                     </div>
                 </div>
                 <div className="content">

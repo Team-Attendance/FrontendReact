@@ -1,23 +1,10 @@
 import React,{ useState } from 'react';
-import ECharts, { EChartsReactProps } from 'echarts-for-react';
-import axios from 'axios';
-
-
-  // axios.get('test/home.do')
-  // .then((Response)=>{
-  //   if(Response.data === 'ok'){
-  //     alert("ok");
-  //     window.location.href = "http://www.google.com";
-  //   }
-    
-    
-  // })
-  // .catch((Error)=>{console.log(Error)})
-import ReactEchart from "echarts-for-react"
+import { useSelector } from 'react-redux';
+import ReactEchart from "echarts-for-react";
 
 export default function PtoChart(){
-  const[value, onChange] = useState(new Date());
-
+  const data = useSelector(state => state.pto.data);
+ 
   const eChartsOption = {
     series:  {
       name: '연차 사용률',
@@ -44,8 +31,8 @@ export default function PtoChart(){
         show: false
       },
       data: [
-        { value: 30, name: '미 사용'},
-        { value: 70, name: '사용'},
+        { value: [data != null && data.Pto[0].ptoYrNo], name: '전체 연차'},
+        { value: [data != null && data.Pto[0].ptoUseNum], name: '잔여 연차'},
         
       ]
     },
@@ -53,7 +40,7 @@ export default function PtoChart(){
 
   return (  
     <div>
-      <ReactEchart option={eChartsOption} />
+      <ReactEchart option={eChartsOption} style={{ height: "180px"}} />
     </div>
   );
 }

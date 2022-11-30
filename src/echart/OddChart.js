@@ -1,25 +1,12 @@
-import React,{ useState } from 'react';
-import ECharts, { EChartsReactProps } from 'echarts-for-react';
-import axios from 'axios';
-
-
-  // axios.get('test/home.do')
-  // .then((Response)=>{
-  //   if(Response.data === 'ok'){
-  //     alert("ok");
-  //     window.location.href = "http://www.google.com";
-  //   }
-    
-    
-  // })
-  // .catch((Error)=>{console.log(Error)})
 import ReactEchart from "echarts-for-react"
+import { useSelector } from 'react-redux';
 
 export default function PtoChart(){
-  const[value, onChange] = useState(new Date());
+  const data = useSelector(state => state.eChart.data)
 
   const eChartsOption = {
     series:  {
+      responsive: false,
       name: '이상 근태율',
       type: 'pie',
       radius: ['35%', '70%'],
@@ -44,16 +31,22 @@ export default function PtoChart(){
         show: false
       },
       data: [
-        { value: 3, name: '이상'},
-        { value: 97, name: '정상'},
+        {
+          name: '정상근무',
         
+          value : [data != null && data.oddBizHourCount.normalCount]
+        },
+        {
+          name: '이상근태',
+          value : [data != null && data.oddBizHourCount.oddBizCount],
+        },
       ]
     },
   };
 
   return (  
     <div>
-      <ReactEchart option={eChartsOption} />
+      <ReactEchart option={eChartsOption} style={{ height: "180px"}} />
     </div>
   );
 }
