@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import {API_URL} from "../../utils/constants/Config";
 import '../../css/empInfo.scss'

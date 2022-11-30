@@ -1,9 +1,9 @@
-import React,{ useState } from 'react';
+import React from 'react';
 import ReactEchart from "echarts-for-react"
 
 export default function MonthliyOdd(){
   
-  const[value, onChange] = useState(new Date());
+  // const[value, onChange] = useState(new Date());
 
   const eChartsOption = {
     xAxis: {

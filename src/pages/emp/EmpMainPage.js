@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import "../../css/EmpMainPage.css"
 import EmpPieChart from "../../components/empMain/EmpPieChart";
 import EmpCalendar from "../../components/empMain/EmpCalendar";
 import EmpBarChart from "../../components/empMain/EmpBarChart";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import { getChartData } from "../../modules/eChart";
 import { getPtoData } from "../../modules/pto";

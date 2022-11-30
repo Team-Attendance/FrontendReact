@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import AdminCalendar from "../../components/adminMain/AdminCalendar";
 import AdminPieChart from "../../components/adminMain/AdminPieChart";
 import AdminInfo from "../../components/adminMain/AdminInfo";
 import AdminDocument from "../../components/adminMain/AdminDocument";
 import "../../css/AdminMainPage.css"
 import { getAdminData } from "../../modules/adminMain";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import { getChartData } from "../../modules/eChart";
 
 

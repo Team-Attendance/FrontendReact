@@ -2,11 +2,11 @@ import * as EmpAPI from "../../../api/EmpAPI"
 import Types from "../../ActionConstants"
 
 const EmpInfoActions = {
-  getInfoDetail: (empToken) => async(dispatch)=>{
+  getInfoDetail: (empNo) => async(dispatch)=>{
     
     dispatch({type: Types.GET_EMPINFO})
     try {
-        const empInfo = await EmpAPI.getEmpinfo(empToken)
+        const empInfo = await EmpAPI.getEmpinfo(empNo)
         dispatch({
             type: Types.GET_EMPINFO_SUCCESS,
             payload: empInfo.data

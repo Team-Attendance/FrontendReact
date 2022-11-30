@@ -37,26 +37,7 @@ const ReportAction = {
                 payload: error.toString()
             })
         }
-    },
-    getEmpInfo: () => async(dispatch) =>{
-        dispatch({ type: Types.GET_REPORT_EMP})
-    
-        try {
-            const configgggg = await ReportAPI.getEmpInfo();
-            
-            dispatch({
-                type: Types.GET_REPORT_EMP_SUCCESS,
-                payload: configgggg.data
-            })
-        } catch(error) {
-            dispatch({
-                type: Types.GET_REPORT_EMP_FAILURE,
-                payload: error.toString()
-            })
-        }
     }
-
-   
    
 }
 

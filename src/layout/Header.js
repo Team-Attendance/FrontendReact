@@ -8,10 +8,6 @@ import IconButton from '@mui/material/IconButton';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Badge from '@mui/material/Badge';
 import { Link } from 'react-router-dom';
-import {useEffect, useState} from "react";
-import axios from "axios";
-import {useDispatch} from "react-redux";
-import {API_URL} from "../utils/constants/Config";
 
 export function Header() {
 

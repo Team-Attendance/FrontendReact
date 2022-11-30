@@ -7,7 +7,8 @@ import MonthliyOdd from "../../echart/MonthliyOdd";
 import LeaveAdjTable from "../../table/LeaveAdjTable";
 import OddAdjTable from "../../table/OddAdjTable";
 import EmpInfoTable from "../../table/EmpInfoTable";
-import ReportAction from "../../redux/modules/report/ReportAction";
+import EmpOddActions from "../../redux/modules/EmpOdd/EmpOddActions";
+import EmpLeaveActions from "../../redux/modules/EmpLeave/EmpLeaveActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useCallback, useState } from "react";
 import { getPtoData } from "../../modules/pto";
@@ -21,8 +22,8 @@ export function Report(){
     
     const dispatch = useDispatch();
     const [empInfoDetail , setEmpInfoDetail] = useState([{}])
-    const { EmpLeavInfo } =  useSelector((state) => state.EmpLeavInfo)
-    const { EmpOddInfo } =  useSelector((state) => state.EmpOddInfo) 
+    const { empLeaveInfo } =  useSelector((state) => state.empLeaveInfo)
+    const { empOddInfo } =  useSelector((state) => state.empOddInfo) 
     const ptochart = useCallback(() => dispatch(getPtoData(1, 2022)), [dispatch]);
     const oddchart = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);
    
@@ -30,13 +31,14 @@ export function Report(){
         axios.get(API_URL+"/emp/emp-info/"+empNo)
         .then((res)=>{
           
-          setEmpInfoDetail(res.data);
+            setEmpInfoDetail(res.data);
+        
+            ptochart();
+            oddchart();
+        })
         dispatch(EmpInfoActions.getInfoDetail(empNo))
-        dispatch(ReportAction.getEmpOdd())
-       dispatch(ReportAction.getEmpLeave())   
-       ptochart();
-       oddchart();
-    })
+        dispatch(EmpOddActions.getOddRequest(empNo))
+        dispatch(EmpLeaveActions.getLeaveRequest(empNo))  
     }, [dispatch, empNo, oddchart, ptochart])
    
 
@@ -65,11 +67,11 @@ export function Report(){
                         <div className="leave-adj">
                             <h3 className="title">휴가 신청 현황</h3>
                             
-                            <LeaveAdjTable EmpLeavInfo = {EmpLeavInfo} />
+                            <LeaveAdjTable empLeaveInfo = {empLeaveInfo} />
                         </div>
                         <div className="odd-adj">
                             <h3 className="title">이상근태 조정신청 현황</h3>
-                            <OddAdjTable EmpOddInfo = {EmpOddInfo}/>
+                            <OddAdjTable empOddInfo = {empOddInfo}/>
                         </div>
                     </section>   
                 </div>

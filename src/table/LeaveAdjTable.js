@@ -4,7 +4,7 @@ import { columns, fields } from '../table/realgrid-dataLeave'
 
 import 'realgrid/dist/realgrid-sky-blue.css'
 
-const LeaveAdjTable = ({EmpLeavInfo}) => {
+const LeaveAdjTable = ({empLeaveInfo}) => {
     const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
@@ -18,7 +18,7 @@ const LeaveAdjTable = ({EmpLeavInfo}) => {
         dp.setFields(fields)
         gv.setColumns(columns)
         gv.footer.visible = false
-        dp.setRows(EmpLeavInfo.data)
+        dp.setRows(empLeaveInfo.data)
         gv.setEditOptions({editable: false})
 
         setDataProvider(dp)
@@ -29,7 +29,7 @@ const LeaveAdjTable = ({EmpLeavInfo}) => {
           gv.destroy()
           dp.destroy()
         }
-      }, [EmpLeavInfo.data])
+      }, [empLeaveInfo.data])
 
     return (
         <div>
