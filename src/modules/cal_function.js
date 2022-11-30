@@ -83,22 +83,19 @@ export function initCalendar() {
 export function moveMonth(year, month, direction, nowDate) {
     let calMonth;
 
-    
-    
+
+
     direction === 'prev' ? calMonth = ((month) - 1) : calMonth = ((month) + 1);
 
     calMonth--;
 
-    console.log("moveMonth : " + year, month, direction, nowDate + "calMonth : " + calMonth);
 
-    
     // 이전 달 날짜
     let beforeDate = new Date(year, calMonth - 1, 1);
 
     // 이번 달 날짜
     let thisDate = new Date(year, calMonth, 1);
 
-    console.log(thisDate);
     // 다음 달 날짜
     let nextDate = new Date(year, calMonth + 1, 1);
 
@@ -158,7 +155,7 @@ export function moveMonth(year, month, direction, nowDate) {
     let thisYear = thisDate.getFullYear();
     let thisMonth = thisDate.getMonth();
 
-    calendarWeek[6] = [{ thisYear }, { thisMonth }, {nowDate}];
+    calendarWeek[6] = [{ thisYear }, { thisMonth }, { nowDate }];
 
     return calendarWeek;
 }

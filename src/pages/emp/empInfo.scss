@@ -1,0 +1,80 @@
+
+.empInfo {
+  position: relative;
+  minHeight: calc(100vh - 64px);
+  padding: 30px;
+  flexWrap: wrap;
+
+.infoTitle {
+    margin-bottom: 10px;
+    padding: 15px 0 10px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 2px solid gray;
+
+  }
+  .infoBox {
+    display: flex;
+    width: 100%;
+    height: 90%;
+    margin-left: 10%;
+    justify-content: space-between;
+
+
+    .infoContent {
+        background-color: white;
+        width: 100%;
+        height: 480px;
+        .infoUl {
+          font-size: 0.8em;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          .infoLi {
+            display: flex;
+            align-items: center;
+            border-bottom: 0.5px solid lightgray;
+          }
+
+          .infoLabel {
+            font-weight: bold;
+            display: flex;
+            width: 35%;
+            justify-content: flex-end;
+            background-color: whitesmoke;
+            padding: 0.8em;
+            height: 100%;
+          }
+          li:nth-of-type(8){
+            height:150px;
+            align-items: flex-start;
+          }
+
+          .infoInput {
+            display: flex;
+            width: 65%;
+            border-radius: 5px;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0.8em;
+          }
+          }
+          .button {
+            font-size: 0.8em;
+            display: flex;
+            position: relative;
+            bottom: -3%;
+            justify-content: space-around;
+            margin-top: 1em;
+            .pwChange {
+              font-weight: bold;
+              border: 1px lightgray solid;
+              width: 25%;
+              padding: 10px 0;
+              background-color: whitesmoke;
+            }
+          }
+        }
+    }
+  }

@@ -1,5 +1,4 @@
 import axios from "axios";
-import styled from 'styled-components'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import LeaveModal from "../LeaveModal";
@@ -13,113 +12,7 @@ import { updateCalendar } from "../../modules/calendar"
 import { updateDeptCalendar } from "../../modules/deptCalendar";
 import OddBizModal from "../OddBizModal";
 import { useState } from "react";
-
-// styled
-const CalWrapper = styled.div`
-    // display: flex;
-    // justify-content: center;
-    // flex-wrap: wrap;
-    // margin: 23px 0;
-    position: relative;
-`
-
-const CalTable = styled.table`
-    border-collapse: collapse;
-    border: 1px solid lightgray;
-`
-const TableTitle = styled.td`
-    text-align: left;
-    padding: 10px 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    background-color: whitesmoke;
-    position: relative;
-`
-
-const CalItem = styled.td`
-    font-size: 0.7rem;
-    width: 168px;
-    font-weight: bold;
-    text-align: right;
-    position: relative;
-    border: 1px solid lightgray;
-
-    &.th{
-        line-height: 25px;
-        text-align: center;
-        
-        &.sunday{
-            color: red;
-        }
-
-        &.saturday{
-            color: blue;
-        }
-    }
-
-    & div.cal-info{
-        min-height: 83px;
-        textAlign: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &.next, &.prev{
-            visibility: hidden;
-        }
-    }
-
-    &.prev, &.next{
-        color: lightgray;
-        background-color: white;
-    }
-
-    &.odd-biz.normal{
-        background-color: #FF9F9F;
-    }
-`
-const CalDay = styled.div`
-    padding-right: 7px;
-    line-height: 18px;
-
-    & span{
-        cursor: pointer;
-
-        &.sunday{
-            color: red;
-        }
-        &.saturday{
-            color: blue;
-        }
-        &.prev, &.next{
-            color: lightgray;
-        }
-    }
-`
-
-const LeaveItem = styled.div`
-    width: 100%;
-    height: 14px;
-    background-color: #8D9EFF;
-    position: absolute;
-    left: 0px;
-    top: 18px;
-    text-align: left;
-    color: white;
-    padding-left: 5px;
-
-    &.prev, &.next{
-        display: none;
-    }
-
-    &.morningLeave{
-      background-color: #FFC300;
-    }
-
-    &.afternoonLeave{
-      background-color: #FF607F;
-    }
-`
+import "./calendar.scss";
 
 export function Calendar({ setShowDeptCalendar }) {
 
@@ -220,18 +113,18 @@ export function Calendar({ setShowDeptCalendar }) {
 
   const showLeave = (calendarData, data) => {
     const leaveClass = {
-      휴가: 'normalLeave',
-      오전휴가: 'morningLeave',
-      오후휴가: 'afternoonLeave'
+      휴가: 'normal-leave',
+      오전휴가: 'morning-leave',
+      오후휴가: 'afternoon-leave'
     }
 
     return (
       calendarData.empLeave.map((leave) => {
         return (
           ((formatFulldate(formatDate(leave.leaveStartDate)) <= formatFulldate(data.date)) && (formatFulldate(data.date) <= formatFulldate(formatDate(leave.leaveEndDate)))) ?
-            <LeaveItem className={`${data.type} ${leaveClass[leave.leaveType]}`} >
+            <div className={`leave-item ${data.type} ${leaveClass[leave.leaveType]}`} >
               {formatFulldate(formatDate(leave.leaveStartDate)) === formatFulldate(data.date) && <span>{leave.leaveType}</span>}
-            </LeaveItem>
+            </div>
             :
             <></>
         );
@@ -246,31 +139,33 @@ export function Calendar({ setShowDeptCalendar }) {
         <div style={{ width: '73%' }}>
           <LeaveModal />
           <OddBizModal oddBizData={oddBizData} showOddBizModal={showOddBizModal} setShowOddBizModal={setShowOddBizModal} />
-          <CalWrapper>
-            <CalTable>
+          <div>
+            <table className="cal-table">
               <tbody>
                 <tr>
-                  <TableTitle colSpan={7}>{`${year}년 ${month}월`}
+                  <th className="cal-title" colSpan={7}>{`${year}년 ${month}월`}
                     <ArrowBackIosNewIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '11px', left: '100px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { updateCompoCalendar(year, month, 'prev', nowDate); updateCompoDeptCalendar(year, month, 'prev', nowDate); }} />
                     <ArrowForwardIosIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '11px', left: '115px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { updateCompoCalendar(year, month, 'next', nowDate); updateCompoDeptCalendar(year, month, 'next', nowDate); }} />
-                    <button style={{ position: 'absolute', fontSize: '0.7rem', fontWeight: 'bold', border: '1px solid gray', padding: '5px 15px', backgroundColor: 'lightgray', right: '20px', top: '6px', boxShadow: '0 0 5px 1px lightgray' }} onClick={() => { setShowDeptCalendar(false) }}>부서 달력</button>
-                  </TableTitle>
+                    <button style={{ position: 'absolute', fontSize: '0.7rem', fontWeight: 'bold', border: '1px solid gray', padding: '5px 15px', backgroundColor: 'lightgray', right: '20px', top: '6px', boxShadow: '0 0 5px 1px lightgray' }} onClick={() => { setShowDeptCalendar(false) }}>부서 일정</button>
+                  </th>
                 </tr>
                 <tr>
-                  <CalItem className="th sunday">일</CalItem>
-                  <CalItem className="th">월</CalItem>
-                  <CalItem className="th">화</CalItem>
-                  <CalItem className="th">수</CalItem>
-                  <CalItem className="th">목</CalItem>
-                  <CalItem className="th">금</CalItem>
-                  <CalItem className="th saturday">토</CalItem>
+                  <td className="cal-item th sunday">일</td>
+                  <td className="cal-item th">월</td>
+                  <td className="cal-item th">화</td>
+                  <td className="cal-item th">수</td>
+                  <td className="cal-item th">목</td>
+                  <td className="cal-item th">금</td>
+                  <td className="cal-item th saturday">토</td>
                 </tr>
                 {calendar.map((calendarWeek) => {
                   return (
                     <tr>
                       {calendarWeek.map((calendarDay, inIndex) => {
                         return (
-                          <CalItem className={calendarDay.type
+                          <td className={
+                            "cal-item " +
+                            calendarDay.type
                             + calendarData.oddBizHour.map((biz) => {
                               if (formatFulldate(formatDate(biz.oddBizDate)) === formatFulldate(calendarDay.date)) {
                                 return " odd-biz";
@@ -283,7 +178,7 @@ export function Calendar({ setShowDeptCalendar }) {
                             {/* 휴가 일시 */}
                             {showLeave(calendarData, calendarDay)}
 
-                            <CalDay>
+                            <div className="cal-day">
                               <span
                                 className={inIndex === 6 ? `saturday ${calendarDay.type}` :
                                   (inIndex === 0 ? `sunday ${calendarDay.type}` : calendarDay.type)}
@@ -298,10 +193,10 @@ export function Calendar({ setShowDeptCalendar }) {
                                         }
                                       })[0]
                                     )
-                                    && (inIndex != 6 && inIndex != 0) && onRealOpen(onOpen, calendarDay);
+                                    && (inIndex !== 6 && inIndex !== 0) && onRealOpen(onOpen, calendarDay);
                                 }}
                               >{calendarDay.day}</span>
-                            </CalDay>
+                            </div>
 
                             <div className={`cal-info ${calendarDay.type}`}>
                               <div style={{ lineHeight: '20px' }}>
@@ -316,7 +211,7 @@ export function Calendar({ setShowDeptCalendar }) {
                                 </p>
                               </div>
                             </div>
-                          </CalItem>
+                          </td>
                         );
                       })}
                     </tr>
@@ -324,8 +219,8 @@ export function Calendar({ setShowDeptCalendar }) {
 
                 })}
               </tbody>
-            </CalTable>
-          </CalWrapper>
+            </table>
+          </div>
         </div>
       }
     </>

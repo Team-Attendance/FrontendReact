@@ -117,9 +117,9 @@ const OddBizModal = ({ oddBizData, showOddBizModal, setShowOddBizModal }) => {
   return (
     <div>
 
-      {showOddBizModal && showOddBizCompletion == false && firstPage()}
+      {showOddBizModal && showOddBizCompletion === false && firstPage()}
 
-      {showOddBizModal && showOddBizCompletion == true && secondPage()}
+      {showOddBizModal && showOddBizCompletion === true && secondPage()}
     </div>
   );
 }

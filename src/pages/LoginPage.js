@@ -8,10 +8,10 @@ import * as api from "../api/EmpAPI";
 
 const LoginPage = () => {
 
-  
+
   const [error, setError] = useState(null);
-  const [iderr,setIderr]=useState();
-  const [tab,setTab]=useState("tab1");
+  const [iderr, setIderr] = useState();
+  const [tab, setTab] = useState("tab1");
 
   const dispatch = useDispatch();
 
@@ -23,41 +23,41 @@ const LoginPage = () => {
 
   const loginInit = {
     empNo: "",
-    empPwd : "",
-  };   
+    empPwd: "",
+  };
 
-  useEffect(()=> {
-    dispatch(changeFields({form:'login', key:loginInit}));
+  useEffect(() => {
+    dispatch(changeFields({ form: 'login', key: loginInit }));
   }, [dispatch]);
-  
+
 
   // 로그인 인풋
   const onLoginChange = (e) => {
     e.preventDefault();
-  
-    const {value, name} = e.target;
+
+    const { value, name } = e.target;
     dispatch(
       changeField({
         form: "login",
-        key:name,
+        key: name,
         value,
       })
     );
   };
-  
-  
+
+
   // 로그인 submit
-  const onLogin = async(e) =>{
+  const onLogin = async (e) => {
     e.preventDefault();
     const { empNo, empPwd } = login;
 
     const data = {
       "empNo": empNo,
-      "empPwd" : empPwd,
-    }; 
+      "empPwd": empPwd,
+    };
 
-   api.Login(data).then((res) => {
-      if(res.data.empToken){
+    api.Login(data).then((res) => {
+      if (res.data.empToken) {
         localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
         localStorage.setItem("empNo", res.data.empNo);
         localStorage.setItem("deptName", res.data.deptName);
@@ -66,39 +66,45 @@ const LoginPage = () => {
         localStorage.setItem("empAuthority", res.data.empAuthority);
 
         console.log('로그인 성공')
-        setTimeout(()=>{
+        setTimeout(() => {
           window.location.href = "/emp/main";
-        },1500)
-      }else{
+        }, 1500)
+      } else {
         console.log('로그인 실패')
-        setTimeout(()=>{
+        setTimeout(() => {
           window.location.reload();
-        },1800)
+        }, 1800)
       }
     })
   }
 
   const onTab = (e) => {
-    dispatch(changeFields({form:'login', key:loginInit}));
+    dispatch(changeFields({ form: 'login', key: loginInit }));
     setIderr();
     setError();
     setTab(e.target.value);
   }
-  
+
   return (
-    <div>
-      <LoginProc
-        login={ login }
-        onLoginChange = { onLoginChange }
-        onLogin = { onLogin }
-        error = {error}
-        iderr={iderr}
-        tab={tab}
-        onTab={onTab}
-      />
+    <div style={{width:'100%', height:'100vh', display: 'flex'}}>
+      <div style={{width:'50%', height:'100%', backgroundImage: 'url("/user.jpg")', backgroundSize: 'cover'}}>
+
+      </div>
+      <div style={{width:'50%', height:'100%', margin: '0 auto'}}>
+        <LoginProc
+          login={login}
+          onLoginChange={onLoginChange}
+          onLogin={onLogin}
+          error={error}
+          iderr={iderr}
+          tab={tab}
+          onTab={onTab}
+        />
+      </div>
+
     </div>
   );
-    
+
 };
-  
+
 export default LoginPage;

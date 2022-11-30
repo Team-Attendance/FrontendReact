@@ -1,91 +1,74 @@
-import axios from "axios";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { formatDate, formatHyphenFulldate, formatHyphenToKorean } from "../modules/cal_function";
+import { formatDate, formatHyphenFulldate } from "../modules/cal_function";
 import "./leaveModal.scss";
-import { useRef } from "react";
-import { useState } from "react";
-import { lineHeight } from "@mui/system";
-
-
-const DeptModal = ({ deptLeaveData, showDeptModal, setShowDeptModal }) => {
 
 
 
-  // const oddBizDetail = useRef();
-
-  // const oddBizRegistration = (empNo, oddBizDate, oddBizType, oddBizDetail) => {
-
-  //   axios.post('/odd-biz-adj', {
-  //     empNo: empNo,
-  //     oddBizDate: oddBizDate,
-  //     oddBizType: oddBizType,
-  //     oddBizDetail: oddBizDetail
-  //   }).then(
-  //     (response) => {
-  //       let result = response.data;
-  //       if (result) {
-  //         setShowOddBizCompletion(true);
-  //       } else {
-  //         alert("에러 발생");
-  //       }
-  //     }
-  //   );
-  // }
-
-  // const checkForm = () => {
-  //   (oddBizDetail.current.value).trim() === "" ? alert("조정 신청 사유를 입력해주세요.")
-  //     : oddBizRegistration(oddBizData.empNo, formatHyphenFulldate(formatDate(oddBizData.oddBizDate)), oddBizData.oddBizType, oddBizDetail.current.value);
-  // }
+const DeptModal = ({ deptModalDate, deptLeaveData, setDeptLeaveDate, showDeptModal, setShowDeptModal }) => {
 
   // 휴가 신청 페이지
   const firstPage = () => {
     return (
       <div>
-        <div className="opacity-area" onClick={() => { setShowDeptModal(false); }}></div>
+        <div className="opacity-area" onClick={() => { setShowDeptModal(false); setDeptLeaveDate(null);}}></div>
         <div className="modal-area">
           <div className="leave-form-wrap">
-            <IconButton size="small" sx={{ position: 'absolute', right: '20px', top: '20px' }} onClick={() => { setShowDeptModal(false); }}>
+            <IconButton size="small" sx={{ position: 'absolute', right: '20px', top: '20px' }} onClick={() => { setShowDeptModal(false); setDeptLeaveDate(null);}}>
               <CloseIcon />
             </IconButton>
 
             <div>
-              <h1>휴가 상세 보기</h1>
+              <h1>휴가 일정 조회</h1>
             </div>
             <div>
-              <h2 style={{ fontWeight: 'bold', fontSize: '1.1rem', margin: '15px 0' }}>2022-11-25</h2>
+              <h2 style={{ fontWeight: 'bold', fontSize: '1.1rem', margin: '15px 0' }}>{deptModalDate}</h2>
               <div className="form-item dept">
-                <h3>휴가({deptLeaveData?.length}명)</h3>
+                <h3>휴가({deptLeaveData.leaveList.length}명)</h3>
                 <div style={{ padding: '2px 7px', fontSize: '0.8rem', lineHeight: '30px' }}>
-                  {deptLeaveData.map((leaveData) => {
+                  {deptLeaveData.leaveList.map((leave) => {
                     return (
                       <>
-                        <div><span>{leaveData.emp_name} : {formatHyphenFulldate(formatDate(leaveData.leave_start_date))} ~ {formatHyphenFulldate(formatDate(leaveData.leave_end_date))}</span></div>
+                        <div><span>{leave.emp_name} : {formatHyphenFulldate(formatDate(leave.leave_start_date))} ~ {formatHyphenFulldate(formatDate(leave.leave_end_date))}</span></div>
                       </>
                     );
                   })}
 
-                  {deptLeaveData?.length === 0 && <div><span>해당일자의 휴가자가 없습니다.</span></div>}
+                  {deptLeaveData.leaveList.length === 0 && <div><span>해당일자의 휴가자가 없습니다.</span></div>}
                 </div>
-
-              </div>
-              <div className="form-item dept">
-                <h3>오전 휴가(2명)</h3>
-                <div style={{ padding: '2px 7px', fontSize: '0.8rem', fontWeight: '' }}>
-                  <span>김경욱, 박수용, 강보라</span>
-                </div>
-
               </div>
 
               <div className="form-item dept">
-                <h3>오후 휴가(3명)</h3>
+                <h3>오전 휴가({deptLeaveData.morningLeaveList.length}명)</h3>
                 <div style={{ padding: '2px 7px', fontSize: '0.8rem', fontWeight: '' }}>
-                  <span>김경욱, 박수용, 강보라</span>
+                  {deptLeaveData.morningLeaveList.map((morningLeave) => {
+                    return (
+                      <>
+                        <span>{morningLeave.emp_name}</span>
+                      </>
+                    );
+                  })}
+                  {deptLeaveData.morningLeaveList.length === 0 && <div><span>해당일자의 휴가자가 없습니다.</span></div>}
+                </div>
+
+              </div>
+
+              <div className="form-item dept">
+                <h3>오후 휴가({deptLeaveData.afternoonLeaveList.length}명)</h3>
+                <div style={{ padding: '2px 7px', fontSize: '0.8rem', fontWeight: '' }}>
+                  {deptLeaveData.afternoonLeaveList.map((afternoonLeave) => {
+                    return (
+                      <>
+                        <span>{afternoonLeave.emp_name}</span>
+                      </>
+                    );
+                  })}
+                  {deptLeaveData.afternoonLeaveList.length === 0 && <div><span>해당일자의 휴가자가 없습니다.</span></div>}
                 </div>
 
               </div>
               <div>
-                <input type="button" value="확인" onClick={() => { setShowDeptModal(false); }} />
+                <input type="button" value="확인" onClick={() => { setShowDeptModal(false); setDeptLeaveDate(null);}} />
               </div>
             </div>
           </div>
@@ -96,7 +79,7 @@ const DeptModal = ({ deptLeaveData, showDeptModal, setShowDeptModal }) => {
 
   return (
     <div>
-      {showDeptModal && firstPage()}
+      {deptLeaveData && showDeptModal && firstPage()}
     </div>
   );
 }
