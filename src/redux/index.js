@@ -11,6 +11,7 @@ import deptCalendar from '../modules/deptCalendar';
 import eChart from '../modules/eChart';
 import pto from '../modules/pto';
 import adminMain from '../modules/adminMain';
+import monthlyTable from '../modules/monthlyTable';
 const middlewares = [thunk];
 
 // 리듀서 합치기
@@ -32,7 +33,8 @@ const reducers = combineReducers({
     empLeaveInfo,
     empOddInfo,
     countInfo,
-    adminMain
+    adminMain,
+    monthlyTable
 });
 
 let store;

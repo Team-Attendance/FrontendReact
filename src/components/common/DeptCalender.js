@@ -78,7 +78,7 @@ export function DeptCalendar({ setShowDeptCalendar }) {
   return (
     <>
       {deptCalendar && deptCalendarData &&
-        <div style={{ width: '73%' }}>
+        <div>
           <DeptModal deptModalDate={deptModalDate} deptLeaveData={deptLeaveData} setDeptLeaveDate={setDeptLeaveDate} showDeptModal={showDeptModal} setShowDeptModal={setShowDeptModal} />
           <div>
             <table className="cal-table">

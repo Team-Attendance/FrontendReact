@@ -1,0 +1,42 @@
+.monthly-table {
+  width: 100%;
+  font-size: 0.8rem;
+  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid lightgray;
+  letter-spacing: 0.3px;
+
+  th {
+    border-bottom: 1px solid lightgray;
+    font-weight: bold;
+    background-color: white;
+  }
+
+  th, td {
+    padding: 9px 0;
+  }
+
+  tr:nth-child(2n) {
+    background-color: whitesmoke;
+  }
+
+  .td-date{
+    width: 22%;
+  }
+  .td-leave{
+    width: 16%;
+  }
+
+  .td-work{
+    width: 22%;
+  }
+  .td-start-time{
+    width: 14%;
+  }
+  .td-end-time{
+    width: 14%;
+  }
+  .td-state{
+    width: 12%;
+  }
+}

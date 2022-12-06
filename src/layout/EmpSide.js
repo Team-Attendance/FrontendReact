@@ -14,7 +14,8 @@ export function EmpSide (){
 
     const empMenu = [
         {img: <PersonIcon sx={{ color: 'white' }}/>, name: '나의 정보', path: '/emp/emp-info'},
-        {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황', path: '/emp/daily-attendance-info'},
+        {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황(일)', path: '/emp/daily-attendance-info'},
+        {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황(월)', path: '/emp/monthly-attendance-info'},
         {img: <FlightIcon sx={{ color: 'white' }}/>, name: '휴가 현황', path: '/emp/leave-info'},
         {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태 현황', path: '/emp/odd-info'}
     ]

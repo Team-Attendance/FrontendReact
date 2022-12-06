@@ -1,0 +1,61 @@
+.monthly-table {
+  border: none;
+
+  .rg-root.rg-grid {
+    text-align: center;
+    font-size: 0.75rem;
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+  }
+
+  .rg-header tbody tr,
+  .rg-head .rg-table tr td {
+    background-color: whitesmoke;
+  }
+
+  .rg-root .rg-table,
+  .rg-root .rg-table td,
+  .rg-root .rg-body .rg-table td {
+    vertical-align: middle;
+  }
+
+  .rg-head .rg-table tr td {
+    border: none;
+    border-right: 1px solid lightgray;
+  }
+
+  .rg-header .rg-table tr td {
+    border: 1px solid lightgray;
+    border-left: none;
+    border-top: none;
+  }
+
+  .rg-rowbarcontainer .rg-table tr td {
+    border: 1px solid lightgray;
+    border-left: none;
+    border-top: none;
+  }
+
+  .rg-body .rg-table tr td,
+  .rg-fixed-body .rg-table tr td {
+    border: none;
+    border-right: 1px solid lightgray;
+  }
+
+  .odd-biz{
+    color: red;
+    font-weight: bold;
+  }
+
+  .normal{
+    color: #68B984;
+    font-weight: bold;
+  }
+}
+
+.on{
+  font-weight: bold;
+  color:#40DAB2;
+}

@@ -2,27 +2,22 @@ import { useSelector } from 'react-redux';
 import "./calendarStatus.scss";
 
 const CalendarStatus = () => {
-  const calendar = useSelector(state => state.calendar.calendar);
-  const calendarData = useSelector(state => state.calendar.data);
-  const nowDate = useSelector(state => state.calendar.nowDate);
-
-  const calendarYear = useSelector(state => state.calendar.year);
   const calendarMonth = useSelector(state => state.calendar.month);
   const data = useSelector(state => state.calendarStatus.data);
-
-  const oddStatusItem1 = [{ title: '정상 근무', class: 'normal', value: data.oddBizHourCount.normalCount },
-  { title: '이상 근무', class: 'odd-biz', value: data.oddBizHourCount.oddBizCount }];
+  
+  const oddStatusItem1 = [{ title: '정상 근무', class: 'normal', value: data?.oddBizHourCount.normalCount },
+  { title: '이상 근무', class: 'odd-biz', value: data?.oddBizHourCount.oddBizCount }];
 
   const oddStatusItem2 = [{ title: '결석' }, { title: '지각' }, { title: '조퇴' }];
 
-  const leaveStatusItem = [{ title: '휴가', value: data.leaveCount.normalLeave, class: 'normal' },
-  { title: '오전 휴가', value: data.leaveCount.morningLeave, class: 'morning' },
-  { title: '오후 휴가', value: data.leaveCount.afternoonLeave, class: 'afternoon' }]
+  const leaveStatusItem = [{ title: '휴가', value: data?.leaveCount.normalLeave, class: 'normal' },
+  { title: '오전 휴가', value: data?.leaveCount.morningLeave, class: 'morning' },
+  { title: '오후 휴가', value: data?.leaveCount.afternoonLeave, class: 'afternoon' }]
 
 
   return (
     <>
-      {calendar && calendarData && nowDate && calendarYear && calendarMonth && data &&
+      {data && calendarMonth &&
         <div style={{ display: 'flex' }}>
           <div className='odd-biz-wrap'>
             <h2>{calendarMonth}월 근태 현황</h2>

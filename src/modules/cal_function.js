@@ -192,3 +192,53 @@ export function formatHyphenFulldate(date) {
 export function formatHyphenToKorean(date) {
     return `${date.split("-")[0]}년 ${date.split("-")[1]}월 ${date.split("-")[2]}일`;
 }
+
+
+
+
+
+export function monthCalendar(year, month) {
+    let calYear = year;
+    let calMonth = month;
+
+    // 이번달 마지막 일자
+    let thisLastDate = new Date(calYear, calMonth + 1, 0).getDate();
+
+
+
+    // 한달(42개)의 데이터
+    let calendarMonth = [{}];
+
+    switch (calMonth) {
+        case 12:
+            calYear += 1;
+            calMonth = 1;
+            break;
+        case -1:
+            calYear -= 1;
+            calMonth = 12;
+            break;
+        default:
+            calMonth += 1;
+            break;
+    }
+
+    const DAY = ['일', '월', '화', '수', '목', '금', '토'];
+
+    for (let i = 1; i <= thisLastDate; i++) {
+        calendarMonth[i - 1] = {
+            date: `${calYear}-${calMonth < 10 ? "0" + calMonth : calMonth}-${i < 10 ? "0" + i : i}`,
+            day: DAY[new Date(calYear, calMonth - 1, i).getDay()],
+            leave_state: null,
+            bh_get_into: null,
+            bh_get_off: null,
+            emp_get_into: null,
+            emp_get_off: null,
+            state: null,
+            odd_biz_adj: null
+        }
+
+    }
+
+    return calendarMonth;
+}

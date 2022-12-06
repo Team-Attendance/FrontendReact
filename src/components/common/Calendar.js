@@ -136,7 +136,7 @@ export function Calendar({ setShowDeptCalendar }) {
   return (
     <>
       {calendar && calendarData &&
-        <div style={{ width: '73%' }}>
+        <div>
           <LeaveModal />
           <OddBizModal oddBizData={oddBizData} showOddBizModal={showOddBizModal} setShowOddBizModal={setShowOddBizModal} />
           <div>
