@@ -4,7 +4,9 @@ import ReactEchart from "echarts-for-react";
 
 export default function PtoChart(){
   const data = useSelector(state => state.pto.data);
- 
+  
+
+
   const eChartsOption = {
     series:  {
       name: '연차 사용률',
@@ -31,8 +33,9 @@ export default function PtoChart(){
         show: false
       },
       data: [
-        { value: [data != null && data.Pto[0].ptoYrNo], name: '전체 연차'},
-        { value: [data != null && data.Pto[0].ptoUseNum], name: '잔여 연차'},
+        
+        { value: [data != null && data.Pto[0].ptoLeftNum], name: '잔여 연차'},
+        { value: [data != null && data.Pto[0].ptoUseNum], name: '사용 연차'},
         
       ]
     },

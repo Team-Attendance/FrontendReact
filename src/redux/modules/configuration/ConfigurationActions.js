@@ -54,6 +54,23 @@ const ConfigurationActions = {
                 payload: error.toString()
             })
         }
+    }, 
+    getAllAuthotityEmp: () => async(dispatch) =>{
+        dispatch({ type: Types.GET_CONFIG_ALL})
+    
+        try {
+            const configgg = await ConfigurationAPI.getAllAuthotityEmp();
+            
+            dispatch({
+                type: Types.GET_CONFIG_ALL_SUCCESS,
+                payload: configgg.data
+            })
+        } catch(error) {
+            dispatch({
+                type: Types.GET_CONFIG_ALL_FAILURE,
+                payload: error.toString()
+            })
+        }
     }
 }
 

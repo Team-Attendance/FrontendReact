@@ -24,3 +24,7 @@ export const postEmpRegist = (data) =>{
 export const getEmpinfo = (empNo) =>{
     return axios.get(`${API_URL}/emp/emp-info/${empNo}`)
 }
+
+export const updateEmpInfoByAdmin = (data) => {
+    return axios.post(`${API_URL}/report/empinfo-modify`, data)
+}

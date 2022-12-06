@@ -34,7 +34,24 @@ const EmpInfoActions = {
             payload: error.toString()
         })
     }
-    }
+    },
+    updateEmpInfoByAdmin: (data) => async(dispatch) =>{
+        dispatch({ type: Types.GET_EMPINFO_UPDATE})
+    
+        try {
+            const updateEmp = await EmpAPI.updateEmpInfoByAdmin(data)
+    
+            dispatch({
+                type: Types.GET_EMPINFO_UPDATE_SUCCESS,
+                payload: updateEmp.data
+            })
+        } catch(error) {
+            dispatch({
+                type: Types.GET_EMPINFO_UPDATE_FAILURE,
+                payload: error.toString()
+            })
+        }
+        },
 }
 
 export default EmpInfoActions;
