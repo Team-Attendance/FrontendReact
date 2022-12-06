@@ -19,6 +19,9 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import SettingsIcon from '@mui/icons-material/Settings';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import Modal from '../components/Modal/Modal';
+import EmpQrModal from '../components/empMain/EmpQrModal';
 
 
 
@@ -71,6 +74,9 @@ const SideWrap = styled.div`
 `
 export function SideBar() {
 
+  // 큐알 모달로 이동
+  const [modal, setModal] = useState(false)
+
   const adminMenu = [
     {img: <PeopleAltIcon sx={{ color: 'white' }}/>, name: '사원 관리', path: '/admin/emp-management'},
     {img: <EventAvailableIcon sx={{ color: 'white' }}/>, name: '휴가 승인', path: '/admin/leave-approval'},
@@ -89,6 +95,10 @@ export function SideBar() {
   const empName = localStorage.getItem("empName");
   const position = localStorage.getItem("empPosition")
   const deptName = localStorage.getItem("deptName");
+
+  const onSubmit = () => {
+    setModal(true);
+  }
 
   return(
     
@@ -121,7 +131,15 @@ export function SideBar() {
                   <dd>-</dd>
                 </UserWork>
                 {/* <IntoButton>출근</IntoButton> */}
-                <Button  variant="contained" color='primary' sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
+                
+                <Button onClick={ () => { setModal(true)}} variant="contained" color='primary' sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
+                {modal && (
+                <Modal closeModal={() => setModal(!modal)} >
+                    <EmpQrModal
+                        closeModal={() => setModal(!modal)} />
+                </Modal>
+            )}
+               
               </Box>
             </Box>
           </List>
