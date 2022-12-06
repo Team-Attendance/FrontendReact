@@ -62,13 +62,14 @@
             display: flex;
             position: relative;
             bottom: -3%;
-            justify-content: space-around;
+            justify-content: flex-end;
             margin-top: 1em;
-            .stChange {
+            button {
               font-weight: bold;
               border: 1px lightgray solid;
-              width: 25%;
-              padding: 10px 0;
+              width: 80px;
+              padding: 7px;
+              margin-left: 15px;
               background-color: whitesmoke;
             }
           }

@@ -7,8 +7,6 @@ import MonthliyOdd from "../../echart/MonthliyOdd";
 import LeaveAdjTable from "../../table/LeaveAdjTable";
 import OddAdjTable from "../../table/OddAdjTable";
 import EmpInfoTable from "../../table/EmpInfoTable";
-import EmpOddActions from "../../redux/modules/EmpOdd/EmpOddActions";
-import EmpLeaveActions from "../../redux/modules/EmpLeave/EmpLeaveActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useCallback, useState } from "react";
 import { getPtoData } from "../../modules/pto";
@@ -16,14 +14,16 @@ import { getChartData } from "../../modules/eChart";
 import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import axios from "axios";
 import { API_URL } from "../../utils/constants/Config";
+import OddApprovalActions from "../../redux/modules/OddApproval/OddApprovalActions";
+import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprovalActions";
 export function Report(){
     
     let empNo = localStorage.getItem("empNo");
     
     const dispatch = useDispatch();
     const [empInfoDetail , setEmpInfoDetail] = useState([{}])
-    const { empLeaveInfo } =  useSelector((state) => state.empLeaveInfo)
-    const { empOddInfo } =  useSelector((state) => state.empOddInfo) 
+    const { leaveApprovalInfo } =  useSelector((state) => state.leaveApprovalInfo)
+    const { oddApprovalInfo } =  useSelector((state) => state.oddApprovalInfo) 
     const ptochart = useCallback(() => dispatch(getPtoData(1, 2022)), [dispatch]);
     const oddchart = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);
    
@@ -37,8 +37,8 @@ export function Report(){
             oddchart();
         })
         dispatch(EmpInfoActions.getInfoDetail(empNo))
-        dispatch(EmpOddActions.getOddRequest(empNo))
-        dispatch(EmpLeaveActions.getLeaveRequest(empNo))  
+        dispatch(OddApprovalActions.getOddRequest(empNo))
+        dispatch(LeaveApprovalActions.getLeaveRequest(empNo))  
     }, [dispatch, empNo, oddchart, ptochart])
    
 
@@ -67,11 +67,11 @@ export function Report(){
                         <div className="leave-adj">
                             <h3 className="title">휴가 신청 현황</h3>
                             
-                            <LeaveAdjTable empLeaveInfo = {empLeaveInfo} />
+                            <LeaveAdjTable leaveApprovalInfo = {leaveApprovalInfo} />
                         </div>
                         <div className="odd-adj">
                             <h3 className="title">이상근태 조정신청 현황</h3>
-                            <OddAdjTable empOddInfo = {empOddInfo}/>
+                            <OddAdjTable oddApprovalInfo = {oddApprovalInfo}/>
                         </div>
                     </section>   
                 </div>

@@ -18,7 +18,21 @@ export const getEmp = (option, query) => {
 }
 
 export const postEmpRegist = (data) =>{
+    // return axios.post(`${API_URL}/admin/emp-registration`, data, {
+    //         headers: {
+    //             "Content-Type": "multipart/form-data"
+    //         }
+    //     }
+    // )
     return axios.post(`${API_URL}/admin/emp-registration`, data)
+    // return axios({
+    //     headers: {
+    //         "Content-Type": "multipart/form-data",
+    //     },
+    //     url: `${API_URL}/admin/emp-registration`,
+    //     method: "POST",
+    //     data: data
+    // })
 }
 
 export const getEmpinfo = (empNo) =>{

@@ -43,14 +43,19 @@ const OddApprovalModal = ({ auth, data, closeModal, changeFlag }) => {
                         <li className="infoLi"><div className="infoLabel"> 이상 근태 종류</div> <div className="infoInput">{data.oddBizType}</div></li>
                         <li className="infoLi"><div className="infoLabel">조정 신청 사유</div> <div className="infoInput"> {data.oddBizAdjDetail} </div></li>
                     </ul>
-                    {auth === 1?  !data.oddBizAdjState && (
-                        <div className="button">
-                            <button className="pwChange" onClick={() => changeState(1)}>승인</button>
-                            <button className="pwChange" onClick={() => changeState(2)}>반려</button>
-                        </div>
-                    ):
-                    <></>}
-                    
+                    <div className="button">
+                        {auth === 1 ?
+                            !data.oddBizAdjState && (
+                                <div>
+                                    <button onClick={() => changeState(1)}>승인</button>
+                                    <button onClick={() => changeState(2)}>반려</button>
+                                </div>
+                            ) :
+                            <></>
+                        }
+                        <button onClick={closeModal}>닫기</button>
+                    </div>
+
                 </div>
             </div>
         </div>

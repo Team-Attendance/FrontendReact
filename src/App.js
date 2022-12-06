@@ -100,15 +100,14 @@ function App() {
           {/* <Route path="/error" element={<ErrorPage />}/>  */}
 
           {/* 휴가 승인 페이지 */}
-          <Route path='/admin/leave-approval' element={<LeaveApproval />} />
+          <Route path='/admin/approval/leave' element={<LeaveApproval />} />
           {/* 이상 근태 승인 페이지 */}
-          <Route path='/admin/odd-approval' element={<OddApproval />} />
+          <Route path='/admin/approval/odd' element={<OddApproval />} />
 
           </Route>
 
         </Routes>
       </Box>
-    // </Box>
   );
 }
 

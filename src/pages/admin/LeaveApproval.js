@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import LeaveApprovalList from "../../components/LeaveApproval/LeaveApprovalList";
 import LeaveStatus from "../../components/LeaveApproval/LeaveStatus";
 import SearchBar from "../../components/SearchBar";
@@ -8,7 +8,6 @@ import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprova
 
 const LeaveApproval = () => {
 
-    const { leaveApprovalInfo } = useSelector((state) => state.leaveApprovalInfo)
     const [flag, setFlag] = useState(false)
 
     const dispatch = useDispatch()
@@ -30,11 +29,9 @@ const LeaveApproval = () => {
 
     return (
         <div>
-            <LeaveStatus 
-                />
+            <LeaveStatus />
             <SearchBar onSubmit={onSubmit} />
             <LeaveApprovalList
-                leaveApprovalInfo={leaveApprovalInfo}
                 changeFlag={() => setFlag(!flag)}
             />
         </div>

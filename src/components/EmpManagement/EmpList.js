@@ -28,7 +28,11 @@ const EmpList = ({ empInfo }) => {
     gv.setRowIndicator({ visible: false })
     gv.setStateBar({ visible: false })
     gv.setCheckBar({ visible: false })
-    gv.displayOptions.selectionStyle = "rows"
+    gv.setDisplayOptions({
+      selectionStyle: "rows",
+      showEmptyMessage: true,
+      emptyMessage: "조회된 데이터가 없습니다."
+  })
 
     gv.setPaging(true, 10)
     Paging(dp.getRowCount(), 10, 5, 1, gv)

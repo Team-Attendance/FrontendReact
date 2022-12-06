@@ -7,6 +7,4 @@ export {default as empAuthInfo } from'./configuration/ConfigurationReducer'
 export {default as adminAuthInfo} from './configuration/ConfigurationReducer'
 export {default as empBizInfo } from './configuration/ConfigurationReducer'
 
-export {default as empLeaveInfo} from './EmpLeave/EmpLeaveReducer'
-export {default as empOddInfo} from './EmpOdd/EmpOddReducer'
 export {default as countInfo} from './CountApproval/CountApprovalReducer'

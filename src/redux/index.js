@@ -2,7 +2,7 @@ import thunk from 'redux-thunk';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { empInfo, empInfoDetail, leaveApprovalInfo, oddApprovalInfo, empAuthInfo, adminAuthInfo, empBizInfo, empLeaveInfo, empOddInfo, countInfo} from './modules';
+import { empInfo, empInfoDetail, leaveApprovalInfo, oddApprovalInfo, empAuthInfo, adminAuthInfo, empBizInfo, countInfo} from './modules';
 import leaveModal from '../modules/leaveModal';
 import auth from './modules/Login/auth';
 import calendarStatus from '../modules/calendarStatus';
@@ -29,8 +29,6 @@ const reducers = combineReducers({
     empBizInfo,
     eChart,
     pto,
-    empLeaveInfo,
-    empOddInfo,
     countInfo,
     adminMain
 });

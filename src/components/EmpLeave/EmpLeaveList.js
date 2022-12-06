@@ -11,8 +11,10 @@ import '../../css/ApprovalList.scss'
 import '../../css/RealGrid.scss'
 
 import 'realgrid/dist/realgrid-sky-blue.css'
+import {useSelector} from "react-redux";
 
-const EmpLeaveList = ({ empLeaveInfo }) => {
+const EmpLeaveList = () => {
+    const { leaveApprovalInfo } = useSelector((state) => state.leaveApprovalInfo)
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
@@ -29,19 +31,24 @@ const EmpLeaveList = ({ empLeaveInfo }) => {
         gv.setDataSource(dp)
         dp.setFields(fields)
         gv.setColumns(columns)
-        dp.setRows(empLeaveInfo.data)
+        dp.setRows(leaveApprovalInfo.data)
         // realGrid 설정
         gv.footer.visible = false
         gv.setRowIndicator({ visible: false })
         gv.setEditOptions({ editable: false })
         gv.setStateBar({ visible: false })
         gv.setCheckBar({ visible: false })
-        gv.displayOptions.selectionStyle = "rows"
+        gv.setDisplayOptions({
+            selectionStyle: "rows",
+            showEmptyMessage: true,
+            emptyMessage: "조회된 데이터가 없습니다."
+        })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
                 return;
             }
-            openModal(empLeaveInfo.data[clickData.dataRow])
+            setData(leaveApprovalInfo.data[clickData.dataRow])
+            setModal(!modal)
         }
         gv.setPaging(true, 10)
         Paging(dp.getRowCount(), 10, 5, 1, gv)
@@ -54,12 +61,7 @@ const EmpLeaveList = ({ empLeaveInfo }) => {
             gv.destroy()
             dp.destroy()
         }
-    }, [empLeaveInfo.data])
-
-    const openModal = (data) => {
-        setData(data)
-        setModal(!modal)
-    }
+    }, [leaveApprovalInfo.data])
 
     return (
         <div className='list-wrap'>

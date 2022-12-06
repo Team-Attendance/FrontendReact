@@ -7,13 +7,15 @@ import LeaveApprovalModal from '../Modal/LeaveApprovalModal';
 import { GridView, LocalDataProvider } from 'realgrid'
 import { columns, fields } from './realgrid-data'
 import { updateLeaveApproval } from '../../api/LeaveApprovalAPI';
+import Paging from '../Paging';
 import '../../css/ApprovalList.scss'
 import '../../css/RealGrid.scss'
 
 import 'realgrid/dist/realgrid-sky-blue.css'
-import Paging from '../Paging';
+import {useSelector} from "react-redux";
 
-const LeaveApprovalList = ({ leaveApprovalInfo, changeFlag }) => {
+const LeaveApprovalList = ({ changeFlag }) => {
+    const { leaveApprovalInfo } = useSelector((state) => state.leaveApprovalInfo)
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
@@ -40,12 +42,17 @@ const LeaveApprovalList = ({ leaveApprovalInfo, changeFlag }) => {
         gv.setStateBar({ visible: false })
         gv.setCheckBar({ width: 50 })
         gv.setCheckableExpression("values['leaveAdjState']='0'", true)
-        gv.displayOptions.selectionStyle = "rows"
+        gv.setDisplayOptions({
+            selectionStyle: "rows",
+            showEmptyMessage: true,
+            emptyMessage: "조회된 데이터가 없습니다."
+        })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
                 return;
             }
-            openModal(leaveApprovalInfo.data[clickData.dataRow])
+            setData(leaveApprovalInfo.data[clickData.dataRow])
+            setModal(!modal)
         }
 
 
@@ -61,28 +68,27 @@ const LeaveApprovalList = ({ leaveApprovalInfo, changeFlag }) => {
         }
     }, [leaveApprovalInfo.data])
 
-    const openModal = (data) => {
-        setData(data)
-        setModal(!modal)
-    }
-
     // 승인, 반려
     const changeState = async (s) => {
         const rowDatas = []
         const rows = gridView.getCheckedRows()
 
-        for (let i of rows) {
-            // var data = dataProvider.getJsonRow(rows[i]);
-            rowDatas.push({
-                'empNo': leaveApprovalInfo.data[i].empNo,
-                'state': s,
-                'startDate': leaveApprovalInfo.data[i].leaveStartDate,
-                'endDate': leaveApprovalInfo.data[i].leaveEndDate,
-                'approver': approver
-            })
+        if(rows.length) {
+            for (let i of rows) {
+                // var data = dataProvider.getJsonRow(rows[i]);
+                rowDatas.push({
+                    'empNo': leaveApprovalInfo.data[i].empNo,
+                    'state': s,
+                    'startDate': leaveApprovalInfo.data[i].leaveStartDate,
+                    'endDate': leaveApprovalInfo.data[i].leaveEndDate,
+                    'approver': approver
+                })
+            }
+            await updateLeaveApproval(rowDatas)
+            changeFlag()
+        } else {
+            alert("선택된 신청이 없습니다.")
         }
-        await updateLeaveApproval(rowDatas)
-        changeFlag()
     }
 
 
@@ -103,8 +109,8 @@ const LeaveApprovalList = ({ leaveApprovalInfo, changeFlag }) => {
                 </div>
             </div>
             <div className="state-button" style={{ width: '1280px' }}>
-                <button className="state" onClick={() => changeState(1)}>승인</button>
-                <button className="state" onClick={() => changeState(2)}>반려</button>
+                <button onClick={() => changeState(1)}>승인</button>
+                <button onClick={() => changeState(2)}>반려</button>
             </div>
             <div id='paging'
                 style={{ float: 'left', height: '100%', paddingTop: '20px' }}> - </div>

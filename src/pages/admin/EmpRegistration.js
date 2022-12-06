@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {useRef, useState, useCallback} from "react";
 import { postEmpRegist } from "../../api/EmpAPI";
 import '../../css/empInfo.scss'
 import CoPresentIcon from '@mui/icons-material/CoPresent';
@@ -39,9 +39,12 @@ const EmpRegistration =()=>{
   const handleEmpCellPhone = (e) =>{
     setEmpCellPhone(e.target.value);
   }
+  const [empImage, setEmpImage] = useState();
 
 
- function handleRegist(){
+ const handleRegist = async() =>{
+     let formData = new FormData()
+     formData.append("file",empImage)
     const data = {
       "deptName" : deptName,
       "empName" : empName,
@@ -51,9 +54,32 @@ const EmpRegistration =()=>{
       "empBirth" : empBirth,
       "empCellPhone" : empCellPhone
     };
-    postEmpRegist(data);
+     // formData.append("data", new Blob([JSON.stringify(data)], {
+     //     type: "application/json"
+     // }))
+     formData.append("data", JSON.stringify(data))
+    await postEmpRegist(formData)
+    // await postEmpRegist(data)
+     console.log("fin")
   
   }
+
+    const inputRef = useRef(null);
+
+    const onUploadImage = useCallback((e) => {
+        if (!e.target.files) {
+            return;
+        }
+        setEmpImage(e.target.files[0])
+    }, []);
+
+
+    const onUploadImageButtonClick = useCallback(() => {
+        if (!inputRef.current) {
+            return;
+        }
+        inputRef.current.click();
+    }, []);
 
   return(
     <div className="empInfo">
@@ -101,24 +127,28 @@ const EmpRegistration =()=>{
                       <input className="infoInput" type="text" name='empBirth' placeholder='YYYY-MM-DD' onChange={handleEmpBirth}></input>
                   </li>
                   <li className="infoLi">
-                      <div className="infoLabel"> 생년월일</div>
-                      <input className="infoInput" type="text" name='empBirth' placeholder='YYYY-MM-DD' onChange={handleEmpBirth}></input>
-                  </li>
-                  <li className="infoLi">
                       <div className="infoLabel"> 휴대폰번호</div>
                       <input className="infoInput" type="text" name='empCellPhone' placeholder='010-0000-0000' onChange={handleEmpCellPhone}></input>
                   </li>
                   <li className="infoLi">
                       <div className="infoLabel"> 사내번호</div>
-                      <input className="infoInput"name='empOfficePhone' placeholder='사원입력'readOnly></input>
+                      <input className="infoInput" name='empOfficePhone' placeholder='사원입력' readOnly></input>
                   </li>
                   <li className="infoLi">
                       <div className="infoLabel"> 비상연락</div>
-                      <input className="infoInput" type="text" name='empContactList' placeholder='사원입력'readOnly></input>
+                      <input className="infoInput" type="text" name='empContactList' placeholder='사원입력' readOnly></input>
+                  </li>
+                  <li className="infoLi">
+                      <div className="infoLabel"> 사진</div>
+                      <input type="file" accept="image/*" ref={inputRef} onChange={onUploadImage} style={{display:'none'}}/>
+                      <button onClick={onUploadImageButtonClick}>이미지 등록</button>
+                      {empImage &&
+                          <img alt={''} src={URL.createObjectURL(empImage)} style={{width:'200px'}}/>
+                      }
                   </li>
 
                   <div className="button">
-                      <button className="pwChange" onClick={handleRegist} value='등록' name='empRegistSubmit'>  <a href="/admin/emp-management"> 등록</a></button>
+                      <button className="pwChange" onClick={handleRegist} value='등록' name='empRegistSubmit'>  {/*<a href="/admin/emp-management"> 등록</a>*/}</button>
                   </div>
 
               </div>

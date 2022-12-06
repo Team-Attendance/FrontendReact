@@ -1,11 +1,12 @@
 .real-grid{
-    height: 450px;
+    height: 440px;
     margin: 0 auto;
 
     .rg-root.rg-grid{
       font-size: 0.8em;
       text-align: center;
       border: none;
+      //outline: 1px lightgray solid;
       background-color: white;
     }
     .rg-root .rg-table, 
@@ -20,6 +21,17 @@
     .rg-checkbox{
       height: 15px;
       width: 15px;
+    }
+    .rg-empty-grid {
+      display: table;
+      padding: 10%;
+      background: #ffffff;
+      color: gray;
+      font-size: 32px;
+      text-align: center;
+      border-width: 0px 1px 1px 1px;
+      border-color: lightgray;
+      border-style: solid;
     }
   }
 
