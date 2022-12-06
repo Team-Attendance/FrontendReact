@@ -7,75 +7,84 @@ import * as api from "../api/EmpAPI";
 
 
 const LoginPage = () => {
-  const [error, setError] = useState(null);
-  const [iderr, setIderr] = useState();
-  const [tab, setTab] = useState("tab1");
 
-  const dispatch = useDispatch();
 
-  const { login } = useSelector(({ auth }) => {
-    return {
-      login: auth.login
+    const [error, setError] = useState(null);
+    const [iderr,setIderr]=useState();
+    const [tab,setTab]=useState("tab1");
+
+    const dispatch = useDispatch();
+
+    const { login } = useSelector(({ auth }) => {
+        return {
+            login: auth.login
+        };
+    });
+
+    const loginInit = {
+        empNo: "",
+        empPwd : "",
     };
-  });
 
-  const loginInit = {
-    empNo: "",
-    empPwd: "",
-  };
-
-  useEffect(() => {
-    dispatch(changeFields({ form: 'login', key: loginInit }));
-  }, [dispatch]);
+    useEffect(()=> {
+        dispatch(changeFields({form:'login', key:loginInit}));
+    }, [dispatch]);
 
 
-  // 로그인 인풋
-  const onLoginChange = (e) => {
-    e.preventDefault();
+    // 로그인 인풋
+    const onLoginChange = (e) => {
+        e.preventDefault();
 
-    const { value, name } = e.target;
-    dispatch(
-      changeField({
-        form: "login",
-        key: name,
-        value,
-      })
-    );
-  };
-
-
-  // 로그인 submit
-  const onLogin = async (e) => {
-    e.preventDefault();
-    const { empNo, empPwd } = login;
-
-    const data = {
-      "empNo": empNo,
-      "empPwd": empPwd,
+        const {value, name} = e.target;
+        dispatch(
+            changeField({
+                form: "login",
+                key:name,
+                value,
+            })
+        );
     };
 
 
-   api.Login(data).then((res) => {
-      if(res.data.empToken){
-        localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
-        localStorage.setItem("empNo", res.data.empNo);
-        localStorage.setItem("deptName", res.data.deptName);
-        localStorage.setItem("empName", res.data.empName);
-        localStorage.setItem("empPosition", res.data.empPosition);
+    // 로그인 submit
+    const onLogin = async(e) =>{
+        e.preventDefault();
+        const { empNo, empPwd } = login;
 
-        window.location.href = "/emp/main";
+        const data = {
+            "empNo": empNo,
+            "empPwd" : empPwd,
+        };
 
-      }else{
-          alert("로그인 실패했습니다.");
-          window.location.reload();
-      }
-    })
-  }
 
-  const onTab = (e) => {
-    dispatch(changeFields({form:'login', key:loginInit}));
-    setTab(e.target.value);
-  }
+        api.Login(data).then((res) => {
+            if(res.data.empNo){
+                localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
+                localStorage.setItem("empNo", res.data.empNo);
+                localStorage.setItem("deptName", res.data.deptName);
+                localStorage.setItem("empName", res.data.empName);
+                localStorage.setItem("empPosition", res.data.empPosition);
+                localStorage.setItem("empAuthority", res.data.empAuthority);
+
+                console.log('로그인 성공')
+                setTimeout(()=>{
+                    window.location.href = "/emp/main";
+                },1500)
+            }else{
+                console.log('로그인 실패')
+                setTimeout(()=>{
+                    window.location.reload();
+                },1800)
+            }
+        })
+    }
+
+    const onTab = (e) => {
+        dispatch(changeFields({form:'login', key:loginInit}));
+        setIderr();
+        setError();
+        setTab(e.target.value);
+    }
 
   return (
       <div style={{width:'100%', height:'100vh', display: 'flex'}}>
@@ -84,16 +93,15 @@ const LoginPage = () => {
           </div>
           <div style={{width:'50%', height:'100%', margin: '0 auto'}}>
               <LoginProc
-                  login={login}
-                  onLoginChange={onLoginChange}
-                  onLogin={onLogin}
-                  error={error}
+                  login={ login }
+                  onLoginChange = { onLoginChange }
+                  onLogin = { onLogin }
+                  error = {error}
                   iderr={iderr}
                   tab={tab}
                   onTab={onTab}
               />
           </div>
-
       </div>
   );
 

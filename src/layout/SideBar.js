@@ -19,6 +19,8 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import SettingsIcon from '@mui/icons-material/Settings';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import {AdminSide} from "./AdminSide";
+import {EmpSide} from "./EmpSide";
 
 
 
@@ -71,41 +73,37 @@ const SideWrap = styled.div`
 `
 export function SideBar() {
 
-  const adminMenu = [
-    {img: <PeopleAltIcon sx={{ color: 'white' }}/>, name: '사원 관리', path: '/admin/emp-management'},
-    {img: <EventAvailableIcon sx={{ color: 'white' }}/>, name: '휴가 승인', path: '/admin/leave-approval'},
-    {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태', path: '/admin/odd-approval'},
-    {img: <SettingsIcon sx={{ color: 'white' }}/>, name: '환경설정', path: '/admin/configuration'},
-  ]
-
-  const empMenu = [
-    {img: <PersonIcon sx={{ color: 'white' }}/>, name: '나의 정보', path: '/emp/emp-info'},
-    {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황', path: '/emp/daily-attendance-info'},
-    {img: <FlightIcon sx={{ color: 'white' }}/>, name: '휴가 현황', path: '/emp/leave-info'},
-    {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태 현황', path: '/emp/odd-info'}
-  ]
-
-
   const empName = localStorage.getItem("empName");
   const position = localStorage.getItem("empPosition")
   const deptName = localStorage.getItem("deptName");
+  const role = localStorage.getItem("empAuthority");
+
+  const adminPage = ()=>{
+    if (role == 'ROLE_ADMIN') {
+        return <AdminSide />
+    }
+  }
+  const empPage = ()=>{
+    if (role == 'ROLE_ADMIN' || role == 'ROLE_EMP') {
+      return <EmpSide />
+    }
+  }
 
   return(
-    
-    <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
-          
-        }}
+      <Drawer
+          variant="permanent"
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box'},
+
+          }}
       >
-        
+
         <SideWrap className="scroll-hidden">
           <List>
-      
-            <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
+
+            <Box style={{margin: '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
                 <img width={"100%"} height={"100%"} src='/user.jpg' alt=''/>
               </UserImage>
@@ -121,49 +119,16 @@ export function SideBar() {
                   <dd>-</dd>
                 </UserWork>
                 {/* <IntoButton>출근</IntoButton> */}
-                <Button  variant="contained" color='primary' sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
+                <Button variant="contained" color='primary'
+                        sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
               </Box>
             </Box>
           </List>
-          <Divider />
-          <List sx={{color: 'white'}}>
-            {adminMenu.map((menu, index) => (
-              <Link to={menu.path} key={index}>
-              <ListItem key={index} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {
-                      (function(){
-                        return menu.img
-                      })()
-                    }
-                  </ListItemIcon>
-                  <ListItemText primaryTypographyProps={{fontSize: '0.8rem', fontWeight: 'bold'}} primary={menu.name} />
-                </ListItemButton>
-              </ListItem>
-              </Link>
-            ))}
-          </List>
-          <Divider />
-          <List sx={{color: 'white'}}>
-            {empMenu.map((menu, index) => (
-              <Link to={menu.path} key={index}>
-              <ListItem key={index} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {
-                      (function(){
-                        return menu.img
-                      })()
-                    }
-                  </ListItemIcon>
-                  <ListItemText primaryTypographyProps={{fontSize: '0.8rem', fontWeight: 'bold'}} primary={menu.name} />
-                </ListItemButton>
-              </ListItem>
-              </Link>
-            ))}
-          </List>
-          <Divider />
+          <Divider/>
+          {adminPage()}
+          <Divider/>
+          {empPage()}
+          <Divider/>
         </SideWrap>
       </Drawer>
   );
