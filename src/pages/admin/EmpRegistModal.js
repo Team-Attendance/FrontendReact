@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import {postEmpRegist} from "../../api/EmpAPI";
-import '../../css/empInfo.scss';
+import '../../css/empInfo.scss'
 
 const EmpRegistModal = ({closeModal, props}) => {
 
@@ -123,7 +123,7 @@ const EmpRegistModal = ({closeModal, props}) => {
                                 <option value={'연구보조원'}>연구보조원</option>
                             </select>
                         </li>
-
+                    
                         <li className="infoLi">
                             <div className="infoLabel"> 메일주소</div>
                             <input className="infoInput" type="email" name='empEmail' placeholder='test@douzone.com'

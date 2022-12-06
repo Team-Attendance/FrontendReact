@@ -41,7 +41,7 @@ import EmpOddPage from './pages/emp/EmpOddPage'
 import { AdminMainPage } from './pages/admin/AdminMainPage';
 import OddApproval from './pages/admin/OddApproval';
 import MainLayout from './layout/MainLayout';
-import EmpRegistration from './pages/admin/EmpRegistration';
+import EmpRegistModal from './pages/admin/EmpRegistModal';
 
 
 function App() {
@@ -91,7 +91,7 @@ function App() {
           <Route path='/admin/emp-management' element={<EmpManagement />} />
 
           {/*사원 정보 등록 */}
-          <Route path='/admin/emp-registration' element={<EmpRegistration />} />
+          <Route path='/admin/emp-registration' element={<EmpRegistModal />} />
 
           {/* 관리자 메인 페이지 */}
           <Route path="/admin/main" element={<AdminMainPage />} />
