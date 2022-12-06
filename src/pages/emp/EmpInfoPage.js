@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import {API_URL} from "../../utils/constants/Config";
-import '../../css/FirstMargin.scss'
+import '../../css/common.scss'
 import '../../css/empInfo.scss'
 import CoPresentIcon from '@mui/icons-material/CoPresent';
 
@@ -31,10 +31,10 @@ const EmpInfoPage = () => {
 
     return (
 
-        <div className="fsmrg">
-            <div className="scmarg">
-                <h2 className="sc-h2" ><CoPresentIcon sx={{ marginRight: '3px' }}/>
-                    <span className="sc-span">사원 정보</span>
+        <div className="common-container">
+            <div className="menu-title">
+                <h2><CoPresentIcon sx={{ marginRight: '3px' }}/>
+                    <span>사원 정보</span>
                 </h2>
                 <div className="empInfo">
                   <div>
