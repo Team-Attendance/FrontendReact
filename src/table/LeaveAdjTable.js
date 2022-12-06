@@ -20,7 +20,6 @@ const LeaveAdjTable = ({empLeaveInfo}) => {
         gv.footer.visible = false
         dp.setRows(empLeaveInfo.data)
         gv.setEditOptions({editable: false})
-
         setDataProvider(dp)
         setGridView(gv)
     

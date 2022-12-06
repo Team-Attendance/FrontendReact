@@ -8,6 +8,8 @@ import { initCalendar, moveMonth } from './cal_function';
 //               모듈 이름 / 액션 이름
 const SETCALENDAR = 'calendar/SETCALENDAR';
 const UPDATECALENDAR = 'calendar/UPDATECALENDAR';
+const SETCALENDARDATE = 'calendar/SETCALENDARDATE';
+const UPDATECALENDARDATE = 'calendar/UPDATECALENDARDATE';
 
 const ERROR = 'calendar/ERROR';
 
@@ -15,6 +17,7 @@ const ERROR = 'calendar/ERROR';
 // export는 여러개 가능
 // export const setCalendar = () => ({ type: SETCALENDAR });
 export const error = () => ({ type: ERROR });
+export const setCalendarDate = (year, month) => ({ type: SETCALENDARDATE, year: year, month: month })
 
 // 초기 상태값 설정(리덕스에서 관리 할 상태 정의)
 const initialState = {
@@ -38,7 +41,7 @@ export const setCalendar = (empNo) => dispatch => {
     (response) => {
       dispatch({
         type: SETCALENDAR,
-        calendar: calendar.filter((week, index) => index < 6 ),
+        calendar: calendar.filter((week, index) => index < 6),
         data: response.data,
         year: calendar[6][0].thisYear,
         month: calendar[6][1].thisMonth + 1,
@@ -61,7 +64,7 @@ export const updateCalendar = (empNo, year, month, direction, nowDate) => dispat
     (response) => {
       dispatch({
         type: UPDATECALENDAR,
-        calendar: calendar.filter((week, index) => index < 6 ),
+        calendar: calendar.filter((week, index) => index < 6),
         data: response.data,
         year: calendar[6][0].thisYear,
         month: calendar[6][1].thisMonth + 1,
@@ -71,11 +74,19 @@ export const updateCalendar = (empNo, year, month, direction, nowDate) => dispat
   )
 };
 
+
+export const updateCalendarDate = (year, month, direction) => dispatch => {
+
+  
+};
+
+
 // v2 리듀서 함수(handleActions 함수 사용)
 const calendar = handleActions(
   {
     [SETCALENDAR]: (state, action) => ({ ...state, calendar: action.calendar, data: action.data, year: action.year, month: action.month, nowDate: action.nowDate }),
     [UPDATECALENDAR]: (state, action) => ({ ...state, calendar: action.calendar, data: action.data, year: action.year, month: action.month, nowDate: action.nowDate }),
+    [SETCALENDARDATE]: (state, action) => ({ ...state, year: action.year, month: action.month }),
   },
   initialState,
 )

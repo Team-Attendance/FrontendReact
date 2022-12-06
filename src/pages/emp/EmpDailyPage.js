@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarStatus from "../../components/common/CalendarStatus";
 import { setCalendar } from "../../modules/calendar";
-import { getStatusData } from "../../modules/calendarStatus";
+import { getStatusData, clear } from "../../modules/calendarStatus";
 import { close } from "../../modules/leaveModal";
 import CalLeaveChart from "./CalLeaveChart";
 import CalOddBizChart from "./CalOddBizChart";
@@ -41,6 +41,7 @@ export function EmpDailyPage() {
 
   useEffect(() => {
     closeModal();
+    dispatch(clear());
     setCompoCalendar();
     setDeptCompoCalendar();
   }, [closeModal, setCompoCalendar, setDeptCompoCalendar])
@@ -54,21 +55,22 @@ export function EmpDailyPage() {
   return (
     <>
       {calendar && calendarData && year && month && nowDate && statusData &&
-
         <div style={{ position: 'relative', minHeight: 'calc(100vh - 64px)', padding: '30px', display: 'flex', flexWrap: 'wrap' }}>
           <div style={{ marginBottom: '10px' }}>
             <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}><EventAvailableIcon sx={{ marginRight: '3px' }} /><span style={{ verticalAlign: 'text-bottom' }}>일별 근태 현황</span></h2>
           </div>
 
-          <div style={{ width: '100%', marginBottom: '27px' }}>
+          <div style={{ width: '100%', marginBottom: '25px' }}>
             <CalendarStatus />
           </div>
 
+          <div style={{ width: '75%' }}>
+            {
+              showDeptCalendar === true ? <Calendar setShowDeptCalendar={setShowDeptCalendar} /> : <DeptCalendar setShowDeptCalendar={setShowDeptCalendar} />
+            }
+          </div>
 
-          {
-            showDeptCalendar === true ? <Calendar setShowDeptCalendar={setShowDeptCalendar} /> : <DeptCalendar setShowDeptCalendar={setShowDeptCalendar} />
-          }
-          <div style={{ width: '27%', paddingLeft: '35px' }}>
+          <div style={{ width: '25%', paddingLeft: '35px' }}>
 
             <div style={{ height: '332px', marginBottom: '15px', position: 'relative' }}>
               <h3 style={{ width: '100%', fontSize: '0.9rem', fontWeight: 'bold' }}>{month}월 이상근태율</h3>
@@ -97,6 +99,10 @@ export function EmpDailyPage() {
                 <span>{statusData.leaveUtilzition != null ? statusData.leaveUtilzition.use_percent : 0}%</span>
               </p>
             </div>
+
+
+
+
           </div>
         </div>
 

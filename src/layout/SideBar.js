@@ -80,7 +80,8 @@ export function SideBar() {
 
   const empMenu = [
     {img: <PersonIcon sx={{ color: 'white' }}/>, name: '나의 정보', path: '/emp/emp-info'},
-    {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황', path: '/emp/daily-attendance-info'},
+    {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황(일)', path: '/emp/daily-attendance-info'},
+    {img: <EqualizerIcon sx={{ color: 'white' }}/>, name: '근태 현황(월)', path: '/emp/monthly-attendance-info'},
     {img: <FlightIcon sx={{ color: 'white' }}/>, name: '휴가 현황', path: '/emp/leave-info'},
     {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태 현황', path: '/emp/odd-info'}
   ]
@@ -107,7 +108,7 @@ export function SideBar() {
       
             <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
-                <img width={"100%"} height={"100%"} src='/user.jpg' alt=''/>
+                <img width={"100%"} height={"100%"} src='/eee.jpg' alt=''/>
               </UserImage>
               <Box>
                 <UserInfo>

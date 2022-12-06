@@ -70,8 +70,8 @@ export default function CalOddBizChart() {
   };
 
   return (
-    <div>
-      <ReactEchart option={eChartsOption} />
+    <div style={{height: '100%'}}>
+      <ReactEchart option={eChartsOption}  style={{height: '100%'}}/>
     </div>
   );
 }
