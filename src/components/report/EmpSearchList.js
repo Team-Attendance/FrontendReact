@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import { GridView, LocalDataProvider } from 'realgrid'
 import { columns, fields } from '../EmpManagement/realgrid-data'
 import '../../css/RealGrid.scss'
-import 'realgrid/dist/realgrid-sky-blue.css'
 import Paging from "../Paging"
 
 const EmpSearchList = ({ empInfo }) => {

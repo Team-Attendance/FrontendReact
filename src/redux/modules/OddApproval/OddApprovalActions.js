@@ -23,7 +23,24 @@ const OddApprovalActions = {
         dispatch({type: Types.GET_ODD_APPROVAL})
 
         try {
-            const oddApproval = await OddApprovalAPI.getOddApproval(option, query)
+            const oddApproval = await OddApprovalAPI.searchOddApproval(option, query)
+
+            dispatch({
+                type: Types.GET_ODD_APPROVAL_SUCCESS,
+                payload: oddApproval.data
+            })
+        } catch(error){
+            dispatch({
+                type: Types.GET_ODD_APPROVAL_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+    getOddRequest: (empNo) => async(dispatch) => {
+        dispatch({type: Types.GET_ODD_APPROVAL})
+
+        try {
+            const oddApproval = await OddApprovalAPI.getOddRequest(empNo)
 
             dispatch({
                 type: Types.GET_ODD_APPROVAL_SUCCESS,

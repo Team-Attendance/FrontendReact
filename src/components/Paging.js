@@ -22,10 +22,10 @@ const Paging = (totalData, dataPerPage, pageCount, currentPage, gridView) => {
     let html = ""
 
     if(prev === 0) {
-        html += "<span id='first' class='disabled'>|<</span> ";
+        html += "<span id='first' class='disabled'><<</span> ";
         html += "<span id='prev' class='disabled'><</span> ";
     } else {
-        html += "<span id='first'>|<</span> ";
+        html += "<span id='first'><<</span> ";
         html += "<span id='prev'><</span> ";         
     }
     
@@ -36,10 +36,10 @@ const Paging = (totalData, dataPerPage, pageCount, currentPage, gridView) => {
     
     if(last < totalPage) {
         html += "<span id='next'>></span>";
-        html += "<span id='last'>>|</span>";
+        html += "<span id='last'>>></span>";
     } else {
         html += "<span id='next' class='disabled'>></span>";
-        html += "<span id='last' class='disabled'>>|</span>";
+        html += "<span id='last' class='disabled'>>></span>";
     }
     
     
@@ -95,8 +95,6 @@ const Paging = (totalData, dataPerPage, pageCount, currentPage, gridView) => {
             if(id === "last") {selectedPage = totalPage}
             
             if(gridView !== null){
-                console.log(gridView)
-                console.log(selectedPage)
                 gridView.setPage(selectedPage - 1)
             }
             Paging(totalData, dataPerPage, pageCount, selectedPage, gridView)

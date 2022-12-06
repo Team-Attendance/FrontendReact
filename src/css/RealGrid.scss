@@ -1,12 +1,15 @@
 .real-grid{
-    height: 450px;
+    height: 442px;
     margin: 0 auto;
+    border: none;
 
     .rg-root.rg-grid{
       font-size: 0.8em;
       text-align: center;
       border: none;
       background-color: white;
+      border-top: 1px solid lightgray;
+      //border-bottom: 1px solid lightgray;
     }
     .rg-root .rg-table, 
     .rg-root .rg-table td,
@@ -14,19 +17,64 @@
       vertical-align: middle;
       height: 40px;
     }
-    // .rg-root .rg-body .rg-table .rg-data-cell{
-    //   background-color: white;
-    // }
+    .rg-header tbody tr,
+    .rg-head .rg-table tr td {
+      background-color: whitesmoke;
+    }
+    .rg-root .rg-table .rg-head-cell.rg-checkbar-head{
+      border-left: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+    }
+    .rg-head .rg-table tr td {
+      border: none;
+      border-right: 1px solid lightgray;
+    }
+
+    .rg-header .rg-table tr td {
+      border: 1px solid lightgray;
+      border-left: none;
+      border-top: none;
+    }
+
+    .rg-rowbarcontainer {
+      border-left: 1px solid lightgray;
+      border-right: 1px solid lightgray;
+    }
+
+    .rg-rowbarcontainer .rg-table tr td {
+      border: 1px solid lightgray;
+      border-left: none;
+      border-top: none;
+    }
+
+    //.rg-body .rg-table tr td,
+    //.rg-fixed-body .rg-table tr td {
+    //  border: none;
+    //  border-right: 1px solid lightgray;
+    //}
     .rg-checkbox{
       height: 15px;
       width: 15px;
     }
+    .rg-empty-grid {
+      display: table;
+      padding: 10%;
+      background: #ffffff;
+      color: gray;
+      font-size: 32px;
+      text-align: center;
+      border-width: 0 1px 1px 1px;
+      border-color: lightgray;
+      border-style: solid;
+    }
   }
 
   .approved {
-    background-color: #D4EEEB;
+    font-weight: bold;
+    color: lightseagreen;
   }
   
   .rejected {
-    background-color: #FBCBC5;
+    font-weight: bold;
+    color: red;
   }

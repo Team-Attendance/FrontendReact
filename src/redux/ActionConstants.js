@@ -70,18 +70,6 @@ const LoginType = {
     POST_LOGINEMP_SUCCESS : 'POST_LOGINEMP_SUCCESS',
     POST_LOGINEMP_FAILURE : 'POST_LOGINEMP_FAILURE',}
 
-const EmpLeaveType = {
-    GET_EMP_LEAVE: 'GET_EMP_LEAVE',
-    GET_EMP_LEAVE_SUCCESS: 'GET_EMP_LEAVE_SUCCESS',
-    GET_EMP_LEAVE_FAILURE: 'GET_EMP_LEAVE_FAILURE'
-}
-
-const EmpOddType = {
-    GET_EMP_ODD: 'GET_EMP_ODD',
-    GET_EMP_ODD_SUCCESS: 'GET_EMP_ODD_SUCCESS',
-    GET_EMP_ODD_FAILURE: 'GET_EMP_ODD_FAILURE'
-}
-
 const countType = {
     GET_APPROVAL_COUNT: 'GET_APPROVAL_COUNT',
     GET_APPROVAL_COUNT_SUCCESS: 'GET_APPROVAL_COUNT_SUCCESS',
@@ -96,8 +84,6 @@ const Types = {
     ...LoginType,
     ...ConfigurationType,
     ...ReportType,
-    ...EmpLeaveType,
-    ...EmpOddType,
     ...countType
 }
 

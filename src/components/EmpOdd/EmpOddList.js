@@ -6,8 +6,11 @@ import { columns, fields } from './realgrid-data'
 import '../../css/ApprovalList.scss'
 import '../../css/RealGrid.scss'
 import Paging from "../Paging"
+import {useSelector} from "react-redux";
 
-const EmpOddList = ({ empOddInfo }) => {
+const EmpOddList = () => {
+
+    const { oddApprovalInfo } = useSelector((state) => state.oddApprovalInfo)
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
@@ -24,18 +27,24 @@ const EmpOddList = ({ empOddInfo }) => {
         gv.setDataSource(dp)
         dp.setFields(fields)
         gv.setColumns(columns)
-        dp.setRows(empOddInfo.data)
+        dp.setRows(oddApprovalInfo.data)
         // realGrid 설정
         gv.footer.visible = false
         gv.setEditOptions({ editable: false })
         gv.setRowIndicator({ visible: false })
         gv.setStateBar({ visible: false })
         gv.setCheckBar({ visible: false })
+        gv.setDisplayOptions({
+            selectionStyle: "rows",
+            showEmptyMessage: true,
+            emptyMessage: "조회된 데이터가 없습니다."
+        })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
                 return;
             }
-            openModal(empOddInfo.data[clickData.dataRow])
+            setData(oddApprovalInfo.data[clickData.dataRow])
+            setModal(!modal)
         }
         gv.setPaging(true, 10)
         Paging(dp.getRowCount(), 10, 5, 1, gv)
@@ -48,12 +57,7 @@ const EmpOddList = ({ empOddInfo }) => {
             gv.destroy()
             dp.destroy()
         }
-    }, [empOddInfo.data])
-
-    const openModal = (data) => {
-        setData(data)
-        setModal(!modal)
-    }
+    }, [oddApprovalInfo.data])
 
     return (
         <div className="list-wrap">

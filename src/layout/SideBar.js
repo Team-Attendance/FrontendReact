@@ -1,24 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import PersonIcon from '@mui/icons-material/Person';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
-import FlightIcon from '@mui/icons-material/Flight';
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import Button from '@mui/material/Button';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import SettingsIcon from '@mui/icons-material/Settings';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import {AdminSide} from "./AdminSide";
 import {EmpSide} from "./EmpSide";
 import { useState } from 'react';
@@ -113,7 +99,7 @@ export function SideBar() {
         <SideWrap className="scroll-hidden">
           <List>
 
-            <Box style={{margin: '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
+            <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
                 <img width={"100%"} height={"100%"} src='/eee.jpg' alt=''/>
               </UserImage>

@@ -9,7 +9,6 @@ const LeaveStatus = () => {
          approvalStatusList.push({title: '총 휴가 신청 수', value: countInfo.data.allCount})
          approvalStatusList.push( {title: '미처리 신청 수', value: countInfo.data.unprocessed})
          approvalStatusList.push({title: '처리 신청 수', value: countInfo.data.allCount-countInfo.data.unprocessed})
-                                    
     }
 
     return(

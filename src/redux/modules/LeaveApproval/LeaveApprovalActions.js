@@ -23,7 +23,7 @@ const LeaveApprovalActions = {
         dispatch({type: Types.GET_LEAVE_APPROVAL})
 
         try {
-            const leaveApproval = await LeaveApprovalAPI.getLeaveApproval(option, query)
+            const leaveApproval = await LeaveApprovalAPI.searchLeaveApproval(option, query)
 
             dispatch({
                 type: Types.GET_LEAVE_APPROVAL_SUCCESS,
@@ -36,11 +36,11 @@ const LeaveApprovalActions = {
             })
         }
     },
-    updateLeaveApproval: (empNo, state) => async(dispatch) => {
+    getLeaveRequest: (empNo) => async(dispatch) => {
         dispatch({type: Types.GET_LEAVE_APPROVAL})
 
         try {
-            const leaveApproval = await LeaveApprovalAPI.updateLeaveApproval(empNo, state)
+            const leaveApproval = await LeaveApprovalAPI.getLeaveRequest(empNo)
 
             dispatch({
                 type: Types.GET_LEAVE_APPROVAL_SUCCESS,
@@ -52,7 +52,8 @@ const LeaveApprovalActions = {
                 payload: error.toString()
             })
         }
-    }
+    },
+
 }
 
 export default LeaveApprovalActions

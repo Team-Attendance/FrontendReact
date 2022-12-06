@@ -2,9 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { GridView, LocalDataProvider } from 'realgrid'
 import { columns, fields } from '../table/realgrid_dataOdd'
 
-import 'realgrid/dist/realgrid-sky-blue.css'
 
-const LeaveAdjTable = ({empOddInfo}) => {
+const LeaveAdjTable = ({oddApprovalInfo}) => {
     const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
@@ -18,7 +17,7 @@ const LeaveAdjTable = ({empOddInfo}) => {
         dp.setFields(fields)
         gv.setColumns(columns)
         gv.footer.visible = false
-        dp.setRows(empOddInfo.data)
+        dp.setRows(oddApprovalInfo.data)
         gv.setEditOptions({editable: false})
 
         setDataProvider(dp)
@@ -29,7 +28,7 @@ const LeaveAdjTable = ({empOddInfo}) => {
           gv.destroy()
           dp.destroy()
         }
-      }, [empOddInfo.data])
+      }, [oddApprovalInfo.data])
 
     return (
         <div>

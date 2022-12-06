@@ -7,41 +7,40 @@ import MonthlyOdd from "../../echart/MonthlyOdd";
 import LeaveAdjTable from "../../table/LeaveAdjTable";
 import OddAdjTable from "../../table/OddAdjTable";
 import EmpInfoTable from "../../table/EmpInfoTable";
-import EmpOddActions from "../../redux/modules/EmpOdd/EmpOddActions";
-import EmpLeaveActions from "../../redux/modules/EmpLeave/EmpLeaveActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useCallback, useState } from "react";
 import { getPtoData } from "../../modules/pto";
 import { getChartData } from "../../modules/eChart";
 import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import axios from "axios";
-import { API_URL } from "../../utils/constants/Config";
+import { API_URL } from "../../utils/constants/Config"
+
 import ReportActions from "../../redux/modules/report/ReportActions";
 import Modal from "../../components/Modal/Modal";
 import EmpInfoUpdateModal from "../../components/Modal/EmpInfoUpdateModal";
 import SearchIcon from '@mui/icons-material/Search';
 import EmpSearchModal from "../../components/Modal/EmpSearchModal";
 
-export function Report() {
-    
+import OddApprovalActions from "../../redux/modules/OddApproval/OddApprovalActions";
+import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprovalActions";
+
+export function Report(){
+
     let empNo = localStorage.getItem("empNo");
     
     const [modal, setModal ] = useState(false)
     const [empModal, setEmpModal] = useState(false)
-   
+
     const [data, setData ] = useState({})
-   
-    
-   
+
     const dispatch = useDispatch();
     const { empInfo } =  useSelector((state) => state.empInfo)
     // const { WeeklyInfo } = useSelector((state) => state.WeeklyInfo)
     const [empInfoDetail , setEmpInfoDetail] = useState([{}])
+    const { leaveApprovalInfo } =  useSelector((state) => state.leaveApprovalInfo)
+    const { oddApprovalInfo } =  useSelector((state) => state.oddApprovalInfo)
     const [WeeklyInfo , setWeeklyInfo] = useState([{}])
 
-    const { empLeaveInfo } =  useSelector((state) => state.empLeaveInfo)
-    const { empOddInfo } =  useSelector((state) => state.empOddInfo)
-      
     const ptochart = useCallback(() => dispatch(getPtoData(1, 2022)), [dispatch]);
     const oddchart = useCallback(() => dispatch(getChartData(1, 2022, 11)), [dispatch]);
     // const WeekliyBizTimeChart = useCallback(() => dispatch(getWeekliyBizTime(1)), [dispatch]);
@@ -64,8 +63,8 @@ export function Report() {
         dispatch(EmpInfoActions.getAllEmps())
         dispatch(ReportActions.getWeeklyBizTime(empNo))
         dispatch(EmpInfoActions.getInfoDetail(empNo))
-        dispatch(EmpOddActions.getOddRequest(empNo))
-        dispatch(EmpLeaveActions.getLeaveRequest(empNo))  
+        dispatch(OddApprovalActions.getOddRequest(empNo))
+        dispatch(LeaveApprovalActions.getLeaveRequest(empNo))
     }, [dispatch, empNo, oddchart, ptochart])
    
         const onsubmit = () => {
@@ -73,14 +72,14 @@ export function Report() {
             dispatch(EmpInfoActions.getAllEmps)
 
         }
-        
+
 
         const onSubmitt = () => {
             setModal(true);
-           
-        } 
+
+        }
        console.log (WeeklyInfo)
-       
+
     return(
         <div className="wrap">
           <span> <SearchIcon onClick={onsubmit}/>사원검색 </span>
@@ -122,11 +121,11 @@ export function Report() {
                         <div className="leave-adj">
                             <h3 className="title">휴가 신청 현황</h3>
                             
-                            <LeaveAdjTable empLeaveInfo = {empLeaveInfo} />
+                            <LeaveAdjTable leaveApprovalInfo = {leaveApprovalInfo} />
                         </div>
                         <div className="odd-adj">
                             <h3 className="title">이상근태 조정신청 현황</h3>
-                            <OddAdjTable empOddInfo = {empOddInfo}/>
+                            <OddAdjTable oddApprovalInfo = {oddApprovalInfo}/>
                         </div>
                     </section>   
                 </div>
@@ -148,7 +147,7 @@ export function Report() {
                         </div>
                         <div className="topp">
                             <p>월별 이상 근태 현황</p>
-                            <MonthlyOdd  />
+                            <MonthlyOdd />
                         </div>
                     </section>
                 </div>
@@ -157,4 +156,4 @@ export function Report() {
     );
 
     
-    }
+}
