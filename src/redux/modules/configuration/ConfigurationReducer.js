@@ -7,7 +7,8 @@ const initialState = {
             empNo: '',
             deptName: '',
             empName: '',
-            empPosition: ''
+            empPosition: '',
+            empAuthority:''
         }
     },
 
@@ -17,7 +18,8 @@ const initialState = {
             empNo: '',
             deptName: '',
             empName: '',
-            empPosition: ''
+            empPosition: '',
+            empAuthority:''
         }
     },
     empBizInfo: {
@@ -27,7 +29,19 @@ const initialState = {
             bhGetInto: '',
             bhGetOff: ''
         }
-    }
+    },
+    empAllAuthInfo: {
+        loading: false,
+        data: {
+            empNo: '',
+            deptName: '',
+            empName: '',
+            empPosition: '',
+            empAuthority:''
+        }
+    },
+
+
     
 }
 const reducer = (state = initialState, {type, payload}) => {
@@ -120,6 +134,35 @@ const reducer = (state = initialState, {type, payload}) => {
                             }
                         }
                     }
+                    case Types.GET_CONFIG_ALL:
+                        return {
+                            ...state,
+                            empAllAuthInfo: {
+                                ...state.empAllAuthInfo,
+                                loading: true,
+                                data: payload
+                            }
+                        }
+                    case Types.GET_CONFIG_ALL_SUCCESS:
+                        return {
+                            ...state,
+                            empAllAuthInfo: {
+                                ...state.empAllAuthInfo,
+                                loading: false,
+                                data: payload
+                            }
+                        }
+                    case Types.GET_CONFIG_ALL_FAILURE:
+                        return {
+                            ...state,
+                            empAllAuthInfo: {
+                                ...state.empAllAuthInfo,
+                                loading: false,
+                                data: {
+                                    error: payload
+                                }
+                            }
+                        }
 
 
         default:

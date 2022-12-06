@@ -4,11 +4,13 @@ import { columns, fields } from './realgrid-dataAuth'
 
 import 'realgrid/dist/realgrid-sky-blue.css'
 
-const EmpAuthList = ({empAuthInfo}) => {
+const EmpAuthList = ({empAllAuthInfo}) => {
     const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
-    console.log(empAuthInfo)
+
+   
+   
 
     useEffect(() => {
         const container = realgridElement.current
@@ -19,9 +21,9 @@ const EmpAuthList = ({empAuthInfo}) => {
         dp.setFields(fields)
         gv.setColumns(columns)
         gv.footer.visible = false
-        dp.setRows(empAuthInfo.data)
+        dp.setRows(empAllAuthInfo.data)
         gv.setEditOptions({editable: false})
-
+        
         setDataProvider(dp)
         setGridView(gv)
     
@@ -29,16 +31,20 @@ const EmpAuthList = ({empAuthInfo}) => {
           dp.clearRows()
           gv.destroy()
           dp.destroy()
+          
         }
-      }, [empAuthInfo.data])
+      }, [empAllAuthInfo.data])
+
+    
 
     return (
         <div>
             <div
                 style={{ height: '372px', width: '360px' }}
                 ref={realgridElement}></div>
+   
         </div>
     )
-}
+    }
 
 export default EmpAuthList;

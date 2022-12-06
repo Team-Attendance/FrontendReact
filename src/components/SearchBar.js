@@ -30,8 +30,10 @@ const SearchBar = ({ onSubmit }) => {
         <div className="searchBar-wrap">
             <div className="search">
                 <select onChange={handleSelect}>
+                    
                     <option value={'emp_name'}>이름</option>
                     <option value={'emp_no'}>사번</option>
+                    
                 </select>
                 <input
                     placeholder="사원 검색"

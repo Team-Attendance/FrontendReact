@@ -15,7 +15,12 @@ export const fields = [{
 {
     fieldName: 'empPosition',
     dataType: ValueType.TEXT
-}];
+},
+{
+    fieldName: 'empAuthority',
+    dataType: ValueType.TEXT
+}
+];
 
 export const columns = [{
     name: "empNo",
@@ -70,4 +75,18 @@ export const columns = [{
         text: "직급",
         showTooltip: false,
     }
-}]
+}, {
+    name: "empAuthority",
+    fieldName: "empAuthority",
+    type: "data",
+    width: "80",
+    styles: {
+        textAlignment: "center"
+    },
+    header: {
+        text: "권한",
+        showTooltip: false,
+    }
+}
+
+]

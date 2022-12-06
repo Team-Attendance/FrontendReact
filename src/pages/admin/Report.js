@@ -2,8 +2,8 @@ import "../../css/Report.css";
 import "../../echart/PtoChart";
 import PtoChart from "../../echart/PtoChart";
 import OddChart from "../../echart/OddChart"
-import WeekliyBizTimeChart from "../../echart/WeekliyBizTimeChart";
-import MonthliyOdd from "../../echart/MonthliyOdd";
+import WeeklyBizTimeChart from "../../echart/WeeklyBizTimeChart";
+import MonthlyOdd from "../../echart/MonthlyOdd";
 import LeaveAdjTable from "../../table/LeaveAdjTable";
 import OddAdjTable from "../../table/OddAdjTable";
 import EmpInfoTable from "../../table/EmpInfoTable";
@@ -16,34 +16,82 @@ import { getChartData } from "../../modules/eChart";
 import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import axios from "axios";
 import { API_URL } from "../../utils/constants/Config";
-export function Report(){
+import ReportActions from "../../redux/modules/report/ReportActions";
+import Modal from "../../components/Modal/Modal";
+import EmpInfoUpdateModal from "../../components/Modal/EmpInfoUpdateModal";
+import SearchIcon from '@mui/icons-material/Search';
+import EmpSearchModal from "../../components/Modal/EmpSearchModal";
+
+export function Report() {
     
     let empNo = localStorage.getItem("empNo");
     
-    const dispatch = useDispatch();
-    const [empInfoDetail , setEmpInfoDetail] = useState([{}])
-    const { empLeaveInfo } =  useSelector((state) => state.empLeaveInfo)
-    const { empOddInfo } =  useSelector((state) => state.empOddInfo) 
-    const ptochart = useCallback(() => dispatch(getPtoData(1, 2022)), [dispatch]);
-    const oddchart = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);
+    const [modal, setModal ] = useState(false)
+    const [empModal, setEmpModal] = useState(false)
    
+    const [data, setData ] = useState({})
+   
+    
+   
+    const dispatch = useDispatch();
+    const { empInfo } =  useSelector((state) => state.empInfo)
+    // const { WeeklyInfo } = useSelector((state) => state.WeeklyInfo)
+    const [empInfoDetail , setEmpInfoDetail] = useState([{}])
+    const [WeeklyInfo , setWeeklyInfo] = useState([{}])
+
+    const { empLeaveInfo } =  useSelector((state) => state.empLeaveInfo)
+    const { empOddInfo } =  useSelector((state) => state.empOddInfo)
+      
+    const ptochart = useCallback(() => dispatch(getPtoData(1, 2022)), [dispatch]);
+    const oddchart = useCallback(() => dispatch(getChartData(1, 2022, 11)), [dispatch]);
+    // const WeekliyBizTimeChart = useCallback(() => dispatch(getWeekliyBizTime(1)), [dispatch]);
+    // const { MonthliyInfo } =  useSelector((state) => state.MonthliyInfo)
+
     useEffect(() => {
         axios.get(API_URL+"/emp/emp-info/"+empNo)
         .then((res)=>{
           
             setEmpInfoDetail(res.data);
-        
+            // WeekliyBizTimeChart();
             ptochart();
             oddchart();
         })
+        axios.get(API_URL+"/report/weekliybiztime/"+empNo)
+        .then((dataa)=>{
+
+            setWeeklyInfo(dataa.data)
+        })
+        dispatch(EmpInfoActions.getAllEmps())
+        dispatch(ReportActions.getWeeklyBizTime(empNo))
         dispatch(EmpInfoActions.getInfoDetail(empNo))
         dispatch(EmpOddActions.getOddRequest(empNo))
         dispatch(EmpLeaveActions.getLeaveRequest(empNo))  
     }, [dispatch, empNo, oddchart, ptochart])
    
+        const onsubmit = () => {
+            setEmpModal(true);
+            dispatch(EmpInfoActions.getAllEmps)
 
+        }
+        
+
+        const onSubmitt = () => {
+            setModal(true);
+           
+        } 
+       console.log (WeeklyInfo)
+       
     return(
         <div className="wrap">
+          <span> <SearchIcon onClick={onsubmit}/>사원검색 </span>
+                    {empModal && (
+                        <Modal closeModal={() => setEmpModal(!empModal)} >
+                            <EmpSearchModal
+                                empInfo = {empInfo}
+                                closeModal={() => setEmpModal(!empModal)}
+                                />
+                        </Modal>
+                    )}
             <div className="container">
                 <div className="left-wrap">
                     <section className="left">
@@ -57,8 +105,15 @@ export function Report(){
                                   
                                    <div className="emptable">
                                             <EmpInfoTable empInfoDetail= {empInfoDetail} />
-                                        <button className="butt">수정하기</button>
-
+                                        <button onClick={onSubmitt} className="butt">수정하기</button>
+                                        {modal && (
+                                            <Modal closeModal={() => setModal(!modal)} >
+                                                <EmpInfoUpdateModal
+                                                    empInfoDetail = {empInfoDetail}
+                                                    closeModal={() => setModal(!modal)}
+                                                    />
+                                            </Modal>
+                                        )}
                                    </div>
 
                                 </div>
@@ -89,11 +144,11 @@ export function Report(){
                         </div>
                         <div className="topp">
                             <p>주간근무시간</p>
-                            <WeekliyBizTimeChart/>
+                            <WeeklyBizTimeChart WeeklyInfo = {WeeklyInfo} />
                         </div>
                         <div className="topp">
                             <p>월별 이상 근태 현황</p>
-                            <MonthliyOdd/>
+                            <MonthlyOdd  />
                         </div>
                     </section>
                 </div>
@@ -102,4 +157,4 @@ export function Report(){
     );
 
     
-}
+    }
