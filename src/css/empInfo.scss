@@ -1,3 +1,5 @@
+
+
 .empInfo {
   width: 100%;
   height: 100%;
@@ -50,6 +52,14 @@
           align-items: center;
           padding: 0.8em;
         }
+      .infoInputemail{
+        margin: 0.2rem;
+        display: flex;
+        width: 25%;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0.8em;
+      }
       }
       .button {
         font-size: 0.8em;
@@ -62,6 +72,13 @@
           font-weight: bold;
           //border: 1px lightgray solid;
           width: 25%;
+          padding: 10px 0;
+          background-color: whitesmoke;
+        }
+        .duplBtn {
+          font-weight: bold;
+          //border: 1px lightgray solid;
+          width: 15%;
           padding: 10px 0;
           background-color: whitesmoke;
         }

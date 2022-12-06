@@ -17,7 +17,7 @@ const LoginProc = ({
       <div className='forWrap' >
         <form onSubmit={onLogin}>
 
-          <input className='user-id' type="text"  name="empNo" placeholder="사원번호" autoComplete="off" onChange={onLoginChange} value={login.empNo} required/>
+          <input className='user-id' type="text"  name="empNo" placeholder="사원번호" autoComplete="off" onChange={onLoginChange} value={login.empNo} autoFocus/>
           <input className='user-pw' type="password" name="empPwd" placeholder="비밀번호" onChange={onLoginChange} value={login.empPwd} required="reqired"  />
 
           <button className='login-submit' type="submit" class="login-submit" value="LOGIN" >로그인</button>

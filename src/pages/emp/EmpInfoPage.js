@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import {API_URL} from "../../utils/constants/Config";
+import '../../css/FirstMargin.scss'
 import '../../css/empInfo.scss'
 import CoPresentIcon from '@mui/icons-material/CoPresent';
 
@@ -30,32 +31,37 @@ const EmpInfoPage = () => {
 
     return (
 
-        <div className="empInfo">
-          <div>
-              <h1 className="infoTitle" ><CoPresentIcon/><span>사원 정보</span>
-            </h1>
-          </div>
-          <div className="infoBox">
-            <div className="infoContent">
-              <ul className="infoUl">
-                <li className="infoLi"><div className="infoLabel">사번</div> <div className="infoInput"  readOnly>{empInfoDetail.empNo}</div></li>
-                <li className="infoLi"><div className="infoLabel">이름</div> <div className="infoInput" readOnly>{empInfoDetail.empName}</div></li>
-                <li className="infoLi"><div className="infoLabel">직급</div> <div className="infoInput" readOnly>{empInfoDetail.empPosition}</div></li>
-                <li className="infoLi"><div className="infoLabel">생년월일</div> <div className="infoInput">{empInfoDetail.empBirth}</div></li>
-                <li className="infoLi"><div className="infoLabel">메일주소</div> <div className="infoInput">{empInfoDetail.empEmail}</div></li>
-                <li className="infoLi"><div className="infoLabel">휴대폰번호</div> <div className="infoInput" >{empInfoDetail.empCellPhone}</div></li>
-                <li className="infoLi"><div className="infoLabel">사내번호</div> <div className="infoInput">{empInfoDetail.empOfficePhone}</div></li>
-                <li className="infoLi"><div className="infoLabel">비상연락</div> <div className="infoInput">{empInfoDetail.empContactList}</div></li>
-                <li className="infoLi"><div className="infoLabel">입사일자</div> <div className="infoInput">{dateFormatting(empInfoDetail.empFirstDayOfWork)}</div></li>
-              </ul>
-              {empInfoDetail.empOfficePhone &&(
-                  <div className="button">
-                    <button className="pwChange" >수정</button>
-                    <button className="pwChange" >확인</button>
+        <div className="fsmrg">
+            <div className="scmarg">
+                <h2 className="sc-h2" ><CoPresentIcon sx={{ marginRight: '3px' }}/>
+                    <span className="sc-span">사원 정보</span>
+                </h2>
+                <div className="empInfo">
+                  <div>
                   </div>
-              )}
+                  <div className="infoBox">
+                    <div className="infoContent">
+                      <ul className="infoUl">
+                        <li className="infoLi"><div className="infoLabel">사번</div> <div className="infoInput"  readOnly>{empInfoDetail.empNo}</div></li>
+                        <li className="infoLi"><div className="infoLabel">이름</div> <div className="infoInput" readOnly>{empInfoDetail.empName}</div></li>
+                        <li className="infoLi"><div className="infoLabel">직급</div> <div className="infoInput" readOnly>{empInfoDetail.empPosition}</div></li>
+                        <li className="infoLi"><div className="infoLabel">생년월일</div> <div className="infoInput">{empInfoDetail.empBirth}</div></li>
+                        <li className="infoLi"><div className="infoLabel">메일주소</div> <div className="infoInput">{empInfoDetail.empEmail}</div></li>
+                        <li className="infoLi"><div className="infoLabel">휴대폰번호</div> <div className="infoInput" >{empInfoDetail.empCellPhone}</div></li>
+                        <li className="infoLi"><div className="infoLabel">사내번호</div> <div className="infoInput">{empInfoDetail.empOfficePhone}</div></li>
+                        <li className="infoLi"><div className="infoLabel">비상연락</div> <div className="infoInput">{empInfoDetail.empContactList}</div></li>
+                        <li className="infoLi"><div className="infoLabel">입사일자</div> <div className="infoInput">{dateFormatting(empInfoDetail.empFirstDayOfWork)}</div></li>
+                      </ul>
+                      {empInfoDetail.empOfficePhone &&(
+                          <div className="button">
+                            <button className="pwChange" >수정</button>
+                            <button className="pwChange" >확인</button>
+                          </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
             </div>
-          </div>
         </div>
     )
   }
