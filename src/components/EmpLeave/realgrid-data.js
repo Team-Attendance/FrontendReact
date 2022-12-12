@@ -37,7 +37,6 @@ export const columns = [{
     name: "leaveAdjDate",
     fieldName: "leaveAdjDate",
     type: "data",
-    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -46,7 +45,6 @@ export const columns = [{
     name: "leaveType",
     fieldName: "leaveType",
     type: "data",
-    width: "120",
     styles: {
         textAlignment: "center"
     },
@@ -55,7 +53,6 @@ export const columns = [{
     name: "leaveStartDate",
     fieldName: "leaveStartDate",
     type: "data",
-    width: "150",
     styles: {
         "textAlignment": "center"
     },
@@ -64,7 +61,6 @@ export const columns = [{
     name: "leaveEndDate",
     fieldName: "leaveEndDate",
     type: "data",
-    width: "150",
     styles: {
         "textAlignment": "center"
     },
@@ -73,7 +69,6 @@ export const columns = [{
     name: "leaveAdjState",
     fieldName: "leaveAdjState",
     type: "data",
-    width: "80",
     styles: {
         "textAlignment": "center"
     },
@@ -100,15 +95,16 @@ export const columns = [{
                 return '승인'
             case '2':
                 return '반려'
+            case '3':
+                return '취소'
             default:
-                return '-';
+                return '-'
         }
     }
 },{
     name: "leaveAdjApproDate",
     fieldName: "leaveAdjApproDate",
     type: "data",
-    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -117,7 +113,6 @@ export const columns = [{
     name: "leaveAdjAppro",
     fieldName: "leaveAdjAppro",
     type: "data",
-    width: "100",
     styles: {
         textAlignment: "center"
     },

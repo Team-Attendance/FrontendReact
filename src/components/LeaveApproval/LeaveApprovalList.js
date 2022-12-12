@@ -44,7 +44,9 @@ const LeaveApprovalList = ({ changeFlag }) => {
         gv.setDisplayOptions({
             selectionStyle: "rows",
             showEmptyMessage: true,
-            emptyMessage: "조회된 데이터가 없습니다."
+            emptyMessage: "조회된 데이터가 없습니다.",
+            fitStyle: "evenFill",
+            columnResizable: false
         })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
@@ -53,7 +55,6 @@ const LeaveApprovalList = ({ changeFlag }) => {
             setData(leaveApprovalInfo.data[clickData.dataRow])
             setModal(!modal)
         }
-
 
         setDataProvider(dp)
         setGridView(gv)
@@ -103,11 +104,11 @@ const LeaveApprovalList = ({ changeFlag }) => {
                 </Modal>
             )}
             <div className='grid-wrap'>
-                <div className='real-grid' style={{ width: '1282px' }}
+                <div className='real-grid'
                     ref={realgridElement}>
                 </div>
             </div>
-            <div className="state-button" style={{ width: '1280px' }}>
+            <div className="state-button">
                 <button onClick={() => changeState(1)}>승인</button>
                 <button onClick={() => changeState(2)}>반려</button>
             </div>

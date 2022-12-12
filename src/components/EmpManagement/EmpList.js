@@ -49,7 +49,7 @@ const EmpList = ({ empInfo }) => {
   return (
     <div className="list-wrap">
       <div className="grid-wrap">
-        <div className="real-grid" style={{ width: '750px' }}
+        <div className="real-grid"
           ref={realgridElement}>
         </div>
       </div>

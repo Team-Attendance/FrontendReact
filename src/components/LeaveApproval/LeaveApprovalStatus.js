@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import '../../css/LeaveStatus.scss'
 
-const LeaveStatus = () => {
+const LeaveApprovalStatus = () => {
     const { countInfo } = useSelector((state) => state.countInfo)
 
     const approvalStatusList = []
@@ -32,4 +32,4 @@ const LeaveStatus = () => {
     )
 }
 
-export default LeaveStatus
+export default LeaveApprovalStatus

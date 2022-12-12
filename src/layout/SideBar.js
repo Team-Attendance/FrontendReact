@@ -7,9 +7,10 @@ import Button from '@mui/material/Button';
 import styled from 'styled-components';
 import {AdminSide} from "./AdminSide";
 import {EmpSide} from "./EmpSide";
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import Modal from '../components/Modal/Modal';
 import EmpQrModal from '../components/empMain/EmpQrModal';
+import axios from "axios";
 
 
 
@@ -64,6 +65,7 @@ export function SideBar() {
 
   // 큐알 모달로 이동
   const [modal, setModal] = useState(false)
+  const [img, setImg] = useState('')
 
   const empName = localStorage.getItem("empName");
   const position = localStorage.getItem("empPosition")
@@ -85,6 +87,20 @@ export function SideBar() {
     setModal(true);
   }
 
+
+  useEffect(async() => {
+    await axios({
+      url: `http://localhost:8080/emp/images/${localStorage.getItem("empNo")}`,
+      method: "GET",
+      responseType: 'blob'
+    }) .then((response) => {
+      setImg(response.data);
+    })
+        .catch((error) => {
+          console.log(error);
+        })
+  },[])
+
   return(
       <Drawer
           variant="permanent"
@@ -101,7 +117,9 @@ export function SideBar() {
 
             <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
-                <img width={"100%"} height={"100%"} src='/eee.jpg' alt=''/>
+                {img &&
+                  <img width={"100%"} height={"100%"} src={URL.createObjectURL(img)} alt=''/>
+                }
               </UserImage>
               <Box>
                 <UserInfo>

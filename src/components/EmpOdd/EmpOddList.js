@@ -8,7 +8,7 @@ import '../../css/RealGrid.scss'
 import Paging from "../Paging"
 import {useSelector} from "react-redux";
 
-const EmpOddList = () => {
+const EmpOddList = ({changeFlag}) => {
 
     const { oddApprovalInfo } = useSelector((state) => state.oddApprovalInfo)
 
@@ -37,7 +37,8 @@ const EmpOddList = () => {
         gv.setDisplayOptions({
             selectionStyle: "rows",
             showEmptyMessage: true,
-            emptyMessage: "조회된 데이터가 없습니다."
+            emptyMessage: "조회된 데이터가 없습니다.",
+            fitStyle: "evenFill"
         })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
@@ -65,12 +66,13 @@ const EmpOddList = () => {
                 <Modal closeModal={() => setModal(!modal)} >
                     <OddApprovalModal
                         closeModal={() => setModal(!modal)}
+                        changeFlag={changeFlag}
                         data={data}
                         auth={0} />
                 </Modal>
             )}
             <div className="grid-wrap">
-                <div className="real-grid" style={{ width: '750px' }}
+                <div className="real-grid"
                     ref={realgridElement}>
                 </div>
             </div>

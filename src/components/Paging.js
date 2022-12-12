@@ -59,6 +59,8 @@ const Paging = (totalData, dataPerPage, pageCount, currentPage, gridView) => {
     if(document.getElementById(currentPage) !== null){
         document.getElementById(currentPage).style.color = 'red'    // 현재 페이지 표시
         document.getElementById(currentPage).style.fontWeight = 'bold'    // 현재 페이지 표시
+        document.getElementById(currentPage).style.border = '1px lightgray solid'    // 현재 페이지 표시
+        document.getElementById(currentPage).style.backgroundColor = 'whitesmoke'    // 현재 페이지 표시
     }
 
     // document.getElementById("#paging a#" + currentPage).style.textDecoration = 'none'

@@ -1,5 +1,4 @@
 
-
 .list-wrap{
   height: 100%;
   width: 100%;
@@ -11,6 +10,7 @@
   .state-button{
     display: flex;
     justify-content: flex-end;
+    width: 100%;
     margin: 1em auto;
     button {
       font-size: 0.8em;
@@ -30,8 +30,9 @@
     span{
       display: flex;
       justify-content: center;
-      background-color: whitesmoke;
-      border: 1px lightgray solid;
+      align-items: center;
+      //background-color: whitesmoke;
+      //border: 1px lightgray solid;
       padding: 0.1em 0.8em;
       cursor: pointer;
       font-size: 1em;
@@ -39,6 +40,8 @@
     }
     span:hover{
       background-color: lightgray;
+      font-weight: bold;
+      transition: 0.2s;
     }
   }
 }

@@ -32,7 +32,6 @@ export const columns = [{
     name: "oddBizAdjDate",
     fieldName: "oddBizAdjDate",
     type: "data",
-    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -44,7 +43,6 @@ export const columns = [{
     name: "oddBizType",
     fieldName: "oddBizType",
     type: "data",
-    width: "100",
     styles: {
         textAlignment: "center"
     },
@@ -56,7 +54,6 @@ export const columns = [{
     name: "oddBizDate",
     fieldName: "oddBizDate",
     type: "data",
-    width: "150",
     styles: {
         "textAlignment": "center"
     },
@@ -65,7 +62,6 @@ export const columns = [{
     name: "oddBizAdjState",
     fieldName: "oddBizAdjState",
     type: "data",
-    width: "100",
     styles: {
         "textAlignment": "center"
     },
@@ -100,7 +96,6 @@ export const columns = [{
     name: "oddBizAdjApproDate",
     fieldName: "oddBizAdjApproDate",
     type: "data",
-    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -112,7 +107,6 @@ export const columns = [{
     name: "oddBizAdjAppro",
     fieldName: "oddBizAdjAppro",
     type: "data",
-    width: "100",
     styles: {
         textAlignment: "center"
     },

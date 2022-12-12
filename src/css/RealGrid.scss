@@ -1,5 +1,6 @@
 .real-grid{
     height: 442px;
+    width: 100%;
     margin: 0 auto;
     border: none;
 
@@ -61,11 +62,14 @@
       padding: 10%;
       background: #ffffff;
       color: gray;
-      font-size: 32px;
+      font-size: 2em;
       text-align: center;
       border-width: 0 1px 1px 1px;
       border-color: lightgray;
       border-style: solid;
+    }
+    .rg-header-cell.rg-header-select{
+      background-color: whitesmoke;
     }
   }
 

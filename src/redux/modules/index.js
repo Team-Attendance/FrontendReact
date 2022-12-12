@@ -11,3 +11,5 @@ export {default as empBizInfo } from './configuration/ConfigurationReducer'
 
 export {default as countInfo} from './CountApproval/CountApprovalReducer'
 export {default as WeeklyInfo} from './report/ReportReducer'
+
+export {default as countLeave} from './EmpInfo/EmpInfoReducer'

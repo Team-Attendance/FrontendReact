@@ -3,7 +3,6 @@ import '../../css/LeaveStatus.scss'
 
 const OddStatus = () => {
     const { countInfo } = useSelector((state) => state.countInfo)
-    console.log(countInfo.data)
     const approvalStatusList = []
     if(countInfo.data){
          approvalStatusList.push({title: '이상근태 조정 신청 수', value: countInfo.data.allCount})

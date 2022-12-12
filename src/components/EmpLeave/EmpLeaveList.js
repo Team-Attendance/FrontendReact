@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Modal from '../../components/Modal/Modal';
 import '../../components/Modal/modal.scss'
 import '../Modal/LeaveApprovalModal'
@@ -13,7 +13,7 @@ import 'realgrid/dist/realgrid-style.css'
 
 import {useSelector} from "react-redux";
 
-const EmpLeaveList = () => {
+const EmpLeaveList = ({changeFlag}) => {
     const { leaveApprovalInfo } = useSelector((state) => state.leaveApprovalInfo)
 
     const [modal, setModal] = useState(false)
@@ -41,7 +41,8 @@ const EmpLeaveList = () => {
         gv.setDisplayOptions({
             selectionStyle: "rows",
             showEmptyMessage: true,
-            emptyMessage: "조회된 데이터가 없습니다."
+            emptyMessage: "조회된 데이터가 없습니다.",
+            fitStyle: "evenFill"
         })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
@@ -69,12 +70,13 @@ const EmpLeaveList = () => {
                 <Modal closeModal={() => setModal(!modal)} >
                     <LeaveApprovalModal
                         closeModal={() => setModal(!modal)}
+                        changeFlag={changeFlag}
                         data={data}
                         auth={0} />
                 </Modal>
             )}
             <div className='grid-wrap'>
-                <div className='real-grid' style={{ width: '902px' }}
+                <div className='real-grid'
                     ref={realgridElement}>
                 </div>
             </div>

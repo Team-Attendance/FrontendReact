@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState, useCallback} from "react";
 import {postEmpRegist} from "../../api/EmpAPI";
 import '../../css/empInfo.scss'
 
@@ -26,11 +26,12 @@ const EmpRegistModal = ({closeModal, props}) => {
 
     const [empEmail, setEmpEmail] = useState();
 
-    function  handleDupl(e){
+    function handleDupl(e) {
 
     }
+
     const handleEmpEmail = (e) => {
-        setEmpEmail(e.target.value+"@douzon.com");
+        setEmpEmail(e.target.value + "@douzon.com");
     }
 
     const [empBirth, setEmpBirth] = useState();
@@ -47,13 +48,13 @@ const EmpRegistModal = ({closeModal, props}) => {
     const cPhoneRef = useRef();
     const handleEmpCellPhone = (e) => {
         // 숫자가 아닌 문자 공백으로 변경
-        const value = cPhoneRef.current.value.replace(/\D+/g,"");
+        const value = cPhoneRef.current.value.replace(/\D+/g, "");
         const numLength = 11;
         let result;
-        result ="";
+        result = "";
         // 자동 하이픈
-        for( let i = 0; i < value.length && i < numLength; i++ ){
-            switch (i){
+        for (let i = 0; i < value.length && i < numLength; i++) {
+            switch (i) {
                 case 3:
                     result += "-";
                     break;
@@ -68,20 +69,40 @@ const EmpRegistModal = ({closeModal, props}) => {
         cPhoneRef.current.value = result;
         setEmpCellPhone(e.target.value);
     }
+    // 이미지
+    const inputRef = useRef(null)
+    const [empImage, setEmpImage] = useState();
+    const onUploadImage = useCallback((e) => {
+        if (!e.target.files) {
+            return;
+        }
+        setEmpImage(e.target.files[0])
+    }, []);
+
+
+    const onUploadImageButtonClick = useCallback(() => {
+        if (!inputRef.current) {
+            return;
+        }
+        inputRef.current.click();
+    }, []);
+
 
     function handleRegist(e) {
         e.preventDefault();
-        const data = {
-            "deptName": deptName,
-            "empName": empName,
-            "empPwd": empPwd,
-            "empPosition": empPosition,
-            "empEmail": empEmail,
-            "empBirth": empBirth,
-            "empCellPhone": empCellPhone,
-            "empFirstDayOfWork": empFirstDayOfWork
-        };
-        postEmpRegist(data);
+        let formData = new FormData()
+
+        formData.append("deptName", deptName)
+        formData.append("empName", empName)
+        formData.append("empPwd", empPwd)
+        formData.append("empPosition", empPosition)
+        formData.append("empEmail", empEmail)
+        formData.append("empBirth", empBirth)
+        formData.append("empCellPhone", empCellPhone)
+        formData.append("empFirstDayOfWork", empFirstDayOfWork)
+        formData.append("empPhoto", empImage)
+
+        postEmpRegist(formData);
         closeModal();
     }
 
@@ -96,7 +117,8 @@ const EmpRegistModal = ({closeModal, props}) => {
                     <div className="infoUl">
                         <li className="infoLi">
                             <div className="infoLabel"> 부서명</div>
-                            <select className="infoInput" name='deptName' required='부서를 선택하세요'  onChange={handleDeptName}>
+                            <select className="infoInput" name='deptName' required='부서를 선택하세요'
+                                    onChange={handleDeptName}>
                                 <option value={'none'}>부서</option>
                                 <option value={'인사'}>인사</option>
                                 <option value={'인사'}>영업</option>
@@ -108,7 +130,7 @@ const EmpRegistModal = ({closeModal, props}) => {
                         <li className="infoLi">
                             <div className="infoLabel"> 사원이름</div>
                             <input className="infoInput" type="text" name='empName' placeholder='사원이름'
-                                    required onChange={handleEmpName}></input>
+                                   required onChange={handleEmpName}></input>
                         </li>
                         <li className="infoLi">
                             <div className="infoLabel"> 비밀번호</div>
@@ -134,7 +156,12 @@ const EmpRegistModal = ({closeModal, props}) => {
                         </li>
                         <li className="infoLi">
                             <div className="infoLabel"> 사원 사진</div>
-                            <input className="infoInputemail" type="file" name=''></input>
+                            <input className="infoInputeamil" type="file" accept="image/*" ref={inputRef}
+                                   onChange={onUploadImage} style={{display: 'none'}}/>
+                            <button onClick={onUploadImageButtonClick}>이미지 등록</button>
+                            {empImage &&
+                                <img alt={''} src={URL.createObjectURL(empImage)} style={{width: '200px'}}/>
+                            }
                         </li>
 
                         <li className="infoLi">
@@ -163,7 +190,7 @@ const EmpRegistModal = ({closeModal, props}) => {
                         </li>
                         <li className="infoLi">
                             <div className="infoLabel"> 사내번호</div>
-                            <input className="infoInput" name='empOfficePhone' placeholder='사원입력'  readOnly></input>
+                            <input className="infoInput" name='empOfficePhone' placeholder='사원입력' readOnly></input>
                         </li>
                         <li className="infoLi">
                             <div className="infoLabel"> 비상연락</div>
@@ -172,8 +199,9 @@ const EmpRegistModal = ({closeModal, props}) => {
 
                         <div className="button">
                             <button className="handleBtn" onClick={handleRegist}
-                                    name='empRegistSubmit' disabled={!(deptName&&empName&&empPwd&&empPosition&&empEmail&&empBirth&&empFirstDayOfWork&&empCellPhone)}>
-                                <a href="/admin/emp-management" > 등록</a>
+                                    name='empRegistSubmit'
+                                    disabled={!(deptName && empName && empPwd && empPosition && empEmail && empBirth && empFirstDayOfWork && empCellPhone)}>
+                                <a href="/admin/emp-management"> 등록</a>
                             </button>
                             <button className="handleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 취소
                             </button>
