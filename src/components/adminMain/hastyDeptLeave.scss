@@ -1,0 +1,80 @@
+.admin-main-page {
+  &.hasty-dept-leave {
+    border: 1px solid lightgray;
+
+    & .hasty-leave-element {
+      border-bottom: 1px solid lightgray;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & .empty-leave {
+        font-size: 0.8rem;
+        color: gray;
+        opacity: 0.9;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    & .leave-type {
+      width: 60px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      &.morning-leave {
+        color: #FF9F40;
+      }
+
+      &.afternoon-leave {
+        color: #00B3B3;
+      }
+
+      &.normal-leave {
+        color: #2893F8;
+      }
+    }
+
+    & .leave-date {
+      width: 165px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    & .emp-info {
+      width: 98px;
+      height: 20px;
+      padding: 0 7px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      font-weight: bold;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      &>span>span {
+        color: gray;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+  }
+}

@@ -1,6 +1,6 @@
 import ReactEchart from "echarts-for-react"
-import React, { useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { useSelector } from 'react-redux';
 
 
 export default function CalOddBizChart() {
@@ -56,22 +56,28 @@ export default function CalOddBizChart() {
       data:
         oddCount === 0 ?
           [
-            { name: '이상 근태', itemStyle: { color: '#FF3800' } },
-            { value: 0, name: '정상 근무', itemStyle: { color: '#0080ff ' } },
-            
+            { name: '이상 근태', itemStyle: { color: '#FF4673' } },
+            { value: normalCount, name: '정상 근무', itemStyle: { color: '#36A2EB ' } },
+
           ]
           :
-          [
-            { value: oddCount, name: '이상 근태', itemStyle: { color: '#FF3800' } },
-            { value: normalCount, name: '정상 근무', itemStyle: { color: '#0080ff ' } },
-          ]
+          normalCount === 0 ?
+            [
+              { value: oddCount, name: '이상 근태', itemStyle: { color: '#FF4673' } },
+              { name: '정상 근무', itemStyle: { color: '#36A2EB' } },
+            ]
+            :
+            [
+              { value: oddCount, name: '이상 근태', itemStyle: { color: '#FF4673' } },
+              { value: normalCount, name: '정상 근무', itemStyle: { color: '#36A2EB ' } },
+            ]
 
     },
   };
 
   return (
-    <div style={{height: '100%'}}>
-      <ReactEchart option={eChartsOption}  style={{height: '100%'}}/>
+    <div style={{ height: '100%' }}>
+      <ReactEchart option={eChartsOption} style={{ height: '100%' }} />
     </div>
   );
 }

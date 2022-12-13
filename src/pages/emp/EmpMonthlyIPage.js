@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import CalendarStatus from '../../components/common/CalendarStatus';
 import { setCalendarDate } from '../../modules/calendar';
 import { getStatusData, clear } from '../../modules/calendarStatus';
-import { monthCalendar } from '../../modules/cal_function';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -16,6 +15,8 @@ import { setMonthlyData, updateMonthlyData } from '../../modules/monthlyTable';
 import MonthlyTable from '../../table/MonthlyTable';
 
 export function EmpMonthlyPage() {
+
+  const sesssionUserNo = sessionStorage.getItem("empNo");
 
   const year = useSelector(state => state.calendar.year);
   const month = useSelector(state => state.calendar.month);
@@ -40,18 +41,17 @@ export function EmpMonthlyPage() {
     setCalDate(year, month);
 
 
-    onSetMonthData(1);
-  }, []);
+    onSetMonthData(sesssionUserNo);
+  }, [onSetMonthData, onUpdateMonthData, sesssionUserNo, dispatch, setCalDate]);
 
   useEffect(() => {
-    onUpdate(1, year, month);
-  }, [year, month])
+    onUpdate(sesssionUserNo, year, month);
+  }, [year, month, onUpdate, sesssionUserNo])
 
   return (
     <>
       {statusData &&
         <div style={{ padding: '30px' }}>
-          {console.log( new Date('2022-12-05').getDay() )}
           <div style={{ marginBottom: '10px' }}>
             <div style={{ marginBottom: '10px' }}>
               <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}><EventAvailableIcon sx={{ marginRight: '3px' }} /><span style={{ verticalAlign: 'text-bottom' }}>월별 근태 현황</span></h2>
@@ -72,8 +72,8 @@ export function EmpMonthlyPage() {
                     <div>
                       <div style={{ position: 'relative', textAlign: 'left', padding: '10px 20px', border: '1px solid lightgray', backgroundColor: 'whitesmoke', borderBottom: 'none' }}>
                         <span style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>{year}년 {month}월</span>
-                        <ArrowBackIosNewIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '110px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(1, year, month, 'prev'); month === 1 ? setCalDate(year - 1, 12) : setCalDate(year, month - 1) }} />
-                        <ArrowForwardIosIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '125px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(1, year, month, 'next'); month === 12 ? setCalDate(year + 1, 1)  : setCalDate(year, month + 1) }} />
+                        <ArrowBackIosNewIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '110px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(sesssionUserNo, year, month, 'prev'); month === 1 ? setCalDate(year - 1, 12) : setCalDate(year, month - 1) }} />
+                        <ArrowForwardIosIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '125px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(sesssionUserNo, year, month, 'next'); month === 12 ? setCalDate(year + 1, 1)  : setCalDate(year, month + 1) }} />
                       </div>
                     </div>
                     <MonthlyTable />
@@ -102,7 +102,7 @@ export function EmpMonthlyPage() {
                       </div>
                       <p style={{ width: '90px', height: '50px', position: 'absolute', top: '46%', left: 'calc(50% - 45px)', textAlign: 'center', fontWeight: 'bold', fontSize: '1rem' }}>
                         <span>이상근태율</span><br />
-                        <span>{statusData?.oddBizHourCount.oddBizCount === 0 || statusData?.oddBizHourCount.normalCount === 0 ? 0 : Math.round(((statusData?.oddBizHourCount.oddBizCount / (statusData?.oddBizHourCount.normalCount + statusData?.oddBizHourCount.oddBizCount)) * 100) * 10) / 10}%</span>
+                        <span>{statusData.oddBizHourCount.oddBizCount !== 0 && statusData.oddBizHourCount.normalCount === 0 ? 100 : statusData.oddBizHourCount.oddBizCount === 0 || statusData.oddBizHourCount.normalCount === 0 ? 0 : Math.round(((statusData.oddBizHourCount.oddBizCount / (statusData.oddBizHourCount.normalCount + statusData.oddBizHourCount.oddBizCount)) * 100) * 10) / 10}%</span>
                       </p>
                     </div>
 

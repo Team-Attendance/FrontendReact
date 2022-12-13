@@ -60,12 +60,12 @@ export default function CalLeaveChart(){
           :
           leaveUtilzition.leftover_num === 0 ?
           [
-            { value: leaveUtilzition != null ? leaveUtilzition.use_num : 0, name: '사용 휴가', itemStyle: { color: '#0080ff' } },
+            { value: leaveUtilzition != null ? leaveUtilzition.use_num : 0, name: '사용 휴가', itemStyle: { color: '#36A2EB' } },
             { name: '잔여 휴가', itemStyle: { color: '#afafaf' } },
           ]
           :
           [
-            { value: leaveUtilzition != null ? leaveUtilzition.use_num : 0, name: '사용 휴가', itemStyle: { color: '#0080ff' } },
+            { value: leaveUtilzition != null ? leaveUtilzition.use_num : 0, name: '사용 휴가', itemStyle: { color: '#36A2EB' } },
             { value: leaveUtilzition != null ? leaveUtilzition.leftover_num : 0, name: '잔여 휴가', itemStyle: { color: '#afafaf' } },
           ]
     },

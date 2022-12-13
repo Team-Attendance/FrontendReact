@@ -15,6 +15,9 @@ import "./calendar.scss";
 
 export function DeptCalendar({ setShowDeptCalendar }) {
 
+  const sessionUserNo = sessionStorage.getItem("empNo");
+  const sessionDeptName = sessionStorage.getItem("deptName");
+
   const [deptModalDate, setDeptModalDate] = useState(null);
   const [deptLeaveData, setDeptLeaveDate] = useState(null);
   const [showDeptModal, setShowDeptModal] = useState(false);
@@ -47,8 +50,8 @@ export function DeptCalendar({ setShowDeptCalendar }) {
     )
   }
 
-  const updateCompoCalendar = useCallback((year, month, direction, nowDate) => dispatch(updateCalendar(1, year, month, direction, nowDate)), [dispatch]);
-  const updateCompoDeptCalendar = useCallback((year, month, direction, nowDate) => dispatch(updateDeptCalendar(1, year, month, direction, nowDate)), [dispatch]);
+  const updateCompoCalendar = useCallback((year, month, direction, nowDate) => dispatch(updateCalendar(sessionUserNo, year, month, direction, nowDate)), [dispatch, sessionUserNo]);
+  const updateCompoDeptCalendar = useCallback((year, month, direction, nowDate) => dispatch(updateDeptCalendar(sessionUserNo, sessionDeptName, year, month, direction, nowDate)), [dispatch, sessionUserNo, sessionDeptName]);
 
   const calcLeave = (deptCalendarData, data) => {
     let result = { normalLeave: 0, morningLeave: 0, afternoonLeave: 0 };
@@ -87,7 +90,7 @@ export function DeptCalendar({ setShowDeptCalendar }) {
                   <th className="cal-title" colSpan={7}>{`${year}년 ${month}월`}
                     <ArrowBackIosNewIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '11px', left: '100px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { updateCompoCalendar(year, month, 'prev', nowDate); updateCompoDeptCalendar(year, month, 'prev', nowDate); }} />
                     <ArrowForwardIosIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '11px', left: '115px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { updateCompoCalendar(year, month, 'next', nowDate); updateCompoDeptCalendar(year, month, 'next', nowDate); }} />
-                    <button style={{ position: 'absolute', fontSize: '0.7rem', fontWeight: 'bold', border: '1px solid gray', padding: '5px 15px', backgroundColor: 'lightgray', right: '20px', top: '6px', boxShadow: '0 0 5px 1px lightgray' }} onClick={() => { setShowDeptCalendar(true) }}>나의 일정</button>
+                    <button style={{ position: 'absolute', fontSize: '0.7rem', fontWeight: 'bold', border: '1px solid gray', padding: '5px 15px', backgroundColor: '#2B4865', right: '20px', top: '6px', boxShadow: '0 0 5px 1px lightgray', color: 'white' }} onClick={() => { setShowDeptCalendar(true) }}>나의 일정</button>
                   </th>
                 </tr>
                 <tr>
@@ -110,7 +113,7 @@ export function DeptCalendar({ setShowDeptCalendar }) {
                               <span
                                 className={inIndex === 6 ? `saturday ${calendarDay.type}` :
                                   (inIndex === 0 ? `sunday ${calendarDay.type}` : calendarDay.type)}
-                                onClick={() => { test(formatHyphenFulldate(calendarDay.date), "인사"); setShowDeptModal(true); }}
+                                onClick={() => { test(formatHyphenFulldate(calendarDay.date), sessionDeptName); setShowDeptModal(true); }}
                               >{calendarDay.day}</span>
                             </div>
 
