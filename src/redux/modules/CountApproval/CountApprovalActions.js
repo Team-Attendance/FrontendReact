@@ -38,11 +38,11 @@ const CountApprovalActions = {
             })
         }
     },
-    countEmpOdd: (empNo) => async(dispatch) => {
+    countEmpOdd: (empNo, year) => async(dispatch) => {
         dispatch({type: Types.GET_APPROVAL_COUNT})
 
         try {
-            const countApproval = await EmpAPI.countOdd(empNo)
+            const countApproval = await EmpAPI.countOdd(empNo, year)
 
             dispatch({
                 type: Types.GET_APPROVAL_COUNT_SUCCESS,

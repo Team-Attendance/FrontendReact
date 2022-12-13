@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import SearchBar from "../../components/SearchBar";
 import EmpActions from "../../redux/modules/EmpManagement/EmpActions";
 import EmpList from "../../components/EmpManagement/EmpList"
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import EmpRegistModal from "./EmpRegistModal";
 import ModalReg from "../../components/Modal/ModalReg"
-
 
 
 const EmpManagement = () => {
@@ -14,7 +13,7 @@ const EmpManagement = () => {
     // 사원등록 페이지 이동
     const [regiModal, setRegiModal] = useState(false)
     const [regiData, setRegiData] = useState({})
-    const openModal = (regiData) =>{
+    const openModal = (regiData) => {
         setRegiData(regiData)
         setRegiModal(!regiModal)
     }
@@ -24,7 +23,7 @@ const EmpManagement = () => {
     }
 
 
-    const { empInfo } = useSelector((state) => state.empInfo)
+    const {empInfo} = useSelector((state) => state.empInfo)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -34,8 +33,7 @@ const EmpManagement = () => {
     const onSubmit = (query, option) => {
         if (query === '') {
             dispatch(EmpActions.getAllEmps())
-        }
-        else {
+        } else {
             dispatch(EmpActions.searchEmp(option, query))
         }
 
@@ -43,9 +41,12 @@ const EmpManagement = () => {
 
     return (
         <div>
-            <SearchBar onSubmit={onSubmit} />
+            <SearchBar onSubmit={onSubmit}/>
             <div align="right">
-                <button onClick={ () => { setRegiModal(true) } }> 사원등록</button>
+                <button onClick={() => {
+                    setRegiModal(true)
+                }}> 사원등록
+                </button>
                 {regiModal && (
                     <ModalReg closeModal={() => setRegiModal(!regiModal)}>
                         <EmpRegistModal
@@ -54,7 +55,7 @@ const EmpManagement = () => {
                     </ModalReg>
                 )}
             </div>
-            <EmpList empInfo={empInfo} />
+            <EmpList empInfo={empInfo}/>
         </div>
     )
 }

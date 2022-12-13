@@ -52,11 +52,11 @@ const EmpInfoActions = {
             })
         }
     },
-    countLeave: (empNo) => async (dispatch) => {
+    countLeave: (empNo, year) => async (dispatch) => {
         dispatch({type: Types.GET_LEAVE_COUNT})
 
         try {
-            const countLeave = await EmpAPI.countLeave(empNo)
+            const countLeave = await EmpAPI.countLeave(empNo, year)
 
             dispatch({
                 type: Types.GET_LEAVE_COUNT_SUCCESS,

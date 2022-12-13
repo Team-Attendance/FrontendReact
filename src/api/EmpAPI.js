@@ -1,13 +1,13 @@
 import axios from "axios";
-import { API_URL } from "../utils/constants/Config";
+import {API_URL} from "../utils/constants/Config";
 import LoginAction from "../redux/modules/Login/LoginAction";
 
 export const Login = (logindata) =>
     LoginAction({
-    url: "login",
-    method: "post",
-    data: logindata,
-  })
+        url: "login",
+        method: "post",
+        data: logindata,
+    })
 
 export const getAllEmp = () => {
     return axios.get(`${API_URL}/emp-list/all`)
@@ -17,7 +17,7 @@ export const getEmp = (option, query) => {
     return axios.get(`${API_URL}/emp-list/${option}=${query}`)
 }
 
-export const postEmpRegist = (data) =>{
+export const postEmpRegist = (data) => {
     return axios({
         headers: {
             "Content-Type": "multipart/form-data",
@@ -28,7 +28,7 @@ export const postEmpRegist = (data) =>{
     })
 }
 
-export const getEmpinfo = (empNo) =>{
+export const getEmpinfo = (empNo) => {
     return axios.get(`${API_URL}/emp/emp-info/${empNo}`)
 }
 
@@ -36,10 +36,10 @@ export const updateEmpInfoByAdmin = (data) => {
     return axios.post(`${API_URL}/report/empinfo-modify`, data)
 }
 
-export const countLeave = (empNo) => {
-    return axios.get(`${API_URL}/emp/leave/${empNo}`)
+export const countLeave = (empNo, year) => {
+    return axios.get(`${API_URL}/emp/leave/${empNo}/${year}`)
 }
 
-export const countOdd = (empNo) => {
-    return axios.get(`${API_URL}/emp/odd/${empNo}`)
+export const countOdd = (empNo, year) => {
+    return axios.get(`${API_URL}/emp/odd/${empNo}/${year}`)
 }

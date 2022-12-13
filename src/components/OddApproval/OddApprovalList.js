@@ -1,17 +1,19 @@
-import { useEffect, useRef, useState } from "react"
+import {useEffect, useRef, useState} from "react"
 import Modal from "../Modal/Modal"
 import OddApprovalModal from "../Modal/OddApprovalModal"
-import { GridView, LocalDataProvider } from 'realgrid'
-import { columns, fields } from './realgrid-data'
-import { updateOddApproval } from "../../api/OddApprovalAPI"
+import {GridView, LocalDataProvider} from 'realgrid'
+import {columns, fields} from './realgrid-data'
+import {updateOddApproval} from "../../api/OddApprovalAPI"
 import Paging from "../Paging"
 import '../../css/ApprovalList.scss'
 import '../../css/RealGrid.scss'
 import {useSelector} from "react-redux";
+import {updateLeaveApproval} from "../../api/LeaveApprovalAPI";
+import Swal from "sweetalert2";
 
-const OddApprovalList = ({ changeFlag }) => {
+const OddApprovalList = ({changeFlag}) => {
 
-    const { oddApprovalInfo } = useSelector((state) => state.oddApprovalInfo)
+    const {oddApprovalInfo} = useSelector((state) => state.oddApprovalInfo)
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
@@ -33,10 +35,10 @@ const OddApprovalList = ({ changeFlag }) => {
         dp.setRows(oddApprovalInfo.data)
         // realGrid 설정
         gv.footer.visible = false
-        gv.setEditOptions({ editable: false })
-        gv.setRowIndicator({ visible: false })
-        gv.setStateBar({ visible: false })
-        gv.setCheckBar({ width: 50 })
+        gv.setEditOptions({editable: false})
+        gv.setRowIndicator({visible: false})
+        gv.setStateBar({visible: false})
+        gv.setCheckBar({width: 50})
         gv.setCheckableExpression("values['oddBizAdjState']='0'", true)
         gv.setDisplayOptions({
             selectionStyle: "rows",
@@ -67,8 +69,8 @@ const OddApprovalList = ({ changeFlag }) => {
     const changeState = async (s) => {
         const rowDatas = []
         const rows = gridView.getCheckedRows()
-        
-        if(rows.length){
+
+        if (rows.length) {
             for (let i of rows) {
                 // var data = dataProvider.getJsonRow(rows[i]);
                 rowDatas.push({
@@ -79,10 +81,23 @@ const OddApprovalList = ({ changeFlag }) => {
                     'approver': approver
                 })
             }
-            await updateOddApproval(rowDatas)
+            if (await updateOddApproval(rowDatas)) {
+                Swal.fire({
+                    title: (s == 1 ? '승인되었습니다.' : '반려되었습니다.'),
+                    icon: 'success'
+                })
+            } else {
+                Swal.fire({
+                    title: '상태 변경에 실패했습니다.',
+                    icon: 'error'
+                })
+            }
             changeFlag()
         } else {
-            alert("선택된 신청이 없습니다.")
+            Swal.fire({
+                title: "선택된 신청이 없습니다.",
+                icon: 'warning'
+            })
         }
     }
 
@@ -90,17 +105,17 @@ const OddApprovalList = ({ changeFlag }) => {
     return (
         <div className="list-wrap">
             {modal && (
-                <Modal closeModal={() => setModal(!modal)} >
+                <Modal closeModal={() => setModal(!modal)}>
                     <OddApprovalModal
                         closeModal={() => setModal(!modal)}
                         data={data}
                         auth={1}
-                        changeFlag={changeFlag} />
+                        changeFlag={changeFlag}/>
                 </Modal>
             )}
             <div className="grid-wrap">
                 <div className="real-grid"
-                    ref={realgridElement}>
+                     ref={realgridElement}>
                 </div>
             </div>
             <div className="state-button">
@@ -108,7 +123,8 @@ const OddApprovalList = ({ changeFlag }) => {
                 <button onClick={() => changeState(2)}>반려</button>
             </div>
             <div id='paging'
-                style={{ float: 'left', height: '100%', paddingTop: '20px' }}> - </div>
+                 style={{float: 'left', height: '100%', paddingTop: '20px'}}> -
+            </div>
         </div>
     )
 }

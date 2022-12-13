@@ -1,6 +1,6 @@
 .searchBar-wrap {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   width: 100%;
   height: 30px;
   margin: 2em 0;
@@ -11,10 +11,11 @@
   }
 
   input {
-    width: 70%;
+    width: 25%;
     //flex-grow: 1;
     margin: 0 1em;
   }
+
   input::placeholder {
     padding-left: 1em;
   }

@@ -2,6 +2,7 @@ import React from "react";
 
 import {updateLeaveApproval} from '../../api/LeaveApprovalAPI'
 import './ApprovalModal.scss'
+import Swal from "sweetalert2";
 
 const LeaveApprovalModal = ({auth, data, closeModal, changeFlag}) => {
 
@@ -24,7 +25,17 @@ const LeaveApprovalModal = ({auth, data, closeModal, changeFlag}) => {
             'approver': approver
         }]
 
-        await updateLeaveApproval(update)
+        if (await updateLeaveApproval(update)) {
+            Swal.fire({
+                title: (s == 1 ? '승인되었습니다.' : '반려되었습니다.'),
+                icon: 'success'
+            })
+        } else {
+            Swal.fire({
+                title: '상태 변경에 실패했습니다.',
+                icon: 'error'
+            })
+        }
         closeModal()
         changeFlag()
     }

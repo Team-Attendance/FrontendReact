@@ -1,33 +1,31 @@
 
-.list-wrap{
+.list-wrap {
   height: 100%;
   width: 100%;
-  
-  .grid-wrap{
-    margin-top: 2em;
-  }
 
-  .state-button{
+  .state-button {
     display: flex;
     justify-content: flex-end;
     width: 100%;
     margin: 1em auto;
+
     button {
       font-size: 0.8em;
       font-weight: bold;
       border: 1px lightgray solid;
       width: 90px;
-      margin-left:1.5em;
+      margin-left: 1.5em;
       padding: 7px;
       background-color: whitesmoke;
     }
   }
-  
+
   #paging {
     width: 100%;
     display: flex;
     justify-content: center;
-    span{
+
+    span {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -36,9 +34,10 @@
       padding: 0.1em 0.8em;
       cursor: pointer;
       font-size: 1em;
-      
+
     }
-    span:hover{
+
+    span:hover {
       background-color: lightgray;
       font-weight: bold;
       transition: 0.2s;

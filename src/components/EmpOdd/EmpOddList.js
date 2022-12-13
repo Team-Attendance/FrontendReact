@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react"
+import {useEffect, useRef, useState} from "react"
 import Modal from "../Modal/Modal"
 import OddApprovalModal from "../Modal/OddApprovalModal"
-import { GridView, LocalDataProvider } from 'realgrid'
-import { columns, fields } from './realgrid-data'
+import {GridView, LocalDataProvider} from 'realgrid'
+import {columns, fields} from './realgrid-data'
 import '../../css/ApprovalList.scss'
 import '../../css/RealGrid.scss'
 import Paging from "../Paging"
@@ -10,7 +10,7 @@ import {useSelector} from "react-redux";
 
 const EmpOddList = ({changeFlag}) => {
 
-    const { oddApprovalInfo } = useSelector((state) => state.oddApprovalInfo)
+    const {oddApprovalInfo} = useSelector((state) => state.oddApprovalInfo)
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
@@ -30,10 +30,10 @@ const EmpOddList = ({changeFlag}) => {
         dp.setRows(oddApprovalInfo.data)
         // realGrid 설정
         gv.footer.visible = false
-        gv.setEditOptions({ editable: false })
-        gv.setRowIndicator({ visible: false })
-        gv.setStateBar({ visible: false })
-        gv.setCheckBar({ visible: false })
+        gv.setEditOptions({editable: false})
+        gv.setRowIndicator({visible: false})
+        gv.setStateBar({visible: false})
+        gv.setCheckBar({visible: false})
         gv.setDisplayOptions({
             selectionStyle: "rows",
             showEmptyMessage: true,
@@ -63,21 +63,22 @@ const EmpOddList = ({changeFlag}) => {
     return (
         <div className="list-wrap">
             {modal && (
-                <Modal closeModal={() => setModal(!modal)} >
+                <Modal closeModal={() => setModal(!modal)}>
                     <OddApprovalModal
                         closeModal={() => setModal(!modal)}
                         changeFlag={changeFlag}
                         data={data}
-                        auth={0} />
+                        auth={0}/>
                 </Modal>
             )}
             <div className="grid-wrap">
                 <div className="real-grid"
-                    ref={realgridElement}>
+                     ref={realgridElement}>
                 </div>
             </div>
             <div id='paging'
-                style={{ float: 'left', height: '100%', paddingTop: '20px' }}> - </div>
+                 style={{float: 'left', height: '100%', paddingTop: '20px'}}> -
+            </div>
         </div>
     )
 }

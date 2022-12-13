@@ -1,6 +1,7 @@
 import React from "react";
 import {updateOddApproval} from "../../api/OddApprovalAPI";
 import './ApprovalModal.scss'
+import Swal from "sweetalert2";
 
 const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
 
@@ -22,7 +23,17 @@ const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
             'approver': approver
         }]
 
-        await updateOddApproval(update)
+        if (await updateOddApproval(update)) {
+            Swal.fire({
+                title: (s == 1 ? '승인되었습니다.' : '반려되었습니다.'),
+                icon: 'success'
+            })
+        } else {
+            Swal.fire({
+                title: '상태 변경에 실패했습니다.',
+                icon: 'error'
+            })
+        }
         closeModal()
         changeFlag()
     }
@@ -72,7 +83,7 @@ const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
                                     <button onClick={() => changeState(2)}>반려</button>
                                 </div>
                             ) :
-                            !data.leaveAdjState && (
+                            !data.oddBizAdjState && (
                                 <div>
                                     <button onClick={() => changeState(3)}>취소</button>
                                 </div>

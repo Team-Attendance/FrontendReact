@@ -1,10 +1,10 @@
 import axios from "axios"
-import { API_URL } from "../utils/constants/Config"
+import {API_URL} from "../utils/constants/Config"
 
 export const getAllOddApproval = () => {
     return axios.get(`${API_URL}/approval/odd/all`)
 }
-export const searchOddApproval = (option,query) => {
+export const searchOddApproval = (option, query) => {
     return axios.get(`${API_URL}/approval/odd/${option}=${query}`)
 }
 export const updateOddApproval = (data) => {
@@ -13,6 +13,6 @@ export const updateOddApproval = (data) => {
 export const countApproval = (year) => {
     return axios.get(`${API_URL}/approval/odd/count/${year}`)
 }
-export const getOddRequest = (empNo) => {
-    return axios.get(`${API_URL}/approval/odd/request/${empNo}`)
+export const getOddRequest = (empNo, year) => {
+    return axios.get(`${API_URL}/approval/odd/request/${empNo}/${year}`)
 }

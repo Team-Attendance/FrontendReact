@@ -36,11 +36,11 @@ const LeaveApprovalActions = {
             })
         }
     },
-    getLeaveRequest: (empNo) => async(dispatch) => {
+    getLeaveRequest: (empNo, year) => async(dispatch) => {
         dispatch({type: Types.GET_LEAVE_APPROVAL})
 
         try {
-            const leaveApproval = await LeaveApprovalAPI.getLeaveRequest(empNo)
+            const leaveApproval = await LeaveApprovalAPI.getLeaveRequest(empNo, year)
 
             dispatch({
                 type: Types.GET_LEAVE_APPROVAL_SUCCESS,

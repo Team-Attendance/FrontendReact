@@ -36,8 +36,8 @@ const initialState = {
     countLeave: {
         loading: false,
         data: {
-            ptoYrNo: 0,
-            ptoUseNum: 0
+            ptoYrNo: '',
+            ptoUseNum: ''
         }
     }
 }
