@@ -17,23 +17,6 @@ export function Header() {
       sessionStorage.clear();
         window.location.href = "/";
     };
-<<<<<<< Updated upstream
-    const [modal, setModal ] = useState(false)
-    // 아이피주소 호출
-    // const [ ip , setIp ] = useState();
-
-    // useEffect( () => {
-    //     axios.get('https://api.ipify.org?format=json/')
-    //         .then((res) => {
-    //             setIp(res.data)
-    //             console.log(res);
-    //         })
-    // },[])
-
-  
-=======
->>>>>>> Stashed changes
-
 
   return (
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>

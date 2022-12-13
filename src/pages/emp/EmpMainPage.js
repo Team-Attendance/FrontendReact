@@ -7,29 +7,28 @@ import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import { getChartData } from "../../modules/eChart";
 import { getPtoData } from "../../modules/pto";
 import EmpMyInfo from "../../components/empMain/EmpMyInfo";
-<<<<<<< Updated upstream
 import EmpOddChart from "../../components/empMain/EmpOddChart";
 import EmpMonthly from "../../components/empMain/EmpMonthly";
 import MonthlyOdd from "../../echart/MonthlyOdd";
-=======
->>>>>>> Stashed changes
+
+
 
 
 export function EmpMainPage() {
 
 
+
     // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
     let empNo = sessionStorage.getItem('empNo');
-<<<<<<< Updated upstream
     const position = sessionStorage.getItem("empPosition")
     const deptName = sessionStorage.getItem("deptName");
     const role = sessionStorage.getItem("empAuthority");
 
-=======
->>>>>>> Stashed changes
     const dispatch = useDispatch()
     const empMain = useCallback(() => dispatch(getChartData(empNo, 2022, 10)), [dispatch]);
     const chart = useCallback(() => dispatch(getPtoData(empNo, 2022)), [dispatch]);
+
+
 
     useEffect(() => {
         dispatch(EmpInfoActions.getInfoDetail(empNo))
@@ -38,13 +37,12 @@ export function EmpMainPage() {
     }, []);
 
     return (
-<<<<<<< Updated upstream
         <div style={{ padding: '30px' }}>
             <div style={{ display: 'flex' }}>
                 <div style={{ width: '76%' }}>
                     <div style={{ display: 'flex', height: '410px', marginBottom: '25px' }}>
                         <div style={{ width: '60%', padding: '20px 20px', height: '100%', border: '1px solid gray', marginRight: '15px', borderRadius: '7px' }}>
-                        <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>나의 근태 현황</h2>
+                            <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>나의 근태 현황</h2>
                             <div style={{ height: 'calc(100% - 30px)', border: '1px solid lightgray' }}>
 
                                 <EmpMyInfo/>
@@ -57,17 +55,9 @@ export function EmpMainPage() {
                             <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>12월 근태차트</h2>
                             <div style={{ height: 'calc(100% - 30px)', border: '1px solid lightgray' }}>
                                 <div style={{marginTop: '40px'}}>
-                                <EmpBarChart />
+                                    <EmpBarChart />
                                 </div>
                             </div>
-=======
-
-    <div className="emp_main">
-            <div className="frame">
-                <div className="content">
-                    <div className="work_status">
-                        <div className="work_MyInFo">
->>>>>>> Stashed changes
                         </div>
                     </div>
 
@@ -76,26 +66,27 @@ export function EmpMainPage() {
                             <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>2022년 이상 근태 차트</h2>
                             <div style={{ height: 'calc(100% - 30px)', border: '1px solid lightgray' }}>
 
-                            <MonthlyOdd/>
+                                <MonthlyOdd/>
 
                             </div>
                         </div>
                         <div style={{ border: '1px solid gray', width: '40%', padding: '20px 20px', borderRadius: '7px' }}>
                             <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>12월 이상 근무 현황</h2>
                             <div style={{ height: 'calc(100% - 30px)', border: '1px solid lightgray' }}>
-                            <EmpOddChart />
+                                <EmpOddChart />
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div style={{ width: '29%', paddingLeft: '15px' }}>
                     <div style={{ border: '1px solid gray', height: '410px', padding: '20px', borderRadius: '7px', marginBottom: '25px' }}>
                         <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>2022년 연차 사용 현황</h2>
                         <div style={{ height: 'calc(100% - 30px)', border: '1px solid lightgray' }}>
 
-                           <div style={{marginTop: '40px'}}>
-                           <EmpPieChart />
-                           </div>
+                            <div style={{marginTop: '40px'}}>
+                                <EmpPieChart />
+                            </div>
                         </div>
 
                     </div>
@@ -116,9 +107,7 @@ export function EmpMainPage() {
                 </div>
             </div>
         </div>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     );
+
+
 }
