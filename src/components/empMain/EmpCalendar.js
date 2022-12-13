@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
-import 'react-calendar/dist/Calendar.css';
+import '../../css/calendar.css';
 import Calendar from 'react-calendar'
+
 
 
 
@@ -11,8 +12,9 @@ export default function EmpCalendar() {
 
     return(
         <div>
-            <Calendar onChange={onChange} value={value}/>
-        </div>
+            <Calendar style={{ height: "600px", with: "800px"}} onChange={onChange} value={value}/>
+         </div>
+
     );
 }
 

@@ -34,8 +34,8 @@ export default function PtoChart(){
       },
       data: [
         
-        { value: [data != null && data.Pto[0].ptoLeftNum], name: '잔여 연차'},
-        { value: [data != null && data.Pto[0].ptoUseNum], name: '사용 연차'},
+        { value: [data != null && data.Pto[0].ptoLeftNum], name: '잔여 연차', itemStyle: { color: '#afafaf' }},
+        { value: [data != null && data.Pto[0].ptoUseNum], name: '사용 연차', itemStyle: { color: '#0080ff ' }},
         
       ]
     },
