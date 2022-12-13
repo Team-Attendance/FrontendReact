@@ -17,6 +17,7 @@ export function Header() {
       sessionStorage.clear();
         window.location.href = "/";
     };
+<<<<<<< Updated upstream
     const [modal, setModal ] = useState(false)
     // 아이피주소 호출
     // const [ ip , setIp ] = useState();
@@ -30,6 +31,8 @@ export function Header() {
     // },[])
 
   
+=======
+>>>>>>> Stashed changes
 
 
   return (
@@ -42,7 +45,7 @@ export function Header() {
           </Typography>
           </Link>
 
-          <Box sx={{ margin: '0 10px' }}>
+          <Box sx={{ margin: '0 10px', width: '100%' }}>
 
           </Box>
           {/* 환경설정 버튼 */}
@@ -52,7 +55,7 @@ export function Header() {
            {/* 아이콘 버튼 + 알럿 */}
            <IconButton color='inherit'>
             <Badge badgeContent={13} color="error">
-              <NotificationsNoneIcon />
+              <NotificationsNoneIcon  />
             </Badge>
            </IconButton>
 

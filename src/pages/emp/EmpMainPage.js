@@ -7,9 +7,12 @@ import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import { getChartData } from "../../modules/eChart";
 import { getPtoData } from "../../modules/pto";
 import EmpMyInfo from "../../components/empMain/EmpMyInfo";
+<<<<<<< Updated upstream
 import EmpOddChart from "../../components/empMain/EmpOddChart";
 import EmpMonthly from "../../components/empMain/EmpMonthly";
 import MonthlyOdd from "../../echart/MonthlyOdd";
+=======
+>>>>>>> Stashed changes
 
 
 export function EmpMainPage() {
@@ -17,10 +20,13 @@ export function EmpMainPage() {
 
     // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
     let empNo = sessionStorage.getItem('empNo');
+<<<<<<< Updated upstream
     const position = sessionStorage.getItem("empPosition")
     const deptName = sessionStorage.getItem("deptName");
     const role = sessionStorage.getItem("empAuthority");
 
+=======
+>>>>>>> Stashed changes
     const dispatch = useDispatch()
     const empMain = useCallback(() => dispatch(getChartData(empNo, 2022, 10)), [dispatch]);
     const chart = useCallback(() => dispatch(getPtoData(empNo, 2022)), [dispatch]);
@@ -32,6 +38,7 @@ export function EmpMainPage() {
     }, []);
 
     return (
+<<<<<<< Updated upstream
         <div style={{ padding: '30px' }}>
             <div style={{ display: 'flex' }}>
                 <div style={{ width: '76%' }}>
@@ -53,6 +60,14 @@ export function EmpMainPage() {
                                 <EmpBarChart />
                                 </div>
                             </div>
+=======
+
+    <div className="emp_main">
+            <div className="frame">
+                <div className="content">
+                    <div className="work_status">
+                        <div className="work_MyInFo">
+>>>>>>> Stashed changes
                         </div>
                     </div>
 
@@ -101,5 +116,9 @@ export function EmpMainPage() {
                 </div>
             </div>
         </div>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     );
 }

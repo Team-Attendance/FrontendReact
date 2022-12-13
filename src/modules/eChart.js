@@ -23,7 +23,6 @@ const initialState = {
 
 export const getChartData = (empNo, year, month) =>  dispatch => {
 
-
   axios.get('/emp-main-data', {
     params: {
       empNo: empNo,

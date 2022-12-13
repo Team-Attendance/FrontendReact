@@ -7,7 +7,7 @@ import CoPresentIcon from '@mui/icons-material/CoPresent';
 import EmpPwdModiModal from "./EmpPwdModiModal";
 import ModalPwd from "../../components/Modal/ModalPwd";
 import EmpPVModiModal from "./EmpPVModiModal";
-import SearchBar from "../../components/SearchBar";
+import InfoSearchBar from "../../components/InfoSearchBar";
 import {useDispatch, useSelector} from "react-redux";
 import EmpActions from "../../redux/modules/EmpManagement/EmpActions";
 import EmpInfoList from "../../components/EmpManagement/EmpInfoList";
@@ -101,7 +101,7 @@ const EmpInfoPage = () => {
                     </div>
 
                     <div className="company-info">
-                        <SearchBar  onSubmit={onSubmit} />
+                        <InfoSearchBar  onSubmit={onSubmit} />
                         <EmpInfoList
                             empInfo={ empInfo }
                             empData={ empData }

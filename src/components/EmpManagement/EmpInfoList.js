@@ -62,12 +62,12 @@ const EmpList = ({ empInfo , empData, handleEmpNo } ) => {
   return (
     <div className="list-wrap">
       <div className="grid-wrap">
-        <div className="real-grid" style={{ width: '100%' }}
+        <div className="real-grid" style={{ width: '90%' }}
           ref={realgridElement}>
         </div>
       </div>
       <div id='paging'
-        style={{ float: 'left', height: '100%', paddingTop: '20px' }}> - </div>
+        style={{ float: 'left', height: '100%', paddingTop: '17%' }}> - </div>
     </div>
 
   )
