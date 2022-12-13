@@ -7,14 +7,8 @@ import * as api from "../api/EmpAPI";
 
 
 const LoginPage = () => {
-
-
-    const [error, setError] = useState(null);
-    const [iderr,setIderr]=useState();
     const [tab,setTab]=useState("tab1");
-
     const dispatch = useDispatch();
-
     const { login } = useSelector(({ auth }) => {
         return {
             login: auth.login
@@ -34,7 +28,6 @@ const LoginPage = () => {
     // 로그인 인풋
     const onLoginChange = (e) => {
         e.preventDefault();
-
         const {value, name} = e.target;
         dispatch(
             changeField({
@@ -50,39 +43,34 @@ const LoginPage = () => {
     const onLogin = async(e) =>{
         e.preventDefault();
         const { empNo, empPwd } = login;
-
         const data = {
             "empNo": empNo,
             "empPwd" : empPwd,
         };
 
-
         api.Login(data).then((res) => {
             if(res.data.empNo){
-                localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
-                localStorage.setItem("empNo", res.data.empNo);
-                localStorage.setItem("deptName", res.data.deptName);
-                localStorage.setItem("empName", res.data.empName);
-                localStorage.setItem("empPosition", res.data.empPosition);
-                localStorage.setItem("empAuthority", res.data.empAuthority);
+                // localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
+                sessionStorage.setItem("empNo", res.data.empNo);
+                sessionStorage.setItem("deptName", res.data.deptName);
+                sessionStorage.setItem("empName", res.data.empName);
+                sessionStorage.setItem("empPosition", res.data.empPosition);
+                sessionStorage.setItem("empAuthority", res.data.empAuthority);
 
-                console.log('로그인 성공')
-                setTimeout(()=>{
+                if(res.data.empAuthority == 'ROLE_ADMIN') {
+                    window.location.href = "/admin/main";
+                }else if(res.data.empAuthority == 'ROLE_EMP') {
                     window.location.href = "/emp/main";
-                },1500)
+                }
             }else{
-                console.log('로그인 실패')
-                setTimeout(()=>{
-                    window.location.reload();
-                },1800)
+                alert('로그인에 실패했습니다.');
+                window.location.href = "/";
             }
         })
     }
 
     const onTab = (e) => {
         dispatch(changeFields({form:'login', key:loginInit}));
-        setIderr();
-        setError();
         setTab(e.target.value);
     }
 
@@ -96,8 +84,6 @@ const LoginPage = () => {
                   login={ login }
                   onLoginChange = { onLoginChange }
                   onLogin = { onLogin }
-                  error = {error}
-                  iderr={iderr}
                   tab={tab}
                   onTab={onTab}
               />

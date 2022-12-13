@@ -1,5 +1,6 @@
 import * as EmpAPI from "../../../api/EmpAPI"
 import Types from "../../ActionConstants"
+import {empEmailCheck} from "../../../api/EmpAPI";
 
 const EmpInfoActions = {
   getInfoDetail: (empNo) => async(dispatch)=>{
@@ -52,6 +53,23 @@ const EmpInfoActions = {
             })
         }
         },
+    empEmailCheck: (empEmail) => async(dispatch) =>{
+        dispatch({ type: Types.GET_EMPEMAIL})
+
+        try {
+            const empEmailCheck = await EmpAPI.empEmailCheck(empEmail)
+
+            dispatch({
+                type: Types.GET_EMPEMAIL_SUCCESS,
+                payload: empEmailCheck.data
+            })
+        } catch(error) {
+            dispatch({
+                type: Types.GET_EMPEMAIL_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
 }
 
 export default EmpInfoActions;

@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import '../../css/empInfo.scss';
+import '../../css/EmpReg.scss';
 import React from "react";
 import QRCode from 'react-qr-code';
 

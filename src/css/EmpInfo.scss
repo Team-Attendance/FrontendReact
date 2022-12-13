@@ -1,0 +1,96 @@
+.emp-infoP {
+  display: flex;
+
+  .emp-infoContent{
+    width: 50%;
+    //border: 1px solid red;
+    .profile{
+      display: flex;
+      align-items: center;
+      padding: 20px 15px;
+      background-color: #FAE0D0;
+      margin-bottom: 15px;
+      img{
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid lightgray;
+      }
+      span{
+        font-size: 1rem;
+        color: white;
+      }
+    }
+    .empSearch{
+      display: flex;
+      align-items: center;
+      padding: 32px 15px;
+      background-color: #FAE0D0;
+      margin-bottom: 15px;
+      margin-right: 3%;
+      span{
+        width: 30px;
+        height: 50px;
+        margin-right: 10px;
+        padding: 20px 15px;
+        overflow: hidden;
+        font-size: 1rem;
+        color: white;
+      }
+    }
+    .company-info{
+      margin-top: 5%;
+      h2{
+        font-weight: bold;
+        font-size: 1rem;
+        margin-bottom: 5px;
+      }
+      .company-table{
+        border-top: 2px solid gray;
+        border-bottom: 2px solid gray;
+        table{
+          width: 100%;
+          font-size: 0.8rem;
+          tr{
+            border-bottom: 1px solid lightgray;
+            th{
+              width: 35%;
+              padding: 15px 30px ;
+              background-color: whitesmoke;
+              text-align: right;
+              font-weight: bold;
+            }
+            td{
+              width: 65%;
+              padding: 15px 20px;
+            }
+          }
+        }
+      }
+      .company-btnWrap{
+        margin-top: 10%;
+        width: 100%;
+        display: inline-block;
+        .pwd-btn{
+          padding: 10px 15px;
+          text-align: right;
+          float: left;
+        }
+        .modify-btn{
+          padding: 10px 15px;
+          text-align: right;
+          float: right;
+        }
+        button{
+          border: 1px solid lightgray;
+          padding: 5px 20px;
+          background-color: lightgray;
+          font-weight: bold;
+          box-shadow: 0 0 3px 1px gray;
+        }
+      }
+    }
+  }
+}

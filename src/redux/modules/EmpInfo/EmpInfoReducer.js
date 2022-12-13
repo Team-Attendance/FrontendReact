@@ -66,7 +66,7 @@ const reducer = (state = initialState, {type, payload}) => {
                     }
                 }
             }
-            case Types.GET_EMPINFO_UPDATE:
+        case Types.GET_EMPINFO_UPDATE:
             return {
                 ...state,
                 empInfoDetailUpdate: {

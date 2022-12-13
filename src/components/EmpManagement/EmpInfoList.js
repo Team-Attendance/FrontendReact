@@ -3,13 +3,9 @@ import { GridView, LocalDataProvider } from 'realgrid'
 import { columns, fields } from './realgrid-data'
 import '../../css/RealGrid.scss'
 import '../../css/ApprovalList.scss'
-
 import Paging from "../Paging"
-import EmpActions from "../../redux/modules/EmpManagement/EmpActions";
-import axios from "axios";
-import {API_URL} from "../../utils/constants/Config";
 
-const EmpList = ({ empInfo } ) => {
+const EmpList = ({ empInfo , empData, handleEmpNo } ) => {
 
   const [dataProvider, setDataProvider] = useState(null)
   const [gridView, setGridView] = useState(null)
@@ -44,6 +40,8 @@ const EmpList = ({ empInfo } ) => {
       }
       setData(empInfo.data[clickData.dataRow])
       setEmpNo(empInfo.data[clickData.dataRow].empNo)
+      handleEmpNo(empInfo.data[clickData.dataRow].empNo)
+      empData=empInfo.data[clickData.dataRow].empNo
     }
 
     gv.setPaging(true, 10)
@@ -64,7 +62,7 @@ const EmpList = ({ empInfo } ) => {
     <div className="list-wrap">
       <div className="grid-wrap">
         <div className="real-grid" style={{ width: '750px' }}
-          ref={realgridElement} >
+          ref={realgridElement}   >
         </div>
       </div>
       <div id='paging'

@@ -18,21 +18,7 @@ export const getEmp = (option, query) => {
 }
 
 export const postEmpRegist = (data) =>{
-    // return axios.post(`${API_URL}/admin/emp-registration`, data, {
-    //         headers: {
-    //             "Content-Type": "multipart/form-data"
-    //         }
-    //     }
-    // )
     return axios.post(`${API_URL}/admin/emp-registration`, data)
-    // return axios({
-    //     headers: {
-    //         "Content-Type": "multipart/form-data",
-    //     },
-    //     url: `${API_URL}/admin/emp-registration`,
-    //     method: "POST",
-    //     data: data
-    // })
 }
 
 export const getEmpinfo = (empNo) =>{
@@ -41,4 +27,16 @@ export const getEmpinfo = (empNo) =>{
 
 export const updateEmpInfoByAdmin = (data) => {
     return axios.post(`${API_URL}/report/empinfo-modify`, data)
+}
+
+export const empEmailCheck = (empEmail) => {
+    return axios.post(`${API_URL}/emp/findemail`, empEmail)
+}
+
+export const empPwdCheck = (data) => {
+    return axios.post(`${API_URL}/emp/empinfo-pwdchange`, data)
+}
+
+export const empPVChange = (data) => {
+    return axios.post(`${API_URL}/emp/empinfo-modify`, data)
 }

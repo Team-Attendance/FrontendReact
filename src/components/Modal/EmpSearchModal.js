@@ -3,7 +3,7 @@ import { useState} from "react";
 import { useDispatch } from "react-redux";
 import EmpActions from "../../redux/modules/EmpManagement/EmpActions";
 
-import '../../css/empInfo.scss';
+import '../../css/EmpReg.scss';
 import SearchBar from "../SearchBar";
 import EmpSearchList from "../report/EmpSearchList";
 

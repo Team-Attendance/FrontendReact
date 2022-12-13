@@ -5,7 +5,7 @@ import './ApprovalModal.scss'
 
 const LeaveApprovalModal = ({ auth, data, closeModal, changeFlag }) => {
 
-    const approver = localStorage.getItem("empName")
+    const approver = sessionStorage.getItem("empName")
 
 
     const dateFormatting = (millisec) => {

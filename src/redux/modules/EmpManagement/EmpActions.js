@@ -7,7 +7,6 @@ const EmpActions = {
     
         try {
             const emp = await EmpAPI.getAllEmp()
-
             dispatch({
                 type: Types.GET_EMP_SUCCESS,
                 payload: emp.data

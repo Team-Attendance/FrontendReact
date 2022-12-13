@@ -8,13 +8,14 @@ import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import { getChartData } from "../../modules/eChart";
 import { getPtoData } from "../../modules/pto";
 import EmpMyInfo from "../../components/empMain/EmpMyInfo";
+import {Outlet} from "react-router-dom";
 
 
 export function EmpMainPage() {
 
 
     // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
-    let empNo = localStorage.getItem('empNo');
+    let empNo = sessionStorage.getItem('empNo');
 
     const dispatch = useDispatch()
     const empMain = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);
@@ -27,8 +28,8 @@ export function EmpMainPage() {
     }, []);
 
     return (
-
-        <div className="emp_main">
+        <Outlet>
+    <div className="emp_main">
             <div className="frame">
                 <div className="content">
                     <div className="work_status">
@@ -53,8 +54,6 @@ export function EmpMainPage() {
 
             </div>
         </div>
-               
+        </Outlet>
     );
-
-
 }

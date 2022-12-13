@@ -26,7 +26,7 @@ import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprova
 
 export function Report(){
 
-    let empNo = localStorage.getItem("empNo");
+    let empNo = sessionStorage.getItem("empNo");
     
     const [modal, setModal ] = useState(false)
     const [empModal, setEmpModal] = useState(false)

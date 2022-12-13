@@ -2,7 +2,7 @@ import thunk from 'redux-thunk';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { empInfo, empInfoDetail, leaveApprovalInfo, oddApprovalInfo, empAllAuthInfo, empAuthInfo, adminAuthInfo, empBizInfo, countInfo, WeeklyInfo, empInfoDetailUpdate} from './modules';
+import { empInfo, empInfoDetail,empEmailCheck, leaveApprovalInfo, oddApprovalInfo, empAllAuthInfo, empAuthInfo, adminAuthInfo, empBizInfo, countInfo, WeeklyInfo, empInfoDetailUpdate} from './modules';
 import leaveModal from '../modules/leaveModal';
 import auth from './modules/Login/auth';
 import calendarStatus from '../modules/calendarStatus';

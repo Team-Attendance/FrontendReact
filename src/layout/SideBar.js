@@ -65,10 +65,10 @@ export function SideBar() {
   // 큐알 모달로 이동
   const [modal, setModal] = useState(false)
 
-  const empName = localStorage.getItem("empName");
-  const position = localStorage.getItem("empPosition")
-  const deptName = localStorage.getItem("deptName");
-  const role = localStorage.getItem("empAuthority");
+  const empName = sessionStorage.getItem("empName");
+  const position = sessionStorage.getItem("empPosition")
+  const deptName = sessionStorage.getItem("deptName");
+  const role = sessionStorage.getItem("empAuthority");
 
   const adminPage = ()=>{
     if (role == 'ROLE_ADMIN') {

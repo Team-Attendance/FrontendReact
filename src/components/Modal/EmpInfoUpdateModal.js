@@ -2,7 +2,7 @@ import React from "react";
 import { useState} from "react";
 import { useDispatch } from "react-redux";
 
-import '../../css/empInfo.scss';
+import '../../css/EmpReg.scss';
 import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 
 
@@ -57,7 +57,6 @@ const EmpInfoUpdateModal = ({ empInfoDetail, closeModal}) => {
             'empFirstDayOfWork':empInfoDetail.empFirstDayOfWork,
             
         };
-        console.log(data)
         dispatch(EmpInfoActions.updateEmpInfoByAdmin(data))
         window.location.href = 'http://localhost:3000/admin/report'
         

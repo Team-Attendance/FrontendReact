@@ -5,7 +5,7 @@ const LoginAction = axios.create();
 // linux
 LoginAction.defaults.baseURL = "http://localhost:8080/";
 LoginAction.defaults.headers.common["Authorization"] =
-    "Bearer " + localStorage.getItem("ACCESS_TOKEN");
+    "Bearer " + sessionStorage.getItem("ACCESS_TOKEN");
 
 // 인터셉터 설정
 LoginAction.interceptors.response.use(

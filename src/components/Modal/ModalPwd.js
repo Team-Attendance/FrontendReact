@@ -1,5 +1,5 @@
 import React from "react";
-import '../../css/modalReg.scss'
+import '../../css/modalPwdReg.scss'
  
 function Modal(props) {
  
@@ -8,8 +8,8 @@ function closeModal() {
   }
  
   return (
-    <div className="Modal" onClick={closeModal}>
-      <div className="modalRegBody" onClick={(e) => e.stopPropagation()}>
+    <div className="PwdModal" onClick={closeModal}>
+      <div className="modalPwdRegBody" onClick={(e) => e.stopPropagation()}>
         <button id="modalCloseBtn" onClick={closeModal}>
           ✖
         </button>

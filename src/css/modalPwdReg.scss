@@ -1,5 +1,5 @@
 
-.Modal {
+.PwdModal {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,10 +13,10 @@
 }
 
 /* modal창 */
-.modalRegBody {
+.modalPwdRegBody {
   position: absolute;
-  width: 500px;
-  height: 830px;
+  width: 600px;
+  height: 330px;
   padding: 30px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
