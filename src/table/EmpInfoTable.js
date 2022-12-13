@@ -2,7 +2,14 @@
 
 
 const EmpInfoTable = ({empInfoDetail}) => {
+    const dateFormatting = (millisec) =>{
+        // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
+        const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '-')
     
+        return date
+      }
+
+
     return(
                 <table className="table">
                                         
@@ -45,7 +52,7 @@ const EmpInfoTable = ({empInfoDetail}) => {
                                                 <thead className="tablerow">
                                                 <tr >
                                                 <td className="background">입사일자</td>
-                                                <td className="center">{empInfoDetail.empFirstDayOfWork}</td>
+                                                <td className="center">{dateFormatting(empInfoDetail.empFirstDayOfWork)}</td>
                                                 
                                                 
                                                 

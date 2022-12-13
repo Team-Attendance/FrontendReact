@@ -2,7 +2,7 @@ import React from "react";
 import { useState} from "react";
 import { useDispatch } from "react-redux";
 
-import '../../css/EmpReg.scss';
+import '../../css/EmpInfo.scss';
 import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 
 
@@ -41,7 +41,12 @@ const EmpInfoUpdateModal = ({ empInfoDetail, closeModal}) => {
     const handleEmpContactList = (e) => {
         setEmpContactList(e.target.value);
     }
+    const dateFormatting = (millisec) =>{
+        // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
+        const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '-')
 
+        return date
+      }
     
     function handleUpdate (e) {
        
@@ -57,6 +62,7 @@ const EmpInfoUpdateModal = ({ empInfoDetail, closeModal}) => {
             'empFirstDayOfWork':empInfoDetail.empFirstDayOfWork,
             
         };
+        // console.log(data)
         dispatch(EmpInfoActions.updateEmpInfoByAdmin(data))
         window.location.href = 'http://localhost:3000/admin/report'
         
@@ -87,13 +93,20 @@ const EmpInfoUpdateModal = ({ empInfoDetail, closeModal}) => {
                                 <option value={'개발'}>개발</option>
                             </select></li>
                         
-                        <li className="infoLi"><div className="infoLabel">직급</div><input className="infoInput" required onChange={handleEmpPosition} defaultValue={empInfoDetail.empPosition} ></input></li> 
+                        <li className="infoLi"><div className="infoLabel">직급</div> <select className="infoInput" name='deptName' required='직급을 선택하세요'  onChange={handleEmpPosition}>
+                                <option value={'none'}>{empInfoDetail.empPosition}</option>
+                                <option value={'수석연구원'}>수석연구원</option>
+                                <option value={'책임연구원'}>책임연구원</option>
+                                <option value={'선임연구원'}>선임연구원</option>
+                                <option value={'연구원'}>연구원</option>
+                                <option value={'연구보조원'}>연구보조원</option>
+                            </select></li>
                        
                         <li className="infoLi"><div className="infoLabel">이메일</div> <input className="infoInput" required onChange={handleEmpEmail} defaultValue={empInfoDetail.empEmail}></input></li>                          
                         <li className="infoLi"><div className="infoLabel">휴대폰</div>  <input className="infoInput" required onChange={handleEmpCellPhone} defaultValue={empInfoDetail.empCellPhone}></input></li>                          
-                        {/* <li className="infoLi"><div className="infoLabel">사내 번호</div> <input className="infoInput" required onChange={handleOfficePhone} defaultValue={empInfoDetail.empOfficePhone}> </input>  </li>                         */}
+                        {/* <li className="infoLi"><div className="infoLabel">사내 번호</div> <input className="infoInput" required onChange={handleEmpOfficePhone} defaultValue={empInfoDetail.empOfficePhone}> </input></li>                         */}
                         <li className="infoLi"><div className="infoLabel">비상연락망</div> <input  className="infoInput" required onChange={handleEmpContactList} defaultValue={empInfoDetail.empContactList}></input></li> 
-                        <li className="infoLi"><div className="infoLabel">입사일자</div> <div className="infoInput" readOnly>{empInfoDetail.empFirstDayOfWork}</div></li>
+                        <li className="infoLi"><div className="infoLabel">입사일자</div> <div className="infoInput" readOnly>{dateFormatting(empInfoDetail.empFirstDayOfWork)}</div></li>
                     </ul>
                     
                     

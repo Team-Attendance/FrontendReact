@@ -12,8 +12,6 @@ import EmpMonthly from "../../components/empMain/EmpMonthly";
 import MonthlyOdd from "../../echart/MonthlyOdd";
 
 
-
-
 export function EmpMainPage() {
 
 

@@ -5,6 +5,19 @@ export default function PtoChart(){
   const data = useSelector(state => state.eChart.data)
 
   const eChartsOption = {
+    color:[
+      '#1A73E8',
+      '#F24646',
+      
+    ],
+    
+    tooltip: {
+      trigger: 'item'
+    },
+    legend: {
+      top: '0%',
+      left: 'center'
+    },
     series:  {
       responsive: false,
       name: '이상 근태율',
@@ -39,6 +52,10 @@ export default function PtoChart(){
         {
           name: '이상근태',
           value : [data != null && data.oddBizHourCount.oddBizCount],
+        },
+        {
+          name: '휴가',
+          value : [data != null && data.oddBizHourCount.leaveCount],
         },
       ]
     },

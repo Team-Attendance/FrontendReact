@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactEchart from "echarts-for-react"
-
-export default function MonthlyOdd(){
+import { useDispatch, useSelector } from "react-redux";
+export default function MonthlyOdd({MonthliyInfo}){
   
- 
+  // const data = useSelector(state => state.MonthliyInfo.data)
 
   const eChartsOption =  {
     xAxis: {
@@ -15,6 +15,19 @@ export default function MonthlyOdd(){
       },
       series: [
         {
+          color: [
+          
+            '#45A5F5',
+            '#e69d87',
+            '#8dc1a9',
+            '#ea7e53',
+            '#eedd78',
+            '#73a373',
+            '#73b9bc',
+            '#7289ab',
+            '#91ca8c',
+            '#f49f42'
+          ],
           data: [
             5,
             {
@@ -41,7 +54,7 @@ export default function MonthlyOdd(){
 
   return (  
     <div>
-      <ReactEchart option={eChartsOption} style={{ height: "350px"}} />
+      <ReactEchart option={eChartsOption} style={{ height: "240px"}} />
     </div>
   );
 }

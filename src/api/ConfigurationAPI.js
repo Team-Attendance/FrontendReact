@@ -16,3 +16,11 @@ export const getAllAuthotityEmp = () => {
 export const getEmpBiz = () => {
     return axios.get(`${API_URL}/empconfiguration/bizhour`)
 }
+
+export const updateBhTime = (data) => {
+    return axios.post(`${API_URL}/empconfiguration/bizhour/post`, data)
+}
+
+export const modifyEmpAuthority = (update) => {
+    return axios.post(`${API_URL}/empconfiguration/authority/post`, update)
+}

@@ -37,8 +37,8 @@ const EmpList = ({empInfo}) => {
                 return;
             }
             const empNo = empInfo.data[clickData.dataRow].empNo
-            console.log(empNo)
             // window.location.href = `/admin/report/${empNo}`
+            window.location.href = `/admin/report`
         }
 
         gv.setPaging(true, 10)

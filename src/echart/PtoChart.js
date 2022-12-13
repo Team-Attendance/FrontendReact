@@ -8,6 +8,18 @@ export default function PtoChart(){
 
 
   const eChartsOption = {
+    color: [
+
+      '#2f4554',
+      '#61a0a8',
+    ],
+    tooltip: {
+      trigger: 'item'
+    },
+    legend: {
+      top: '0%',
+      left: 'center'
+    },
     series:  {
       name: '연차 사용률',
       type: 'pie',
@@ -17,9 +29,13 @@ export default function PtoChart(){
         borderRadius: 0,
         borderColor: 'white',
         borderWidth: 1
+
+      },
+      areaStyle: {
+
       },
       label: {
-        show: false,
+        show: true,
         position: 'center'
       },
       emphasis: {
@@ -34,8 +50,8 @@ export default function PtoChart(){
       },
       data: [
         
-        { value: [data != null && data.Pto[0].ptoLeftNum], name: '잔여 연차', itemStyle: { color: '#afafaf' }},
-        { value: [data != null && data.Pto[0].ptoUseNum], name: '사용 연차', itemStyle: { color: '#0080ff ' }},
+        { value: [data != null && data.Pto[0].pto_left_num], name: '잔여 연차'},
+        { value: [data != null && data.Pto[0].pto_use_num], name: '사용 연차'},
         
       ]
     },
@@ -43,7 +59,7 @@ export default function PtoChart(){
 
   return (  
     <div>
-      <ReactEchart option={eChartsOption} style={{ height: "180px"}} />
+      <ReactEchart option={eChartsOption} style={{ height: "170px", backgroundColor:"white",}} />
     </div>
   );
 }

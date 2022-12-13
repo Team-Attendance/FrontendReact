@@ -50,7 +50,7 @@ const EmpInfoUpdateModal = ({ empInfo, closeModal}) => {
                     
                     
                         <div className="button">
-                            <button className="stChange">바로가기</button>
+                          
                             <button className="stChange" onClick={closeButton}>닫기</button>
                         </div>
                    

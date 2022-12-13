@@ -3,11 +3,11 @@ import * as ReportAPI from "../../../api/ReportAPI";
 
 
 const ReportActions= {
-    getWeeklyBizTime: () => async(dispatch) =>{
+    getWeeklyBizTime: (empNo) => async(dispatch) =>{
         dispatch({ type: Types.GET_REPORT_WEEKLIY})
     
         try {
-            const configgg = await ReportAPI.getWeeklyBizTime();
+            const configgg = await ReportAPI.getWeeklyBizTime(empNo);
             
             dispatch({
                 type: Types.GET_REPORT_WEEKLIY_SUCCESS,

@@ -8,6 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Badge from '@mui/material/Badge';
 import { Link } from 'react-router-dom';
+import ConfigMenu from "../components/configuration/ConfigMenu"
+import { useState } from 'react';
 
 export function Header() {
 
@@ -15,7 +17,7 @@ export function Header() {
       sessionStorage.clear();
         window.location.href = "/";
     };
-
+    const [modal, setModal ] = useState(false)
     // 아이피주소 호출
     // const [ ip , setIp ] = useState();
 
@@ -27,7 +29,7 @@ export function Header() {
     //         })
     // },[])
 
-
+  
 
 
   return (
@@ -43,7 +45,10 @@ export function Header() {
           <Box sx={{ margin: '0 10px' }}>
 
           </Box>
-
+          {/* 환경설정 버튼 */}
+          
+          <ConfigMenu />
+         
            {/* 아이콘 버튼 + 알럿 */}
            <IconButton color='inherit'>
             <Badge badgeContent={13} color="error">

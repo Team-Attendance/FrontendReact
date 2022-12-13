@@ -1,10 +1,22 @@
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import ReactEchart from "echarts-for-react"
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import ReportActions from '../redux/modules/report/ReportActions';
 const WeeklyBizTimeChart = ({ WeeklyInfo }) => {
   
- 
+//   function getDayOfWeek(날짜문자열){ //ex) getDayOfWeek('2022-06-13')
+
+//     const week = [ '월', '화', '수', '목', '금'];
+
+//     const dayOfWeek = week[new Date(날짜문자열).getDay()];
+
+//     return dayOfWeek;
+// useEffect(() => {
+  
+//   dispatch(ReportActions.getWeeklyBizTime(new Date().getDay()))
+// }, [dispatch])
+// }
+  const dispatch = useDispatch();
 
   // console.log (WeeklyInfo)
   const data = useSelector(state => state.WeeklyInfo.data)
@@ -14,16 +26,24 @@ const WeeklyBizTimeChart = ({ WeeklyInfo }) => {
   // console.log(WeeklyInfo)
 
   const eChartsOption = {
+    color: [
+    
+    '#91c7ae',
+    '#749f83',
+    '#ca8622',
+    '#bda29a',
+    ],
     xAxis: {
         type: 'category',
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
-      
+        
       },
       yAxis: {
         type: 'value'
       },
       series: [
         {
+          barWidth: '30%',
           data: [8,
             8,
             8,

@@ -25,6 +25,16 @@ const initialState = {
     empBizInfo: {
         loading: false,
         data: {
+            deptNo:'',            
+            deptName: '',
+            bhGetInto: '',
+            bhGetOff: ''
+        }
+    },
+    updateEmpBizInfo: {
+        loading: false,
+        data: {
+            deptNo:'',            
             deptName: '',
             bhGetInto: '',
             bhGetOff: ''
@@ -134,6 +144,35 @@ const reducer = (state = initialState, {type, payload}) => {
                             }
                         }
                     }
+                    case Types.GET_CONFIG_BIZ_MODI:
+                        return {
+                            ...state,
+                            updateEmpBizInfo: {
+                                ...state.updateEmpBizInfo,
+                                loading: true,
+                                data: payload
+                            }
+                        }
+                    case Types.GET_CONFIG_BIZ_MODI_SUCCESS:
+                        return {
+                            ...state,
+                            updateEmpBizInfo: {
+                                ...state.updateEmpBizInfo,
+                                loading: false,
+                                data: payload
+                            }
+                        }
+                    case Types.GET_CONFIG_BIZ_MODI_FAILURE:
+                        return {
+                            ...state,
+                            updateEmpBizInfo: {
+                                ...state.updateEmpBizInfo,
+                                loading: false,
+                                data: {
+                                    error: payload
+                                }
+                            }
+                        }
                     case Types.GET_CONFIG_ALL:
                         return {
                             ...state,
