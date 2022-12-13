@@ -19,6 +19,10 @@ import { setDeptCalendar } from "../../modules/deptCalendar";
 
 export function EmpDailyPage() {
 
+  const sessionUserNo = sessionStorage.getItem("empNo");
+  const sessionDeptName = sessionStorage.getItem("deptName");
+  
+
   // store 변수
   const calendar = useSelector(state => state.calendar.calendar);
   const calendarData = useSelector(state => state.calendar.data);
@@ -33,8 +37,8 @@ export function EmpDailyPage() {
 
   // store 함수
   const dispatch = useDispatch();
-  const setCompoCalendar = useCallback(() => dispatch(setCalendar(1)), [dispatch]);
-  const setDeptCompoCalendar = useCallback(() => dispatch(setDeptCalendar(1)), [dispatch]);
+  const setCompoCalendar = useCallback(() => dispatch(setCalendar(sessionUserNo)), [dispatch, sessionUserNo]);
+  const setDeptCompoCalendar = useCallback(() => dispatch(setDeptCalendar(sessionUserNo, sessionDeptName)), [dispatch, sessionUserNo, sessionDeptName]);
 
   const closeModal = useCallback(() => dispatch(close()), [dispatch]);
   const onUpdate = useCallback((empNo, year, month) => dispatch(getStatusData(empNo, year, month)), [dispatch]);
@@ -44,13 +48,13 @@ export function EmpDailyPage() {
     dispatch(clear());
     setCompoCalendar();
     setDeptCompoCalendar();
-  }, [closeModal, setCompoCalendar, setDeptCompoCalendar])
+  }, [closeModal, setCompoCalendar, setDeptCompoCalendar, dispatch])
 
   useEffect(() => {
     if (year !== 0 && month !== 0) {
-      onUpdate(1, year, month);
+      onUpdate(sessionUserNo, year, month);
     }
-  }, [month, year, onUpdate])
+  }, [sessionUserNo, month, year, onUpdate])
 
   return (
     <>
@@ -81,7 +85,7 @@ export function EmpDailyPage() {
               </div>
               <p style={{ width: '90px', height: '50px', position: 'absolute', top: '46%', left: 'calc(50% - 45px)', textAlign: 'center', fontWeight: 'bold', fontSize: '1rem' }}>
                 <span>이상근태율</span><br />
-                <span>{statusData.oddBizHourCount.oddBizCount === 0 || statusData.oddBizHourCount.normalCount === 0 ? 0 : Math.round(((statusData.oddBizHourCount.oddBizCount / (statusData.oddBizHourCount.normalCount + statusData.oddBizHourCount.oddBizCount)) * 100) * 10) / 10}%</span>
+                <span>{statusData.oddBizHourCount.oddBizCount !== 0 && statusData.oddBizHourCount.normalCount === 0 ? 100 : statusData.oddBizHourCount.oddBizCount === 0 || statusData.oddBizHourCount.normalCount === 0 ? 0 : Math.round(((statusData.oddBizHourCount.oddBizCount / (statusData.oddBizHourCount.normalCount + statusData.oddBizHourCount.oddBizCount)) * 100) * 10) / 10}%</span>
               </p>
             </div>
 

@@ -107,6 +107,24 @@ export const columns = [
       text: "휴가 상태",
       showTooltip: false,
     },
+    styleCallback: (grid, dataCell) => {
+      switch (dataCell.value) {
+        case '오전휴가':
+          return {
+            styleName: 'morning-leave'
+          }
+        case '오후휴가':
+          return {
+            styleName: 'afternoon-leave'
+          }
+        case '휴가':
+          return {
+            styleName: 'normal-leave'
+          }
+        default:
+          return
+      }
+    },
   },
   {
     name: "state",
@@ -152,5 +170,23 @@ export const columns = [
     header: {
       text: "이상 근태 승인 여부",
       showTooltip: false,
+    },
+    styleCallback: (grid, dataCell) => {
+      switch (dataCell.value) {
+        case '승인':
+          return {
+            styleName: 'state-approve'
+          }
+        case '반려':
+          return {
+            styleName: 'state-companion'
+          }
+        case '대기':
+          return {
+            styleName: 'state-waiting'
+          }
+        default:
+          return
+      }
     },
   }]

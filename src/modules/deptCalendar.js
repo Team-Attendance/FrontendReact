@@ -24,12 +24,13 @@ const initialState = {
   nowDate: null,
 };
 
-export const setDeptCalendar = (empNo) => dispatch => {
+export const setDeptCalendar = (empNo, deptName) => dispatch => {
   const calendar = initCalendar();
 
   axios.get('/dept-calendar-data', {
     params: {
       empNo: empNo,
+      deptName: deptName,
       year: calendar[6][0].thisYear,
       month: calendar[6][1].thisMonth + 1
     }
@@ -47,12 +48,13 @@ export const setDeptCalendar = (empNo) => dispatch => {
   )
 };
 
-export const updateDeptCalendar = (empNo, year, month, direction, nowDate) => dispatch => {
+export const updateDeptCalendar = (empNo, deptName, year, month, direction, nowDate) => dispatch => {
   const calendar = moveMonth(year, month, direction, nowDate);
 
   axios.get('/dept-calendar-data', {
     params: {
       empNo: empNo,
+      deptName: deptName,
       year: calendar[6][0].thisYear,
       month: calendar[6][1].thisMonth + 1
     }

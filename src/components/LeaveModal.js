@@ -11,6 +11,8 @@ import { getStatusData } from "../modules/calendarStatus";
 import { Link } from "react-router-dom";
 
 const LeaveModal = () => {
+  const sessionEmpNo = sessionStorage.getItem("empNo");
+
   const [showEndDate, setShowEndDate] = useState(true);
   const [showLeaveCompletion, setShowLeaveCompletion] = useState(false);
 
@@ -41,7 +43,7 @@ const LeaveModal = () => {
     axios.post('/emp-leave', {
       leaveStartDate: leaveStartDate.current.value,
       leaveEndDate: leaveEndDate.current != null && leaveEndDate.current.value,
-      empNo: 1,
+      empNo: sessionEmpNo,
       leaveType: leaveType.current.value,
       leaveDetail: leaveDetail.current.value,
 
@@ -75,7 +77,7 @@ const LeaveModal = () => {
                   : axios.get('/leave-check', {
                     params: {
                       date: leaveEndDate.current != null && leaveEndDate.current.value,
-                      empNo: 1
+                      empNo: sessionEmpNo
                     }
                   }).then(
                     (response) => {
@@ -160,7 +162,7 @@ const LeaveModal = () => {
 
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Link to="/emp/leave-info"><input type="button" value="휴가 현황 페이지로 이동" /></Link>
-                <input type="button" value="확인" onClick={() => { setShowLeaveCompletion(false); onClose(); onUpdate(1, year, month); }} />
+                <input type="button" value="확인" onClick={() => { setShowLeaveCompletion(false); onClose(); onUpdate(sessionEmpNo, year, month); }} />
               </div>
             </div>
           </div>

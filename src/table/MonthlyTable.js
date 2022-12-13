@@ -5,7 +5,6 @@ import { columns, fields } from './realgrid_dataMonthly'
 import '../css/monthlyTable.scss';
 
 import { useSelector } from "react-redux"
-import { current } from "immer";
 
 const MonthlyTable = () => {
   const data = useSelector(state => state.monthlyTable.data);

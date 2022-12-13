@@ -44,18 +44,48 @@
     border-right: 1px solid lightgray;
   }
 
-  .odd-biz{
+  .odd-biz {
     color: red;
     font-weight: bold;
   }
 
-  .normal{
+  .normal {
     color: #68B984;
+    font-weight: bold;
+  }
+
+  .morning-leave {
+    color: #FF9F40;
+    font-weight: bold;
+  }
+
+  .afternoon-leave {
+    color: #00B3B3;
+    font-weight: bold;
+  }
+
+  .normal-leave {
+    color: #2893F8;
+    font-weight: bold;
+  }
+
+  .state-approve {
+    color: #4BC0C0;
+    font-weight: bold;
+  }
+
+  .state-companion {
+    color: #FF4673;
+    font-weight: bold;
+  }
+
+  .state-waiting {
+    color: gray;
     font-weight: bold;
   }
 }
 
-.on{
+.on {
   font-weight: bold;
-  color:#40DAB2;
+  color: #FF9292;
 }

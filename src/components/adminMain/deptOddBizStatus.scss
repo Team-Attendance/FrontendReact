@@ -1,0 +1,56 @@
+.admin-main-page {
+  &.dept-odd-biz-status {
+    border: 1px solid lightgray;
+
+    & .status-element {
+      border-bottom: 1px solid lightgray;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & .empty-odd-biz {
+        font-size: 0.8rem;
+        color: gray;
+        opacity: 0.9;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      & .emp-info {
+        width: 110px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        &>span {
+          color: gray;
+        }
+      }
+
+      & .emp-odd-biz-bar {
+        width: 170px;
+        height: 20px;
+        border: 1px solid lightgray;
+        background-color: whitesmoke;
+        display: flex;
+        position: relative;
+        margin: 0 7px;
+
+        &>div {
+          background-color: #FF6384;
+        }
+      }
+
+      & .emp-odd-biz-persent {
+        width: 35px;
+        font-weight: bold;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
