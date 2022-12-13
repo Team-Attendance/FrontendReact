@@ -9,7 +9,7 @@ const EmpLeavePage = () => {
 
 
   useEffect(() => {
-    const empNo = localStorage.getItem("empNo")
+    const empNo = sessionStorage.getItem("empNo")
     dispatch(LeaveApprovalActions.getLeaveRequest(empNo))
   }, [dispatch])
 

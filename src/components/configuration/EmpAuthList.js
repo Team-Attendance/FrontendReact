@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 import { GridView, LocalDataProvider } from 'realgrid'
-import { columns, fields } from './realgrid-dataAuth'
+import { columns, fields, filters } from './realgrid-dataAuth'
 
 
-const EmpAuthList = ({empAllAuthInfo}) => {
+const EmpAuthList = ({empAuthInfo, empAllAuthInfo, adminAuthInfo}) => {
     const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
+    const [filters, setFilters] = useState()
     const realgridElement = useRef(null)
 
    
-   
+    
 
     useEffect(() => {
         const container = realgridElement.current
@@ -18,14 +19,25 @@ const EmpAuthList = ({empAllAuthInfo}) => {
     
         gv.setDataSource(dp)
         dp.setFields(fields)
+        dp.setFilters(filters)
+        gv.setColumnFilters("empAuthority",filters)
         gv.setColumns(columns)
         gv.footer.visible = false
         dp.setRows(empAllAuthInfo.data)
         gv.setEditOptions({editable: false})
-        
+        gv.setDisplayOptions({
+            fitStyle: "evenFill"
+            
+        })
+        gv.setStateBar({
+          visible: false
+        });
+        gv.toggleAllColumnFilters("empAuthority")
+        gv.editOptions.insertable = true;
+        gv.editOptions.appendable = true;
         setDataProvider(dp)
         setGridView(gv)
-    
+        
         return () => {
           dp.clearRows()
           gv.destroy()
@@ -34,15 +46,20 @@ const EmpAuthList = ({empAllAuthInfo}) => {
         }
       }, [empAllAuthInfo.data])
 
-    
+   
 
     return (
-        <div>
+        
             <div
-                style={{ height: '372px', width: '360px' }}
-                ref={realgridElement}></div>
+                
+                style={{ height: '100%', width: '100%' }}
+                ref={realgridElement}>
+               
+                  
+                </div>
+                
    
-        </div>
+        
     )
     }
 

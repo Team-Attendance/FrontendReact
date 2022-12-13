@@ -9,7 +9,7 @@ import CoPresentIcon from '@mui/icons-material/CoPresent';
 
 const EmpInfoPage = () => {
 
-  let empNo = localStorage.getItem("empNo");
+  let empNo = sessionStorage.getItem("empNo");
   const dispatch = useDispatch()
   const [empInfoDetail , setEmpInfoDetail] = useState([{}])
 

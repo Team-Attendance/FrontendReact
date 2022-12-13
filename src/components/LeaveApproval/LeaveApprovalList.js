@@ -18,12 +18,12 @@ const LeaveApprovalList = ({ changeFlag }) => {
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
-
+    const [Filters, setFilters] = useState({})
     const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
 
-    const approver = localStorage.getItem("empName")
+    const approver = sessionStorage.getItem("empName")
 
     useEffect(() => {
         const container = realgridElement.current
@@ -32,6 +32,7 @@ const LeaveApprovalList = ({ changeFlag }) => {
 
         gv.setDataSource(dp)
         dp.setFields(fields)
+        dp.setFilters(fields)
         gv.setColumns(columns)
         dp.setRows(leaveApprovalInfo.data)
         // realGrid 설정

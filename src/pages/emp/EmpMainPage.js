@@ -14,7 +14,7 @@ export function EmpMainPage() {
 
 
     // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
-    let empNo = localStorage.getItem('empNo');
+    let empNo = sessionStorage.getItem('empNo');
 
     const dispatch = useDispatch()
     const empMain = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);

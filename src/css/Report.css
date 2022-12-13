@@ -1,10 +1,12 @@
-.wrap {
-    width: 95%;
-    height: 90%;
-    overflow: auto;
+.wrapp {
+    width: 100%;
+    height: 100%;
+    
+   
+    background-color: #F3F3F3;
 }
 .container {
-    width: 100%;
+    width: 98%;
     display: flex;
     justify-content: space-between;
     
@@ -12,42 +14,46 @@
 .left-wrap {
     width: 49%;
     /* height: 100%; */
-    border:1px solid #000;
-    border-radius: 10px;
+    /* border:1px solid #000; */
+    height: 100%;
 }  
 .left {
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
-    width: 100%;
+    width: 90%;
     height: 100%;
-    margin: 30px;
+    margin: 50px;
 }
 .emp-info,
 .leave-adj,
 .odd-adj {
     width: 100%;
-    height: 30%;
+    height: 28%;
     overflow: auto;
+    margin: 10px;
+    
 }
 
 
 .mini {
     display: flex;
-    width: 90%;
-    height: 80%;
-    border: 1px solid #000;
+    width: 100%;
+    height: 70%;
+    
 
 }
 .image {
     height: 100%;
-    width: 25%;
+    width: 20%;
     border: 1px solid #000;
 }
 .emptable {
+    display: absolute;
     height: 100%;
     width: 75%;
     text-align: center;
+    background-color: white;
     
 }
 
@@ -65,6 +71,7 @@
 
 
 .right_wrap {
+    margin-top: 3%;
     width: 49%;
     height: 90%;
 }
@@ -78,47 +85,56 @@
     width: 100%;
     
     display: flex;
-    border-radius: 20px;
+    border-radius: 10px;
     /* padding: 10px; */
     box-sizing: border-box;
+    
 }
 .box > div {
     width: 49%;
-    border: 1px solid #000;
-    border-radius: 20px;
+    
+    
     padding: 10px;
     box-sizing: border-box;
-   
+   background-color: white;
+   box-shadow: 0px 1.5px 2px rgba(0, 0, 0, 0.25);
 }
 
 .box > div:first-child {
     margin-right: 2%;
+    box-shadow: 0px 1.5px 2px rgba(0, 0, 0, 0.25);
 }
+
 .box,
 .topp {
     height: 30%;
-    border-radius: 20px;
+    
     /* padding: 10px; */
     box-sizing: border-box;
     margin: 10px;
+    
+    
 }
 
 .topp {
     width: 100%;
-    border: 1px solid #000;
-    border-radius: 20px;
+   
+   
     padding: 10px;
     box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0px 1.5px 2px rgba(0, 0, 0, 0.25);
+    margin: 15px;
 }
 
 .table {
     width: 100%;
     height: 100%;
-    border: 1px solid #000;
+    border: 0.1px solid #000;
     
 }
 .background {
-    background-color: #E0E0E0;
+    background-color: #CAEAF6;
     
 }
 
@@ -139,10 +155,33 @@ thead {
 }
 
 .butt {
+    display: relative;
     width: 80px;
     height: 30px;
     border:1px solid black;
     align-content: center;
     border-radius: 5px;
+    background: white;
+    margin-top: 10px;
+    text-align: center;
+    margin-right: 100px;
+}
+.right top{
+   
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 1.5px 2px rgba(0, 0, 0, 0.25);
+    margin-right: 100px;
+}
+
+p {
+    text-align: start;
     
 }
+.start {
+    margin-right: 450px;
+}
+/* .end {
+    margin-right: 100px;
+} */

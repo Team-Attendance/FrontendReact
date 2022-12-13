@@ -71,6 +71,40 @@ const ConfigurationActions = {
                 payload: error.toString()
             })
         }
+    },
+    updateBhTime: (data) => async(dispatch) =>{
+        dispatch({ type: Types.GET_CONFIG_BIZ_MODI})
+    
+        try {
+            const configgg = await ConfigurationAPI.updateBhTime(data);
+            
+            dispatch({
+                type: Types.GET_CONFIG_BIZ_MODI_SUCCESS,
+                payload: configgg.data
+            })
+        } catch(error) {
+            dispatch({
+                type: Types.GET_CONFIG_BIZ_MODI_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+    modifyEmpAuthority: (update) => async(dispatch) =>{
+        dispatch({ type: Types.GET_CONFIG_ALL})
+    
+        try {
+            const configgg = await ConfigurationAPI.modifyEmpAuthority(update);
+            
+            dispatch({
+                type: Types.GET_CONFIG_ALL_SUCCESS,
+                payload: configgg.data
+            })
+        } catch(error) {
+            dispatch({
+                type: Types.GET_CONFIG_ALL_FAILURE,
+                payload: error.toString()
+            })
+        }
     }
 }
 

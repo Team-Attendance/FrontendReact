@@ -22,6 +22,23 @@ export const fields = [{
 }
 ];
 
+export const filters =[
+    {
+      name: "ROLE_ADMIN",
+      criteria: "value = 'ROLE_ADMIN'"
+    },    {
+        name: "ROLE_EMP",
+        criteria: "value = 'ROLE_EMP'"
+      },
+  
+      
+      
+    ];
+  
+
+
+
+
 export const columns = [{
     name: "empNo",
     fieldName: "empNo",
@@ -75,18 +92,43 @@ export const columns = [{
         text: "직급",
         showTooltip: false,
     }
-}, {
+}, 
+{
     name: "empAuthority",
     fieldName: "empAuthority",
-    type: "data",
-    width: "80",
-    styles: {
-        textAlignment: "center"
+    width: 100,
+    sortable: false,
+    lookupDisplay: true,
+    values: [
+        "ROLE_ADMIN",
+        "ROLE_EMP"
+        
+    ],
+    labels: [
+        "ROLE_ADMIN",
+        "ROLE_EMP",
+        
+    ],
+    editor: {
+        type: "dropdown"
     },
     header: {
         text: "권한",
-        showTooltip: false,
+        styleName: "orange-column"
     }
-}
+  },
+// {
+//     name: "empAuthority",
+//     fieldName: "empAuthority",
+//     type: "data",
+//     width: "80",
+//     styles: {
+//         textAlignment: "center"
+//     },
+//     header: {
+//         text: "권한",
+//         showTooltip: false,
+//     }
+// }
 
 ]

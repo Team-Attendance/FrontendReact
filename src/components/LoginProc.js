@@ -8,7 +8,7 @@ const LoginProc = ({
   const pwd_reg = "^[~!@#$%^&*()_+|<>?:{}a-z0-9A-Z]{8,16}$";
 
   /*로그인 페이지 로그아웃처리*/
-    localStorage.clear();
+    sessionStorage.clear();
 
 
   return (

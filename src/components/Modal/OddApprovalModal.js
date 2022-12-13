@@ -4,7 +4,7 @@ import './ApprovalModal.scss'
 
 const OddApprovalModal = ({ auth, data, closeModal, changeFlag }) => {
 
-    const approver = localStorage.getItem("empName")
+    const approver = sessionStorage.getItem("empName")
 
     const dateFormatting = (millisec) => {
         // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
