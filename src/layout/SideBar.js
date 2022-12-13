@@ -13,7 +13,6 @@ import EmpQrModal from '../components/empMain/EmpQrModal';
 import axios from "axios";
 
 
-
 // Meterial UI
 const drawerWidth = 240;
 
@@ -61,95 +60,102 @@ const SideWrap = styled.div`
     display: none;
 }
 `
+
 export function SideBar() {
 
-  // 큐알 모달로 이동
-  const [modal, setModal] = useState(false)
-  const [img, setImg] = useState('')
+    // 큐알 모달로 이동
+    const [modal, setModal] = useState(false)
+    const [img, setImg] = useState('')
 
-  const empName = sessionStorage.getItem("empName");
-  const position = sessionStorage.getItem("empPosition")
-  const deptName = sessionStorage.getItem("deptName");
-  const role = sessionStorage.getItem("empAuthority");
+    const empName = sessionStorage.getItem("empName");
+    const position = sessionStorage.getItem("empPosition")
+    const deptName = sessionStorage.getItem("deptName");
+    const role = sessionStorage.getItem("empAuthority");
 
-  const adminPage = ()=>{
-    if (role == 'ROLE_ADMIN') {
-        return <AdminSide />
+    const adminPage = () => {
+        if (role == 'ROLE_ADMIN') {
+            return <AdminSide/>
+        }
     }
-  }
-  const empPage = ()=>{
-    if (role == 'ROLE_ADMIN' || role == 'ROLE_EMP') {
-      return <EmpSide />
+    const empPage = () => {
+        if (role == 'ROLE_ADMIN' || role == 'ROLE_EMP') {
+            return <EmpSide/>
+        }
     }
-  }
 
-  const onSubmit = () => {
-    setModal(true);
-  }
+    const onSubmit = () => {
+        setModal(true);
+    }
 
-
-  useEffect(async() => {
-    await axios({
-      url: `http://localhost:8080/emp/images/${sessionStorage.getItem("empNo")}`,
-      method: "GET",
-      responseType: 'blob'
-    }) .then((response) => {
-      setImg(response.data);
-    })
-        .catch((error) => {
-          console.log(error);
+    const getImg = async () => {
+        await axios({
+            url: `http://localhost:8080/emp/images/${sessionStorage.getItem("empNo")}`,
+            method: "GET",
+            responseType: 'blob'
+        }).then((response) => {
+            setImg(response.data);
         })
-  },[])
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
-  return(
-      <Drawer
-          variant="permanent"
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box'},
+    useEffect(() => {
+        getImg()
+    }, [])
 
-          }}
-      >
+    return (
+        <Drawer
+            variant="permanent"
+            sx={{
+                width: drawerWidth,
+                flexShrink: 0,
+                [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box'},
 
-        <SideWrap className="scroll-hidden">
-          <List>
+            }}
+        >
 
-            <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
-              <UserImage>
-                {img &&
-                  <img width={"100%"} height={"100%"} src={URL.createObjectURL(img)} alt=''/>
-                }
-              </UserImage>
-              <Box>
-                <UserInfo>
-                  {empName} {position}<br/>
-                  {deptName} 부서<br/>
-                </UserInfo>
-                <UserWork>
-                  <dt>출근 시간</dt>
-                  <dd>08 : 00</dd>
-                  <dt>퇴근 시간</dt>
-                  <dd>-</dd>
-                </UserWork>
-                {/* <IntoButton>출근</IntoButton> */}
-                <Button onClick={ () => { setModal(true)}} variant="contained" color='primary' sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
-                {modal && (
-                <Modal closeModal={() => setModal(!modal)} >
-                    <EmpQrModal
-                        closeModal={() => setModal(!modal)} />
-                </Modal>
-            )}
+            <SideWrap className="scroll-hidden">
+                <List>
 
-              </Box>
-            </Box>
-          </List>
-          <Divider/>
-          {adminPage()}
-          <Divider/>
-          {empPage()}
-          <Divider/>
-        </SideWrap>
-      </Drawer>
-  );
+                    <Box style={{margin: '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
+                        <UserImage>
+                            {img &&
+                                <img width={"100%"} height={"100%"} src={URL.createObjectURL(img)} alt=''/>
+                            }
+                        </UserImage>
+                        <Box>
+                            <UserInfo>
+                                {empName} {position}<br/>
+                                {deptName} 부서<br/>
+                            </UserInfo>
+                            <UserWork>
+                                <dt>출근 시간</dt>
+                                <dd>08 : 00</dd>
+                                <dt>퇴근 시간</dt>
+                                <dd>-</dd>
+                            </UserWork>
+                            {/* <IntoButton>출근</IntoButton> */}
+                            <Button onClick={() => {
+                                setModal(true)
+                            }} variant="contained" color='primary'
+                                    sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
+                            {modal && (
+                                <Modal closeModal={() => setModal(!modal)}>
+                                    <EmpQrModal
+                                        closeModal={() => setModal(!modal)}/>
+                                </Modal>
+                            )}
+
+                        </Box>
+                    </Box>
+                </List>
+                <Divider/>
+                {adminPage()}
+                <Divider/>
+                {empPage()}
+                <Divider/>
+            </SideWrap>
+        </Drawer>
+    );
 }

@@ -1,5 +1,4 @@
 import {useEffect, useRef, useState} from 'react';
-import Modal from '../../components/Modal/Modal';
 import '../../components/Modal/modal.scss'
 import '../Modal/LeaveApprovalModal'
 import LeaveApprovalModal from '../Modal/LeaveApprovalModal';
@@ -18,8 +17,6 @@ const LeaveApprovalList = ({changeFlag}) => {
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
-    const [Filters, setFilters] = useState({})
-    const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
 
@@ -32,7 +29,6 @@ const LeaveApprovalList = ({changeFlag}) => {
 
         gv.setDataSource(dp)
         dp.setFields(fields)
-        dp.setFilters(fields)
         gv.setColumns(columns)
         dp.setRows(leaveApprovalInfo.data)
         // realGrid 설정
@@ -57,7 +53,6 @@ const LeaveApprovalList = ({changeFlag}) => {
             setModal(!modal)
         }
 
-        setDataProvider(dp)
         setGridView(gv)
         gv.setPaging(true, 10)
         Paging(dp.getRowCount(), 10, 5, 1, gv)
@@ -87,7 +82,7 @@ const LeaveApprovalList = ({changeFlag}) => {
             }
             if (await updateLeaveApproval(rowDatas)) {
                 Swal.fire({
-                    title: (s == 1 ? '승인되었습니다.' : '반려되었습니다.'),
+                    title: (s === 1 ? '승인되었습니다.' : '반려되었습니다.'),
                     icon: 'success'
                 })
             } else {
@@ -109,13 +104,11 @@ const LeaveApprovalList = ({changeFlag}) => {
     return (
         <div className='list-wrap'>
             {modal && (
-                <Modal closeModal={() => setModal(!modal)}>
-                    <LeaveApprovalModal
-                        closeModal={() => setModal(!modal)}
-                        data={data}
-                        auth={1}
-                        changeFlag={changeFlag}/>
-                </Modal>
+                <LeaveApprovalModal
+                    closeModal={() => setModal(!modal)}
+                    data={data}
+                    auth={1}
+                    changeFlag={changeFlag}/>
             )}
             <div className='grid-wrap'>
                 <div className='real-grid'

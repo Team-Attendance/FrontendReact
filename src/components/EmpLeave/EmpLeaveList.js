@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from 'react';
-import Modal from '../../components/Modal/Modal';
 import '../../components/Modal/modal.scss'
 import '../Modal/LeaveApprovalModal'
 import LeaveApprovalModal from '../Modal/LeaveApprovalModal';
@@ -18,8 +17,6 @@ const EmpLeaveList = ({changeFlag}) => {
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
 
-    const [dataProvider, setDataProvider] = useState(null)
-    const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
 
     useEffect(() => {
@@ -53,8 +50,6 @@ const EmpLeaveList = ({changeFlag}) => {
         gv.setPaging(true, 10)
         Paging(dp.getRowCount(), 10, 5, 1, gv)
 
-        setDataProvider(dp)
-        setGridView(gv)
 
         return () => {
             dp.clearRows()
@@ -66,13 +61,11 @@ const EmpLeaveList = ({changeFlag}) => {
     return (
         <div className='list-wrap'>
             {modal && (
-                <Modal closeModal={() => setModal(!modal)}>
-                    <LeaveApprovalModal
-                        closeModal={() => setModal(!modal)}
-                        changeFlag={changeFlag}
-                        data={data}
-                        auth={0}/>
-                </Modal>
+                <LeaveApprovalModal
+                    closeModal={() => setModal(!modal)}
+                    changeFlag={changeFlag}
+                    data={data}
+                    auth={0}/>
             )}
             <div className='grid-wrap'>
                 <div className='real-grid'

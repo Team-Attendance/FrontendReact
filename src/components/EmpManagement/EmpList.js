@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react"
+import {useEffect, useRef} from "react"
 import {GridView, LocalDataProvider} from 'realgrid'
 import {columns, fields} from './realgrid-data'
 import '../../css/RealGrid.scss'
@@ -8,8 +8,6 @@ import Paging from "../Paging"
 
 const EmpList = ({empInfo}) => {
 
-    const [dataProvider, setDataProvider] = useState(null)
-    const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
 
     useEffect(() => {
@@ -44,8 +42,7 @@ const EmpList = ({empInfo}) => {
         gv.setPaging(true, 10)
         Paging(dp.getRowCount(), 10, 5, 1, gv)
 
-        setDataProvider(dp)
-        setGridView(gv)
+
 
         return () => {
             dp.clearRows()

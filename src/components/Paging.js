@@ -72,10 +72,10 @@ const Paging = (totalData, dataPerPage, pageCount, currentPage, gridView) => {
     document.getElementById("paging").innerHTML = html
 
     if (document.getElementById(currentPage) !== null) {
-        document.getElementById(currentPage).style.color = 'red'    // 현재 페이지 표시
-        document.getElementById(currentPage).style.fontWeight = 'bold'    // 현재 페이지 표시
-        document.getElementById(currentPage).style.border = '1px lightgray solid'    // 현재 페이지 표시
-        document.getElementById(currentPage).style.backgroundColor = 'whitesmoke'    // 현재 페이지 표시
+        // 현재 페이지 표시
+        document.getElementById(currentPage).style.color = 'red'
+        document.getElementById(currentPage).style.fontWeight = 'bold'
+        document.getElementById(currentPage).style.border = '1px lightgray solid'
     }
 
     let sp = document.getElementById("paging").getElementsByTagName("span")

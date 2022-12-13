@@ -1,5 +1,4 @@
 import {useEffect, useRef, useState} from "react"
-import Modal from "../Modal/Modal"
 import OddApprovalModal from "../Modal/OddApprovalModal"
 import {GridView, LocalDataProvider} from 'realgrid'
 import {columns, fields} from './realgrid-data'
@@ -8,7 +7,6 @@ import Paging from "../Paging"
 import '../../css/ApprovalList.scss'
 import '../../css/RealGrid.scss'
 import {useSelector} from "react-redux";
-import {updateLeaveApproval} from "../../api/LeaveApprovalAPI";
 import Swal from "sweetalert2";
 
 const OddApprovalList = ({changeFlag}) => {
@@ -18,7 +16,6 @@ const OddApprovalList = ({changeFlag}) => {
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
 
-    const [dataProvider, setDataProvider] = useState(null)
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
 
@@ -56,7 +53,6 @@ const OddApprovalList = ({changeFlag}) => {
         gv.setPaging(true, 10)
         Paging(dp.getRowCount(), 10, 5, 1, gv)
 
-        setDataProvider(dp)
         setGridView(gv)
 
         return () => {
@@ -83,7 +79,7 @@ const OddApprovalList = ({changeFlag}) => {
             }
             if (await updateOddApproval(rowDatas)) {
                 Swal.fire({
-                    title: (s == 1 ? '승인되었습니다.' : '반려되었습니다.'),
+                    title: (s === 1 ? '승인되었습니다.' : '반려되었습니다.'),
                     icon: 'success'
                 })
             } else {
@@ -105,13 +101,11 @@ const OddApprovalList = ({changeFlag}) => {
     return (
         <div className="list-wrap">
             {modal && (
-                <Modal closeModal={() => setModal(!modal)}>
-                    <OddApprovalModal
-                        closeModal={() => setModal(!modal)}
-                        data={data}
-                        auth={1}
-                        changeFlag={changeFlag}/>
-                </Modal>
+                <OddApprovalModal
+                    closeModal={() => setModal(!modal)}
+                    data={data}
+                    auth={1}
+                    changeFlag={changeFlag}/>
             )}
             <div className="grid-wrap">
                 <div className="real-grid"

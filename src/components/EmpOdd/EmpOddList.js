@@ -1,5 +1,4 @@
 import {useEffect, useRef, useState} from "react"
-import Modal from "../Modal/Modal"
 import OddApprovalModal from "../Modal/OddApprovalModal"
 import {GridView, LocalDataProvider} from 'realgrid'
 import {columns, fields} from './realgrid-data'
@@ -15,8 +14,6 @@ const EmpOddList = ({changeFlag}) => {
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
 
-    const [dataProvider, setDataProvider] = useState(null)
-    const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
 
     useEffect(() => {
@@ -50,8 +47,6 @@ const EmpOddList = ({changeFlag}) => {
         gv.setPaging(true, 10)
         Paging(dp.getRowCount(), 10, 5, 1, gv)
 
-        setDataProvider(dp)
-        setGridView(gv)
 
         return () => {
             dp.clearRows()
@@ -63,13 +58,11 @@ const EmpOddList = ({changeFlag}) => {
     return (
         <div className="list-wrap">
             {modal && (
-                <Modal closeModal={() => setModal(!modal)}>
-                    <OddApprovalModal
-                        closeModal={() => setModal(!modal)}
-                        changeFlag={changeFlag}
-                        data={data}
-                        auth={0}/>
-                </Modal>
+                <OddApprovalModal
+                    closeModal={() => setModal(!modal)}
+                    changeFlag={changeFlag}
+                    data={data}
+                    auth={0}/>
             )}
             <div className="grid-wrap">
                 <div className="real-grid"

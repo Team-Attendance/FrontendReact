@@ -25,7 +25,7 @@ const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
 
         if (await updateOddApproval(update)) {
             Swal.fire({
-                title: (s == 1 ? '승인되었습니다.' : '반려되었습니다.'),
+                title: (s === 1 ? '승인되었습니다.' : '반려되었습니다.'),
                 icon: 'success'
             })
         } else {
@@ -39,59 +39,66 @@ const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
     }
 
     return (
-        <div className="myPage">
-            <div>
-                <h1 className="infoTitle">이상 근태 조정 신청</h1>
-            </div>
-            <div className="infoBox">
-                <div className="infoContent">
-                    <ul className="infoUl">
-                        <li className="infoLi">
-                            <div className="infoLabel">이름</div>
-                            <div className="infoInput"> {data.empName} </div>
-                        </li>
-                        <li className="infoLi">
-                            <div className="infoLabel">사번</div>
-                            <div className="infoInput"> {data.empNo} </div>
-                        </li>
-                        <li className="infoLi">
-                            <div className="infoLabel">직급</div>
-                            <div className="infoInput"> {data.empPosition} </div>
-                        </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 신청 일자</div>
-                            <div className="infoInput"> {dateFormatting(data.oddBizAdjDate)} </div>
-                        </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 이상 근태 발생 일자</div>
-                            <div className="infoInput"> {dateFormatting(data.oddBizDate)} </div>
-                        </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 이상 근태 종류</div>
-                            <div className="infoInput">{data.oddBizType}</div>
-                        </li>
-                        <li className="infoLi">
-                            <div className="infoLabel">조정 신청 사유</div>
-                            <div className="infoInput"> {data.oddBizAdjDetail} </div>
-                        </li>
-                    </ul>
-                    <div className="button">
-                        {auth === 1 ?
-                            !data.oddBizAdjState && (
-                                <div>
-                                    <button onClick={() => changeState(1)}>승인</button>
-                                    <button onClick={() => changeState(2)}>반려</button>
-                                </div>
-                            ) :
-                            !data.oddBizAdjState && (
-                                <div>
-                                    <button onClick={() => changeState(3)}>취소</button>
-                                </div>
-                            )
-                        }
-                        <button onClick={closeModal}>닫기</button>
+        <div className="approvalModal" onClick={closeModal}>
+            <div className="modalBody" onClick={(e) => e.stopPropagation()} style={{height: '550px'}}>
+                <button id="modalCloseBtn" onClick={closeModal}>
+                    ✖
+                </button>
+                <div className="approval-modal">
+                    <div>
+                        <h1 className="approval-title">이상 근태 조정 신청</h1>
                     </div>
+                    <div className="approval-box">
+                        <div className="approval-content">
+                            <ul className="approval-ul">
+                                <li className="approval-li">
+                                    <div className="approval-label">이름</div>
+                                    <div className="approval-data"> {data.empName} </div>
+                                </li>
+                                <li className="approval-li">
+                                    <div className="approval-label">사번</div>
+                                    <div className="approval-data"> {data.empNo} </div>
+                                </li>
+                                <li className="approval-li">
+                                    <div className="approval-label">직급</div>
+                                    <div className="approval-data"> {data.empPosition} </div>
+                                </li>
+                                <li className="approval-li">
+                                    <div className="approval-label"> 신청 일자</div>
+                                    <div className="approval-data"> {dateFormatting(data.oddBizAdjDate)} </div>
+                                </li>
+                                <li className="approval-li">
+                                    <div className="approval-label"> 이상 근태 발생 일자</div>
+                                    <div className="approval-data"> {dateFormatting(data.oddBizDate)} </div>
+                                </li>
+                                <li className="approval-li">
+                                    <div className="approval-label"> 이상 근태 종류</div>
+                                    <div className="approval-data">{data.oddBizType}</div>
+                                </li>
+                                <li className="approval-li">
+                                    <div className="approval-label">조정 신청 사유</div>
+                                    <div className="approval-data"> {data.oddBizAdjDetail} </div>
+                                </li>
+                            </ul>
+                            <div className="approval-button">
+                                {auth === 1 ?
+                                    !data.oddBizAdjState && (
+                                        <div>
+                                            <button onClick={() => changeState(1)}>승인</button>
+                                            <button onClick={() => changeState(2)}>반려</button>
+                                        </div>
+                                    ) :
+                                    !data.oddBizAdjState && (
+                                        <div>
+                                            <button onClick={() => changeState(3)}>취소</button>
+                                        </div>
+                                    )
+                                }
+                                <button onClick={closeModal}>닫기</button>
+                            </div>
 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
