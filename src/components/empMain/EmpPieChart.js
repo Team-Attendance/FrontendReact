@@ -25,48 +25,51 @@ export default function EmpPieChart(){
       trigger: 'item'
     },
     legend: {
-      top: '5%',
-      left: 'center'
+      bottom: '10',
+      selectedMode: false,
+      itemStyle: {
+        borderWidth: 0
+      },
     },
 
     series:  {
-      name: '나의 근태 현황',
+      name: '2022년 휴가 사용 현황',
       type: 'pie',
-      radius: ['35%', '70%'],
+      startAngle: '90',
+      radius: ['45%', '75%'],
       avoidLabelOverlap: false,
       itemStyle: {
-        borderRadius: 0,
+        borderRadius: 5,
         borderColor: 'white',
-        borderWidth: 1
+        borderWidth: 2,
+        shadowBlur : 0,
+        shadowColor: 'lightgray',
       },
+      center: ["50%", "40%"],
       label: {
         show: false,
-        position: 'center'
       },
       emphasis: {
         label: {
-          show: true,
-          fontSize: '40',
-          fontWeight: 'bold',
-
-        }
+          show: false,
+          fontSize: '16',
+          fontWeight: 'bold'
+        },
+        disabled: false, //차트 호버 확대 설정
+        scaleSize: 1  // //차트 호버시 확대 비율
       },
       labelLine: {
         show: false
       },
-      data: [
-        { value: [data != null && data.Pto[0].pto_left_num], name: '사용 연차'},
-        { value: [data != null && data.Pto[0].pto_use_num], name: '잔여 연차'},
-      ]
+      data: [                                                                                      
+        { value: [data != null && data.Pto[0].pto_use_num], name: '사용 휴가',   itemStyle: {color: '#0080ff' }},                                            
+        { value: [data != null && data.Pto[0].pto_left_num], name: '잔여 휴가', itemStyle: {color: '#afafaf' }},
+      ]                                                                         
     },
   };
 
   return (  
     <div>
-      <h1>연차 사용 근황 </h1>
-      <h2>전체 연차: {data != null && data.Pto[0].pto_yr_no}일 </h2>
-      <h2>잔여 연차: {data != null && data.Pto[0].pto_left_num}일</h2>
-      <h2>사용 연차: {data != null && data.Pto[0].pto_use_num}일 </h2>
       <ReactEchart option={eChartsOptions} />
     </div>
   );

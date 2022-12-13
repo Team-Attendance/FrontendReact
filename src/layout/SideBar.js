@@ -19,8 +19,8 @@ const drawerWidth = 240;
 // styled-component
 const UserImage = styled.div`
   border: 1px solid gray;
-  width: 180px;
-  height: 180px;
+  width: 170px;
+  height: 150px;
   margin: 0 auto;
   border-radius: 50%;
   overflow: hidden;
@@ -65,10 +65,10 @@ export function SideBar() {
   // 큐알 모달로 이동
   const [modal, setModal] = useState(false)
 
-  const empName = localStorage.getItem("empName");
-  const position = localStorage.getItem("empPosition")
-  const deptName = localStorage.getItem("deptName");
-  const role = localStorage.getItem("empAuthority");
+  const empName = sessionStorage.getItem("empName");
+  const position = sessionStorage.getItem("empPosition")
+  const deptName = sessionStorage.getItem("deptName");
+  const role = sessionStorage.getItem("empAuthority");
 
   const adminPage = ()=>{
     if (role == 'ROLE_ADMIN') {
@@ -101,7 +101,7 @@ export function SideBar() {
 
             <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
-                <img width={"100%"} height={"100%"} src='/eee.jpg' alt=''/>
+                <img width={"100%"} height={"100%"} src='/kku1.jpg' alt=''/>
               </UserImage>
               <Box>
                 <UserInfo>

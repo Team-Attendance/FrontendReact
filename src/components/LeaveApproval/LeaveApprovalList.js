@@ -23,7 +23,7 @@ const LeaveApprovalList = ({ changeFlag }) => {
     const [gridView, setGridView] = useState(null)
     const realgridElement = useRef(null)
 
-    const approver = localStorage.getItem("empName")
+    const approver = sessionStorage.getItem("empName")
 
     useEffect(() => {
         const container = realgridElement.current

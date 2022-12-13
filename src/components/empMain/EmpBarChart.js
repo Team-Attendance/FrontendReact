@@ -8,29 +8,36 @@ export default function EmpBarChart(){
   const data = useSelector(state => state.eChart.data);
 
   const eChartsOptions = {
-    title: {
-      text: '근태차트'
-    },
+  
     tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'shadow'
-      }
+      trigger: 'item',
     },
-    legend: {},
+
+
+    legend: {
+      bottom: '10',
+      selectedMode: false,
+      itemStyle: {
+        borderWidth: 0
+      },
+    },
+
     grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
+      top :'-15%',
+      left: '8%',
+      right: '8%',
+      bottom: '20%',
       containLabel: true
     },
+
     xAxis: {
       type: 'value',
       boundaryGap: [0, 0.01]
     },
+
     yAxis: {
       type: 'category',
-      data: [ '근태 현황']
+      data: [ '']
     },
     series: [
       {

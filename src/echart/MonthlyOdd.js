@@ -41,7 +41,7 @@ export default function MonthlyOdd(){
 
   return (  
     <div>
-      <ReactEchart option={eChartsOption} style={{ height: "240px"}} />
+      <ReactEchart option={eChartsOption} style={{ height: "350px"}} />
     </div>
   );
 }

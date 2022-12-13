@@ -8,7 +8,7 @@ const EmpOddPage = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const empNo = localStorage.getItem("empNo")
+        const empNo = sessionStorage.getItem("empNo")
         dispatch(OddApprovalActions.getOddRequest(empNo))
     }, [dispatch])
 

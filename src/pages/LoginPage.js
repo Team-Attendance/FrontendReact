@@ -59,12 +59,12 @@ const LoginPage = () => {
 
         api.Login(data).then((res) => {
             if(res.data.empNo){
-                localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
-                localStorage.setItem("empNo", res.data.empNo);
-                localStorage.setItem("deptName", res.data.deptName);
-                localStorage.setItem("empName", res.data.empName);
-                localStorage.setItem("empPosition", res.data.empPosition);
-                localStorage.setItem("empAuthority", res.data.empAuthority);
+                sessionStorage.setItem("ACCESS_TOKEN", res.data.empToken);
+                sessionStorage.setItem("empNo", res.data.empNo);
+                sessionStorage.setItem("deptName", res.data.deptName);
+                sessionStorage.setItem("empName", res.data.empName);
+                sessionStorage.setItem("empPosition", res.data.empPosition);
+                sessionStorage.setItem("empAuthority", res.data.empAuthority);
 
                 console.log('로그인 성공')
                 setTimeout(()=>{
