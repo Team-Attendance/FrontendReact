@@ -1,0 +1,30 @@
+.infoSearchBar-wrap {
+  display: flex;
+  justify-content: flex-end;
+  width: 70%;
+  height: 30px;
+  margin: 2em 0;
+
+  select {
+    width: 60px;
+    text-align: center;
+  }
+
+  input {
+    width: 30%;
+    //flex-grow: 1;
+    margin: 0 1em;
+  }
+
+  input::placeholder {
+    padding-left: 1em;
+  }
+
+  button {
+    font-weight: bold;
+    border: 1px lightgray solid;
+    width: 60px;
+    padding: 5px 0;
+    background-color: whitesmoke;
+  }
+}
