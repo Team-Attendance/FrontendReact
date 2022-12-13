@@ -44,7 +44,6 @@ export const columns = [{
     name: "oddBizAdjDate",
     fieldName: "oddBizAdjDate",
     type: "data",
-    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -56,7 +55,6 @@ export const columns = [{
     name: "empNo",
     fieldName: "empNo",
     type: "data",
-    width: "100",
     styles: {
         textAlignment: "center"
     },
@@ -68,7 +66,6 @@ export const columns = [{
     name: "empName",
     fieldName: "empName",
     type: "data",
-    width: "100",
     styles: {
         textAlignment: "center"
     },
@@ -82,7 +79,6 @@ export const columns = [{
     name: "empPosition",
     fieldName: "empPosition",
     type: "data",
-    width: "130",
     styles: {
         textAlignment: "center"
     },
@@ -94,7 +90,6 @@ export const columns = [{
     name: "oddBizType",
     fieldName: "oddBizType",
     type: "data",
-    width: "100",
     styles: {
         textAlignment: "center"
     },
@@ -106,7 +101,6 @@ export const columns = [{
     name: "oddBizDate",
     fieldName: "oddBizDate",
     type: "data",
-    width: "150",
     styles: {
         "textAlignment": "center"
     },
@@ -115,7 +109,6 @@ export const columns = [{
     name: "oddBizAdjState",
     fieldName: "oddBizAdjState",
     type: "data",
-    width: "100",
     styles: {
         "textAlignment": "center"
     },
@@ -139,18 +132,19 @@ export const columns = [{
             case '0':
                 return '대기'
             case '1':
-                return '승인';
+                return '승인'
             case '2':
                 return '반려'
+            case '3':
+                return '취소'
             default:
-                return '-';
+                return '-'
         }
     }
 },{
     name: "oddBizAdjApproDate",
     fieldName: "oddBizAdjApproDate",
     type: "data",
-    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -162,7 +156,6 @@ export const columns = [{
     name: "oddBizAdjAppro",
     fieldName: "oddBizAdjAppro",
     type: "data",
-    width: "100",
     styles: {
         textAlignment: "center"
     },

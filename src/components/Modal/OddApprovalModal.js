@@ -1,8 +1,9 @@
 import React from "react";
-import { updateOddApproval } from "../../api/OddApprovalAPI";
+import {updateOddApproval} from "../../api/OddApprovalAPI";
 import './ApprovalModal.scss'
+import Swal from "sweetalert2";
 
-const OddApprovalModal = ({ auth, data, closeModal, changeFlag }) => {
+const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
 
     const approver = sessionStorage.getItem("empName")
 
@@ -22,7 +23,17 @@ const OddApprovalModal = ({ auth, data, closeModal, changeFlag }) => {
             'approver': approver
         }]
 
-        await updateOddApproval(update)
+        if (await updateOddApproval(update)) {
+            Swal.fire({
+                title: (s == 1 ? '승인되었습니다.' : '반려되었습니다.'),
+                icon: 'success'
+            })
+        } else {
+            Swal.fire({
+                title: '상태 변경에 실패했습니다.',
+                icon: 'error'
+            })
+        }
         closeModal()
         changeFlag()
     }
@@ -35,13 +46,34 @@ const OddApprovalModal = ({ auth, data, closeModal, changeFlag }) => {
             <div className="infoBox">
                 <div className="infoContent">
                     <ul className="infoUl">
-                        <li className="infoLi"><div className="infoLabel">이름</div> <div className="infoInput"> {data.empName} </div></li>
-                        <li className="infoLi"><div className="infoLabel">사번</div> <div className="infoInput"> {data.empNo} </div></li>
-                        <li className="infoLi"><div className="infoLabel">직급</div> <div className="infoInput"> {data.empPosition} </div></li>
-                        <li className="infoLi"><div className="infoLabel"> 신청 일자</div> <div className="infoInput"> {dateFormatting(data.oddBizAdjDate)} </div></li>
-                        <li className="infoLi"><div className="infoLabel"> 이상 근태 발생 일자</div> <div className="infoInput"> {dateFormatting(data.oddBizDate)} </div></li>
-                        <li className="infoLi"><div className="infoLabel"> 이상 근태 종류</div> <div className="infoInput">{data.oddBizType}</div></li>
-                        <li className="infoLi"><div className="infoLabel">조정 신청 사유</div> <div className="infoInput"> {data.oddBizAdjDetail} </div></li>
+                        <li className="infoLi">
+                            <div className="infoLabel">이름</div>
+                            <div className="infoInput"> {data.empName} </div>
+                        </li>
+                        <li className="infoLi">
+                            <div className="infoLabel">사번</div>
+                            <div className="infoInput"> {data.empNo} </div>
+                        </li>
+                        <li className="infoLi">
+                            <div className="infoLabel">직급</div>
+                            <div className="infoInput"> {data.empPosition} </div>
+                        </li>
+                        <li className="infoLi">
+                            <div className="infoLabel"> 신청 일자</div>
+                            <div className="infoInput"> {dateFormatting(data.oddBizAdjDate)} </div>
+                        </li>
+                        <li className="infoLi">
+                            <div className="infoLabel"> 이상 근태 발생 일자</div>
+                            <div className="infoInput"> {dateFormatting(data.oddBizDate)} </div>
+                        </li>
+                        <li className="infoLi">
+                            <div className="infoLabel"> 이상 근태 종류</div>
+                            <div className="infoInput">{data.oddBizType}</div>
+                        </li>
+                        <li className="infoLi">
+                            <div className="infoLabel">조정 신청 사유</div>
+                            <div className="infoInput"> {data.oddBizAdjDetail} </div>
+                        </li>
                     </ul>
                     <div className="button">
                         {auth === 1 ?
@@ -51,7 +83,11 @@ const OddApprovalModal = ({ auth, data, closeModal, changeFlag }) => {
                                     <button onClick={() => changeState(2)}>반려</button>
                                 </div>
                             ) :
-                            <></>
+                            !data.oddBizAdjState && (
+                                <div>
+                                    <button onClick={() => changeState(3)}>취소</button>
+                                </div>
+                            )
                         }
                         <button onClick={closeModal}>닫기</button>
                     </div>

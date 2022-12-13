@@ -1,20 +1,20 @@
-
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Modal from '../../components/Modal/Modal';
 import '../../components/Modal/modal.scss'
 import '../Modal/LeaveApprovalModal'
 import LeaveApprovalModal from '../Modal/LeaveApprovalModal';
-import { GridView, LocalDataProvider } from 'realgrid'
-import { columns, fields } from './realgrid-data'
-import { updateLeaveApproval } from '../../api/LeaveApprovalAPI';
+import {GridView, LocalDataProvider} from 'realgrid'
+import {columns, fields} from './realgrid-data'
+import {updateLeaveApproval} from '../../api/LeaveApprovalAPI';
 import Paging from '../Paging';
 import '../../css/ApprovalList.scss'
 import '../../css/RealGrid.scss'
+import Swal from "sweetalert2";
 
 import {useSelector} from "react-redux";
 
-const LeaveApprovalList = ({ changeFlag }) => {
-    const { leaveApprovalInfo } = useSelector((state) => state.leaveApprovalInfo)
+const LeaveApprovalList = ({changeFlag}) => {
+    const {leaveApprovalInfo} = useSelector((state) => state.leaveApprovalInfo)
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
@@ -36,15 +36,17 @@ const LeaveApprovalList = ({ changeFlag }) => {
         dp.setRows(leaveApprovalInfo.data)
         // realGrid 설정
         gv.footer.visible = false
-        gv.setRowIndicator({ visible: false })
-        gv.setEditOptions({ editable: false })
-        gv.setStateBar({ visible: false })
-        gv.setCheckBar({ width: 50 })
+        gv.setRowIndicator({visible: false})
+        gv.setEditOptions({editable: false})
+        gv.setStateBar({visible: false})
+        gv.setCheckBar({width: 50})
         gv.setCheckableExpression("values['leaveAdjState']='0'", true)
         gv.setDisplayOptions({
             selectionStyle: "rows",
             showEmptyMessage: true,
-            emptyMessage: "조회된 데이터가 없습니다."
+            emptyMessage: "조회된 데이터가 없습니다.",
+            fitStyle: "evenFill",
+            columnResizable: false
         })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
@@ -53,7 +55,6 @@ const LeaveApprovalList = ({ changeFlag }) => {
             setData(leaveApprovalInfo.data[clickData.dataRow])
             setModal(!modal)
         }
-
 
         setDataProvider(dp)
         setGridView(gv)
@@ -72,7 +73,7 @@ const LeaveApprovalList = ({ changeFlag }) => {
         const rowDatas = []
         const rows = gridView.getCheckedRows()
 
-        if(rows.length) {
+        if (rows.length) {
             for (let i of rows) {
                 // var data = dataProvider.getJsonRow(rows[i]);
                 rowDatas.push({
@@ -83,10 +84,23 @@ const LeaveApprovalList = ({ changeFlag }) => {
                     'approver': approver
                 })
             }
-            await updateLeaveApproval(rowDatas)
+            if (await updateLeaveApproval(rowDatas)) {
+                Swal.fire({
+                    title: (s == 1 ? '승인되었습니다.' : '반려되었습니다.'),
+                    icon: 'success'
+                })
+            } else {
+                Swal.fire({
+                    title: '상태 변경에 실패했습니다.',
+                    icon: 'error'
+                })
+            }
             changeFlag()
         } else {
-            alert("선택된 신청이 없습니다.")
+            Swal.fire({
+                title: "선택된 신청이 없습니다.",
+                icon: 'warning'
+            })
         }
     }
 
@@ -94,25 +108,26 @@ const LeaveApprovalList = ({ changeFlag }) => {
     return (
         <div className='list-wrap'>
             {modal && (
-                <Modal closeModal={() => setModal(!modal)} >
+                <Modal closeModal={() => setModal(!modal)}>
                     <LeaveApprovalModal
                         closeModal={() => setModal(!modal)}
                         data={data}
                         auth={1}
-                        changeFlag={changeFlag} />
+                        changeFlag={changeFlag}/>
                 </Modal>
             )}
             <div className='grid-wrap'>
-                <div className='real-grid' style={{ width: '1282px' }}
-                    ref={realgridElement}>
+                <div className='real-grid'
+                     ref={realgridElement}>
                 </div>
             </div>
-            <div className="state-button" style={{ width: '1280px' }}>
+            <div className="state-button">
                 <button onClick={() => changeState(1)}>승인</button>
                 <button onClick={() => changeState(2)}>반려</button>
             </div>
             <div id='paging'
-                style={{ float: 'left', height: '100%', paddingTop: '20px' }}> - </div>
+                 style={{float: 'left', height: '100%', paddingTop: '20px'}}> -
+            </div>
 
         </div>
     )

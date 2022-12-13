@@ -1,11 +1,10 @@
-
-import { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Modal from '../../components/Modal/Modal';
 import '../../components/Modal/modal.scss'
 import '../Modal/LeaveApprovalModal'
 import LeaveApprovalModal from '../Modal/LeaveApprovalModal';
-import { GridView, LocalDataProvider } from 'realgrid'
-import { columns, fields } from './realgrid-data'
+import {GridView, LocalDataProvider} from 'realgrid'
+import {columns, fields} from './realgrid-data'
 import Paging from "../Paging"
 import '../../css/ApprovalList.scss'
 import '../../css/RealGrid.scss'
@@ -13,8 +12,8 @@ import 'realgrid/dist/realgrid-style.css'
 
 import {useSelector} from "react-redux";
 
-const EmpLeaveList = () => {
-    const { leaveApprovalInfo } = useSelector((state) => state.leaveApprovalInfo)
+const EmpLeaveList = ({changeFlag}) => {
+    const {leaveApprovalInfo} = useSelector((state) => state.leaveApprovalInfo)
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
@@ -34,14 +33,15 @@ const EmpLeaveList = () => {
         dp.setRows(leaveApprovalInfo.data)
         // realGrid 설정
         gv.footer.visible = false
-        gv.setRowIndicator({ visible: false })
-        gv.setEditOptions({ editable: false })
-        gv.setStateBar({ visible: false })
-        gv.setCheckBar({ visible: false })
+        gv.setRowIndicator({visible: false})
+        gv.setEditOptions({editable: false})
+        gv.setStateBar({visible: false})
+        gv.setCheckBar({visible: false})
         gv.setDisplayOptions({
             selectionStyle: "rows",
             showEmptyMessage: true,
-            emptyMessage: "조회된 데이터가 없습니다."
+            emptyMessage: "조회된 데이터가 없습니다.",
+            fitStyle: "evenFill"
         })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
@@ -66,20 +66,22 @@ const EmpLeaveList = () => {
     return (
         <div className='list-wrap'>
             {modal && (
-                <Modal closeModal={() => setModal(!modal)} >
+                <Modal closeModal={() => setModal(!modal)}>
                     <LeaveApprovalModal
                         closeModal={() => setModal(!modal)}
+                        changeFlag={changeFlag}
                         data={data}
-                        auth={0} />
+                        auth={0}/>
                 </Modal>
             )}
             <div className='grid-wrap'>
-                <div className='real-grid' style={{ width: '902px' }}
-                    ref={realgridElement}>
+                <div className='real-grid'
+                     ref={realgridElement}>
                 </div>
             </div>
             <div id='paging'
-                style={{ float: 'left', height: '100%', paddingTop: '20px' }}> - </div>
+                 style={{float: 'left', height: '100%', paddingTop: '20px'}}> -
+            </div>
 
 
         </div>

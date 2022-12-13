@@ -1,8 +1,21 @@
 import thunk from 'redux-thunk';
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import logger from 'redux-logger';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { empInfo, empInfoDetail,empEmailCheck, leaveApprovalInfo, oddApprovalInfo, empAllAuthInfo, empAuthInfo, adminAuthInfo, empBizInfo, countInfo, WeeklyInfo, empInfoDetailUpdate} from './modules';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import {
+    empInfo,
+    empInfoDetail,
+    leaveApprovalInfo,
+    oddApprovalInfo,
+    empAllAuthInfo,
+    empAuthInfo,
+    adminAuthInfo,
+    empBizInfo,
+    countInfo,
+    WeeklyInfo,
+    empInfoDetailUpdate,
+    countLeave
+} from './modules';
 import leaveModal from '../modules/leaveModal';
 import auth from './modules/Login/auth';
 import calendarStatus from '../modules/calendarStatus';
@@ -12,6 +25,7 @@ import eChart from '../modules/eChart';
 import pto from '../modules/pto';
 import adminMain from '../modules/adminMain';
 import monthlyTable from '../modules/monthlyTable';
+
 const middlewares = [thunk];
 
 // 리듀서 합치기
@@ -35,7 +49,8 @@ const reducers = combineReducers({
     adminMain,
     monthlyTable,
     WeeklyInfo,
-    empInfoDetailUpdate
+    empInfoDetailUpdate,
+    countLeave
 });
 
 let store;

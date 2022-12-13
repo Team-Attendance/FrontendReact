@@ -32,6 +32,13 @@ const initialState = {
             empContactList: '',
             empFirstDayOfWork:''
         }
+    },
+    countLeave: {
+        loading: false,
+        data: {
+            ptoYrNo: '',
+            ptoUseNum: ''
+        }
     }
 }
 
@@ -89,6 +96,35 @@ const reducer = (state = initialState, {type, payload}) => {
                 ...state,
                 empInfoDetailUpdate: {
                     ...state.empInfoDetailUpdate,
+                    loading: false,
+                    data: {
+                        error: payload
+                    }
+                }
+            }
+        case Types.GET_LEAVE_COUNT:
+            return {
+                ...state,
+                countLeave: {
+                    ...state.countLeave,
+                    loading: true,
+                    data: payload
+                }
+            }
+        case Types.GET_LEAVE_COUNT_SUCCESS:
+            return {
+                ...state,
+                countLeave: {
+                    ...state.countLeave,
+                    loading: false,
+                    data: payload
+                }
+            }
+        case Types.GET_LEAVE_COUNT_FAILURE:
+            return {
+                ...state,
+                countLeave: {
+                    ...state.countLeave,
                     loading: false,
                     data: {
                         error: payload

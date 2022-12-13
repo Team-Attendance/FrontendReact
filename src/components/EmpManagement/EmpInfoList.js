@@ -31,7 +31,8 @@ const EmpList = ({ empInfo , empData, handleEmpNo } ) => {
     gv.setDisplayOptions({
       selectionStyle: "rows",
       showEmptyMessage: true,
-      emptyMessage: "조회된 데이터가 없습니다."
+      emptyMessage: "조회된 데이터가 없습니다.",
+      fitStyle: "evenFill"
   })
 
     gv.onCellDblClicked = (grid, clickData) => {
@@ -61,8 +62,8 @@ const EmpList = ({ empInfo , empData, handleEmpNo } ) => {
   return (
     <div className="list-wrap">
       <div className="grid-wrap">
-        <div className="real-grid" style={{ width: '750px' }}
-          ref={realgridElement}   >
+        <div className="real-grid" style={{ width: '100%' }}
+          ref={realgridElement}>
         </div>
       </div>
       <div id='paging'

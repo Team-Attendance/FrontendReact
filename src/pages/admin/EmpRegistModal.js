@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import {useRef, useState, useCallback} from "react";
 import '../../css/EmpReg.scss'
 import * as api from "../../api/EmpAPI";
 
@@ -64,10 +64,10 @@ const EmpRegistModal = ({closeModal, props}) => {
         const value = phoneRef.current.value.replace(/\D+/g,"");
         const numLength = 11;
         let result;
-        result ="";
+        result = "";
         // 자동 하이픈
-        for( let i = 0; i < value.length && i < numLength; i++ ){
-            switch (i){
+        for (let i = 0; i < value.length && i < numLength; i++) {
+            switch (i) {
                 case 3:
                     result += "-";
                     break;
@@ -82,6 +82,24 @@ const EmpRegistModal = ({closeModal, props}) => {
         phoneRef.current.value = result;
         setEmpCellPhone(e.target.value);
     }
+    // 이미지
+    const inputRef = useRef(null)
+    const [empImage, setEmpImage] = useState();
+    const onUploadImage = useCallback((e) => {
+        if (!e.target.files) {
+            return;
+        }
+        setEmpImage(e.target.files[0])
+    }, []);
+
+
+    const onUploadImageButtonClick = useCallback(() => {
+        if (!inputRef.current) {
+            return;
+        }
+        inputRef.current.click();
+    }, []);
+
 
     function handleRegist(e) {
         e.preventDefault();
@@ -106,17 +124,19 @@ const EmpRegistModal = ({closeModal, props}) => {
            alert("정확한 휴대폰 번호를 입력해주세요");
            phoneRef.current.focus();
         } else {
-            const data = {
-                "deptName": deptName,
-                "empName": empName,
-                "empPwd": empPwd,
-                "empPosition": empPosition,
-                "empEmail": `${empEmail}@douzone.com`,
-                "empBirth": empBirth,
-                "empCellPhone": empCellPhone,
-                "empFirstDayOfWork": empFirstDayOfWork
-            };
-            api.postEmpRegist(data).then((res)=>{
+            let formData = new FormData()
+
+            formData.append("deptName", deptName)
+            formData.append("empName", empName)
+            formData.append("empPwd", empPwd)
+            formData.append("empPosition", empPosition)
+            formData.append("empEmail", `${empEmail}@douzone.com`)
+            formData.append("empBirth", empBirth)
+            formData.append("empCellPhone", empCellPhone)
+            formData.append("empFirstDayOfWork", empFirstDayOfWork)
+            formData.append("empPhoto", empImage)
+
+            api.postEmpRegist(formData).then((res)=>{
                let result = res.data;
                if(result == true){
                    alert("사원등록이 완료 됐습니다.");
@@ -124,8 +144,7 @@ const EmpRegistModal = ({closeModal, props}) => {
                }
             });
         }
-
-
+        closeModal();
     }
 
     return (
@@ -139,7 +158,8 @@ const EmpRegistModal = ({closeModal, props}) => {
                     <div className="infoUl">
                         <li className="infoLi">
                             <div className="infoLabel"> 부서명</div>
-                            <select className="infoInput" name='deptName' required='부서를 선택하세요'  onChange={handleDeptName}>
+                            <select className="infoInput" name='deptName' required='부서를 선택하세요'
+                                    onChange={handleDeptName}>
                                 <option value={'none'}>부서</option>
                                 <option value={'인사'}>인사</option>
                                 <option value={'인사'}>영업</option>
@@ -173,7 +193,12 @@ const EmpRegistModal = ({closeModal, props}) => {
                         </li>
                         <li className="infoLi">
                             <div className="infoLabel"> 사원 사진</div>
-                            <input className="infoInputfile" type="file" name=''></input>
+                            <input className="infoInputfile" type="file" accept="image/*" ref={inputRef}
+                                   onChange={onUploadImage} style={{display: 'none'}}/>
+                            <button onClick={onUploadImageButtonClick}>이미지 등록</button>
+                            {empImage &&
+                                <img alt={''} src={URL.createObjectURL(empImage)} style={{width: '200px'}}/>
+                            }
                         </li>
 
                         <li className="infoLi">
@@ -199,18 +224,16 @@ const EmpRegistModal = ({closeModal, props}) => {
                             <input className="infoInput" type="tel" name='empCellPhone' placeholder='숫자만 입력하세요'
                                    maxLength='13' value={empCellPhone} ref={phoneRef}
                                    onChange={handleEmpCellPhone}></input>
-
                         </li>
                         <li className="infoLi">
                             <div className="infoLabel"> 사내번호</div>
-                            <input className="infoInput" name='empOfficePhone' placeholder='사원입력'  readOnly></input>
+                            <input className="infoInput" name='empOfficePhone' placeholder='사원입력' readOnly></input>
                         </li>
                         <li className="infoLi">
                             <div className="infoLabel"> 비상연락</div>
                             <input className="infoInput" name='empContactList' placeholder='사원입력' readOnly></input>
                         </li>
 
-                        {}
                         <div className="button">
                             <button className="handleBtn" onClick={handleRegist}
                                     name='empRegistSubmit'>

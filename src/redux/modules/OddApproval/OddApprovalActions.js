@@ -36,11 +36,11 @@ const OddApprovalActions = {
             })
         }
     },
-    getOddRequest: (empNo) => async(dispatch) => {
+    getOddRequest: (empNo, year) => async(dispatch) => {
         dispatch({type: Types.GET_ODD_APPROVAL})
 
         try {
-            const oddApproval = await OddApprovalAPI.getOddRequest(empNo)
+            const oddApproval = await OddApprovalAPI.getOddRequest(empNo, year)
 
             dispatch({
                 type: Types.GET_ODD_APPROVAL_SUCCESS,

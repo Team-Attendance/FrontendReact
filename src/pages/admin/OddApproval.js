@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
 import OddApprovalList from "../../components/OddApproval/OddApprovalList";
-import OddStatus from "../../components/OddApproval/OddStatus";
+import OddApprovalStatus from "../../components/OddApproval/OddApprovalStatus";
 import SearchBar from "../../components/SearchBar";
 import CountApprovalActions from "../../redux/modules/CountApproval/CountApprovalActions";
 import OddApprovalActions from "../../redux/modules/OddApproval/OddApprovalActions";
+import CoPresentIcon from "@mui/icons-material/CoPresent";
+import '../../css/common.scss'
 
 const OddApproval = () => {
 
@@ -28,11 +30,18 @@ const OddApproval = () => {
     }
 
     return (
-        <div>
-            <OddStatus />
-            <SearchBar onSubmit={onSubmit} />
-            <OddApprovalList
-                changeFlag={() => setFlag(!flag)} />
+        <div className="common-container">
+            <div className="menu-title">
+                <h2><CoPresentIcon sx={{marginRight: '3px'}}/>
+                    <span>이상 근태 승인</span>
+                </h2>
+            </div>
+            <div>
+                <OddApprovalStatus/>
+                <SearchBar onSubmit={onSubmit}/>
+                <OddApprovalList
+                    changeFlag={() => setFlag(!flag)}/>
+            </div>
         </div>
     )
 }
