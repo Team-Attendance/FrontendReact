@@ -33,7 +33,6 @@ const Dropdown = ({year, setYear, currentYear}) => {
         <div className="components-years">
             <span className="year year-select" onClick={() => setIsOpen(!isOpen)}
                   ref={ref}>{year}<KeyboardArrowDownIcon/></span>
-            <span>년도</span>
             <div className={`components-dropdown ${isOpen ? 'fade-in-dropdown' : ''}`}>
                 {isOpen &&
                     <ul>

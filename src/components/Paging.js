@@ -1,4 +1,9 @@
-const Paging = (totalData, dataPerPage, pageCount, currentPage, gridView) => {
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+
+const Paging = ({totalData, dataPerPage, pageCount, currentPage, setCurrentPage, gridView}) => {
 
     const totalPage = Math.ceil(totalData / dataPerPage) // 총 페이지 수
     const pageGroup = Math.ceil(currentPage / pageCount)  // 페이지 그룹
@@ -12,98 +17,49 @@ const Paging = (totalData, dataPerPage, pageCount, currentPage, gridView) => {
     let next = last + 1
     let prev = first - 1
 
-    let html = ""
-
-    if (prev === 0) {
-        html += "<span id='first' class='disabled'><<</span> ";
-        html += "<span id='prev' class='disabled'><</span> ";
-    } else {
-        html += "<span id='first'><<</span> ";
-        html += "<span id='prev'><</span> ";
+    const pageNum = () => {
+        const numArr = []
+        for (let i = first; i <= last; i++) {
+            numArr.push(<span key={i} id={`${i}`}
+                              className={`page-button ${i === Number(currentPage) ? 'current' : ''}`}
+                              onClick={pageClick}>{i}</span>)
+        }
+        return numArr
     }
 
+    const pageClick = (e) => {
+        e.preventDefault()
+        let selectedPage = e.target.innerText
+        setCurrentPage(selectedPage)
 
-    for (let i = first; i <= last; i++) {
-        html += "<span id=" + i + ">" + i + "</span> ";
+        if (selectedPage) {
+            gridView.setPage(selectedPage - 1)
+        }
     }
 
-    if (last < totalPage) {
-        html += "<span id='next'>></span>";
-        html += "<span id='last'>>></span>";
-    } else {
-        html += "<span id='next' class='disabled'>></span>";
-        html += "<span id='last' class='disabled'>>></span>";
-    }
-
-
-    // $("#paging").html(html);    // 페이지 목록 생성
-
-    // pagination.current.querySelector("#paging").innerHTML = html
-
-    // $("#paging a").css({"color": "black",
-    //                     "padding-left": "10px"});
-    // document.getElementById("paging")
-    //         .setAttribute("style", "color: 'black'; padding-left: '10px';")
-
-    // $("#paging a#" + currentPage).css({"text-decoration":"none",
-    //                                     "color":"red",
-    //                                     "font-weight":"bold"});    // 현재 페이지 표시
-
-    // document.getElementById("#paging a#" + currentPage).style.textDecoration = 'none'
-    // document.getElementById(currentPage).style.color = 'red'
-    // document.getElementById("#paging a#" + currentPage).style.fontWeight = 'bold'
-
-    // $("#paging a").click(function(event){
-    //     event.preventDefault();
-
-    //     var $item = $(this);
-    //     var $id = $item.attr("id");
-    //     var selectedPage = $item.text();
-
-
-    //     if($id == "first")   selectedPage = 1;
-    //     if($id == "next")    selectedPage = next;
-    //     if($id == "prev")    selectedPage = prev < 1 ? 1 : prev
-    //     if($id == "last")    selectedPage = totalPage;
-
-    //     gridView.setPage(selectedPage-1);
-    //     paging(totalData, dataPerPage, pageCount, selectedPage);
-    // });
-    document.getElementById("paging").innerHTML = html
-
-    if (document.getElementById(currentPage) !== null) {
-        // 현재 페이지 표시
-        document.getElementById(currentPage).style.color = 'red'
-        document.getElementById(currentPage).style.fontWeight = 'bold'
-        document.getElementById(currentPage).style.border = '1px lightgray solid'
-    }
-
-    let sp = document.getElementById("paging").getElementsByTagName("span")
-    for (let i = 0; i < sp.length; i++) {
-        sp[i].addEventListener("click", function (e) {
-            e.preventDefault()
-            let id = this.id
-            let selectedPage = this.innerText
-
-            if (id === "first") {
-                selectedPage = 1
-            }
-            if (id === "next") {
-                selectedPage = next > totalPage ? totalPage : next
-            }
-            if (id === "prev") {
-                selectedPage = prev < 1 ? 1 : prev
-            }
-            if (id === "last") {
-                selectedPage = totalPage
-            }
-
-            if (gridView !== null) {
-                gridView.setPage(selectedPage - 1)
-            }
-            Paging(totalData, dataPerPage, pageCount, selectedPage, gridView)
-        })
-    }
+    return (
+        <div id='paging'
+             style={{float: 'left', height: '100%', paddingTop: '20px'}}>
+            <KeyboardDoubleArrowLeftIcon id='first' className={`page-button ${prev ? '' : 'disabled'}`}
+                                         onClick={() => {
+                                             setCurrentPage(1)
+                                         }}/>
+            <KeyboardArrowLeftIcon id={"prev"} className={`page-button ${prev ? '' : 'disabled'}`}
+                                   onClick={() => {
+                                       setCurrentPage(prev < 1 ? 1 : prev)
+                                   }}/>
+            {pageNum()}
+            <KeyboardArrowRightIcon id={"next"} className={`page-button ${last < totalPage ? '' : 'disabled'}`}
+                                    onClick={() => {
+                                        setCurrentPage(next > totalPage ? totalPage : next)
+                                    }}/>
+            <KeyboardDoubleArrowRightIcon id={"last"}
+                                          className={`page-button ${last < totalPage ? '' : 'disabled'}`}
+                                          onClick={() => {
+                                              setCurrentPage(totalPage)
+                                          }}/>
+        </div>
+    )
 
 }
 

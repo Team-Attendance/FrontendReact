@@ -12,12 +12,14 @@
 
   input {
     width: 30%;
+    min-width: 250px;
     //flex-grow: 1;
     margin: 0 1em;
-  }
+    padding-left: 10px;
 
-  input::placeholder {
-    padding-left: 1em;
+    &::placeholder {
+      //padding-left: 10px;
+    }
   }
 
   button {
@@ -26,5 +28,8 @@
     width: 60px;
     padding: 5px 0;
     background-color: whitesmoke;
+    &:hover{
+      background-color: lightgray;
+    }
   }
 }

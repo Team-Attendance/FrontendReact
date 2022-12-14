@@ -1,65 +1,47 @@
 import React from "react";
-import { useState} from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import EmpActions from "../../redux/modules/EmpManagement/EmpActions";
 
-import '../../css/EmpReg.scss';
+import './EmpSearchModal.scss';
 import SearchBar from "../SearchBar";
-import EmpSearchList from "../report/EmpSearchList";
+import EmpList from "../EmpManagement/EmpList";
 
 
-const EmpInfoUpdateModal = ({ empInfo, closeModal}) => {
-    
-   
-    
+const EmpSearchModal = ({closeModal}) => {
+
     const dispatch = useDispatch();
     const onSubmit = (query, option) => {
         if (query === '') {
             dispatch(EmpActions.getAllEmps())
-        }
-        else {
+        } else {
             dispatch(EmpActions.searchEmp(option, query))
         }
-
     }
 
-    
 
-    const closeButton = () => {
-        closeModal();
-    }
-
-    
-    
-
-    return(
-        <div className="myPage">
-            <div>
-                <h1 className="infoTitle">사원 검색</h1>
-            </div>
-            <div className="infoBox">
-                <div className="infoContent">
-                    <ul className="infoUl">
-                   
-                    <SearchBar onSubmit={onSubmit} />
-                    
-                     
-                     <EmpSearchList empInfo={empInfo} />
-                     
-                    </ul>
-                    
-                    
-                        <div className="button">
-                          
-                            <button className="stChange" onClick={closeButton}>닫기</button>
+    return (
+        <div className="searchEmpModal" onClick={closeModal}>
+            <div className="modalBody" onClick={(e) => e.stopPropagation()} >
+                <button id="modalCloseBtn" onClick={closeModal}>
+                    ✖
+                </button>
+                <div className="search-modal">
+                    <div>
+                        <h1 className="search-title">사원 검색</h1>
+                    </div>
+                    <div className="search-box">
+                        <div className="search-content">
+                                <SearchBar onSubmit={onSubmit}/>
+                                <EmpList/>
+                            <div className="search-button">
+                                <button onClick={closeModal}>닫기</button>
+                            </div>
                         </div>
-                   
-                    
-                    
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
 
-export default EmpInfoUpdateModal;
+export default EmpSearchModal;

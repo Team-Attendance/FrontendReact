@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import EmpLeaveList from "../../components/EmpLeave/EmpLeaveList";
 import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprovalActions";
-import CoPresentIcon from "@mui/icons-material/CoPresent";
+import FlightIcon from "@mui/icons-material/Flight";
 import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import LeaveStatus from "../../components/EmpLeave/LeaveStatus";
 import '../../css/statusPage.scss'
@@ -25,21 +25,20 @@ const EmpLeavePage = () => {
     return (
         <div className="common-container">
             <div className="menu-title">
-                <h2><CoPresentIcon sx={{marginRight: '3px'}}/>
+                <h2><FlightIcon sx={{marginRight: '3px'}}/>
                     <span>휴가 신청 현황</span>
                 </h2>
             </div>
             <div>
-                <Dropdown
-                    year={year}
-                    setYear={setYear}
-                    currentYear={currentYear}/>
                 <div className="sub-title">
                     <span>연도별 휴가 사용내역</span>
                 </div>
                 <LeaveStatus/>
                 <div className="sub-title">
-                    <span className="year">{year}</span>
+                    <Dropdown
+                        year={year}
+                        setYear={setYear}
+                        currentYear={currentYear}/>
                     <span>년도 휴가 상세내역</span>
                 </div>
                 <EmpLeaveList

@@ -107,6 +107,9 @@
             padding: 7px;
             margin-left: 15px;
             background-color: whitesmoke;
+            &:hover{
+              background-color: lightgray;
+            }
           }
         }
       }

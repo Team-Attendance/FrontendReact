@@ -21,7 +21,6 @@ export const columns = [{
     name: "empNo",
     fieldName: "empNo",
     type: "data",
-    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -33,7 +32,6 @@ export const columns = [{
     name: "empName",
     fieldName: "empName",
     type: "data",
-    width: "150",
     styles: {
         textAlignment: "center"
     },
@@ -44,7 +42,6 @@ export const columns = [{
     name: "deptName",
     fieldName: "deptName",
     type: "data",
-    width: "200",
     styles: {
         textAlignment: "center"
     },
@@ -56,7 +53,6 @@ export const columns = [{
     name: "empPosition",
     fieldName: "empPosition",
     type: "data",
-    width: "250",
     styles: {
         textAlignment: "center"
     },

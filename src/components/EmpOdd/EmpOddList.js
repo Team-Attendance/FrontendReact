@@ -13,6 +13,9 @@ const EmpOddList = ({changeFlag}) => {
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
+    const [gridView, setGridView] = useState(null)
+    const [dataProvider, setDataProvider] = useState(null)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const realgridElement = useRef(null)
 
@@ -32,7 +35,6 @@ const EmpOddList = ({changeFlag}) => {
         gv.setStateBar({visible: false})
         gv.setCheckBar({visible: false})
         gv.setDisplayOptions({
-            selectionStyle: "rows",
             showEmptyMessage: true,
             emptyMessage: "조회된 데이터가 없습니다.",
             fitStyle: "evenFill"
@@ -45,8 +47,9 @@ const EmpOddList = ({changeFlag}) => {
             setModal(!modal)
         }
         gv.setPaging(true, 10)
-        Paging(dp.getRowCount(), 10, 5, 1, gv)
 
+        setGridView(gv)
+        setDataProvider(dp)
 
         return () => {
             dp.clearRows()
@@ -69,9 +72,15 @@ const EmpOddList = ({changeFlag}) => {
                      ref={realgridElement}>
                 </div>
             </div>
-            <div id='paging'
-                 style={{float: 'left', height: '100%', paddingTop: '20px'}}> -
-            </div>
+            {dataProvider && gridView &&
+                <Paging
+                    totalData={dataProvider.getRowCount()}
+                    dataPerPage={10}
+                    pageCount={5}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    gridView={gridView} />
+            }
         </div>
     )
 }

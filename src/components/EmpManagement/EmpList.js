@@ -5,9 +5,10 @@ import '../../css/RealGrid.scss'
 import '../../css/ApprovalList.scss'
 
 import Paging from "../Paging"
+import {useSelector} from "react-redux";
 
-const EmpList = ({empInfo}) => {
-
+const EmpList = () => {
+    const {empInfo} = useSelector((state) => state.empInfo)
     const realgridElement = useRef(null)
 
     useEffect(() => {
@@ -26,9 +27,10 @@ const EmpList = ({empInfo}) => {
         gv.setStateBar({visible: false})
         gv.setCheckBar({visible: false})
         gv.setDisplayOptions({
-            selectionStyle: "rows",
             showEmptyMessage: true,
-            emptyMessage: "조회된 데이터가 없습니다."
+            emptyMessage: "조회된 데이터가 없습니다.",
+            fitStyle: "evenFill",
+            columnResizable: false
         })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
@@ -39,8 +41,8 @@ const EmpList = ({empInfo}) => {
             window.location.href = `/admin/report`
         }
 
-        gv.setPaging(true, 10)
-        Paging(dp.getRowCount(), 10, 5, 1, gv)
+        // gv.setPaging(true, 10)
+        // Paging(dp.getRowCount(), 10, 5, 1, gv)
 
 
 
@@ -58,9 +60,9 @@ const EmpList = ({empInfo}) => {
                      ref={realgridElement}>
                 </div>
             </div>
-            <div id='paging'
-                 style={{float: 'left', height: '100%', paddingTop: '20px'}}> -
-            </div>
+            {/*<div id='paging'*/}
+            {/*     style={{float: 'left', height: '100%', paddingTop: '20px'}}> -*/}
+            {/*</div>*/}
         </div>
 
     )

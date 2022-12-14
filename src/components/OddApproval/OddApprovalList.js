@@ -15,8 +15,9 @@ const OddApprovalList = ({changeFlag}) => {
 
     const [modal, setModal] = useState(false)
     const [data, setData] = useState({})
-
     const [gridView, setGridView] = useState(null)
+    const [dataProvider, setDataProvider] = useState(null)
+    const [currentPage, setCurrentPage] = useState(1)
     const realgridElement = useRef(null)
 
     const approver = sessionStorage.getItem("empName")
@@ -38,10 +39,10 @@ const OddApprovalList = ({changeFlag}) => {
         gv.setCheckBar({width: 50})
         gv.setCheckableExpression("values['oddBizAdjState']='0'", true)
         gv.setDisplayOptions({
-            selectionStyle: "rows",
             showEmptyMessage: true,
             emptyMessage: "조회된 데이터가 없습니다.",
-            fitStyle: "evenFill"
+            fitStyle: "evenFill",
+            columnResizable: false
         })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
@@ -51,9 +52,9 @@ const OddApprovalList = ({changeFlag}) => {
             setModal(!modal)
         }
         gv.setPaging(true, 10)
-        Paging(dp.getRowCount(), 10, 5, 1, gv)
 
         setGridView(gv)
+        setDataProvider(dp)
 
         return () => {
             dp.clearRows()
@@ -116,9 +117,15 @@ const OddApprovalList = ({changeFlag}) => {
                 <button onClick={() => changeState(1)}>승인</button>
                 <button onClick={() => changeState(2)}>반려</button>
             </div>
-            <div id='paging'
-                 style={{float: 'left', height: '100%', paddingTop: '20px'}}> -
-            </div>
+            {dataProvider && gridView &&
+                <Paging
+                    totalData={dataProvider.getRowCount()}
+                    dataPerPage={10}
+                    pageCount={5}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    gridView={gridView} />
+            }
         </div>
     )
 }

@@ -2,11 +2,11 @@ import Types from "../../ActionConstants"
 import * as LeaveApprovalAPI from "../../../api/LeaveApprovalAPI"
 
 const LeaveApprovalActions = {
-    getAllLeaveApproval: () => async(dispatch) => {
+    getAllLeaveApproval: (year) => async(dispatch) => {
         dispatch({type: Types.GET_LEAVE_APPROVAL})
 
         try {
-            const leaveApproval = await LeaveApprovalAPI.getAllLeaveApproval()
+            const leaveApproval = await LeaveApprovalAPI.getAllLeaveApproval(year)
 
             dispatch({
                 type: Types.GET_LEAVE_APPROVAL_SUCCESS,
@@ -19,11 +19,11 @@ const LeaveApprovalActions = {
             })
         }
     },
-    searchLeaveApproval: (option, query) => async(dispatch) => {
+    searchLeaveApproval: (option, query, year) => async(dispatch) => {
         dispatch({type: Types.GET_LEAVE_APPROVAL})
 
         try {
-            const leaveApproval = await LeaveApprovalAPI.searchLeaveApproval(option, query)
+            const leaveApproval = await LeaveApprovalAPI.searchLeaveApproval(option, query, year)
 
             dispatch({
                 type: Types.GET_LEAVE_APPROVAL_SUCCESS,

@@ -23,7 +23,6 @@ const EmpManagement = () => {
     }
 
 
-    const {empInfo} = useSelector((state) => state.empInfo)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -55,7 +54,7 @@ const EmpManagement = () => {
                     </ModalReg>
                 )}
             </div>
-            <EmpList empInfo={empInfo}/>
+            <EmpList/>
         </div>
     )
 }

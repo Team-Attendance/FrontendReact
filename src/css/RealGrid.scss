@@ -73,10 +73,18 @@
     border-color: lightgray;
     border-style: solid;
   }
-
+  .rg-header-focus{
+    background-color: rgba(0, 0, 0, 0.1);
+  }
   .rg-header-cell.rg-header-select {
     background-color: whitesmoke;
   }
+
+  .rg-focus {
+    /* 포커스 셀의 색깔 변경 */
+    border: 2px solid rgba(117, 192, 221, 0.5);
+  }
+
 }
 
 .approved {

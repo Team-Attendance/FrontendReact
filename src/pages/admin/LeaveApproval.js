@@ -5,25 +5,26 @@ import LeaveApprovalStatus from "../../components/LeaveApproval/LeaveApprovalSta
 import SearchBar from "../../components/SearchBar";
 import CountApprovalActions from "../../redux/modules/CountApproval/CountApprovalActions";
 import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprovalActions";
-import CoPresentIcon from '@mui/icons-material/CoPresent';
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import Dropdown from "../../components/Dropdown";
 
 const LeaveApproval = () => {
-
+    const currentYear = new Date().getFullYear()
     const [flag, setFlag] = useState(false)
+    const [year, setYear] = useState(currentYear)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(LeaveApprovalActions.getAllLeaveApproval())
-        dispatch(CountApprovalActions.countLeaveApproval(new Date().getFullYear()))
-    }, [dispatch, flag])
+        dispatch(LeaveApprovalActions.getAllLeaveApproval(year))
+        dispatch(CountApprovalActions.countLeaveApproval(year))
+    }, [dispatch, flag, year])
 
     const onSubmit = (query, option) => {
-
         if (query === '') {
-            dispatch(LeaveApprovalActions.getAllLeaveApproval())
+            dispatch(LeaveApprovalActions.getAllLeaveApproval(year))
         } else {
-            dispatch(LeaveApprovalActions.searchLeaveApproval(option, query))
+            dispatch(LeaveApprovalActions.searchLeaveApproval(option, query, year))
         }
 
     }
@@ -31,13 +32,23 @@ const LeaveApproval = () => {
     return (
         <div className="common-container">
             <div className="menu-title">
-                <h2><CoPresentIcon sx={{marginRight: '3px'}}/>
+                <h2><EventAvailableIcon sx={{marginRight: '3px'}}/>
                     <span>휴가 승인</span>
                 </h2>
             </div>
             <div>
+                <div className="sub-title">
+                    <span>연도별 휴가 신청 내역</span>
+                </div>
                 <LeaveApprovalStatus/>
                 <SearchBar onSubmit={onSubmit}/>
+                <div className="sub-title">
+                    <Dropdown
+                        year={year}
+                        setYear={setYear}
+                        currentYear={currentYear}/>
+                    <span>년도 휴가 신청 상세내역</span>
+                </div>
                 <LeaveApprovalList
                     changeFlag={() => setFlag(!flag)}
                 />

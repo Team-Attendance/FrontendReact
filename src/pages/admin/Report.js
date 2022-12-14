@@ -32,20 +32,19 @@ export function Report(){
 
     let empNo = sessionStorage.getItem("empNo");
     const currentYear = new Date().getFullYear()
-    
+
     const [modal, setModal ] = useState(false)
     const [empModal, setEmpModal] = useState(false)
 
     const [data, setData ] = useState({})
 
     const dispatch = useDispatch();
-    const { empInfo } =  useSelector((state) => state.empInfo)
     // const { WeeklyInfo } = useSelector((state) => state.WeeklyInfo)
     const [empInfoDetail , setEmpInfoDetail] = useState([{}])
     const { leaveApprovalInfo } =  useSelector((state) => state.leaveApprovalInfo)
     const { oddApprovalInfo } =  useSelector((state) => state.oddApprovalInfo)
     const [WeeklyInfo , setWeeklyInfo] = useState([{}])
-    
+
     const ptochart = useCallback(() => dispatch(getPtoData(1, 2022)), [dispatch]);
     const oddchart = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);
     // const WeekliyBizTimeChart = useCallback(() => dispatch(getWeekliyBizTime(1)), [dispatch]);
@@ -67,10 +66,10 @@ export function Report(){
         dispatch(OddApprovalActions.getOddRequest(empNo, currentYear))
         dispatch(LeaveApprovalActions.getLeaveRequest(empNo, currentYear))
     }, [dispatch, empNo, oddchart, ptochart])
-   
+
         const onsubmit = () => {
-            setEmpModal(true);
-            dispatch(EmpInfoActions.getAllEmps)
+            setEmpModal(!empModal);
+            dispatch(EmpInfoActions.getAllEmps())
 
         }
 
@@ -81,20 +80,24 @@ export function Report(){
 
     return(
         <div className="wrapp">
-         
+
             <div className="container">
                 <div className="left-wrap">
-                
+                    <span onClick={onsubmit}> <SearchIcon onClick={onsubmit}/>사원검색 </span>
+                    {empModal && (
+                        <EmpSearchModal
+                            closeModal={() => setEmpModal(!empModal)} />
+                    )}
                     <section className="left">
-                        
+
                         <div className="emp-info">
                             <p><PermContactCalendarIcon/>사원정보</p>
-                           
+
                                 <div className="mini">
-                                    
+
                                     <div className="image">
                                     </div>
-                                  
+
                                    <div className="emptable">
                                             <EmpInfoTable empInfoDetail= {empInfoDetail} />
                                         <button onClick={onSubmitt} className="butt">수정하기</button>
@@ -114,7 +117,7 @@ export function Report(){
                         <p><PendingActionsIcon/>휴가신청 현황</p>
                         <div className="leave-adj">
                             {/* <h3 className="title">휴가 신청 현황</h3> */}
-                            
+
                             <LeaveAdjTable leaveApprovalInfo = {leaveApprovalInfo} />
                         </div>
                         <p><PendingActionsIcon/>이상근태 조정신청 현황</p>
@@ -122,29 +125,20 @@ export function Report(){
                             {/* <h3 className="title">이상근태 조정신청 현황</h3> */}
                             <OddAdjTable oddApprovalInfo = {oddApprovalInfo}/>
                         </div>
-                    </section>   
+                    </section>
                 </div>
                 <div className="right_wrap">
-                <span onClick={onsubmit}> <SearchIcon onClick={onsubmit}/>사원검색 </span>
-                    {empModal && (
-                        <Modal closeModal={() => setEmpModal(!empModal)} >
-                            <EmpSearchModal
-                                empInfo = {empInfo}
-                                closeModal={() => setEmpModal(!empModal)}
-                                />
-                        </Modal>
-                    )}
                     <section className="right">
                     <div>
                     <span className="start"><PieChartIcon/>연차 사용 현황</span>  <span className="end"><PieChartIcon/>당월 이상근태 현황</span>
                     </div>
                         <div className="box">
-                        
+
                             <div className="right top">
                                 {/* <p>연차 사용률</p> */}
                                 <PtoChart/>
                             </div>
-                           
+
                             <div className="right top">
                                 {/* <p>이상근태율</p> */}
                                 <OddChart  />
@@ -166,5 +160,5 @@ export function Report(){
         </div>
     );
 
-    
+
 }

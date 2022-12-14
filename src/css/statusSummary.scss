@@ -14,29 +14,51 @@
     //margin-top: 50px;
 
     .approval-status-item {
-      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      grid-template-rows: 1fr 1fr;
       width: 32%;
       border: 1px lightgray solid;
       border-radius: 5px;
+      box-shadow: 0 5px 5px -5px #000000;
+      color: black;
+
+      .icon {
+        grid-row: 1 / 3;
+        justify-self: center;
+        align-self: center;
+
+        .MuiSvgIcon-root {
+          margin-top: 8px;
+          font-size: 2rem;
+        }
+      }
 
       h2 {
-        position: absolute;
-        left: 10px;
-        top: 8px;
-        font-weight: bold;
+        align-self: end;
+        //font-weight: bold;
       }
 
-      div {
-        text-align: center;
-        padding-top: 40px;
-        padding-bottom: 10px;
-      }
-
-      span {
-        font-size: 1.2rem;
-        font-weight: bold;
+      .text {
+        align-self: start;
+        padding-bottom: 5px;
+        .count {
+          font-size: 1.2rem;
+        }
       }
     }
+
+    //.test1 {
+    //  background-color: #F4F4F2;
+    //}
+    //
+    //.test2 {
+    //  background-color: #FCF8EC;
+    //}
+    //
+    //.test3 {
+    //  background-color: #F7FBFC;
+    //}
   }
 
   .approval-no-item {
