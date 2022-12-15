@@ -113,7 +113,7 @@ export function DeptCalendar({ setShowDeptCalendar }) {
                               <span
                                 className={inIndex === 6 ? `saturday ${calendarDay.type}` :
                                   (inIndex === 0 ? `sunday ${calendarDay.type}` : calendarDay.type)}
-                                onClick={() => { test(formatHyphenFulldate(calendarDay.date), sessionDeptName); setShowDeptModal(true); }}
+                                
                               >{calendarDay.day}</span>
                             </div>
 
@@ -122,9 +122,9 @@ export function DeptCalendar({ setShowDeptCalendar }) {
 
                               {calendarDay.type === "normal" && inIndex !== 0 && inIndex !== 6 &&
                                 <div>
-                                  {calCountData.normalLeave !== 0 && <span className="normal-leave">휴가 : {calCountData.normalLeave}명</span>}
-                                  {calCountData.morningLeave !== 0 && <span className="morning-leave">오전휴가 : {calCountData.morningLeave}명</span>}
-                                  {calCountData.afternoonLeave !== 0 && <span className="afternoon-leave">오후휴가 : {calCountData.afternoonLeave}명</span>}
+                                  {calCountData.normalLeave !== 0 && <span className="normal-leave" onClick={() => { test(formatHyphenFulldate(calendarDay.date), sessionDeptName); setShowDeptModal(true); }}>휴가 : {calCountData.normalLeave}명</span>}
+                                  {calCountData.morningLeave !== 0 && <span className="morning-leave" onClick={() => { test(formatHyphenFulldate(calendarDay.date), sessionDeptName); setShowDeptModal(true); }}>오전휴가 : {calCountData.morningLeave}명</span>}
+                                  {calCountData.afternoonLeave !== 0 && <span className="afternoon-leave" onClick={() => { test(formatHyphenFulldate(calendarDay.date), sessionDeptName); setShowDeptModal(true); }}>오후휴가 : {calCountData.afternoonLeave}명</span>}
                                 </div>
                               }
                             </div>

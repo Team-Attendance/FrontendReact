@@ -9,6 +9,7 @@ import { useSelector } from "react-redux"
 const MonthlyTable = () => {
   const data = useSelector(state => state.monthlyTable.data);
 
+  
   const [maxPage, setMaxPage] = useState(null);
   const [gridView, setGridView] = useState(null);
 
@@ -89,7 +90,7 @@ const MonthlyTable = () => {
           {gridView &&
             maxPage.map((pageNumber, index) => {
               return (
-                <li className={index - 1 === 0 && "on"} ref={(el) => { pageElement.current[index - 1] = el }} onClick={() => { gridView.setPage(pageNumber - 1); choicePage(pageNumber - 1) }} style={{ display: 'inline-block', margin: '0 7px', border: '', padding: '0 5px', fontSize: '0.8rem', cursor: 'pointer' }}> {pageNumber}</li>
+                <li className={index - 1 === 0 ? "on" : ""} ref={(el) => { pageElement.current[index - 1] = el }} onClick={() => { gridView.setPage(pageNumber - 1); choicePage(pageNumber - 1) }} style={{ display: 'inline-block', margin: '0 7px', border: '', padding: '0 5px', fontSize: '0.8rem', cursor: 'pointer' }}> {pageNumber}</li>
               );
             })
           }

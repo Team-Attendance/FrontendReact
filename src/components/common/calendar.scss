@@ -20,6 +20,7 @@
   text-align: right;
   position: relative;
   border: 1px solid lightgray;
+  
 
   &.dept-cal-item {
     height: 102px;
@@ -56,7 +57,7 @@
     height: 100%;
     position: absolute;
     top: 0px;
-    z-index: -1;
+    z-index: 0;
 
     &.next,
     &.prev {
@@ -76,6 +77,7 @@
         border-radius: 15px;
         margin: 5px 0;
         color: white;
+        cursor: pointer;
 
         &.normal-leave {
           background-color: #8D9EFF;
@@ -108,7 +110,7 @@
   line-height: 18px;
 
   & span {
-    cursor: pointer;
+    cursor: default;
 
     &.sunday {
       color: red;

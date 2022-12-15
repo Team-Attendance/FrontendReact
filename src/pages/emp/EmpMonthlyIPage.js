@@ -18,9 +18,14 @@ export function EmpMonthlyPage() {
 
   const sesssionUserNo = sessionStorage.getItem("empNo");
 
-  const year = useSelector(state => state.calendar.year);
-  const month = useSelector(state => state.calendar.month);
+  // const year = useSelector(state => state.calendar.year);
+  // const month = useSelector(state => state.calendar.month);
+
+  const year = useSelector(state => state.monthlyTable.year);
+  const month = useSelector(state => state.monthlyTable.month);
+
   const statusData = useSelector(state => state.calendarStatus.data);
+
 
   const dispatch = useDispatch();
   const setCalDate = useCallback((year, month) => dispatch(setCalendarDate(year, month)), [dispatch]);
@@ -30,18 +35,21 @@ export function EmpMonthlyPage() {
 
   const onUpdate = useCallback((empNo, year, month) => dispatch(getStatusData(empNo, year, month)), [dispatch]);
 
-  // const cal = monthCalendar();
 
 
+  
   useEffect(() => {
-    dispatch(clear());
     const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+
+
     setCalDate(year, month);
-
-
     onSetMonthData(sesssionUserNo);
+
+    return () => {
+      dispatch(clear());
+    };
   }, [onSetMonthData, onUpdateMonthData, sesssionUserNo, dispatch, setCalDate]);
 
   useEffect(() => {
@@ -50,14 +58,16 @@ export function EmpMonthlyPage() {
 
   return (
     <>
-      {statusData &&
+      {statusData && 
         <div style={{ padding: '30px' }}>
+          
           <div style={{ marginBottom: '10px' }}>
             <div style={{ marginBottom: '10px' }}>
               <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}><EventAvailableIcon sx={{ marginRight: '3px' }} /><span style={{ verticalAlign: 'text-bottom' }}>월별 근태 현황</span></h2>
             </div>
             <div>
               <div style={{ width: '100%', marginBottom: '25px' }}>
+             
                 <CalendarStatus />
               </div>
               <div style={{ position: 'relative' }}>
@@ -72,10 +82,11 @@ export function EmpMonthlyPage() {
                     <div>
                       <div style={{ position: 'relative', textAlign: 'left', padding: '10px 20px', border: '1px solid lightgray', backgroundColor: 'whitesmoke', borderBottom: 'none' }}>
                         <span style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>{year}년 {month}월</span>
-                        <ArrowBackIosNewIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '110px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(sesssionUserNo, year, month, 'prev'); month === 1 ? setCalDate(year - 1, 12) : setCalDate(year, month - 1) }} />
-                        <ArrowForwardIosIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '125px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(sesssionUserNo, year, month, 'next'); month === 12 ? setCalDate(year + 1, 1)  : setCalDate(year, month + 1) }} />
+                        <ArrowBackIosNewIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '110px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(sesssionUserNo, year, month, 'prev'); }} />
+                        <ArrowForwardIosIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '125px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(sesssionUserNo, year, month, 'next'); }} />
                       </div>
                     </div>
+                    
                     <MonthlyTable />
                   </div>
 

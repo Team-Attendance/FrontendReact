@@ -6,7 +6,7 @@
   left: 0;
   top: 0;
   opacity: 0.7;
-  z-index: 1;
+  z-index: 10;
 }
 
 .modal-area{
@@ -25,7 +25,7 @@
   left: calc(50% - 300px);
   top: 100px;
   background-color: white;
-  z-index: 3;
+  z-index: 12;
 
   &.check{
     top: 250px;
