@@ -21,13 +21,40 @@ const EmpInfoPage = () => {
   const [pwdModal, setPwdModal] = useState(false);
   const [modiModal, setModiModal] = useState(false);
   const [empNo, setEmpNo] = useState(sessionStorage.getItem("empNo"));
-  const [img, setImg] = useState('')
+  const [img, setImg] = useState('');
+  const [url2, setUrl2] = useState();
 
   useEffect(() => {
     axios.get(API_URL+"/emp/emp-info/"+empNo)
         .then((res)=>{
           setEmpInfoDetail(res.data);
         })
+    //   axios
+    //       .all([
+    //           axios.get(API_URL+"/emp/emp-info/"+empNo),
+    //           axios.get({
+    //                       url: API_URL+"/emp/images/"+empNo,
+    //                       method: "GET",
+    //                       responseType: 'blob'
+    //                       }) .then((response) => {
+    //                           setImg(response.data);
+    //                           console.log("3: "+empNo)
+    //                       })
+    //                           .catch((error) => {
+    //                               console.log(error);
+    //                           })
+    //       ])
+    //       .then(
+    //           axios.spread((res1, res2) => {
+    //                  setEmpInfoDetail(res1.data);
+    //                 // setUrl2(res2.data);
+    //
+    //               console.log("res1: "+res1.data.empNo,"res2: "+url2);
+    //           })
+    //       )
+    //       .catch((error) => {
+    //           console.log(error);
+    //       })
   }
   // ,axios.get({
   //     url: `http://localhost:8080/emp/images/${empNo}`,
@@ -41,7 +68,7 @@ const EmpInfoPage = () => {
   //             console.log(error);
   //         })
     , [empNo])
-
+    console.log("2: "+empNo)
     const dateFormatting = (millisec) =>{
     // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
     const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '-')
@@ -120,9 +147,9 @@ const EmpInfoPage = () => {
 
                 <div className="emp-infoContent">
                     <div className="profile">
-                        {/*{ img &&*/}
-                        {/*    <img src={URL.createObjectURL(img)} alt=''/>*/}
-                        {/*}*/}
+                        { img &&
+                            <img src={URL.createObjectURL(img)} alt=''/>
+                        }
 
                         <img src="/eee.jpg" />
                         <div><span>{empInfoDetail.empName}</span></div>

@@ -102,6 +102,7 @@ export function SideBar() {
         getImg()
     }, [])
 
+<<<<<<< Updated upstream
     return (
         <Drawer
             variant="permanent"
@@ -113,6 +114,33 @@ export function SideBar() {
         >
             <SideWrap className="scroll-hidden">
                 <List>
+=======
+            <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
+              <UserImage>
+                {img &&
+                    <img width={"100%"} height={"100%"} src={URL.createObjectURL(img)} alt=''/>
+                }
+              </UserImage>
+              <Box>
+                <UserInfo style={{textAlign:'center'}}>
+                  {empName} {position}<br/>
+                  {deptName} 부서<br/>
+                </UserInfo>
+                <UserWork>
+                  <dt>출근 시간</dt>
+                  <dd>08 : 00</dd>
+                  <dt>퇴근 시간</dt>
+                  <dd>-</dd>
+                </UserWork>
+                {/* <IntoButton>출근</IntoButton> */}
+                <Button onClick={ () => { setModal(true)}} variant="contained" color='primary' sx={{ padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
+                {modal && (
+                    <Modal closeModal={() => setModal(!modal)} >
+                      <EmpQrModal
+                          closeModal={() => setModal(!modal)} />
+                    </Modal>
+                )}
+>>>>>>> Stashed changes
 
                     <Box style={{margin: '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
                         <UserImage>
