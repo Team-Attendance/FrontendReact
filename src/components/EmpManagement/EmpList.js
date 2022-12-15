@@ -1,15 +1,15 @@
 import {useEffect, useRef} from "react"
 import {GridView, LocalDataProvider} from 'realgrid'
 import {columns, fields} from './realgrid-data'
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import '../../css/RealGrid.scss'
 import '../../css/ApprovalList.scss'
-
-import Paging from "../Paging"
-import {useSelector} from "react-redux";
 
 const EmpList = () => {
     const {empInfo} = useSelector((state) => state.empInfo)
     const realgridElement = useRef(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const container = realgridElement.current
@@ -37,14 +37,8 @@ const EmpList = () => {
                 return;
             }
             const empNo = empInfo.data[clickData.dataRow].empNo
-            // window.location.href = `/admin/report/${empNo}`
-            window.location.href = `/admin/report`
+            navigate(`/admin/report/${empNo}`)
         }
-
-        // gv.setPaging(true, 10)
-        // Paging(dp.getRowCount(), 10, 5, 1, gv)
-
-
 
         return () => {
             dp.clearRows()

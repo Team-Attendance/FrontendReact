@@ -10,6 +10,7 @@
     border: none;
     background-color: white;
     border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
     //border-bottom: 1px solid lightgray;
   }
 
@@ -20,43 +21,14 @@
     height: 40px;
   }
 
-  .rg-header tbody tr,
-  .rg-head .rg-table tr td {
+  .rg-header tbody tr {
     background-color: whitesmoke;
   }
 
-  .rg-root .rg-table .rg-head-cell.rg-checkbar-head {
-    border-left: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
+  .rg-data-row.rg-alternate-row {
+    background-color: white;
   }
 
-  .rg-head .rg-table tr td {
-    border: none;
-    border-right: 1px solid lightgray;
-  }
-
-  .rg-header .rg-table tr td {
-    border: 1px solid lightgray;
-    border-left: none;
-    border-top: none;
-  }
-
-  .rg-rowbarcontainer {
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-  }
-
-  .rg-rowbarcontainer .rg-table tr td {
-    border: 1px solid lightgray;
-    border-left: none;
-    border-top: none;
-  }
-
-  //.rg-body .rg-table tr td,
-  //.rg-fixed-body .rg-table tr td {
-  //  border: none;
-  //  border-right: 1px solid lightgray;
-  //}
   .rg-checkbox {
     height: 15px;
     width: 15px;
@@ -73,9 +45,11 @@
     border-color: lightgray;
     border-style: solid;
   }
-  .rg-header-focus{
+
+  .rg-header-focus {
     background-color: rgba(0, 0, 0, 0.1);
   }
+
   .rg-header-cell.rg-header-select {
     background-color: whitesmoke;
   }

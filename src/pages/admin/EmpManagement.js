@@ -1,27 +1,18 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import SearchBar from "../../components/SearchBar";
+import {useDispatch} from "react-redux";
 import EmpActions from "../../redux/modules/EmpManagement/EmpActions";
-import EmpList from "../../components/EmpManagement/EmpList"
-import {useNavigate} from "react-router-dom";
 import EmpRegistModal from "./EmpRegistModal";
 import ModalReg from "../../components/Modal/ModalReg"
+import SearchIcon from "@mui/icons-material/Search";
+import EmpSearchModal from "../../components/Modal/EmpSearchModal";
+import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 
 
 const EmpManagement = () => {
 
     // 사원등록 페이지 이동
     const [regiModal, setRegiModal] = useState(false)
-    const [regiData, setRegiData] = useState({})
-    const openModal = (regiData) => {
-        setRegiData(regiData)
-        setRegiModal(!regiModal)
-    }
-    const navigate = useNavigate();
-    const handlerClick = () => {
-        navigate("/admin/emp-registration");
-    }
-
+    const [empModal, setEmpModal] = useState(true)
 
     const dispatch = useDispatch()
 
@@ -29,18 +20,19 @@ const EmpManagement = () => {
         dispatch(EmpActions.getAllEmps())
     }, [dispatch])
 
-    const onSubmit = (query, option) => {
-        if (query === '') {
-            dispatch(EmpActions.getAllEmps())
-        } else {
-            dispatch(EmpActions.searchEmp(option, query))
-        }
+    const openSearchModal = () => {
+        setEmpModal(!empModal);
+        dispatch(EmpInfoActions.getAllEmps())
 
     }
 
     return (
         <div>
-            <SearchBar onSubmit={onSubmit}/>
+            <span onClick={openSearchModal}> <SearchIcon onClick={openSearchModal}/>사원검색 </span>
+            {empModal && (
+                <EmpSearchModal
+                    closeModal={() => setEmpModal(!empModal)} />
+            )}
             <div align="right">
                 <button onClick={() => {
                     setRegiModal(true)
@@ -54,7 +46,6 @@ const EmpManagement = () => {
                     </ModalReg>
                 )}
             </div>
-            <EmpList/>
         </div>
     )
 }

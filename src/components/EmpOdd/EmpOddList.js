@@ -37,7 +37,8 @@ const EmpOddList = ({changeFlag}) => {
         gv.setDisplayOptions({
             showEmptyMessage: true,
             emptyMessage: "조회된 데이터가 없습니다.",
-            fitStyle: "evenFill"
+            fitStyle: "evenFill",
+            syncGridHeight: "always"
         })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {

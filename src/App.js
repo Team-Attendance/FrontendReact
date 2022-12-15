@@ -61,10 +61,10 @@ function App() {
                     <Route path="/admin/configuration" element={<ConfigurationPage/>}/>
 
                     {/*어드민 보고서 페이지 */}
-                    <Route path="/admin/report" element={<Report/>}/>
+                    <Route path="/admin/report/:id" element={<Report/>}/>
 
                     {/* 사원 관리 페이지 */}
-                    <Route path='/admin/emp-management' element={<EmpManagement/>}/>
+                    <Route path='/admin/report' element={<EmpManagement/>}/>
 
                     {/*사원 정보 등록 */}
                     <Route path='/admin/emp-registration' element={<EmpRegistModal/>}/>

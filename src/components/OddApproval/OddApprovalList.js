@@ -42,7 +42,8 @@ const OddApprovalList = ({changeFlag}) => {
             showEmptyMessage: true,
             emptyMessage: "조회된 데이터가 없습니다.",
             fitStyle: "evenFill",
-            columnResizable: false
+            columnResizable: false,
+            syncGridHeight: "always"
         })
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
