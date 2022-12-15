@@ -9,7 +9,7 @@ import Paging from "../Paging"
 import Modal from "../Modal/Modal"
 import EmpAuthModiModal from "../Modal/EmpAuthModiModal"
 
-const AdminAuthAllList = ({ changeFlag }) => {
+const AdminAuthAllList = ({ changeFlag,closeModal }) => {
   const [dataProvider, setDataProvider] = useState(null)
   const [gridView, setGridView] = useState(null)
   
@@ -69,7 +69,11 @@ const AdminAuthAllList = ({ changeFlag }) => {
     gv.beginUpdateRow(curr.itemIndex);
     gv.showEditor();
     gv.setFocus();
-
+    gv.setDisplayOptions({
+      fitStyle:"evenFill",
+      selectionStyle: "rows",
+      emptyMessage: "조회된 데이터가 없습니다."
+  })
     dp.restoreMode = 'auto'
     // gv.setPaging(true, 10)
     // Paging(dp.getRowCount(), 10, 5, 1, gv)
@@ -82,35 +86,11 @@ const AdminAuthAllList = ({ changeFlag }) => {
       }
       setData(empAllAuthInfo.data[clickData.dataRow])
       setModal(!modal)
-      //     dp.onValueChanged = (provider, row, field) => {
-      //       console.log('DataProvider row Value changed at ' + row + ' on ' + field);
-      //  };
+    
     }
 
-    // gv.setPaging(true, 10)
-    // Paging(dp.getRowCount(), 10, 5, 1, gv)
-
-    // dataProvider.onRowUpdating = function(provider, row) {
-    //   var item = gridView.getEditingItem(); // 현재 편집 중인 행 정보와 값을 가져옵니다.
-    //   if (item) {
-    //     if (item.values["empAuthority"] <= "ROLE_ADMIN") {
-    //       setTimeout(function() {
-    //         alert("Age must be greater than 100 !");
-    //       }, 10);
-    //       return false; // false를 리턴하면 DataProvider에 저장되지 않습니다.
-    //     }
-    //   }
-    //   return true;
-    // };
-
-    // dataProvider.onRowUpdated = function(provider, row) {
-    //   var r = provider.getJsonRow(row);
-    //   alert(JSON.stringify(r));
-    // };
-
-
-    setDataProvider(dp)
-    setGridView(gv)
+      setDataProvider(dp)
+      setGridView(gv)
 
     return () => {
 
@@ -123,94 +103,9 @@ const AdminAuthAllList = ({ changeFlag }) => {
     }
   }, [(empAllAuthInfo.data)])
 
-  const onSubmit = () => {
-    // dispatch(ConfigurationActions.getAuthEmp)
-    // console.log(onSubmit)
-
+  const closeButton = () => {
+    closeModal();
   }
-  //   const changeAuth = async (empNo) => {
-  //     const rowDatas = []
-  //     const rows = dataProvider.getCheckedRows()
-
-
-
-  //     if(rows.length) {
-  //         for (let i of rows) {
-  //             // var data = dataProvider.getJsonRow(rows[i]);
-  //             rowDatas.push({
-  //                 'empNo': empAllAuthInfo.data[i].empNo,
-  //                 'empAuthority': empAllAuthInfo.data[i].empAuthority,
-
-
-  //             })
-  //         }
-  //         console.log(rowDatas)
-  //         await modifyEmpAuthority(rowDatas)
-  //         changeFlag()
-  //     } else {
-  //         alert("선택된 신청이 없습니다.")
-  //     }
-  // }
-  // const modiStart = () => {
-  // dataProvider.onRowUpdating = function(provider, row) {
-  //   var item = gridView.getEditingItem(); // 현재 편집 중인 행 정보와 값을 가져옵니다.
-  //   if (item) {
-  //     if (item.values["Age"] <= 100) {
-  //       setTimeout(function() {
-  //         alert("Age must be greater than 100 !");
-  //       }, 10);
-  //       return false; // false를 리턴하면 DataProvider에 저장되지 않습니다.
-  //     }
-  //   }
-
-  //   return true;
-
-  // };
-
-  // dataProvider.onRowUpdated = function (provider, row) {
-  //   // var data = provider.getJsonRows(row)
-  //   console.log("-------------")
-  //   console.log(row)
-  //   // console.log("DataProvider rows updated: " + row.join(', '))
-  // }
-  function update(e) {
-    let test = dataProvider.getUpdatedCells()
-    console.log(test)
-    
-    
-
-      // const data = {
-      //   'empNo':empNo,
-      //   'empAuthority':updatedCells.newValue.empAuthority
-      // }
-      
-      console.log("-------test------")
-      // console.log(row)
-      // console.log(row.join)
-      // var r = provider.getJsonRows(row);
-      // console.log(r)
-
-      // if (row.length) {
-      //   for (let i of row) {
-      //     console.log(i)
-      //   }
-      // }
-
-    // const data =  {
-    //   'empNo':JSON.stringify(r).empNo,
-    //   'empAuthority':JSON.stringify(r).empAuthority
-
-    // };
-    //  }
-    // dispatch(ConfigurationActions.modifyEmpAuthority(data))
-
-
-
-  }
-
-
-
-
 
   return (
 
@@ -225,12 +120,14 @@ const AdminAuthAllList = ({ changeFlag }) => {
                         changeFlag={changeFlag} />
                 </Modal>
             )}
-      <button onClick={toggleEmp} >사원</button> <br /><button onClick={toggleAdmin} >관리자</button>
-      <br /> <button onClick={toggleAll} >전체</button>
-     
-
+      
+        <div className="button">
+      <button className="stChange" style={{margin:"10px"}} onClick={toggleEmp} >사원</button> <br /><button className="stChange" style={{margin:"10px"}} onClick={toggleAdmin} >관리자</button>
+      <br /> <button className="stChange" style={{margin:"10px"}} onClick={toggleAll} >전체</button>   
+        </div>
+        
       <div
-        style={{ height: '350px', width: '440px' }}
+        style={{ height: '350px', width: '440px'}}
         ref={realgridElement}>
 
       </div>

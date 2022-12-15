@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactEchart from "echarts-for-react"
 import { useDispatch, useSelector } from "react-redux";
-export default function MonthlyOdd({MonthliyInfo}){
+import ReportActions from '../redux/modules/report/ReportActions';
+import { useParams } from 'react-router-dom';
+export default function MonthlyOdd({}){
   
-  // const data = useSelector(state => state.MonthliyInfo.data)
-
+    const {empNo} = useParams();
+    const currentYear = new Date().getFullYear()
+    const dispatch = useDispatch;
+    const { MonthliyInfo } =  useSelector((state) => state.MonthliyInfo)
+    dispatch(ReportActions.getMonthlyOdd(empNo, currentYear))
+  console.log()
   const eChartsOption =  {
     xAxis: {
         type: 'category',
@@ -29,23 +35,36 @@ export default function MonthlyOdd({MonthliyInfo}){
             '#f49f42'
           ],
           data: [
-            5,
+            // MonthliyInfo.data[0].oddcount,
             {
-              value: 10,
+              // value: MonthliyInfo.data[1].oddcount,
+              value: 1,
               itemStyle: {
                 color: '#a90000'
               }
             },
+            6,
             5,
+            4,
+            3,
+            4,
             7,
+            6,
             5,
+            4,
             3,
-            0,
-            3,
-            2,
-            1,
-            0,
-            3
+
+          
+            // MonthliyInfo.data[2].oddcount,
+            // MonthliyInfo.data[3].oddcount,
+            // MonthliyInfo.data[4].oddcount,
+            // MonthliyInfo.data[5].oddcount,
+            // MonthliyInfo.data[6].oddcount,
+            // MonthliyInfo.data[7].oddcount,
+            // MonthliyInfo.data[8].oddcount,
+            // MonthliyInfo.data[9].oddcount,
+            // MonthliyInfo.data[10].oddcount,
+            // MonthliyInfo.data[11].oddcount
           ],
           type: 'bar'
         }
@@ -54,7 +73,7 @@ export default function MonthlyOdd({MonthliyInfo}){
 
   return (  
     <div>
-      <ReactEchart option={eChartsOption} style={{ height: "240px"}} />
+      <ReactEchart option={eChartsOption} style={{ height: "200px"}} MonthliyInfo={MonthliyInfo}/>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 import '../../css/RealGrid.scss'
 import '../../css/ApprovalList.scss'
 
-const EmpList = () => {
+const EmpList = ({closeModal}) => {
     const {empInfo} = useSelector((state) => state.empInfo)
     const realgridElement = useRef(null)
     const navigate = useNavigate()
@@ -27,6 +27,7 @@ const EmpList = () => {
         gv.setStateBar({visible: false})
         gv.setCheckBar({visible: false})
         gv.setDisplayOptions({
+            selectionStyle: "rows",
             showEmptyMessage: true,
             emptyMessage: "조회된 데이터가 없습니다.",
             fitStyle: "evenFill",
@@ -38,6 +39,7 @@ const EmpList = () => {
             }
             const empNo = empInfo.data[clickData.dataRow].empNo
             navigate(`/admin/report/${empNo}`)
+            closeModal()
         }
 
         return () => {
@@ -54,9 +56,6 @@ const EmpList = () => {
                      ref={realgridElement}>
                 </div>
             </div>
-            {/*<div id='paging'*/}
-            {/*     style={{float: 'left', height: '100%', paddingTop: '20px'}}> -*/}
-            {/*</div>*/}
         </div>
 
     )

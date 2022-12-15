@@ -4,6 +4,7 @@ import './ApprovalModal.scss'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import ConfigurationActions from "../../redux/modules/configuration/ConfigurationActions";
+import AuthModal from "./AuthModal";
 const EmpAuthModiModal = ({ empAllAuthInfo, data, closeModal, changeFlag }) => {
 
   
@@ -12,16 +13,7 @@ const EmpAuthModiModal = ({ empAllAuthInfo, data, closeModal, changeFlag }) => {
     const [empAuthority, setEmpAuthority] = useState(data.empAuthority);
     const handleEmpAuthority = (e) => {
         setEmpAuthority(e.target.value);
-        // console.log(empAuthority)
     }
-    console.log(empAuthority)
-    // const dateFormatting = (millisec) => {
-    //     // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
-    //     const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '/')
-
-    //     return date
-    // }
-
     const changeState = ()=> {
        
         const update = {
@@ -30,17 +22,20 @@ const EmpAuthModiModal = ({ empAllAuthInfo, data, closeModal, changeFlag }) => {
         };
 
         dispatch(ConfigurationActions.modifyEmpAuthority(update))
-       
+        dispatch(ConfigurationActions.getAllAuthotityEmp())
+        // AuthModal.parent.location.reload();
+        alert("권환 변경이 완료되었습니다.")
+        closeModal();
     };
 
     return (
         <div className="myPage">
-            <div>
-                <h1 className="infoTitle">휴가 신청</h1>
-            </div>
+            
+            <h1 className="infoTitle">관리자권한 수정</h1>
+           
             <div className="infoBox">
                 <div className="infoContent">
-                    <ul className="infoUl">
+                        <ul>
                         <li className="infoLi"><div className="infoLabel">이름</div> <div className="infoInput"readOnly>{data.empName}</div></li>
                         <li className="infoLi"><div className="infoLabel">사번</div> <div className="infoInput"readOnly>{data.empNo}</div></li>
                         <li className="infoLi"><div className="infoLabel">부서</div> <div className="infoInput" readOnly>{data.deptName}</div></li>
@@ -51,19 +46,19 @@ const EmpAuthModiModal = ({ empAllAuthInfo, data, closeModal, changeFlag }) => {
                                 <option value={'ROLE_EMP'}>ROLE_EMP</option>
                                
                             </select></li>
-                      
+                            </ul>
                     
-                    </ul>
-                    <div className="button">
+                    
+                    <div >
                         
-                                <div >
-                                    <button onClick={ changeState}>승인</button>
-                                   
+                                <div className="button">
+                                    <button className="stChange" onClick={ changeState}>승인</button>
+                                    <button className="stChange" onClick={closeModal}>닫기</button>
                                 </div>
                            
                             <></>
                         
-                        <button onClick={closeModal}>닫기</button>
+                       
                     </div>
                 </div>
             </div>

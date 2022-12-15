@@ -13,9 +13,7 @@ export default function PtoChart(){
       '#2f4554',
       '#61a0a8',
     ],
-    tooltip: {
-      trigger: 'item'
-    },
+    
     legend: {
       top: '0%',
       left: 'center'
@@ -31,16 +29,14 @@ export default function PtoChart(){
         borderWidth: 1
 
       },
-      areaStyle: {
-
-      },
+   
       label: {
-        show: true,
+        show: false,
         position: 'center'
       },
       emphasis: {
         label: {
-          show: true,
+          show: false,
           fontSize: '40',
           fontWeight: 'bold'
         }
@@ -50,8 +46,8 @@ export default function PtoChart(){
       },
       data: [
         
-        { value: [data != null && data.Pto[0].pto_left_num], name: '잔여 연차'},
-        { value: [data != null && data.Pto[0].pto_use_num], name: '사용 연차'},
+        { value: [data != null && data.Pto.selectUseCount], name: '잔여 연차'},
+        { value: [data != null && data.Pto.selectleftCount], name: '사용 연차'},
         
       ]
     },
@@ -59,7 +55,7 @@ export default function PtoChart(){
 
   return (  
     <div>
-      <ReactEchart option={eChartsOption} style={{ height: "170px", backgroundColor:"white",}} />
+      <ReactEchart option={eChartsOption} style={{ height: "180px", backgroundColor:"white",}} />
     </div>
   );
 }

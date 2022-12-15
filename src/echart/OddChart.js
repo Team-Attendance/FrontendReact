@@ -1,19 +1,17 @@
 import ReactEchart from "echarts-for-react"
 import { useSelector } from 'react-redux';
 
-export default function PtoChart(){
+export default function OddChart(){
   const data = useSelector(state => state.eChart.data)
 
   const eChartsOption = {
     color:[
       '#1A73E8',
       '#F24646',
-      
+      '#FFCD56'
     ],
     
-    tooltip: {
-      trigger: 'item'
-    },
+   
     legend: {
       top: '0%',
       left: 'center'
@@ -23,7 +21,7 @@ export default function PtoChart(){
       name: '이상 근태율',
       type: 'pie',
       radius: ['35%', '70%'],
-      avoidLabelOverlap: false,
+      // avoidLabelOverlap: false,
       itemStyle: {
         borderRadius: 0,
         borderColor: 'white',
@@ -31,11 +29,11 @@ export default function PtoChart(){
       },
       label: {
         show: false,
-        position: 'center'
+        
       },
       emphasis: {
         label: {
-          show: true,
+          show: false,
           fontSize: '40',
           fontWeight: 'bold'
         }

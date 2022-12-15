@@ -30,10 +30,16 @@ const EmpSearchList = ({ empInfo }) => {
     gv.setRowIndicator({ visible: false })
     gv.setStateBar({ visible: false })
     gv.setCheckBar({ visible: false })
-    gv.displayOptions.selectionStyle = "rows"
-    gv.onCellClicked = function (grid, clickData) {
-        console.log(clickData)
-    }
+    gv.setDisplayOptions({
+      fitStyle:"evenFill",  
+  })
+    // gv.onCellClicked = function (grid, clickData) {
+    //   if (clickData.itemIndex === undefined || clickData.cellType === "check") {
+    //     return;
+    // }
+    //     const empNo = empInfo.data[clickData.dataRow].empNo
+    //     window.location.href = `/admin/report/${empNo}`
+    // }
     gv.setPaging(true, 10)
     Paging(dp.getRowCount(), 10, 5, 1, gv)
 
@@ -51,7 +57,7 @@ const EmpSearchList = ({ empInfo }) => {
   return (
     <div className="list-wrap">
       <div className="grid-wrap">
-        <div className="real-grid" style={{ width: '350px', height: '300px' }}
+        <div className="real-grid" style={{ width: '370px', height: '300px' }}
           ref={realgridElement}>
         </div>
       </div>

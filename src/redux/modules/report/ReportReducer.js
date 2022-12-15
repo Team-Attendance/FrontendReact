@@ -1,7 +1,7 @@
 import Types from "../../ActionConstants"
 
 const initialState = {
-    WeekliyInfo: {
+    WeeklyInfo: {
         loading: false,
         data: {
             empTimeDate:'',
@@ -23,8 +23,8 @@ const reducer = (state = initialState, {type, payload}) => {
         case Types.GET_REPORT_WEEKLIY:
             return  {
                 ...state,
-                WeekliyInfo: {
-                    ...state.WeekliyInfo,
+                WeeklyInfo: {
+                    ...state.WeeklyInfo,
                     loading: true,
                     data: payload
                 }
@@ -32,8 +32,8 @@ const reducer = (state = initialState, {type, payload}) => {
         case Types.GET_REPORT_WEEKLIY_SUCCESS:
             return  {
                 ...state,
-                WeekliyInfo: {
-                    ...state.WeekliyInfo,
+                WeeklyInfo: {
+                    ...state.WeeklyInfo,
                     loading: false,
                     data: payload
                 }
@@ -41,8 +41,8 @@ const reducer = (state = initialState, {type, payload}) => {
         case Types.GET_REPORT_WEEKLIY_FAILURE:
             return  {
                 ...state,
-                WeekliyInfo: {
-                    ...state.WeekliyInfo,
+                WeeklyInfo: {
+                    ...state.WeeklyInfo,
                     loading: false,
                     error: payload
                 }

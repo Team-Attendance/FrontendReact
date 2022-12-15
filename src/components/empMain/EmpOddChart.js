@@ -1,5 +1,5 @@
 import ReactEchart from "echarts-for-react"
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 export default function EmpOddChart() {

@@ -14,7 +14,8 @@ import {
     countInfo,
     WeeklyInfo,
     empInfoDetailUpdate,
-    countLeave
+    countLeave,
+    MonthliyInfo
 } from './modules';
 import leaveModal from '../modules/leaveModal';
 import auth from './modules/Login/auth';
@@ -50,7 +51,8 @@ const reducers = combineReducers({
     monthlyTable,
     WeeklyInfo,
     empInfoDetailUpdate,
-    countLeave
+    countLeave,
+    MonthliyInfo
 });
 
 let store;

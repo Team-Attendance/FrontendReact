@@ -9,7 +9,6 @@ import { getPtoData } from "../../modules/pto";
 import EmpMyInfo from "../../components/empMain/EmpMyInfo";
 import EmpOddChart from "../../components/empMain/EmpOddChart";
 import EmpMonthly from "../../components/empMain/EmpMonthly";
-import MonthlyOdd from "../../echart/MonthlyOdd";
 
 
 
@@ -20,15 +19,10 @@ export function EmpMainPage() {
 
     // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
     let empNo = sessionStorage.getItem('empNo');
-    const position = sessionStorage.getItem("empPosition")
-    const deptName = sessionStorage.getItem("deptName");
-    const role = sessionStorage.getItem("empAuthority");
 
     const dispatch = useDispatch()
     const empMain = useCallback(() => dispatch(getChartData(empNo, 2022, 12)), [dispatch]);
     const chart = useCallback(() => dispatch(getPtoData(empNo, 2022)), [dispatch]);
-
-
 
     useEffect(() => {
         dispatch(EmpInfoActions.getInfoDetail(empNo))

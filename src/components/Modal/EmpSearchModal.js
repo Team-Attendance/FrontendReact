@@ -32,7 +32,7 @@ const EmpSearchModal = ({closeModal}) => {
                     <div className="search-box">
                         <div className="search-content">
                                 <SearchBar onSubmit={onSubmit}/>
-                                <EmpList/>
+                                <EmpList closeModal={closeModal}/>
                             <div className="search-button">
                                 <button onClick={closeModal}>닫기</button>
                             </div>

@@ -8,7 +8,6 @@ import {EmpMainPage} from "./pages/emp/EmpMainPage";
 import EmpInfoPage from "./pages/emp/EmpInfoPage";
 import EmpManagement from './pages/admin/EmpManagement';
 import LeaveApproval from './pages/admin/LeaveApproval';
-import {ConfigurationPage} from './pages/admin/ConfigurationPage';
 import {Report} from './pages/admin/Report';
 import {EmpMonthlyPage} from './pages/emp/EmpMonthlyIPage'
 import {EmpDailyPage} from './pages/emp/EmpDailyPage'
@@ -57,12 +56,8 @@ function App() {
                         {/* 사원 이상근태 현황 페이지 */}
                         <Route path="/emp/odd-info" element={<EmpRouter authenticated={role} component={<EmpOddPage/>}/>}/>
 
-
-                        {/*어드민 환경설정 페이지  */}
-                        <Route path="/admin/configuration" element={<AdminRouter authenticated={role} component={<ConfigurationPage/>}/>}/>
-
                         {/*어드민 보고서 페이지 */}
-                        <Route path="/admin/report/:id" element={<AdminRouter authenticated={role} component={<Report/>}/>}/>
+                        <Route path="/admin/report/:empNo" element={<AdminRouter authenticated={role} component={<Report/>}/>}/>
 
                         {/* 사원 관리 페이지 */}
                         <Route path='/admin/report' element={<AdminRouter authenticated={role} component={<EmpManagement/>}/>}/>
