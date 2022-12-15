@@ -2,7 +2,7 @@
   width: 100%;
   height: 70%;
   h1 {
-    padding: 15px 0 10px 0;
+    padding: 5px 0 10px 0;
     font-size: 1.2rem;
     font-weight: bold;
     border-bottom: 2px solid gray;
@@ -24,7 +24,7 @@
         .infoLi {
           display: flex;
           align-items: center;
-          //border-bottom: 0.5px solid lightgray;
+
           .infoLabel {
             font-weight: bold;
             display: flex;
@@ -37,7 +37,7 @@
           .infoInput {
             margin: 0.2rem;
             display: flex;
-            width: 55%;
+            width: 70%;
             //border-radius: 0.5px;
             justify-content: flex-start;
             align-items: center;
@@ -52,10 +52,9 @@
         position: relative;
         bottom: -3%;
         justify-content: space-around;
-        margin-top: 1em;
+        margin-top: 2.3em;
         .handleBtn {
           font-weight: bold;
-          //border: 1px lightgray solid;
           width: 25%;
           padding: 10px 0;
           background-color: whitesmoke;

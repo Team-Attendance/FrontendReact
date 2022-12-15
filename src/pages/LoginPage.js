@@ -50,16 +50,16 @@ const LoginPage = () => {
 
         api.Login(data).then((res) => {
             if(res.data.empNo){
-                // localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
+                localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
                 sessionStorage.setItem("empNo", res.data.empNo);
                 sessionStorage.setItem("deptName", res.data.deptName);
                 sessionStorage.setItem("empName", res.data.empName);
                 sessionStorage.setItem("empPosition", res.data.empPosition);
                 sessionStorage.setItem("empAuthority", res.data.empAuthority);
 
-                if(res.data.empAuthority == 'ROLE_ADMIN') {
+                if(res.data.empAuthority === 'ROLE_ADMIN') {
                     window.location.href = "/admin/main";
-                }else if(res.data.empAuthority == 'ROLE_EMP') {
+                }else if(res.data.empAuthority === 'ROLE_EMP') {
                     window.location.href = "/emp/main";
                 }
             }else{

@@ -8,9 +8,9 @@ function closeModal() {
   }
  
   return (
-    <div className="Modal" onClick={closeModal}>
+    <div className="modalReg" onClick={closeModal}>
       <div className="modalRegBody" onClick={(e) => e.stopPropagation()}>
-        <button id="modalCloseBtn" onClick={closeModal}>
+        <button id="modalRegCloseBtn" onClick={closeModal}>
           ✖
         </button>
         {props.children}

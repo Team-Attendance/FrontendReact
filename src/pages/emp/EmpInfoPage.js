@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {API_URL} from "../../utils/constants/Config";
 import '../../css/common.scss'
@@ -21,15 +21,28 @@ const EmpInfoPage = () => {
   const [pwdModal, setPwdModal] = useState(false);
   const [modiModal, setModiModal] = useState(false);
   const [empNo, setEmpNo] = useState(sessionStorage.getItem("empNo"));
+  const [img, setImg] = useState('')
 
   useEffect(() => {
     axios.get(API_URL+"/emp/emp-info/"+empNo)
         .then((res)=>{
           setEmpInfoDetail(res.data);
         })
-  }, [empNo])
+  }
+  // ,axios.get({
+  //     url: `http://localhost:8080/emp/images/${empNo}`,
+  //     method: "GET",
+  //     responseType: 'blob'
+  //     }) .then((response) => {
+  //         setImg(response.data);
+  //         console.log("3: "+empNo)
+  //     })
+  //         .catch((error) => {
+  //             console.log(error);
+  //         })
+    , [empNo])
 
-  const dateFormatting = (millisec) =>{
+    const dateFormatting = (millisec) =>{
     // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
     const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '-')
     return date;
@@ -37,7 +50,7 @@ const EmpInfoPage = () => {
 
     // 수정권한 확인
     const chechAuth = () =>{
-      if (empNo == empInfoDetail.empNo && empName == empInfoDetail.empName ){
+      if (Number(empNo) === empInfoDetail.empNo && empName === empInfoDetail.empName ){
           return(
               <div className="company-btnWrap">
                   <div className="pwd-btn">
@@ -82,11 +95,6 @@ const EmpInfoPage = () => {
         }
     }
 
-    const handleEmpNo=(e)=>{
-        setEmpNo(e)
-    }
-
-
   return (
     <div className="common-container">
         <div className="menu-title">
@@ -104,8 +112,7 @@ const EmpInfoPage = () => {
                         <InfoSearchBar  onSubmit={onSubmit} />
                         <EmpInfoList
                             empInfo={ empInfo }
-                            empData={ empData }
-                            handleEmpNo={handleEmpNo}
+                            setEmpNo={setEmpNo}
                         />
                     </div>
 
@@ -113,6 +120,10 @@ const EmpInfoPage = () => {
 
                 <div className="emp-infoContent">
                     <div className="profile">
+                        {/*{ img &&*/}
+                        {/*    <img src={URL.createObjectURL(img)} alt=''/>*/}
+                        {/*}*/}
+
                         <img src="/eee.jpg" />
                         <div><span>{empInfoDetail.empName}</span></div>
                     </div>

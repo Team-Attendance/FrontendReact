@@ -5,14 +5,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import Badge from '@mui/material/Badge';
 import { Link } from 'react-router-dom';
 import ConfigMenu from "../components/configuration/ConfigMenu"
-import { useState } from 'react';
 
 export function Header() {
 
+    const role = sessionStorage.getItem("empAuthority");
     const logout = () => {
       sessionStorage.clear();
         window.location.href = "/";
@@ -31,16 +29,20 @@ export function Header() {
           <Box sx={{ margin: '0 10px', width: '100%' }}>
 
           </Box>
+            {/*관리자 */}
+            { role === 'ROLE_ADMIN' ?
+                <div>
+                    <Link to='admin/main'>
+                        <Typography variant="h6" noWrap component="div"
+                                    sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '1px' }}>
+                            ADMIN
+                        </Typography>
+                    </Link>
+                </div>
+                : null }
+
           {/* 환경설정 버튼 */}
-          
-          <ConfigMenu />
-         
-           {/* 아이콘 버튼 + 알럿 */}
-           <IconButton color='inherit'>
-            <Badge badgeContent={13} color="error">
-              <NotificationsNoneIcon  />
-            </Badge>
-           </IconButton>
+            <ConfigMenu />
 
            {/* 로그아웃 버튼 */}
            <IconButton color='inherit'>

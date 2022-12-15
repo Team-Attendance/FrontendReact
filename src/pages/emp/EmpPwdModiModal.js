@@ -1,12 +1,8 @@
 import '../../css/EmpPwdModiModal.scss';
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import * as api from "../../api/EmpAPI";
-import {empPwdCheck} from "../../api/EmpAPI";
-import axios from "axios";
-import {API_URL} from "../../utils/constants/Config";
-import {getTableSortLabelUtilityClass} from "@mui/material";
 
-const EmpPwdModiModal =({closeModal, props}) => {
+const EmpPwdModiModal =({closeModal}) => {
     const [pwd, setPwd] = useState('');
     const existPwd = useRef();
     const chgPwd= useRef();
@@ -42,14 +38,14 @@ const EmpPwdModiModal =({closeModal, props}) => {
     // 비밀번호 수정
     const onChangeCheck = (e) => {
         e.preventDefault();
-        if(empPwdB == true && chgPwd.current != null && chckPwd.current != null){
+        if(empPwdB && chgPwd.current != null && chckPwd.current != null){
             const data = {
                 "empNo" : empNo,
                 "existPwd" : existPwd.current,
                 "empPwd" : chgPwd.current
             }
             api.empPwdCheck(data).then((res)=>{
-                if(res.data == true){
+                if(res.data){
                     alert("비밀번호가 변경되었습니다.");
                     window.location.href="/emp/emp-info";
                 }else {
@@ -57,7 +53,7 @@ const EmpPwdModiModal =({closeModal, props}) => {
                 }
             })
         }else {
-            setError("비밀번호를 정확히 입력하지 않았습니다.");
+           setError("비밀번호를 정확히 입력하지 않았습니다.");
         }
     }
 

@@ -1,13 +1,10 @@
 import '../css/Login.scss';
-import {useState} from "react";
 
 
 const LoginProc = ({
    onLogin, login, empnoErr, iderr,
    onLoginChange,
   }) => {
-  const pwd_reg = "^[~!@#$%^&*()_+|<>?:{}a-z0-9A-Z]{8,16}$";
-
   /*로그인 페이지 로그아웃처리*/
     sessionStorage.clear();
 
@@ -23,7 +20,7 @@ const LoginProc = ({
 
           <button className='login-submit' type="submit" class="login-submit" value="LOGIN" >로그인</button>
           <div className='forGet'>
-            <span>로그인 불가 시 전산팀(051-555-5555)에게 문의 바랍니다.</span>
+            <span>로그인 불가 시 전산팀에게 문의 바랍니다.</span>
           </div>
         </form>
       </div>

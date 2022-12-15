@@ -11,7 +11,7 @@ import {useEffect, useState} from 'react';
 import Modal from '../components/Modal/Modal';
 import EmpQrModal from '../components/empMain/EmpQrModal';
 import axios from "axios";
-
+import '../css/Side.scss'
 
 // Meterial UI
 const drawerWidth = 240;
@@ -72,19 +72,17 @@ export function SideBar() {
     const deptName = sessionStorage.getItem("deptName");
     const role = sessionStorage.getItem("empAuthority");
 
+    const sideRef = React.useRef([]);
+
     const adminPage = () => {
-        if (role == 'ROLE_ADMIN') {
-            return <AdminSide/>
+        if (role === 'ROLE_ADMIN') {
+            return <AdminSide sideRef={sideRef}/>
         }
     }
     const empPage = () => {
-        if (role == 'ROLE_ADMIN' || role == 'ROLE_EMP') {
-            return <EmpSide/>
+        if (role === 'ROLE_ADMIN' || role === 'ROLE_EMP') {
+            return <EmpSide sideRef={sideRef}/>
         }
-    }
-
-    const onSubmit = () => {
-        setModal(true);
     }
 
     const getImg = async () => {
@@ -111,10 +109,8 @@ export function SideBar() {
                 width: drawerWidth,
                 flexShrink: 0,
                 [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box'},
-
             }}
         >
-
             <SideWrap className="scroll-hidden">
                 <List>
 

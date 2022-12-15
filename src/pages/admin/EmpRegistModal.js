@@ -16,7 +16,9 @@ const EmpRegistModal = ({closeModal, props}) => {
     const nameRef = useRef();
     const emailRef = useRef();
     const phoneRef = useRef();
-    let  regExp = /[ \{\}\[\]\/?,;:|\)*~`!^\-_+┼<>\#$%&\'\"\\\(\=]/gi;
+
+
+    let  regExp = /[ {}[\]/?,;:|)*~`!^\-_+┼<>#$%&'"\\(=]/gi;
 
     const handleDeptName = (e) => {
         setDeptName(e.target.value);
@@ -40,10 +42,13 @@ const EmpRegistModal = ({closeModal, props}) => {
     const handleDupl=(e)=>{
         e.preventDefault();
         const data = { "empEmail":empEmail+"@douzone.com" }
-        console.log("data "+data.empEmail);
         api.empEmailCheck(data).then((res)=>{
-           if(res.data == true) {
+           if(res.data) {
                alert("중복된 이메일입니다.");
+               setEmpEmail('');
+               emailRef.current.focus();
+           }else if(empEmail ===''){
+               alert("이메일아이디가 입력되지 않았습니다.");
                setEmpEmail('');
                emailRef.current.focus();
            }else{
@@ -112,7 +117,8 @@ const EmpRegistModal = ({closeModal, props}) => {
             alert("비밀번호를 입력해주세요");
         }else if(empPosition == null){
             alert("직급을 해주세요");
-        }else if(dupleEmail==true || regExp.test(empEmail)){
+
+        }else if(dupleEmail|| empEmail==null || empEmail===''|| regExp.test(empEmail)){
             alert("이메일 형식이 맞지 않습니다.");
             setEmpEmail('');
             emailRef.current.focus();
@@ -138,27 +144,28 @@ const EmpRegistModal = ({closeModal, props}) => {
 
             api.postEmpRegist(formData).then((res)=>{
                let result = res.data;
-               if(result == true){
+               if(result){
                    alert("사원등록이 완료 됐습니다.");
-                   window.location.href="/admin/emp-management";
+                   window.location.href="/admin/report";
+                   closeModal();
                }
             });
         }
-        closeModal();
+
     }
 
     return (
         <div className="emp-reg">
             <div>
-                <h1 className="infoTitle"><span>사원 등록</span>
+                <h1 className="reginfoTitle"><span>사원 등록</span>
                 </h1>
             </div>
-            <div className="infoBox">
-                <div className="infoContent">
-                    <div className="infoUl">
-                        <li className="infoLi">
-                            <div className="infoLabel"> 부서명</div>
-                            <select className="infoInput" name='deptName' required='부서를 선택하세요'
+            <div className="reginfoBox">
+                <div className="reginfoContent">
+                    <div className="reginfoUl">
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 부서명</div>
+                            <select className="reginfoInput" name='deptName' required='부서를 선택하세요'
                                     onChange={handleDeptName}>
                                 <option value={'none'}>부서</option>
                                 <option value={'인사'}>인사</option>
@@ -168,20 +175,20 @@ const EmpRegistModal = ({closeModal, props}) => {
                                 <option value={'개발'}>개발</option>
                             </select>
                         </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 사원이름</div>
-                            <input className="infoInput" type="text" name='empName' placeholder='사원이름'
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 사원이름</div>
+                            <input className="reginfoInput" type="text" name='empName' placeholder='사원이름'
                                     ref={nameRef} onChange={handleEmpName}></input>
                         </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 비밀번호</div>
-                            <input className="infoInput" type="password" name='empPwd' placeholder='비밀번호'
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 비밀번호</div>
+                            <input className="reginfoInput" type="password" name='empPwd' placeholder='비밀번호'
                                    required onChange={handleEmpPwd}></input>
                         </li>
 
-                        <li className="infoLi">
-                            <div className="infoLabel"> 직급</div>
-                            <select className="infoInput" name='empPosition'
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 직급</div>
+                            <select className="reginfoInput" name='empPosition'
                                     required onChange={handleEmpPosition}>
                                 <option value={'none'}>직급</option>
                                 <option value={'수석연구원'}>수석연구원</option>
@@ -191,55 +198,55 @@ const EmpRegistModal = ({closeModal, props}) => {
                                 <option value={'연구보조원'}>연구보조원</option>
                             </select>
                         </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 사원 사진</div>
-                            <input className="infoInputfile" type="file" accept="image/*" ref={inputRef}
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 사원 사진</div>
+                            <input className="reginfoInputfile" type="file" accept="image/*" ref={inputRef}
                                    onChange={onUploadImage} style={{display: 'none'}}/>
                             <button onClick={onUploadImageButtonClick}>이미지 등록</button>
                             {empImage &&
-                                <img alt={''} src={URL.createObjectURL(empImage)} style={{width: '200px'}}/>
+                                <img alt={''} src={URL.createObjectURL(empImage)} />
                             }
                         </li>
 
-                        <li className="infoLi">
-                            <div className="infoLabel"> 메일주소 ID</div>
-                            <input className="infoInputemail" type="email" name='empEmail' placeholder='이메일아이디'
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 메일주소 ID</div>
+                            <input className="reginfoInputemail" type="email" name='empEmail' placeholder='이메일아이디'
                                    ref={emailRef} value={empEmail} onChange={handleEmpEmail}></input>
                             <div>@douzone.com</div>
                             <button onClick={handleDupl}>중복확인</button>
                         </li>
 
-                        <li className="infoLi">
-                            <div className="infoLabel"> 생년월일</div>
-                            <input className="infoInput" type="date" name='empBirth'
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 생년월일</div>
+                            <input className="reginfoInput" type="date" name='empBirth'
                                    required onChange={handleEmpBirth}></input>
                         </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 입사일</div>
-                            <input className="infoInput" type="date" name='empFirstDayOfWork'
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 입사일</div>
+                            <input className="reginfoInput" type="date" name='empFirstDayOfWork'
                                    required onChange={handleEmpFirstDayOfWork}></input>
                         </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 휴대폰번호</div>
-                            <input className="infoInput" type="tel" name='empCellPhone' placeholder='숫자만 입력하세요'
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 휴대폰번호</div>
+                            <input className="reginfoInput" type="tel" name='empCellPhone' placeholder='숫자만 입력하세요'
                                    maxLength='13' value={empCellPhone} ref={phoneRef}
                                    onChange={handleEmpCellPhone}></input>
                         </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 사내번호</div>
-                            <input className="infoInput" name='empOfficePhone' placeholder='사원입력' readOnly></input>
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 사내번호</div>
+                            <input className="reginfoInput" name='empOfficePhone' placeholder='사원입력' readOnly></input>
                         </li>
-                        <li className="infoLi">
-                            <div className="infoLabel"> 비상연락</div>
-                            <input className="infoInput" name='empContactList' placeholder='사원입력' readOnly></input>
+                        <li className="reginfoLi">
+                            <div className="reginfoLabel"> 비상연락</div>
+                            <input className="reginfoInput" name='empContactList' placeholder='사원입력' readOnly></input>
                         </li>
 
-                        <div className="button">
-                            <button className="handleBtn" onClick={handleRegist}
+                        <div className="regbutton">
+                            <button className="reghandleBtn" onClick={handleRegist}
                                     name='empRegistSubmit'>
                                 등록
                             </button>
-                            <button className="handleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 취소
+                            <button className="reghandleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 취소
                             </button>
                         </div>
 
