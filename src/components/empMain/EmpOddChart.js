@@ -23,7 +23,7 @@ export default function EmpOddChart() {
       name: `12월 이상 근태율`,
       type: 'pie',
       startAngle: 90,
-      radius: ['45%', '75%'],
+      radius: ['45%', '73%'],
       avoidLabelOverlap: false,
       itemStyle: {
         borderRadius: 5,
@@ -51,9 +51,18 @@ export default function EmpOddChart() {
         show: false
       },
       data:
+
+      data === null ?
           [
-            { value: [data != null && data.oddBizHourCount.oddBizCount], name: '이상 근태', itemStyle: { color: '#FF3800' } },
-            { value: [data != null && data.oddBizHourCount.normalCount], name: '정상 근무', itemStyle: { color: '#0080ff ' } },
+            { name: '결근', itemStyle: { color: '#FF5E80' } },
+            { value: 0, name: '잔여휴가', itemStyle: { color: '#36A2EB' } },
+            { value: 0, name: '결근', itemStyle: { color: '#FFC234' } },
+          ]
+          :
+          [
+            { value: [data != null && data.oddBizHourCount.selectAbsentCount], name: '결근', itemStyle: { color: '#FF5E80' } },
+            { value: [data != null && data.oddBizHourCount.EalryCount], name: '조퇴', itemStyle: { color: '#36A2EB' } },
+            { value: [data != null && data.oddBizHourCount.selectTardyCount], name: '지각', itemStyle: { color: '#FFC234' } },
           ]
     },
   };
