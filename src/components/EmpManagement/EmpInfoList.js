@@ -5,7 +5,7 @@ import '../../css/RealGrid.scss'
 import '../../css/ApprovalList.scss'
 import Paging from "../Paging"
 
-const EmpList = ({ empInfo , empData, handleEmpNo } ) => {
+const EmpInfoList = ({ empInfo , empData, handleEmpNo } ) => {
 
   const [dataProvider, setDataProvider] = useState(null)
   const [gridView, setGridView] = useState(null)
@@ -73,4 +73,4 @@ const EmpList = ({ empInfo , empData, handleEmpNo } ) => {
   )
 }
 
-export default EmpList
+export default EmpInfoList

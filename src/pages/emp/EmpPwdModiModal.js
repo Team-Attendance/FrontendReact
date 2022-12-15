@@ -57,7 +57,7 @@ const EmpPwdModiModal =({closeModal, props}) => {
                 }
             })
         }else {
-            setError("비밀번호를 정확히 입력하지 않았습니다.");
+           setError("비밀번호를 정확히 입력하지 않았습니다.");
         }
     }
 

@@ -11,7 +11,7 @@ import {useEffect, useState} from 'react';
 import Modal from '../components/Modal/Modal';
 import EmpQrModal from '../components/empMain/EmpQrModal';
 import axios from "axios";
-
+import '../css/Side.scss'
 
 
 // Meterial UI
@@ -72,14 +72,16 @@ export function SideBar() {
   const deptName = sessionStorage.getItem("deptName");
   const role = sessionStorage.getItem("empAuthority");
 
+  const sideRef = React.useRef([]);
+
   const adminPage = ()=>{
     if (role == 'ROLE_ADMIN') {
-        return <AdminSide />
+      return <AdminSide sideRef={sideRef}/>
     }
   }
   const empPage = ()=>{
     if (role == 'ROLE_ADMIN' || role == 'ROLE_EMP') {
-      return <EmpSide />
+      return <EmpSide sideRef={sideRef}/>
     }
   }
 
@@ -108,17 +110,15 @@ export function SideBar() {
             width: drawerWidth,
             flexShrink: 0,
             [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box'},
-
           }}
       >
-
         <SideWrap className="scroll-hidden">
           <List>
 
             <Box style={{ margin : '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
               <UserImage>
                 {img &&
-                  <img width={"100%"} height={"100%"} src={URL.createObjectURL(img)} alt=''/>
+                    <img width={"100%"} height={"100%"} src={URL.createObjectURL(img)} alt=''/>
                 }
               </UserImage>
               <Box>
@@ -135,11 +135,11 @@ export function SideBar() {
                 {/* <IntoButton>출근</IntoButton> */}
                 <Button onClick={ () => { setModal(true)}} variant="contained" color='primary' sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
                 {modal && (
-                <Modal closeModal={() => setModal(!modal)} >
-                    <EmpQrModal
-                        closeModal={() => setModal(!modal)} />
-                </Modal>
-            )}
+                    <Modal closeModal={() => setModal(!modal)} >
+                      <EmpQrModal
+                          closeModal={() => setModal(!modal)} />
+                    </Modal>
+                )}
 
               </Box>
             </Box>

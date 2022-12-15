@@ -70,7 +70,7 @@
         }
       }
       .company-btnWrap{
-        margin-top: 10%;
+        margin-top: 5%;
         width: 100%;
         display: inline-block;
         .pwd-btn{
@@ -84,11 +84,11 @@
           float: right;
         }
         button{
-          border: 1px solid lightgray;
+          border: 1px lightgray solid;
           padding: 5px 20px;
-          background-color: lightgray;
+          background-color: whitesmoke;
           font-weight: bold;
-          box-shadow: 0 0 3px 1px gray;
+
         }
       }
     }

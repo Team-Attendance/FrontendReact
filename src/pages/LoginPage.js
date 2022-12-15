@@ -50,7 +50,7 @@ const LoginPage = () => {
 
         api.Login(data).then((res) => {
             if(res.data.empNo){
-                // localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
+                localStorage.setItem("ACCESS_TOKEN", res.data.empToken);
                 sessionStorage.setItem("empNo", res.data.empNo);
                 sessionStorage.setItem("deptName", res.data.deptName);
                 sessionStorage.setItem("empName", res.data.empName);

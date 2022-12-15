@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -10,32 +10,44 @@ import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-export function AdminSide (){
+export function AdminSide({sideRef}) {
+
+    const choiceSide = (number) => {
+        sideRef.current.forEach((el) => {
+            if (el != null) el.className = "";
+        })
+        if (sideRef.current.length > 0) {
+            sideRef.current[number].className = "side-on";
+        }
+    }
 
     const adminMenu = [
-        {img: <PeopleAltIcon sx={{ color: 'white' }}/>, name: '사원 관리', path: '/admin/emp-management'},
-        {img: <EventAvailableIcon sx={{ color: 'white' }}/>, name: '휴가 승인', path: '/admin/approval/leave'},
-        {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태', path: '/admin/approval/odd'},
-        {img: <SettingsIcon sx={{ color: 'white' }}/>, name: '환경설정', path: '/admin/configuration'},
+        { img: <PeopleAltIcon sx={{ color: 'white' }} />, name: '사원 관리', path: '/admin/emp-management' },
+        { img: <EventAvailableIcon sx={{ color: 'white' }} />, name: '휴가 승인', path: '/admin/approval/leave' },
+        { img: <WarningAmberIcon sx={{ color: 'white' }} />, name: '이상근태', path: '/admin/approval/odd' },
+        { img: <SettingsIcon sx={{ color: 'white' }} />, name: '환경설정', path: '/admin/configuration' },
     ]
-    
-    return(
-        <List sx={{color: 'white'}}>
+
+    return (
+
+        <List sx={{ color: 'white' }}>
             {adminMenu.map((menu, index) => (
-                <Link to={menu.path} key={index}>
-                    <ListItem key={index} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {
-                                    (function(){
-                                        return menu.img
-                                    })()
-                                }
-                            </ListItemIcon>
-                            <ListItemText primaryTypographyProps={{fontSize: '0.8rem', fontWeight: 'bold'}} primary={menu.name} />
-                        </ListItemButton>
-                    </ListItem>
-                </Link>
+                <div onClick={() => { choiceSide(index + 5) }} ref={(el) => { sideRef.current[index + 5] = el }}>
+                    <Link to={menu.path} key={index}>
+                        <ListItem key={index} disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    {
+                                        (function () {
+                                            return menu.img
+                                        })()
+                                    }
+                                </ListItemIcon>
+                                <ListItemText primaryTypographyProps={{ fontSize: '0.8rem', fontWeight: 'bold' }} primary={menu.name} />
+                            </ListItemButton>
+                        </ListItem>
+                    </Link>
+                </div>
             ))}
         </List>
     );

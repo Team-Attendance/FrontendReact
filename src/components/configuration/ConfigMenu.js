@@ -49,19 +49,22 @@ useEffect(() => {
     dispatch(ConfigurationActions.getEmpBiz())
     // dispatch(ConfigurationActions.getAllAuthotityEmp())
 }, [])
-
+    const role = sessionStorage.getItem("empAuthority");
 
   return (
     <div>
-       <Button
-        id="demo-positioned-button"
-        aria-controls={open ? 'demo-positioned-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-      <SettingsIcon/>
-      </Button>
+        {/* 환경설정 버튼 권한 */}
+        { role == 'ROLE_ADMIN' ?
+            <Button
+                id="demo-positioned-button"
+                aria-controls={open ? 'demo-positioned-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+              >
+                <SettingsIcon/>
+              </Button>
+        : null }
       {/* </SettingsIcon> */}
       <Menu
         id="basic-menu"
