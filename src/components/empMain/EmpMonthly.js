@@ -2,31 +2,68 @@ import React from 'react';
 import ReactEchart from "echarts-for-react"
 
 export default function EmpMonthly(){
-  
- 
+
+
 
   const eChartsOption =  {
-    legend: {},
-  tooltip: {},
-  dataset: {
-    dimensions: ['product', '2015', '2016', '2017'],
-    source: [
-      { product: 'Matcha Latte', 2015: 43.3, 2016: 85.8, 2017: 93.7 },
-      { product: 'Milk Tea', 2015: 83.1, 2016: 73.4, 2017: 55.1 },
-      { product: 'Cheese Cocoa', 2015: 86.4, 2016: 65.2, 2017: 82.5 },
-      { product: 'Walnut Brownie', 2015: 72.4, 2016: 53.9, 2017: 39.1 }
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data: ['Rainfall', 'Evaporation']
+    },
+    toolbox: {
+      show: true,
+      feature: {
+        dataView: { show: false, readOnly: false },
+        magicType: { show: false, type: ['bar'] },
+        restore: { show: false },
+        saveAsImage: { show: false }
+      }
+    },
+    calculable: true,
+    xAxis: [
+      {
+        data: ['7월', '8월', '9월', '10월', '11월', '12월']
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value'
+      }
+    ],
+    series: [
+      {
+        name: '정상 근무',
+        type: 'bar',
+        data: [
+          0,
+          0,
+          0,
+          20,
+          13,
+          9,
+        ],
+      },
+      {
+        name: '이상 근무',
+        type: 'bar',
+        data: [
+          0, 
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+       
+      }
     ]
-  },
-  xAxis: { type: 'category' },
-  yAxis: {},
-  // Declare several bar series, each will be mapped
-  // to a column of dataset.source by default.
-  series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
     };
 
   return (  
     <div>
-      <ReactEchart option={eChartsOption} style={{ height: "350px"}} />
+      <ReactEchart option={eChartsOption} style={{ height: "360px"}} />
     </div>
   );
 }

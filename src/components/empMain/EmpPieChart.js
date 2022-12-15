@@ -19,6 +19,7 @@ export default function EmpPieChart(){
 
   const data = useSelector(state => state.pto.data);
 
+
   const eChartsOptions = {
 
     tooltip: {
@@ -62,8 +63,8 @@ export default function EmpPieChart(){
         show: false
       },
       data: [                                                                                      
-        { value: [data != null && data.Pto[0].pto_use_num], name: '사용 휴가',   itemStyle: {color: '#0080ff' }},                                            
-        { value: [data != null && data.Pto[0].pto_left_num], name: '잔여 휴가', itemStyle: {color: '#afafaf' }},
+        { value: 2, name: '사용 휴가',   itemStyle: {color: '#0080ff' }},                                            
+        { value: 18, name: '잔여 휴가', itemStyle: {color: '#afafaf' }},
       ]                                                                         
     },
   };

@@ -25,7 +25,7 @@ export function EmpMainPage() {
     const role = sessionStorage.getItem("empAuthority");
 
     const dispatch = useDispatch()
-    const empMain = useCallback(() => dispatch(getChartData(empNo, 2022, 10)), [dispatch]);
+    const empMain = useCallback(() => dispatch(getChartData(empNo, 2022, 12)), [dispatch]);
     const chart = useCallback(() => dispatch(getPtoData(empNo, 2022)), [dispatch]);
 
 
@@ -63,15 +63,15 @@ export function EmpMainPage() {
 
                     <div style={{ height: '410px', display: 'flex' }}>
                         <div style={{ width: '60%', padding: '20px 20px', marginRight: '15px', border: '1px solid gray', borderRadius: '7px' }}>
-                            <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>2022년 이상 근태 차트</h2>
+                            <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>2022년 하반기 근태 차트</h2>
                             <div style={{ height: 'calc(100% - 30px)', border: '1px solid lightgray' }}>
 
-                                <MonthlyOdd/>
+                                <EmpMonthly />
 
                             </div>
                         </div>
                         <div style={{ border: '1px solid gray', width: '40%', padding: '20px 20px', borderRadius: '7px' }}>
-                            <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>12월 이상 근무 현황</h2>
+                            <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>12월 이상 근태 차트</h2>
                             <div style={{ height: 'calc(100% - 30px)', border: '1px solid lightgray' }}>
                                 <EmpOddChart />
                             </div>
@@ -85,7 +85,7 @@ export function EmpMainPage() {
                         <div style={{ height: 'calc(100% - 30px)', border: '1px solid lightgray' }}>
 
                             <div style={{marginTop: '40px'}}>
-                                <EmpPieChart />
+                             <EmpPieChart />
                             </div>
                         </div>
 

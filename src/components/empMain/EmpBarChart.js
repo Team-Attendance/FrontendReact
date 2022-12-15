@@ -23,10 +23,10 @@ export default function EmpBarChart(){
     },
 
     grid: {
-      top :'-15%',
-      left: '8%',
-      right: '8%',
-      bottom: '20%',
+      top :'-10%',
+      left: '10%',
+      right: '10%',
+      bottom: '15%',
       containLabel: true
     },
 

@@ -12,7 +12,9 @@ export default function EmpCalendar() {
 
     return(
         <div>
-            <Calendar style={{ height: "600px", with: "800px"}} onChange={onChange} value={value}/>
+            <Calendar formatDay={(locale, value) => 
+                value.toLocaleDateString("en", {day: "numeric"})
+              }style={{ height: "600px", with: "800px"}} onChange={onChange} value={value}/>
          </div>
 
     );
