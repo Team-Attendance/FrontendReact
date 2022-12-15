@@ -25,7 +25,7 @@ export function EmpMainPage() {
     const chart = useCallback(() => dispatch(getPtoData(empNo, 2022)), [dispatch]);
 
     useEffect(() => {
-        dispatch(EmpInfoActions.getInfoDetail(empNo))
+        dispatch(EmpInfoActions.getEmpinfo(empNo))
         empMain();
         chart();
     }, []);
