@@ -17,7 +17,7 @@ const EmpQrModal = ({ closeModal, props }) => {
 
 
     useEffect(() => {
-        dispatch(EmpInfoActions.getInfoDetail(empNo))
+        dispatch(EmpInfoActions.getEmpinfo(empNo))
     }, []);
 
 
