@@ -1,13 +1,15 @@
 import React from "react";
 import { useState} from "react";
 import { useDispatch } from "react-redux";
-
-import '../../css/EmpInfo.scss';
+import { useParams } from "react-router-dom";
+import './EmpInfoUpdateModal.scss';
 import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 
 
 const EmpInfoUpdateModal = ({ empInfoDetail, closeModal}) => {
     
+    const {empNo} = useParams();
+   
     const [deptName, setDeptName] = useState(empInfoDetail.deptName);
     const handleDeptName = (e) => {
         setDeptName(e.target.value);
@@ -64,7 +66,7 @@ const EmpInfoUpdateModal = ({ empInfoDetail, closeModal}) => {
         };
         // console.log(data)
         dispatch(EmpInfoActions.updateEmpInfoByAdmin(data))
-        window.location.href = 'http://localhost:3000/admin/report'
+        window.location.href = `http://localhost:3000/admin/report/${empNo}`
         
     }
 

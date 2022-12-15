@@ -16,7 +16,7 @@ export function AdminSide (){
         {img: <PeopleAltIcon sx={{ color: 'white' }}/>, name: '사원 관리', path: '/admin/emp-management'},
         {img: <EventAvailableIcon sx={{ color: 'white' }}/>, name: '휴가 승인', path: '/admin/approval/leave'},
         {img: <WarningAmberIcon sx={{ color: 'white' }}/>, name: '이상근태', path: '/admin/approval/odd'},
-        {img: <SettingsIcon sx={{ color: 'white' }}/>, name: '환경설정', path: '/admin/configuration'},
+        
     ]
     
     return(

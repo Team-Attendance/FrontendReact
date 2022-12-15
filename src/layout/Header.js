@@ -33,7 +33,7 @@ export function Header() {
           </Box>
           {/* 환경설정 버튼 */}
           
-          <ConfigMenu />
+          <ConfigMenu color='inherit'/>
          
            {/* 아이콘 버튼 + 알럿 */}
            <IconButton color='inherit'>

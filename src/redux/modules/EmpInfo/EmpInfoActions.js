@@ -3,7 +3,7 @@ import Types from "../../ActionConstants"
 import {empEmailCheck} from "../../../api/EmpAPI";
 
 const EmpInfoActions = {
-    getInfoDetail: (empNo) => async (dispatch) => {
+    getEmpinfo: (empNo) => async (dispatch) => {
 
         dispatch({type: Types.GET_EMPINFO})
         try {

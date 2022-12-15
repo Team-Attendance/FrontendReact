@@ -15,40 +15,38 @@ export default function ConfigMenu() {
     const [authModal, setAuthModal] = useState(false)
     const { empBizInfo } =  useSelector((state) => state.empBizInfo)
     const { empAllAuthInfo } =  useSelector((state) => state.empAllAuthInfo)
-    const { empAuthInfo } =  useSelector((state) => state.empAuthInfo)
-    const { adminAuthInfo } = useSelector((state) => state.adminAuthInfo)  
-  const [anchorEl, setAnchorEl] = React.useState(false);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
-  const dispatch = useDispatch();
+    const [anchorEl, setAnchorEl] = React.useState(false);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+    const dispatch = useDispatch();
 //   const handleClose = () => {
 //     setAnchorEl(null);
 //   };
-const onSubmit = () => {
-    setTimeModal(true);
-    dispatch(ConfigurationActions.getEmpBiz)
-    console.log (empBizInfo)
-}
-const onSubmitt = () => {
-  setAuthModal(true);
-  dispatch(ConfigurationActions.getAllAuthotityEmp)
-  console.log (empBizInfo)
-}
-useEffect(() => {
-
-    dispatch(ConfigurationActions.getResultEmp())
-    dispatch(ConfigurationActions.getAuthEmp())
-    dispatch(ConfigurationActions.getAllAuthotityEmp())
-    dispatch(ConfigurationActions.updateBhTime())
-    dispatch(ConfigurationActions.getEmpBiz())
-    // dispatch(ConfigurationActions.getAllAuthotityEmp())
-}, [])
+    const onSubmit = () => {
+        setTimeModal(true);
+        dispatch(ConfigurationActions.getEmpBiz)
+        
+    }
+    const onSubmitt = () => {
+      setAuthModal(true);
+      dispatch(ConfigurationActions.getAllAuthotityEmp)
+      
+    }
+    useEffect(() => {
+        
+        dispatch(ConfigurationActions.getResultEmp())
+        dispatch(ConfigurationActions.getAuthEmp())
+        dispatch(ConfigurationActions.getAllAuthotityEmp())
+        dispatch(ConfigurationActions.getEmpBiz())
+        // dispatch(ConfigurationActions.getAllAuthotityEmp())
+      }, [])
 
 
   return (

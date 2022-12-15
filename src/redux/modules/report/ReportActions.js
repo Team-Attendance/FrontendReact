@@ -21,11 +21,11 @@ const ReportActions= {
         }
     },
    
-    getMonthlyOdd: () => async(dispatch) =>{
+    getMonthlyOdd: (empNo,year) => async(dispatch) =>{
         dispatch({ type: Types.GET_REPORT_MONTHLIY})
     
         try {
-            const configggg = await ReportAPI.getMonthlyOdd();
+            const configggg = await ReportAPI.getMonthlyOdd(empNo,year);
             
             dispatch({
                 type: Types.GET_REPORT_MONTHLIY_SUCCESS,
