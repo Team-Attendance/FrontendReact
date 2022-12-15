@@ -45,9 +45,12 @@ export function EmpDailyPage() {
 
   useEffect(() => {
     closeModal();
-    dispatch(clear());
     setCompoCalendar();
     setDeptCompoCalendar();
+
+    return () => {
+      dispatch(clear());
+    };
   }, [closeModal, setCompoCalendar, setDeptCompoCalendar, dispatch])
 
   useEffect(() => {

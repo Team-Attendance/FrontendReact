@@ -65,7 +65,12 @@ export function Calendar({ setShowDeptCalendar }) {
           formatFulldate(formatDate(emp.empTimeDate)) === formatFulldate(data.date) ?
             <>
               출근 : {emp.empGetInto} <br />
-              퇴근 : {emp.empGetOff}<br />
+              {
+                emp.empGetOff ?
+                  <>퇴근 : {emp.empGetOff}<br /></>
+                  : <></>
+              }
+
             </>
             :
             <></>
@@ -149,7 +154,7 @@ export function Calendar({ setShowDeptCalendar }) {
                   <th className="cal-title" colSpan={7}>{`${year}년 ${month}월`}
                     <ArrowBackIosNewIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '11px', left: '100px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { updateCompoCalendar(year, month, 'prev', nowDate); updateCompoDeptCalendar(year, month, 'prev', nowDate); }} />
                     <ArrowForwardIosIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '11px', left: '115px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { updateCompoCalendar(year, month, 'next', nowDate); updateCompoDeptCalendar(year, month, 'next', nowDate); }} />
-                    <button style={{ position: 'absolute', fontSize: '0.7rem', fontWeight: 'bold', border: '1px solid lightgray', padding: '5px 15px', backgroundColor: '#059BFF', right: '20px', top: '6px', boxShadow: '0 0 5px 1px lightgray', color:'white' }} onClick={() => { setShowDeptCalendar(false) }}>부서 일정</button>
+                    <button style={{ position: 'absolute', fontSize: '0.7rem', fontWeight: 'bold', border: '1px solid lightgray', padding: '5px 15px', backgroundColor: '#059BFF', right: '20px', top: '6px', boxShadow: '0 0 5px 1px lightgray', color: 'white' }} onClick={() => { setShowDeptCalendar(false) }}>부서 일정</button>
                   </th>
                 </tr>
                 <tr>
@@ -175,8 +180,24 @@ export function Calendar({ setShowDeptCalendar }) {
                               } else {
                                 return "";
                               }
-                            }).join('')
-                          }>
+                            }).join('')}
+                            
+
+
+                            onClick={() => {
+                              (formatFulldate(calendarDay.date) > formatFulldate(nowDate)) &&
+                                (calendarData.empLeave.length === 0 ? true
+                                  : calendarData.empLeave.map((leave) => {
+                                    if (!((formatFulldate(formatDate(leave.leaveStartDate)) <= formatFulldate(calendarDay.date)) && (formatFulldate(calendarDay.date) <= formatFulldate(formatDate(leave.leaveEndDate))))) {
+                                      return true;
+                                    } else {
+                                      return false;
+                                    }
+                                  })[0]
+                                )
+                                && (inIndex !== 6 && inIndex !== 0) && onRealOpen(onOpen, calendarDay);
+                            }}
+                          >
 
                             {/* 휴가 일시 */}
                             {showLeave(calendarData, calendarDay)}
@@ -184,21 +205,7 @@ export function Calendar({ setShowDeptCalendar }) {
                             <div className="cal-day">
                               <span
                                 className={inIndex === 6 ? `saturday ${calendarDay.type}` :
-                                  (inIndex === 0 ? `sunday ${calendarDay.type}` : calendarDay.type)}
-                                onClick={() => {
-                                  (formatFulldate(calendarDay.date) > formatFulldate(nowDate)) &&
-                                    (calendarData.empLeave.length === 0 ? true
-                                      : calendarData.empLeave.map((leave) => {
-                                        if (!((formatFulldate(formatDate(leave.leaveStartDate)) <= formatFulldate(calendarDay.date)) && (formatFulldate(calendarDay.date) <= formatFulldate(formatDate(leave.leaveEndDate))))) {
-                                          return true;
-                                        } else {
-                                          return false;
-                                        }
-                                      })[0]
-                                    )
-                                    && (inIndex !== 6 && inIndex !== 0) && onRealOpen(onOpen, calendarDay);
-                                }}
-                              >{calendarDay.day}</span>
+                                  (inIndex === 0 ? `sunday ${calendarDay.type}` : calendarDay.type)}>{calendarDay.day}</span>
                             </div>
 
                             <div className={`cal-info ${calendarDay.type}`}>

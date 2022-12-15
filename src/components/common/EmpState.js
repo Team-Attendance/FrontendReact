@@ -5,6 +5,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import HailIcon from '@mui/icons-material/Hail';
 import './empState.scss';
+import { element } from 'prop-types';
 
 const EmpState = ({ documentStatusData }) => {
   const deptBizStatus = documentStatusData.deptBizStatus;
@@ -15,7 +16,6 @@ const EmpState = ({ documentStatusData }) => {
       <div style={{ paddingTop: '15px', marginBottom: '5px' }}>
         <h2 style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>실시간 기록</h2>
       </div>
-
       <div className='emp-state scroll-hidden'>
 
         {deptBizStatus.map((element) => {
@@ -71,7 +71,11 @@ const EmpState = ({ documentStatusData }) => {
                             if(element.stateTime.hour >= 12){
                               return <span>오후 {`0${(element.stateTime.hour - 12)} : ${element.stateTime.minute < 10 ? "0" + element.stateTime.minute : element.stateTime.minute}`}</span>
                             }else{
-                              return <span>오전 {`0${(element.stateTime.hour)} : ${element.stateTime.minute < 10 ? "0" + element.stateTime.minute : element.stateTime.minute}`}</span>
+                              if(element.stateTime.hour < 10){
+                                return <span>오전 {`0${(element.stateTime.hour)} : ${element.stateTime.minute < 10 ? "0" + element.stateTime.minute : element.stateTime.minute}`}</span>
+                              }else{
+                                return <span>오전 {`${(element.stateTime.hour)} : ${element.stateTime.minute < 10 ? element.stateTime.minute : element.stateTime.minute}`}</span>
+                              }
                             }
                           }
                         })()

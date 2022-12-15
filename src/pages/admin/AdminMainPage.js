@@ -35,7 +35,7 @@ export function AdminMainPage() {
     return (
         <>
             {documentStatusData &&
-
+            
                 <div style={{ padding: '30px' }}>
                     <div style={{ display: 'flex' }}>
                         <div style={{ width: '76%' }}>

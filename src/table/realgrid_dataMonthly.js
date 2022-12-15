@@ -147,6 +147,10 @@ export const columns = [
           return {
             styleName: 'odd-biz'
           }
+        case '조퇴':
+          return {
+            styleName: 'odd-biz'
+          }
         case '지각, 조퇴':
           return {
             styleName: 'odd-biz'
@@ -168,7 +172,7 @@ export const columns = [
       textAlignment: "center"
     },
     header: {
-      text: "이상 근태 승인 여부",
+      text: "이상 근태 조정 여부",
       showTooltip: false,
     },
     styleCallback: (grid, dataCell) => {
