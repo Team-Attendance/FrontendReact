@@ -121,7 +121,7 @@ export function SideBar() {
                             }
                         </UserImage>
                         <Box>
-                            <UserInfo>
+                            <UserInfo style={{textAlign:'center'}}>
                                 {empName} {position}<br/>
                                 {deptName} 부서<br/>
                             </UserInfo>
