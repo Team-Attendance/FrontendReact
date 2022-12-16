@@ -1,7 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import { FaAmazonPay } from "react-icons/fa";
+import { useSelector } from 'react-redux'
 
 
 // axios.get('test/home.do')
@@ -22,8 +20,6 @@ export default function EmpMyInfo() {
 
   const empName = sessionStorage.getItem("empName");
   const position = sessionStorage.getItem("empPosition")
-  const deptName = sessionStorage.getItem("deptName");
-  const role = sessionStorage.getItem("empAuthority");
 
   // const [timer, setTimer] = useState("00:00:00");
 
