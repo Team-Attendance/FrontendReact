@@ -36,10 +36,12 @@ const EmpList = ({closeModal}) => {
         gv.onCellDblClicked = (grid, clickData) => {
             if (clickData.itemIndex === undefined || clickData.cellType === "check") {
                 return;
-            }
+            }else{
             const empNo = empInfo.data[clickData.dataRow].empNo
             navigate(`/admin/report/${empNo}`)
+            }
             closeModal()
+            
         }
 
         return () => {

@@ -26,6 +26,9 @@ import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import PieChartIcon from '@mui/icons-material/PieChart';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import GroupIcon from '@mui/icons-material/Group';
+import { SystemSecurityUpdate } from "@mui/icons-material";
+import { border } from "@mui/system";
 
 export function Report() {
 
@@ -45,6 +48,7 @@ export function Report() {
     const ptochart = useCallback(() => dispatch(getPtoData(1, 2022)), [dispatch]);
     const oddchart = useCallback(() => dispatch(getChartData(1, 2022, 10)), [dispatch]);
 
+    console.log("박상민 : "+empNo);
 
     useEffect(() => {
         axios.get(API_URL + "/emp/emp-info/" + empNo)
@@ -53,11 +57,12 @@ export function Report() {
             })
         ptochart();
         oddchart();
+
         dispatch(ReportActions.getMonthlyOdd(empNo, currentYear))
         dispatch(ReportActions.getWeeklyBizTime(empNo))
         dispatch(OddApprovalActions.getOddRequest(empNo, currentYear))
         dispatch(LeaveApprovalActions.getLeaveRequest(empNo, currentYear))
-    }, [dispatch, empNo, oddchart, ptochart])
+    }, [dispatch, empNo, oddchart, ptochart, currentYear])
 
     const onsubmit = () => {
         setEmpModal(!empModal);
@@ -67,32 +72,41 @@ export function Report() {
     const onSubmitt = () => {
         setModal(!modal);
     }
-
+    console.log("q케케케"+MonthliyInfo.data);
+    // console.log(MonthliyInfo != null && MonthliyInfo.data != null  && MonthliyInfo.data[0].oddcount)
     return (
 
         <div className="common-container">
             <div className="menu-title">
                 <h2>
-                    <span style={{marginLeft: "550px"}} onClick={onsubmit}> <SearchIcon onClick={onsubmit}/>사원검색 </span>
-                </h2>
-                    {empModal && (
+                     <span><GroupIcon/>사원관리</span> 
+                <span className="titledivider" onClick={onsubmit}> <SearchIcon onClick={onsubmit}/>사원검색 </span>
+
+                {empModal && (
                         <EmpSearchModal
                             closeModal={() => setEmpModal(!empModal)}
                         />
                     )}
+                </h2>
+                    
 
             </div>
             <div className="container">
                 <div className="left-wrap">
+                <div className="sub-title"> <PermContactCalendarIcon/>기본정보     
+                                
+                                </div>
                     <section className="left">
                         <div className="emp-infoo">
-                            <span className="sub-title"> <PermContactCalendarIcon/>사원정보 </span>
+                        {/* <button onClick={onSubmitt} className="butt">수정하기</button> */}
+                            
                             <div className="mini">
+                                
                                 <div className="image">
                                 </div>
                                 <div className="emptable">
                                     <EmpInfoTable empInfoDetail={empInfoDetail}/>
-                                    <button onClick={onSubmitt} className="butt">수정하기</button>
+                                    
                                     {modal && (
                                         <Modal closeModal={() => setModal(!modal)}>
                                             <EmpInfoUpdateModal
@@ -101,6 +115,7 @@ export function Report() {
                                             />
                                         </Modal>
                                     )}
+                                    <button onClick={onSubmitt} className="butt">수정하기</button>
                                 </div>
                             </div>
                         </div>
@@ -115,16 +130,21 @@ export function Report() {
                     </section>
                 </div>
                 <div className="right_wrap">
+               
+                     
+              
+                    
                     <section className="right">
-                        <div>
-                            <span className="start">
-                                <span className="sub-title"><PieChartIcon/>연차 사용 현황</span>
-                                <span className="sub-title">
-                                    <span className="end"><PieChartIcon/>당월 이상근태 현황</span>
-                                </span>
-                            </span>
-                        </div>
-                        <div className="box">
+                        
+                           <div style={{display:"flex"}}>
+                            <div className="sub-title" style={{marginRight:"17rem"}}><PieChartIcon/>연차 사용 현황</div>
+                            <div className="sub-title"><PieChartIcon/>당월 이상근태 현황</div>
+                                <span className="sub-title"> </span>                                                                                           
+                            </div>     
+                           
+                            
+                       
+                        <div className="boxx">
                             <div className="right top">
                                 <PtoChart/>
                             </div>

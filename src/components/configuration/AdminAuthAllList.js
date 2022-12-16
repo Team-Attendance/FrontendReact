@@ -6,8 +6,9 @@ import { columns, fields, filters } from './realgrid-dataAuth'
 import { modifyEmpAuthority } from "../../api/ConfigurationAPI"
 import { useSelector } from "react-redux"
 import Paging from "../Paging"
-import Modal from "../Modal/Modal"
+import AuthSetModal from "../Modal/AuthSetModal"
 import EmpAuthModiModal from "../Modal/EmpAuthModiModal"
+
 
 const AdminAuthAllList = ({ changeFlag,closeModal }) => {
   const [dataProvider, setDataProvider] = useState(null)
@@ -69,6 +70,8 @@ const AdminAuthAllList = ({ changeFlag,closeModal }) => {
     gv.beginUpdateRow(curr.itemIndex);
     gv.showEditor();
     gv.setFocus();
+    gv.setStateBar({ visible: false })
+        gv.setCheckBar({ visible: false })
     gv.setDisplayOptions({
       fitStyle:"evenFill",
       selectionStyle: "rows",
@@ -109,21 +112,21 @@ const AdminAuthAllList = ({ changeFlag,closeModal }) => {
 
   return (
 
-    <div>
+    <div className="AuthModal-box" >
        {modal && (
-                <Modal closeModal={() => setModal(!modal)} >
+                <AuthSetModal closeModal={() => setModal(!modal)} >
                     <EmpAuthModiModal
                         closeModal={() => setModal(!modal)}
                         empAllAuthInfo={empAllAuthInfo}
                         data={data}
                         auth={1}
                         changeFlag={changeFlag} />
-                </Modal>
+                </AuthSetModal>
             )}
       
-        <div className="button">
-      <button className="stChange" style={{margin:"10px"}} onClick={toggleEmp} >사원</button> <br /><button className="stChange" style={{margin:"10px"}} onClick={toggleAdmin} >관리자</button>
-      <br /> <button className="stChange" style={{margin:"10px"}} onClick={toggleAll} >전체</button>   
+        <div className="AuthSetModal-button">
+      <button style={{margin:"10px"}}  onClick={toggleEmp} >사원</button> <button style={{margin:"10px"}} onClick={toggleAdmin} >관리자</button>
+      <button style={{margin:"10px"}} onClick={toggleAll} >전체</button>   
         </div>
         
       <div

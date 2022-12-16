@@ -5,10 +5,12 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import ConfigurationActions from '../../redux/modules/configuration/ConfigurationActions';
-import Modal from '../Modal/Modal';
-import TimeModal from '../Modal/TimeModal';
+import BizHourModal from '../Modal/BizHourModal';
+import TimeSetModal from '../Modal/TimeSetModal';
 import AuthModal from '../Modal/AuthModal';
 import Button from '@mui/material/Button';
+import Modal from '../Modal/Modal';
+import AuthModalSet from '../Modal/AuthModalSet';
 
 export default function ConfigMenu() {
 
@@ -41,13 +43,13 @@ export default function ConfigMenu() {
 
     }
     useEffect(() => {
-
+        
         dispatch(ConfigurationActions.getResultEmp())
         dispatch(ConfigurationActions.getAuthEmp())
         dispatch(ConfigurationActions.getAllAuthotityEmp())
         dispatch(ConfigurationActions.getEmpBiz())
         // dispatch(ConfigurationActions.getAllAuthotityEmp())
-    }, [])
+    }, [ ])
     const role = sessionStorage.getItem("empAuthority");
 
     return (
@@ -76,12 +78,12 @@ export default function ConfigMenu() {
             >
                 <MenuItem onClick={onSubmit}>출퇴근시간 설정</MenuItem>
                 {timeModal && (
-                    <Modal closeModal={() => setTimeModal(!timeModal)}>
-                        <TimeModal
+                    <BizHourModal closeModal={() => setTimeModal(!timeModal)}>
+                        <TimeSetModal
                             empBizInfo={empBizInfo}
                             closeModal={() => setTimeModal(!timeModal)}
                         />
-                    </Modal>
+                    </BizHourModal>
                 )}
                 <MenuItem onClick={onSubmitt}>관리자권한 설정</MenuItem>
                 {authModal && (

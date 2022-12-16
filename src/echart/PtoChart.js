@@ -10,8 +10,8 @@ export default function PtoChart(){
   const eChartsOption = {
     color: [
 
-      '#2f4554',
-      '#61a0a8',
+      '#D49DDC',
+      '#9174F2',
     ],
     
     legend: {
