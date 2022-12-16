@@ -1,10 +1,10 @@
 import React from "react";
 import { modifyEmpAuthority } from '../../api/ConfigurationAPI'
-import './ApprovalModal.scss'
+import './EmpAuthModiModal.scss'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import ConfigurationActions from "../../redux/modules/configuration/ConfigurationActions";
-import AuthModal from "./AuthModal";
+
 const EmpAuthModiModal = ({ empAllAuthInfo, data, closeModal, changeFlag }) => {
 
   
@@ -22,47 +22,65 @@ const EmpAuthModiModal = ({ empAllAuthInfo, data, closeModal, changeFlag }) => {
         };
 
         dispatch(ConfigurationActions.modifyEmpAuthority(update))
-        dispatch(ConfigurationActions.getAllAuthotityEmp())
-        // AuthModal.parent.location.reload();
+        dispatch(ConfigurationActions.getAllAuthotityEmp(update))
+       
         alert("권환 변경이 완료되었습니다.")
-        closeModal();
+        closeModal( );
     };
 
     return (
-        <div className="myPage">
+        <div className="EmpAuthModiModal">
             
-            <h1 className="infoTitle">관리자권한 수정</h1>
-           
-            <div className="infoBox">
-                <div className="infoContent">
-                        <ul>
-                        <li className="infoLi"><div className="infoLabel">이름</div> <div className="infoInput"readOnly>{data.empName}</div></li>
-                        <li className="infoLi"><div className="infoLabel">사번</div> <div className="infoInput"readOnly>{data.empNo}</div></li>
-                        <li className="infoLi"><div className="infoLabel">부서</div> <div className="infoInput" readOnly>{data.deptName}</div></li>
-                        <li className="infoLi"><div className="infoLabel">직급</div> <div className="infoInput" readOnly>{data.empPosition}</div></li>
-                        <li className="infoLi"><div className="infoLabel">권한</div>   <select className="infoInput" name='empAuthority' required onChange={handleEmpAuthority}>
-                                <option value={'none'}>{data.empAuthority}</option>
-                                <option value={'ROLE_ADMIN'}>ROLE_ADMIN</option>
-                                <option value={'ROLE_EMP'}>ROLE_EMP</option>
+            <div className="EmpAuthModiModalBody">
+            <div>
+            <button id="modalCloseBtn" onClick={closeModal}>
+                    ✖
+                </button>
+                </div>
+            <div className="EmpAuthModiModal-modal">
+             <div>
+             <h1 className="EmpAuthModiModal-title">관리자권한 수정</h1>
+             <div className="EmpAuthModiModal-box">
+              <div className="EmpAuthModiModal-content">
+              <ul className="EmpAuthModiModal-ul">
+                        <li className="EmpAuthModiModal-li"><div className="EmpAuthModiModal-label">이름</div> <div className="EmpAuthModiModalInput"readOnly>{data.empName}</div></li>
+                        <li className="EmpAuthModiModal-li"><div className="EmpAuthModiModal-label">사번</div> <div className="EmpAuthModiModalInput"readOnly>{data.empNo}</div></li>
+                        <li className="EmpAuthModiModal-li"><div className="EmpAuthModiModal-label">부서</div> <div className="EmpAuthModiModalInput" readOnly>{data.deptName}</div></li>
+                        <li className="EmpAuthModiModal-li"><div className="EmpAuthModiModal-label">직급</div> <div className="EmpAuthModiModalInput" readOnly>{data.empPosition}</div></li>
+                        <li className="EmpAuthModiModal-li"><div className="EmpAuthModiModal-label">권한</div>   <select className="EmpAuthModiModalInput" name='empAuthority' required onChange={handleEmpAuthority}>
+                                <option value={'none'}>권한선택</option>
+                                <option value={'ROLE_ADMIN'}>관리자</option>
+                                <option value={'ROLE_EMP'}>사원</option>
                                
                             </select></li>
                             </ul>
+                            <div className="EmpAuthModiModal-button">
+                                    <button onClick={ changeState}>승인</button>
+                                    <button onClick={closeModal}>닫기</button>
+                                </div>
+                </div>  
+                </div>   
+                
+                           
+                </div>   
+            </div>
+
+            </div>
+            
+           
+           
+                       
                     
                     
                     <div >
                         
-                                <div className="button">
-                                    <button className="stChange" onClick={ changeState}>승인</button>
-                                    <button className="stChange" onClick={closeModal}>닫기</button>
-                                </div>
-                           
+                                
                             <></>
                         
                        
                     </div>
                 </div>
-            </div>
-        </div>
+        
     )
 }
 

@@ -27,7 +27,7 @@ export const fields = [{
     datetimeFormat: "yyyyMMdd"
 },
 {
-    fieldName: 'leaveAdjAppro',
+    fieldName: 'leaveAdjState',
     dataType: ValueType.TEXT
 }];
 
@@ -87,15 +87,52 @@ export const columns = [{
     },
     numberFormat: '0'
 },{
-    name: "leaveAdjAppro",
-    fieldName: "leaveAdjAppro",
+    name: "leaveAdjState",
+    fieldName: "leaveAdjState",
     type: "data",
     width: "80",
     styles: {
         textAlignment: "center"
     },
     header: {
-        text: "결재자",
-        showTooltip: false,
+        text: "신청상태",
+        // displayCallback: (grid, index, value) =>{
+        //     switch (value) {
+        //         case '0':
+        //             return '대기'
+        //         case '1':
+        //             return '승인'
+        //         case '2':
+        //             return '반려'
+        //         case '3':
+        //             return '취소'
+        //         default:
+        //             return '-'
+        //     }
+        // }
     },
+    styleCallback: (grid, dataCell) => {
+        switch (dataCell.value) {
+          case '0':
+            return {
+              styleName: '대기'
+            }
+          case '1':
+            return {
+              styleName: '승인'
+            }
+          case '2':
+            return {
+              styleName: '반려'
+            }
+            case '3':
+            return {
+              styleName: '취소'
+            }
+          default:
+            return '-'
+        }
+      },
+    }
+    ,{
 }]

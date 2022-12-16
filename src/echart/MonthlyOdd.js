@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import ReactEchart from "echarts-for-react"
 import { useDispatch, useSelector } from "react-redux";
 import ReportActions from '../redux/modules/report/ReportActions';
@@ -10,7 +10,17 @@ export default function MonthlyOdd({}){
     const dispatch = useDispatch;
     const { MonthliyInfo } =  useSelector((state) => state.MonthliyInfo)
     dispatch(ReportActions.getMonthlyOdd(empNo, currentYear))
-  console.log()
+  console.log("===========================")
+  const test = useRef('')
+  const test1 = useRef('')
+  console.log(MonthliyInfo)
+  if(MonthliyInfo != null &&  MonthliyInfo.data != null && MonthliyInfo.data[0] != null){
+    test.current = MonthliyInfo.data[0].oddcount;
+    test1.current =MonthliyInfo.data[1].oddcount;
+  }
+
+  console.log(test.current)
+
   const eChartsOption =  {
     xAxis: {
         type: 'category',
@@ -18,6 +28,13 @@ export default function MonthlyOdd({}){
       },
       yAxis: {
         type: 'value'
+      },
+      grid: {
+        top :'15%',
+        left: '10%',
+        right: '10%',
+        bottom: '15%',
+        containLabel: true
       },
       series: [
         {
@@ -34,28 +51,9 @@ export default function MonthlyOdd({}){
             '#91ca8c',
             '#f49f42'
           ],
-          data: [
-            // MonthliyInfo.data[0].oddcount,
-            {
-              // value: MonthliyInfo.data[1].oddcount,
-              value: 1,
-              itemStyle: {
-                color: '#a90000'
-              }
-            },
-            6,
-            5,
-            4,
-            3,
-            4,
-            7,
-            6,
-            5,
-            4,
-            3,
-
-          
-            // MonthliyInfo.data[2].oddcount,
+          data:[
+            test.current,
+            test1.current
             // MonthliyInfo.data[3].oddcount,
             // MonthliyInfo.data[4].oddcount,
             // MonthliyInfo.data[5].oddcount,

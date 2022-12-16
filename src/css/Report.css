@@ -1,3 +1,5 @@
+
+
 .wrapp {
     width: 100%;
     height: 100%;
@@ -6,7 +8,7 @@
     background-color: #F3F3F3;
 }
 .container {
-    width: 98%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     
@@ -21,15 +23,15 @@
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
-    width: 90%;
+    width: 98%;
     height: 100%;
     margin-left: 0;
 }
-.emp-infoo,
+.emp-infoo
 .leave-adj,
 .odd-adj {
     width: 100%;
-    height: 35%;
+    height: 33%;
     overflow: auto;
     margin: 3px;
     
@@ -37,21 +39,22 @@
     
 }
 
-
+.titledivider{
+    margin-left: 710px;
+}   
 .mini {
     display: flex;
     width: 100%;
     height: 70%;
-    
+ 
 
 }
 .image {
-    height: 151px;
-    width: 20%;
+    height: 200px;
+    width: 25%;
     border: 1px solid #000;
 }
 .emptable {
-    display: absolute;
     height: 100%;
     width: 77%;
     text-align: center;
@@ -84,7 +87,7 @@
     width: 100%;
     height: 90%;
 }
-.box {
+.boxx {
     width: 100%;
     
     display: flex;
@@ -93,7 +96,7 @@
     box-sizing: border-box;
     
 }
-.box > div {
+.boxx > div {
     width: 49%;
     
     
@@ -103,18 +106,22 @@
    box-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.25);
 }
 
-.box > div:first-child {
+.boxx > div:first-child {
     margin-right: 2%;
     box-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.25);
 }
 
-.box,
+.boxx,
 .topp {
    
     
     /* padding: 10px; */
-    box-sizing: border-box;
-    margin: 0;
+    /* box-sizing: border-box; */
+  
+    border: 1px lightgray solid;
+      border-radius: 5px;
+      box-shadow: 0 5px 5px -5px #000000;
+      color: black;
     
     
 }
@@ -122,12 +129,14 @@
 .topp {
     width: 100%;
     height: 22%;
-   
-    padding: 10px;
-    box-sizing: border-box;
+    /* box-sizing: border-box;
     background-color: white;
     box-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.25);
-    margin: 2px;
+    margin: 2px; */
+    border: 1px lightgray solid;
+      border-radius: 5px;
+      box-shadow: 0 5px 5px -5px #000000;
+      color: black;
 }
 
 .table {
@@ -137,7 +146,7 @@
     
 }
 .background {
-    background-color: #CAEAF6;
+    background-color: #C6C4CE;
     
 }
 
@@ -158,18 +167,21 @@ thead {
 }
 
 .butt {
-    display: relative;
     width: 80px;
     height: 30px;
-    border:1px solid black;
+    border:1px solid black; 
     align-content: center;
-    border-radius: 5px;
+      border-radius: 5px; 
     background: white;
-    margin-top: 10px;
+    margin-top: 10px; 
     text-align: center;
-    margin-right: 100px;
+     margin-right: 100px;
+ 
 }
-.right.top{
+
+   
+
+.right top{
    
     background-color: white;
     width: 100%;
@@ -178,11 +190,11 @@ thead {
     margin-right: 100px;
 }
 
-p {
-    text-align: start;
-    
-}
+
 
 .end {
-    margin-left: 260px;
+    margin-left: 250px;
+}
+.td {
+    font-size: 10px;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import './EmpInfoUpdateModal.scss';
+import './EmpInfoUpdateModall.scss';
 import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 
 
@@ -66,13 +66,17 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
     }
 
     return (
-        <div className="myPage">
-            <div>
-                <h1 className="infoTitle">정보 변경</h1>
-            </div>
-            <div className="infoBox">
-                <div className="infoContent">
-                    <ul className="infoUl">
+        <div className="EmpInfoUpdateModall-modal">
+            <div className="EmpInfoUpdateModall-title">
+                <h1 >정보 변경</h1>
+                <div className="EmpInfoUpdateModallBody" onClick={(e) => e.stopPropagation()}>
+        <button id="EmpInfoUpdateModallCloseBtn" onClick={closeModal}>
+          ✖
+        </button>
+            <div className="EmpInfoUpdateModall-box">
+                <div className="EmpInfoUpdateModall-content">
+                    <div className="EmpInfoUpdateModall-ul">
+                        <div className="EmpInfoUpdateModall-li">
                         <li className="infoLi">
                             <div className="infoLabel">이름</div>
                             <input className="infoInput" required onChange={handleEmpName}
@@ -122,6 +126,19 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
                             <div className="infoLabel">입사일자</div>
                             <div className="infoInput" readOnly>{dateFormatting(empInfoDetail.empFirstDayOfWork)}</div>
                         </li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+      </div>
+            </div>
+            <div className="infoBox">
+                <div className="infoContent">
+                    <ul className="infoUl">
+                       
                     </ul>
 
 

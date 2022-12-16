@@ -1,13 +1,18 @@
 import React from "react";
 import { useState, useEffect} from "react";
 import { useDispatch } from "react-redux";
-
+import './TimeModal.scss';
 import ConfigurationActions from "../../redux/modules/configuration/ConfigurationActions";
 
 
-const TimeModal = ({ empBizInfo, closeModal}) => {
+const TimeSetModal = ({ empBizInfo, closeModal}) => {
     
-    
+    useEffect(() => {
+        dispatch(ConfigurationActions.getEmpBiz())
+    },[])
+   
+
+
     const [bhGetInto, setBhGetInto] = useState(empBizInfo.bhGetInto);
         const handleBhGetInto = (e) => {
         setBhGetInto(e.target.value);
@@ -18,19 +23,21 @@ const TimeModal = ({ empBizInfo, closeModal}) => {
         }    
         const dispatch = useDispatch();
      
-        useEffect(()=> {
+        
+    
 
 
 
-        },[])
+      
     function handleUpdate (e) {         
         const data = {
             'bhGetInto':bhGetInto,
             'bhGetOff':bhGetOff,                             
         };
-        console.log(data)
+        
         dispatch(ConfigurationActions.updateBhTime(data))
-        dispatch(ConfigurationActions.getEmpBiz())
+        
+        // setUpdateHandle(dispatch(ConfigurationActions.getEmpBiz()));
         alert("출퇴근 시간이 변경되었습니다")
         closeModal() ;
     }
@@ -38,27 +45,28 @@ const TimeModal = ({ empBizInfo, closeModal}) => {
         closeModal();
     }
     return(
-        
-        <div className="myPage">
+        <div className="TimeModal">
+        <div className="TimeModalBody">
+        <button id="modalCloseBtn" onClick={closeModal}>
+                    ✖
+                </button>
+        <div className="TimeModal-modal"> 
             <div>
-                <h1 className="infoTitle">출퇴근시간 설정</h1>
+                <h1 className="TimeModal-title">출퇴근시간 설정</h1>
             </div>
-            <div className="infoBox">
-                <div className="infoContent" style={{height:"200px"}}>
-                    <ul className="infoUl" style={{height:"180px"}}>
-                    <li className="infoLi">
-                         
-                         
-                         </li>
+            <div className="TimeModal-box ">
+                <div className="TimeModal-content" >
+                    <ul className="TimeModal-ul" >
+                   
                          {empBizInfo?.data?.length > 0 &&  empBizInfo.data.map((data) => {
                                         
                                         return(
                                                 
                                                 <>
-                                            <li className="infoLi"> <div className="infoLabel">부서이름</div><div className="infoInput">{data.deptName}</div></li>
-                                            <li className="infoLi"> <div className="infoLabel">출퇴근시간설정</div>출근<input className="infoInput" type="time"  onChange={handleBhGetInto}></input> 
+                                            <li className="TimeModal-li"> <div className="TimeModal-label">부서이름</div><div className="infoInput">{data.deptName}</div></li>
+                                            <li className="TimeModal-li"> <div className="TimeModal-label">출퇴근시간설정</div>출근<input className="infoInput" type="time"  onChange={handleBhGetInto}></input> 
                                             퇴근<input className="infoInput" type="Time"  onChange={handleBhGetOff}></input></li>
-                                            <li className="infoLi"><div className="infoLabel">정규출퇴근시간</div>{data.bhGetInto} ~{data.bhGetOff}<div className="infoInput" ></div></li> 
+                                            <li className="TimeModal-li"><div className="TimeModal-label">정규출퇴근시간</div>{data.bhGetInto} ~{data.bhGetOff}<div className="infoInput" ></div></li> 
                                             </>
                                             
                                             
@@ -71,18 +79,20 @@ const TimeModal = ({ empBizInfo, closeModal}) => {
                     </ul>
                     
                     
-                        <div className="button">
-                            <button className="stChange" onClick={handleUpdate}>변경하기</button>
-                            <button className="stChange" onClick={closeButton}>닫기</button>
+                        <div className="TimeModal-button">
+                            <button  onClick={handleUpdate}>변경하기</button>
+                            <button  onClick={closeButton}>닫기</button>
                         </div>
                    
                     
                     
                 </div>
             </div>
+            </div>  
+        </div>
         </div>
     )
 
 }
 
-export default TimeModal;
+export default TimeSetModal;

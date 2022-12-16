@@ -21,7 +21,8 @@ const LeaveAdjTable = ({leaveApprovalInfo}) => {
         gv.setRowIndicator({ visible: false })
         gv.setStateBar({ visible: false })
         gv.setCheckBar({ visible: false })
-        
+        gv.setCheckableExpression()
+        gv.displayOptions.rowHeight = 25;
         gv.setDisplayOptions({
           fitStyle:"evenFill",
           selectionStyle: "rows",
@@ -38,7 +39,7 @@ const LeaveAdjTable = ({leaveApprovalInfo}) => {
     return (
         <div>
             <div
-                style={{ height: '220px', width: '680px' }}
+                style={{ height: '200px', width: '776px' }}
                 ref={realgridElement}></div>
            
                 
