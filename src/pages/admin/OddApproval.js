@@ -11,22 +11,22 @@ import Dropdown from "../../components/Dropdown";
 
 const OddApproval = () => {
     const currentYear = new Date().getFullYear()
-
+    const deptName = sessionStorage.getItem("deptName")
     const [flag, setFlag] = useState(false)
     const [year, setYear] = useState(currentYear)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(OddApprovalActions.getAllOddApproval(year))
-        dispatch(CountApprovalActions.countOddApproval(year))
+        dispatch(OddApprovalActions.getAllOddApproval(deptName, year))
+        dispatch(CountApprovalActions.countOddApproval(deptName, year))
     }, [dispatch, flag, year])
 
     const onSubmit = (query, option) => {
         if (query === '') {
-            dispatch(OddApprovalActions.getAllOddApproval(year))
+            dispatch(OddApprovalActions.getAllOddApproval(deptName, year))
         } else {
-            dispatch(OddApprovalActions.searchOddApproval(option, query, year))
+            dispatch(OddApprovalActions.searchOddApproval(option, query, deptName, year))
         }
 
     }

@@ -7,6 +7,7 @@ import EmpInfoActions from "../../redux/modules/EmpInfo/EmpInfoActions";
 import LeaveStatus from "../../components/EmpLeave/LeaveStatus";
 import '../../css/statusPage.scss'
 import Dropdown from "../../components/Dropdown";
+import SearchBar from "../../components/SearchBar";
 
 const EmpLeavePage = () => {
     const currentYear = new Date().getFullYear()
@@ -34,7 +35,7 @@ const EmpLeavePage = () => {
                     <span>연도별 휴가 사용내역</span>
                 </div>
                 <LeaveStatus/>
-                <div className="sub-title">
+                <div className="sub-title" style={{marginTop:'50px'}}>
                     <Dropdown
                         year={year}
                         setYear={setYear}

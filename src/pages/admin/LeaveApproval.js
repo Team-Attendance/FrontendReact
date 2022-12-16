@@ -10,21 +10,22 @@ import Dropdown from "../../components/Dropdown";
 
 const LeaveApproval = () => {
     const currentYear = new Date().getFullYear()
+    const deptName = sessionStorage.getItem("deptName")
     const [flag, setFlag] = useState(false)
     const [year, setYear] = useState(currentYear)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(LeaveApprovalActions.getAllLeaveApproval(year))
-        dispatch(CountApprovalActions.countLeaveApproval(year))
+        dispatch(LeaveApprovalActions.getAllLeaveApproval(deptName, year))
+        dispatch(CountApprovalActions.countLeaveApproval(deptName, year))
     }, [dispatch, flag, year])
 
     const onSubmit = (query, option) => {
         if (query === '') {
-            dispatch(LeaveApprovalActions.getAllLeaveApproval(year))
+            dispatch(LeaveApprovalActions.getAllLeaveApproval(deptName, year))
         } else {
-            dispatch(LeaveApprovalActions.searchLeaveApproval(option, query, year))
+            dispatch(LeaveApprovalActions.searchLeaveApproval(option, query, deptName, year))
         }
 
     }

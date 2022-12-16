@@ -2,8 +2,7 @@ import { ValueType } from "realgrid";
 
 export const fields = [{
     fieldName: 'oddBizAdjDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'oddBizType',
@@ -11,8 +10,7 @@ export const fields = [{
 },
 {
     fieldName: 'oddBizDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'oddBizAdjState',
@@ -20,8 +18,7 @@ export const fields = [{
 },
 {
     fieldName: 'oddBizAdjApproDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'oddBizAdjAppro',
@@ -38,7 +35,8 @@ export const columns = [{
     header: {
         text: "신청일자",
         showTooltip: false,
-    }
+    },
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "oddBizType",
     fieldName: "oddBizType",
@@ -57,7 +55,8 @@ export const columns = [{
     styles: {
         "textAlignment": "center"
     },
-    header: "이상 근태 발생 일자"
+    header: "이상 근태 발생 일자",
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "oddBizAdjState",
     fieldName: "oddBizAdjState",
@@ -85,11 +84,13 @@ export const columns = [{
             case '0':
                 return '대기'
             case '1':
-                return '승인';
+                return '승인'
             case '2':
                 return '반려'
+            case '3':
+                return '취소'
             default:
-                return '-';
+                return '-'
         }
     }
 },{
@@ -102,7 +103,8 @@ export const columns = [{
     header: {
         text: "결재 일자",
         showTooltip: false,
-    }
+    },
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "oddBizAdjAppro",
     fieldName: "oddBizAdjAppro",

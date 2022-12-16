@@ -29,7 +29,43 @@ const Paging = ({totalData, dataPerPage, pageCount, currentPage, setCurrentPage,
 
     const pageClick = (e) => {
         e.preventDefault()
-        let selectedPage = e.target.innerText
+        const selectedPage = e.target.innerText
+        setCurrentPage(selectedPage)
+
+        if (selectedPage) {
+            gridView.setPage(selectedPage - 1)
+        }
+    }
+    const firstClick = (e) => {
+        e.preventDefault()
+        const selectedPage = 1
+        setCurrentPage(selectedPage)
+
+        if (selectedPage) {
+            gridView.setPage(selectedPage - 1)
+        }
+    }
+    const prevClick = (e) => {
+        e.preventDefault()
+        const selectedPage = prev < 1 ? 1 : prev
+        setCurrentPage(selectedPage)
+
+        if (selectedPage) {
+            gridView.setPage(selectedPage - 1)
+        }
+    }
+    const nextClick = (e) => {
+        e.preventDefault()
+        const selectedPage = next > totalPage ? totalPage : next
+        setCurrentPage(selectedPage)
+
+        if (selectedPage) {
+            gridView.setPage(selectedPage - 1)
+        }
+    }
+    const lastClick = (e) => {
+        e.preventDefault()
+        const selectedPage = totalPage
         setCurrentPage(selectedPage)
 
         if (selectedPage) {
@@ -41,23 +77,15 @@ const Paging = ({totalData, dataPerPage, pageCount, currentPage, setCurrentPage,
         <div id='paging'
              style={{float: 'left', height: '100%', paddingTop: '20px'}}>
             <KeyboardDoubleArrowLeftIcon id='first' className={`page-button ${prev ? '' : 'disabled'}`}
-                                         onClick={() => {
-                                             setCurrentPage(1)
-                                         }}/>
+                                         onClick={firstClick} sx={{fontWeight: "lighter"}}/>
             <KeyboardArrowLeftIcon id={"prev"} className={`page-button ${prev ? '' : 'disabled'}`}
-                                   onClick={() => {
-                                       setCurrentPage(prev < 1 ? 1 : prev)
-                                   }}/>
+                                   onClick={prevClick}/>
             {pageNum()}
             <KeyboardArrowRightIcon id={"next"} className={`page-button ${last < totalPage ? '' : 'disabled'}`}
-                                    onClick={() => {
-                                        setCurrentPage(next > totalPage ? totalPage : next)
-                                    }}/>
+                                    onClick={nextClick}/>
             <KeyboardDoubleArrowRightIcon id={"last"}
                                           className={`page-button ${last < totalPage ? '' : 'disabled'}`}
-                                          onClick={() => {
-                                              setCurrentPage(totalPage)
-                                          }}/>
+                                          onClick={lastClick}/>
         </div>
     )
 

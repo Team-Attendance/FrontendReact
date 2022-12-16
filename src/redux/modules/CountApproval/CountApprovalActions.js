@@ -4,11 +4,11 @@ import * as OddApprovalAPI from "../../../api/OddApprovalAPI"
 import * as EmpAPI from "../../../api/EmpAPI"
 
 const CountApprovalActions = {
-    countLeaveApproval: (year) => async(dispatch) => {
+    countLeaveApproval: (deptName, year) => async(dispatch) => {
         dispatch({type: Types.GET_APPROVAL_COUNT})
 
         try {
-            const countApproval = await LeaveApprovalAPI.countApproval(year)
+            const countApproval = await LeaveApprovalAPI.countApproval(deptName, year)
 
             dispatch({
                 type: Types.GET_APPROVAL_COUNT_SUCCESS,
@@ -21,11 +21,11 @@ const CountApprovalActions = {
             })
         }
     },
-    countOddApproval: (year) => async(dispatch) => {
+    countOddApproval: (deptName, year) => async(dispatch) => {
         dispatch({type: Types.GET_APPROVAL_COUNT})
 
         try {
-            const countApproval = await OddApprovalAPI.countApproval(year)
+            const countApproval = await OddApprovalAPI.countApproval(deptName, year)
 
             dispatch({
                 type: Types.GET_APPROVAL_COUNT_SUCCESS,

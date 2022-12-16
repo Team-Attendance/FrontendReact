@@ -11,8 +11,8 @@ const LeaveApprovalModal = ({auth, data, closeModal, changeFlag}) => {
 
 
     const dateFormatting = (millisec) => {
-        // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
-        const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '/')
+        // millisec를 날짜 형식으로,YYYY-MM-DD로 변경
+        const date = new Date(millisec).toISOString().substring(0,10)
 
         return date
     }
@@ -83,7 +83,7 @@ const LeaveApprovalModal = ({auth, data, closeModal, changeFlag}) => {
                                 </li>
                                 <li className="approval-li">
                                     <div className="approval-label">사번</div>
-                                    <div className="approval-data" readOnly>{data.empNo}</div>
+                                    <div className="approval-data">{data.empNo}</div>
                                 </li>
                                 <li className="approval-li">
                                     <div className="approval-label"> 신청 일자</div>

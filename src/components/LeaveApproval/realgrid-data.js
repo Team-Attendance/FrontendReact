@@ -2,8 +2,7 @@ import { ValueType } from "realgrid";
 
 export const fields = [{
     fieldName: 'leaveAdjDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'empNo',
@@ -23,13 +22,11 @@ export const fields = [{
 },
 {
     fieldName: 'leaveStartDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'leaveEndDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'leaveAdjState',
@@ -37,8 +34,7 @@ export const fields = [{
 },
 {
     fieldName: 'leaveAdjApproDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'leaveAdjAppro',
@@ -52,7 +48,8 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: { text: "신청일자" }
+    header: { text: "신청일자" },
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "empNo",
     fieldName: "empNo",
@@ -95,7 +92,8 @@ export const columns = [{
     styles: {
         "textAlignment": "center"
     },
-    header: "휴가 시작 일자"
+    header: "휴가 시작 일자",
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "leaveEndDate",
     fieldName: "leaveEndDate",
@@ -103,7 +101,8 @@ export const columns = [{
     styles: {
         "textAlignment": "center"
     },
-    header: {text: "휴가 종료 일자"}
+    header: {text: "휴가 종료 일자"},
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "leaveAdjState",
     fieldName: "leaveAdjState",
@@ -147,7 +146,8 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: { text: "결재 일자" }
+    header: { text: "결재 일자" },
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "leaveAdjAppro",
     fieldName: "leaveAdjAppro",

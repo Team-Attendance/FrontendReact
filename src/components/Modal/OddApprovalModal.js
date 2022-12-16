@@ -9,7 +9,7 @@ const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
 
     const dateFormatting = (millisec) => {
         // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
-        const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '/')
+        const date = new Date(millisec).toISOString().substring(0,10)
 
         return date
     }

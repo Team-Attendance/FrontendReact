@@ -4,7 +4,7 @@ import FlightIcon from "@mui/icons-material/Flight";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import * as React from "react";
 import List from "@mui/material/List";
-import { Link } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -20,7 +20,7 @@ export function EmpSide({ sideRef }) {
             sideRef.current[number].className = "side-on";
         }
     }
-
+    const location = useLocation()
     const empMenu = [
         { img: <PersonIcon sx={{ color: 'white' }} />, name: '나의 정보', path: '/emp/emp-info' },
         { img: <EqualizerIcon sx={{ color: 'white' }} />, name: '근태 현황(일)', path: '/emp/daily-attendance-info' },
@@ -32,7 +32,7 @@ export function EmpSide({ sideRef }) {
     return (
         <List sx={{ color: 'white' }}>
             {empMenu.map((menu, index) => (
-                <div onClick={() => { choiceSide(index) }} ref={(el) => { sideRef.current[index] = el }}>
+                <div className={location.pathname === menu.path? 'side-on':''}>
                     <Link to={menu.path} key={index}>
                         <ListItem key={index} disablePadding>
                             <ListItemButton>

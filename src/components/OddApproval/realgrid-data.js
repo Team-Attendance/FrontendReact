@@ -2,8 +2,7 @@ import { ValueType } from "realgrid";
 
 export const fields = [{
     fieldName: 'oddBizAdjDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'empNo',
@@ -23,8 +22,7 @@ export const fields = [{
 },
 {
     fieldName: 'oddBizDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'oddBizAdjState',
@@ -32,8 +30,7 @@ export const fields = [{
 },
 {
     fieldName: 'oddBizAdjApproDate',
-    dataType: ValueType.DATETIME,
-    datetimeFormat: "yyyyMMdd"
+    dataType: ValueType.DATETIME
 },
 {
     fieldName: 'oddBizAdjAppro',
@@ -50,7 +47,8 @@ export const columns = [{
     header: {
         text: "신청일자",
         showTooltip: false,
-    }
+    },
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "empNo",
     fieldName: "empNo",
@@ -104,7 +102,8 @@ export const columns = [{
     styles: {
         "textAlignment": "center"
     },
-    header: "이상 근태 발생 일자"
+    header: "이상 근태 발생 일자",
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "oddBizAdjState",
     fieldName: "oddBizAdjState",
@@ -151,7 +150,8 @@ export const columns = [{
     header: {
         text: "결재 일자",
         showTooltip: false,
-    }
+    },
+    datetimeFormat: "yyyy-MM-dd"
 },{
     name: "oddBizAdjAppro",
     fieldName: "oddBizAdjAppro",

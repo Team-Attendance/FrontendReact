@@ -32,7 +32,7 @@ const EmpOddPage = () => {
                     <span>연도별 이상 근태 조정 신청 내역</span>
                 </div>
                 <OddStatus/>
-                <div className="sub-title">
+                <div className="sub-title" style={{marginTop:'50px'}}>
                     <Dropdown
                         year={year}
                         setYear={setYear}

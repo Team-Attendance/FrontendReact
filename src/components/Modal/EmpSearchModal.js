@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import EmpActions from "../../redux/modules/EmpManagement/EmpActions";
 
 import './EmpSearchModal.scss';
 import SearchBar from "../SearchBar";
 import EmpList from "../EmpManagement/EmpList";
+import ModalReg from "./ModalReg";
+import EmpRegistModal from "../../pages/admin/EmpRegistModal";
 
 
 const EmpSearchModal = ({closeModal}) => {
 
+    const [regiModal, setRegiModal] = useState(false)
     const dispatch = useDispatch();
     const onSubmit = (query, option) => {
         if (query === '') {
@@ -26,6 +29,13 @@ const EmpSearchModal = ({closeModal}) => {
                     ✖
                 </button>
                 <div className="search-modal">
+                    {regiModal && (
+                        <ModalReg closeModal={() => setRegiModal(!regiModal)}>
+                            <EmpRegistModal
+                                closeModal={() => setRegiModal(!regiModal)}
+                            />
+                        </ModalReg>
+                    )}
                     <div>
                         <h1 className="search-title">사원 검색</h1>
                     </div>
@@ -34,6 +44,10 @@ const EmpSearchModal = ({closeModal}) => {
                                 <SearchBar onSubmit={onSubmit}/>
                                 <EmpList closeModal={closeModal}/>
                             <div className="search-button">
+                                <button onClick={() => {
+                                    setRegiModal(true)
+                                }}> 사원등록
+                                </button>
                                 <button onClick={closeModal}>닫기</button>
                             </div>
                         </div>

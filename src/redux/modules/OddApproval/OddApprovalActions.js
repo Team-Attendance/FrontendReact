@@ -2,11 +2,11 @@ import Types from "../../ActionConstants"
 import * as OddApprovalAPI from "../../../api/OddApprovalAPI"
 
 const OddApprovalActions = {
-    getAllOddApproval: (year) => async(dispatch) => {
+    getAllOddApproval: (deptName, year) => async(dispatch) => {
         dispatch({type: Types.GET_ODD_APPROVAL})
 
         try {
-            const oddApproval = await OddApprovalAPI.getAllOddApproval(year)
+            const oddApproval = await OddApprovalAPI.getAllOddApproval(deptName, year)
 
             dispatch({
                 type: Types.GET_ODD_APPROVAL_SUCCESS,
@@ -19,11 +19,11 @@ const OddApprovalActions = {
             })
         }
     },
-    searchOddApproval: (option, query, year) => async(dispatch) => {
+    searchOddApproval: (option, query, deptName, year) => async(dispatch) => {
         dispatch({type: Types.GET_ODD_APPROVAL})
 
         try {
-            const oddApproval = await OddApprovalAPI.searchOddApproval(option, query, year)
+            const oddApproval = await OddApprovalAPI.searchOddApproval(option, query, deptName, year)
 
             dispatch({
                 type: Types.GET_ODD_APPROVAL_SUCCESS,
