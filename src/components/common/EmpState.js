@@ -9,11 +9,11 @@ import './empState.scss';
 const EmpState = ({ documentStatusData }) => {
   const deptBizStatus = documentStatusData.deptBizStatus;
 
-
+// /emp/images/{empNo}
   return (
     <div style={{ width: '100%', border: '', padding: '5px 15px', borderRadius: '15px' }}>
       <div style={{ paddingTop: '15px', marginBottom: '5px' }}>
-        <h2 style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>실시간 기록</h2>
+        <h2 style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>부서원 현황</h2>
       </div>
       <div className='emp-state scroll-hidden'>
 

@@ -20,6 +20,7 @@ import EmpRegistModal from './pages/admin/EmpRegistModal';
 import AdminRouter from "./pages/AdminRouter";
 import EmpRouter from "./pages/EmpRouter";
 import NotFound from "./pages/NotFound";
+import { TestPage } from './pages/admin/TestPage';
 
 
 function App() {
@@ -74,8 +75,12 @@ function App() {
                         <Route path='/admin/approval/leave' element={<AdminRouter authenticated={role} component={<LeaveApproval/>}/>}/>
                         {/* 이상 근태 승인 페이지 */}
                         <Route path='/admin/approval/odd' element={<AdminRouter authenticated={role} component={<OddApproval/>}/>}/>
-                    </Route>
 
+
+
+                        {/* 삭제 필쑤 */}
+                        <Route path='/admin/test' element={<AdminRouter authenticated={role} component={<TestPage/>}/>}/>
+                    </Route>
                 </Routes>
             </React.Fragment>
         </Box>

@@ -64,10 +64,10 @@ export function Calendar({ setShowDeptCalendar }) {
         return (
           formatFulldate(formatDate(emp.empTimeDate)) === formatFulldate(data.date) ?
             <>
-              출근 : {emp.empGetInto} <br />
+              출근 : {emp.empGetInto.slice(0, -3)} <br />
               {
                 emp.empGetOff ?
-                  <>퇴근 : {emp.empGetOff}<br /></>
+                  <>퇴근 : {emp.empGetOff.slice(0, -3)}<br /></>
                   : <></>
               }
 
