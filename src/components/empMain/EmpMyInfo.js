@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { FaAmazonPay } from "react-icons/fa";
 
 
 // axios.get('test/home.do')
@@ -23,38 +25,51 @@ export default function EmpMyInfo() {
   const deptName = sessionStorage.getItem("deptName");
   const role = sessionStorage.getItem("empAuthority");
 
+  // const [timer, setTimer] = useState("00:00:00");
+
+  
+    // const date = new Date();
+    // const years = String(date.getFullYear());
+    // const months = String(date.getMonth()+1);
+    // const dates = String(date.getDate());
+    // setTimer(`${years}:${months}:${dates}`)
+  
+
   return (
     <div>
-      <div>
-        <div style={{ borderBottom: '2px solid lightgray', padding: '15px 10px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>2022년 12월</h2>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{empName} {position} 근태 현황</h2>
-        </div>
-        <div style={{ padding: '0 10px', fontWeight: 'bold', fontSize: '0.8rem' }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', textAlign: 'center' }}>
-            <div style={{ width: '50%', padding: '25px 0' }}>
-              <span>정상근무 : {data != null && data.oddBizHourCount.normalCount}일</span>
-            </div>
-            <div style={{ width: '50%', padding: '25px 0' }}>
-              <span>이상근무 : {data != null && data.oddBizHourCount.oddBizCount}일</span>
-            </div>
-            <div style={{ width: '50%', padding: '13px 0', }}>
-              <span>휴가 : {data != null && data.oddBizHourCount.leaveCount}일</span>
-            </div>
-            <div style={{ width: '50%', padding: '13px 0' }}>
-              <span>결근 : {data != null && data.oddBizHourCount.selectAbsentCount}일</span>
-            </div>
-            <div style={{ width: '50%', padding: '13px 0' }}>
-              <span>지각 : {data != null && data.oddBizHourCount.selectTardyCount}일</span>
-            </div>
-            <div style={{ width: '50%', padding: '13px 0' }}>
-              <span>조퇴 : {data != null && data.oddBizHourCount.EarlyCount}일</span>
-            </div>
+      <div style={{ padding: '20px'}}>
+        <h2 style={{ fontSize: '0.8rem', fontWeight: 'bold', marginBottom: '30px' }}>{empName} {position}</h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', width:'100%', height:'100%'}}> 
+          <div style={{ width: '48.5%', height:'100%' }}>
+            <p style={{height: '45px', border:'1px solid lightgray', display:'flex', marginBottom:'11px', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
+              <span>정상근무</span>
+              <span style={{fontWeight: '900', fontSize: '1rem'}}>{data != null && data.oddBizHourCount.normalCount}일</span>
+            </p>
+            <p style={{height: '45px', border:'1px solid lightgray', display:'flex',marginBottom:'11px', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
+              <span>휴가</span>
+              <span style={{fontWeight: '900', fontSize: '1rem'}}>{data != null && data.oddBizHourCount.leaveCount}일</span>  
+            </p>
+            <p style={{height: '45px', border:'1px solid lightgray', display:'flex',marginBottom:'20px', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
+              <span>지각</span>
+              <span style={{fontWeight: '900', fontSize: '1rem'}}>{data != null && data.oddBizHourCount.selectTardyCount}일</span>
+            </p>
+            <button style={{ height: '45px', width: '100%', border: '1px solid lightgray', borderRadius: '8px', backgroundColor: '#4BC0C0', lineHeight: '45px', textAlign: 'center', color : 'white', fontWeight : '900' }}>휴가 신청 대기 : {data != null && data.oddBizHourCount.selectLeaveCount}</button>
           </div>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'space-around', padding: '25px 0' }}>
-          <button style={{ width: '40%', border: '1px solid lightgray', backgroundColor: 'skyblue', color: 'white', padding: '10px 15px', borderRadius: '10px', fontWeight: 'bold', boxShadow: '0 0 4px 1px lightgray' }}>휴가 신청 대기 : {data != null && data.oddBizHourCount.selectLeaveCount}</button>
-          <button style={{ width: '40%', border: '1px solid lightgray', backgroundColor: 'skyblue', color: 'white', padding: '10px 15px', borderRadius: '10px', fontWeight: 'bold', boxShadow: '0 0 4px 1px lightgray' }}>이상근태 신청 대기 : {data != null && data.oddBizHourCount.selectOddbizCount}</button>
+          <div style={{ width: '48.5%', height:'100%' }}>
+            <p style={{height: '45px', border:'1px solid lightgray', display:'flex', marginBottom:'11px', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
+              <span>이상근무</span>
+              <span style={{fontWeight: '900', fontSize: '1rem'}}>{data != null && data.oddBizHourCount.oddBizCount}일</span> 
+            </p>
+            <p style={{height: '45px', border:'1px solid lightgray', display:'flex', marginBottom:'11px',justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
+              <span>결근</span>
+              <span style={{fontWeight: '900', fontSize: '1rem'}}>{data != null && data.oddBizHourCount.selectAbsentCount}일</span>
+            </p>
+            <p style={{height: '45px', border:'1px solid lightgray', display:'flex', marginBottom:'20px',justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
+              <span>조퇴</span>
+              <span style={{fontWeight: '900', fontSize: '1rem'}}>{data != null && data.oddBizHourCount.EarlyCount}일</span>
+            </p>
+            <button style={{ height: '45px', width: '100%', border: '1px solid lightgray', borderRadius: '8px', backgroundColor: '#36A2EB', lineHeight: '45px', textAlign: 'center', color : 'white', fontWeight : '900' }}>이상근태 신청 대기 : {data != null && data.oddBizHourCount.selectOddbizCount}</button>
+          </div>
         </div>
       </div>
     </div>
