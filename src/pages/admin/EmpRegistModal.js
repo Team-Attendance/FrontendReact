@@ -1,6 +1,7 @@
 import {useRef, useState, useCallback} from "react";
 import '../../css/EmpReg.scss'
 import * as api from "../../api/EmpAPI";
+import {equals} from "react-table/src/filterTypes";
 
 const EmpRegistModal = ({closeModal, props}) => {
     // 초기 값 세팅
@@ -12,7 +13,8 @@ const EmpRegistModal = ({closeModal, props}) => {
     const [empBirth, setEmpBirth] = useState();
     const [empFirstDayOfWork, setEmpFirstDayOfWork] = useState();
     const [empCellPhone, setEmpCellPhone] = useState('');
-    const [dupleEmail, setDupleEmail] = useState()
+    const [dupleEmail, setDupleEmail] = useState();
+    const [chEmail, setChEmail] = useState();
     const nameRef = useRef();
     const emailRef = useRef();
     const phoneRef = useRef();
@@ -52,11 +54,14 @@ const EmpRegistModal = ({closeModal, props}) => {
                setEmpEmail('');
                emailRef.current.focus();
            }else{
+               setChEmail(empEmail);
                alert("사용가능한 메일주소입니다.");
            }
+
            setDupleEmail(res.data);
         })
     }
+    console.log("test" + dupleEmail);
     const handleEmpBirth = (e) => {
         setEmpBirth(e.target.value);
     }
@@ -118,7 +123,9 @@ const EmpRegistModal = ({closeModal, props}) => {
         }else if(empPosition == null){
             alert("직급을 해주세요");
 
-        }else if(dupleEmail|| empEmail==null || empEmail===''|| regExp.test(empEmail)){
+        }else if(chEmail != empEmail){
+            alert("이메일이 중복 되었습니다.");
+        }else if( dupleEmail || empEmail== null || empEmail===''|| regExp.test(empEmail)){
             alert("이메일 형식이 맞지 않습니다.");
             setEmpEmail('');
             emailRef.current.focus();
@@ -202,7 +209,7 @@ const EmpRegistModal = ({closeModal, props}) => {
                             <div className="reginfoLabel"> 사원 사진</div>
                             <input className="reginfoInputfile" type="file" accept="image/*" ref={inputRef}
                                    onChange={onUploadImage} style={{display: 'none'}}/>
-                            <button onClick={onUploadImageButtonClick}>이미지 등록</button>
+                            <button className="imgBtn" onClick={onUploadImageButtonClick}>이미지 등록</button>
                             {empImage &&
                                 <img alt={''} src={URL.createObjectURL(empImage)} />
                             }

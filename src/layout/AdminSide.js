@@ -8,20 +8,10 @@ import * as React from "react";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
-import SettingsIcon from "@mui/icons-material/Settings";
 
-export function AdminSide({sideRef}) {
+export function AdminSide() {
 
-    const choiceSide = (number) => {
-        sideRef.current.forEach((el) => {
-            if (el != null) el.className = "";
-        })
-        if (sideRef.current.length > 0) {
-            sideRef.current[number].className = "side-on";
-        }
-    }
-
-    const location = useLocation()
+    const location = useLocation();
     const adminMenu = [
         { img: <PeopleAltIcon sx={{ color: 'white' }} />, name: '사원 관리', path: '/admin/report' },
         { img: <EventAvailableIcon sx={{ color: 'white' }} />, name: '휴가 승인', path: '/admin/approval/leave' },
@@ -32,7 +22,7 @@ export function AdminSide({sideRef}) {
 
         <List sx={{ color: 'white' }}>
             {adminMenu.map((menu, index) => (
-                <div className={location.pathname === menu.path? 'side-on':''}>
+                <div className={location.pathname === menu.path? 'side-on' : ''}>
                     <Link to={menu.path} key={index}>
                         <ListItem key={index} disablePadding>
                             <ListItemButton>

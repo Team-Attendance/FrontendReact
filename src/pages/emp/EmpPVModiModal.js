@@ -1,10 +1,6 @@
 import '../../css/EmpPwdModiModal.scss';
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import * as api from "../../api/EmpAPI";
-import {empPwdCheck} from "../../api/EmpAPI";
-import axios from "axios";
-import {API_URL} from "../../utils/constants/Config";
-import {getTableSortLabelUtilityClass} from "@mui/material";
 
 const EmpPwdModiModal =({closeModal, props}) => {
     const [officeTel, setOfficeTel] = useState('');
@@ -14,7 +10,6 @@ const EmpPwdModiModal =({closeModal, props}) => {
     const cellPhone= useRef();
     const ctList= useRef();
     let empNo = sessionStorage.getItem("empNo");
-    let  regExp = /[ \{\}\[\]\/?,;:|\)*~`!^\-_+┼<>\#$%&\'\"\\\(\=]/gi;
 
     // 사내
     const handlehype = (e) => {
@@ -103,7 +98,7 @@ const EmpPwdModiModal =({closeModal, props}) => {
                 "empContactList" : contactList
             }
             api.empPVChange(data).then((res)=>{
-                if(res.data == true){
+                if(res.data){
                     alert("사원 정보가 변경되었습니다.");
                     window.location.href="/emp/emp-info";
                 }else {

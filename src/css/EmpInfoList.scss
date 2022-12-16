@@ -1,0 +1,64 @@
+.empInfolist-wrap {
+
+  height: 100%;
+  width: 100%;
+
+  .empInfogrid-wrap{
+    height: 442px;
+  }
+
+  .state-button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 1em auto;
+
+    button {
+      font-size: 0.8em;
+      font-weight: bold;
+      border: 1px lightgray solid;
+      width: 90px;
+      margin-left: 1.5em;
+      padding: 7px;
+      background-color: whitesmoke;
+
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+  }
+
+  #paging {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+
+    #prev {
+      color: black;
+    }
+
+    .current {
+      color: red;
+      font-weight: bold;
+      border: 1px lightgray solid;
+    }
+
+    span {
+      padding: 0.1em 0.7em;
+      font-size: 1em;
+    }
+
+    .page-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        color: red;
+      }
+    }
+  }
+}

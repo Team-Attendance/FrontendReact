@@ -15,13 +15,13 @@ import EmpInfoList from "../../components/EmpManagement/EmpInfoList";
 
 const EmpInfoPage = () => {
 
-    let empName = sessionStorage.getItem("empName");
-    const [empData, setEmpData] = useState()
-    const [empInfoDetail, setEmpInfoDetail] = useState([{}]);
-    const [pwdModal, setPwdModal] = useState(false);
-    const [modiModal, setModiModal] = useState(false);
-    const [empNo, setEmpNo] = useState(sessionStorage.getItem("empNo"));
-    const [img, setImg] = useState('')
+  let empName = sessionStorage.getItem("empName");
+  const [empData, setEmpData] = useState()
+  const [empInfoDetail , setEmpInfoDetail] = useState([{}]);
+  const [pwdModal, setPwdModal] = useState(false);
+  const [modiModal, setModiModal] = useState(false);
+  const [empNo, setEmpNo] = useState(sessionStorage.getItem("empNo"));
+  const [img, setImg] = useState('');
 
 
     const getImg = async () => {

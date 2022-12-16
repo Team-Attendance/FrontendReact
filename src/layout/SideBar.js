@@ -12,6 +12,10 @@ import Modal from '../components/Modal/Modal';
 import EmpQrModal from '../components/empMain/EmpQrModal';
 import axios from "axios";
 import '../css/Side.scss'
+import {Navigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {empInfoDetail} from "../redux/modules";
+import {API_URL} from "../utils/constants/Config";
 
 // Meterial UI
 const drawerWidth = 240;
@@ -40,7 +44,6 @@ const UserWork = styled.dl`
     display: inline-block;
     
   }
-
   & dt{
     width: 45%;
     text-align: right;
@@ -63,31 +66,39 @@ const SideWrap = styled.div`
 
 export function SideBar() {
 
+
+    const [empInfoDetail , setEmpInfoDetail] = useState([{}]);
+    useEffect(()=>{
+        axios.get(API_URL+"/emp/emp-info/"+empNo)
+            .then((res)=>{
+                setEmpInfoDetail(res.data);
+            })
+    },[])
     // 큐알 모달로 이동
     const [modal, setModal] = useState(false)
-    const [img, setImg] = useState('')
-
-    const empName = sessionStorage.getItem("empName");
-    const position = sessionStorage.getItem("empPosition")
-    const deptName = sessionStorage.getItem("deptName");
+    const [img, setImg] =  useState('')
+    const empNo = sessionStorage.getItem("empNo");
+    const empName = empInfoDetail.empName;
+    const position = empInfoDetail.empPosition;
+    const deptName = empInfoDetail.deptName;
     const role = sessionStorage.getItem("empAuthority");
 
-    const sideRef = React.useRef([]);
+
 
     const adminPage = () => {
         if (role === 'ROLE_ADMIN') {
-            return <AdminSide sideRef={sideRef}/>
+            return <AdminSide />
         }
     }
     const empPage = () => {
         if (role === 'ROLE_ADMIN' || role === 'ROLE_EMP') {
-            return <EmpSide sideRef={sideRef}/>
+            return <EmpSide/>
         }
     }
 
     const getImg = async () => {
         await axios({
-            url: `http://localhost:8080/emp/images/${sessionStorage.getItem("empNo")}`,
+            url: `http://localhost:8080/emp/images/${empNo}`,
             method: "GET",
             responseType: 'blob'
         }).then((response) => {
@@ -102,15 +113,18 @@ export function SideBar() {
         getImg()
     }, [])
 
+    const token = localStorage.getItem('ACCESS_TOKEN');
+
     return (
-        <Drawer
-            variant="permanent"
-            sx={{
-                width: drawerWidth,
-                flexShrink: 0,
-                [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box'},
-            }}
-        >
+        token != null ?
+            <Drawer
+                variant="permanent"
+                sx={{
+                    width: drawerWidth,
+                    flexShrink: 0,
+                    [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box'},
+                }}
+            >
             <SideWrap className="scroll-hidden">
                 <List>
 
@@ -153,5 +167,6 @@ export function SideBar() {
                 <Divider/>
             </SideWrap>
         </Drawer>
+        :  < Navigate to='/'/>
     );
 }
