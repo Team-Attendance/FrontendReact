@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactEchart from "echarts-for-react"
+import { useSelector } from 'react-redux';
 
 export default function EmpMonthly(){
+  
 
-
+  const data = useSelector(state => state.pto.data);
 
   const eChartsOption =  {
     tooltip: {
@@ -36,27 +38,17 @@ export default function EmpMonthly(){
       {
         name: '정상 근무',
         type: 'bar',
-        data: [
-          0,
-          0,
-          0,
-          20,
-          13,
-          9,
-        ],
+        data: [ 0,0,0,7,6,8]
       },
       {
         name: '이상 근무',
         type: 'bar',
-        data: [
-          0, 
-          0,
-          0,
-          1,
-          0,
-          1
-        ],
-       
+        data: [data != null && data.Pto.selectOddJulyCount,
+              data != null && data.Pto.selectOddAugCount,
+              data != null && data.Pto.selectOddSepCount,
+              data != null && data.Pto.selectOddOctCount,
+              data != null && data.Pto.selectOddNovCount,
+              data != null && data.Pto.selectOddDecCount]
       }
     ]
     };
