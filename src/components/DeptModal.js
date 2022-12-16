@@ -19,7 +19,7 @@ const DeptModal = ({ deptModalDate, deptLeaveData, setDeptLeaveDate, showDeptMod
             </IconButton>
 
             <div>
-              <h1>휴가 일정 조회</h1>
+              <h1>부서 휴가 조회</h1>
             </div>
             <div>
               <h2 style={{ fontWeight: 'bold', fontSize: '1.1rem', margin: '15px 0' }}>{deptModalDate}</h2>

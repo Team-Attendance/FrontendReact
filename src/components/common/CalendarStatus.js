@@ -8,7 +8,7 @@ const CalendarStatus = () => {
   const oddStatusItem1 = [{ title: '정상 근무', class: 'normal', value: data?.oddBizHourCount.normalCount },
   { title: '이상 근무', class: 'odd-biz', value: data?.oddBizHourCount.oddBizCount }];
 
-  const oddStatusItem2 = [{ title: '결석' }, { title: '지각' }, { title: '조퇴' }];
+  const oddStatusItem2 = [{ title: '결근' }, { title: '지각' }, { title: '조퇴' }];
 
   const leaveStatusItem = [{ title: '휴가', value: data?.leaveCount.normalLeave, class: 'normal' },
   { title: '오전 휴가', value: data?.leaveCount.morningLeave, class: 'morning' },
@@ -45,7 +45,7 @@ const CalendarStatus = () => {
                       <h4>{element.title}</h4>
                       <div>
                         {
-                          data.oddBizList.absent && element.title === "결석" ? <span>{data.oddBizList.absent}회</span>
+                          data.oddBizList.absent && element.title === "결근" ? <span>{data.oddBizList.absent}회</span>
                             : data.oddBizList.tardy && element.title === "지각" ? <span>{data.oddBizList.tardy}회</span>
                               : data.oddBizList.leaveEarly && element.title === "조퇴" ? <span>{data.oddBizList.leaveEarly}회</span>
                                 : <span>0회</span>

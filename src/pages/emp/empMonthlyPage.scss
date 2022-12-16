@@ -1,3 +1,108 @@
+.monthly-page-wrap {
+  & .cal-status-wrap {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  & .monthly-table-chart {
+    position: relative;
+
+    & .flex-dev {
+      display: flex;
+
+      & .monthly-table-area {
+        width: 75%;
+        margin-top: 5px;
+
+        & .table-header-area {
+          position: relative;
+          text-align: left;
+          padding: 10px 20px;
+          border: 1px solid lightgray;
+          background-color: whitesmoke;
+          border-bottom: none;
+
+          &>span {
+            font-size: 0.9rem;
+            font-weight: bold;
+          }
+        }
+      }
+
+      & .chart-area {
+        width: 25%;
+        padding-left: 35px;
+
+        & .biz-chart-area {
+          margin-bottom: 15px;
+          position: relative;
+
+          &>h3 {
+            width: 100%;
+            font-size: 0.9rem;
+            font-weight: bold;
+          }
+
+          & .biz-chart-wrap {
+            border: 1px solid lightgray;
+            margin-top: 11px;
+            display: flex;
+            justify-content: center;
+
+            &>div {
+              width: 100%;
+              height: 277px;
+            }
+          }
+
+          &>p {
+            width: 90px;
+            height: 50px;
+            position: absolute;
+            top: 46%;
+            left: calc(50% - 45px);
+            text-align: center;
+            font-weight: bold;
+            font-size: 1rem;
+          }
+        }
+
+        & .leave-chart-area{
+          position: relative;
+
+          &>h3{
+            width: 100%;
+            font-size: 0.9rem;
+            font-weight: bold;
+          }
+
+          & .leave-chart-wrap{
+            border: 1px solid lightgray;
+            margin-top: 11px;
+            display: flex;
+            justify-content: center;
+
+            &>div{
+              width: 100%;
+              height: 277px;
+            }
+          }
+
+          &>p{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 46%;
+            left: calc(50% - 25px);
+            text-align: center;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
 .monthly-table {
   width: 100%;
   font-size: 0.8rem;
@@ -12,7 +117,8 @@
     background-color: white;
   }
 
-  th, td {
+  th,
+  td {
     padding: 9px 0;
   }
 
@@ -20,23 +126,27 @@
     background-color: whitesmoke;
   }
 
-  .td-date{
+  .td-date {
     width: 22%;
   }
-  .td-leave{
+
+  .td-leave {
     width: 16%;
   }
 
-  .td-work{
+  .td-work {
     width: 22%;
   }
-  .td-start-time{
+
+  .td-start-time {
     width: 14%;
   }
-  .td-end-time{
+
+  .td-end-time {
     width: 14%;
   }
-  .td-state{
+
+  .td-state {
     width: 12%;
   }
 }

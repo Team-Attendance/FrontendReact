@@ -15,34 +15,22 @@ import { setMonthlyData, updateMonthlyData } from '../../modules/monthlyTable';
 import MonthlyTable from '../../table/MonthlyTable';
 
 export function EmpMonthlyPage() {
-
   const sesssionUserNo = sessionStorage.getItem("empNo");
-
-  // const year = useSelector(state => state.calendar.year);
-  // const month = useSelector(state => state.calendar.month);
 
   const year = useSelector(state => state.monthlyTable.year);
   const month = useSelector(state => state.monthlyTable.month);
-
   const statusData = useSelector(state => state.calendarStatus.data);
-
 
   const dispatch = useDispatch();
   const setCalDate = useCallback((year, month) => dispatch(setCalendarDate(year, month)), [dispatch]);
-
   const onSetMonthData = useCallback((empNo) => dispatch(setMonthlyData(empNo)), [dispatch]);
   const onUpdateMonthData = useCallback((empNo, year, month, direction) => dispatch(updateMonthlyData(empNo, year, month, direction)), [dispatch]);
-
   const onUpdate = useCallback((empNo, year, month) => dispatch(getStatusData(empNo, year, month)), [dispatch]);
 
-
-
-  
   useEffect(() => {
     const now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
-
 
     setCalDate(year, month);
     onSetMonthData(sesssionUserNo);
@@ -59,92 +47,59 @@ export function EmpMonthlyPage() {
   return (
     <>
       {statusData && 
-        <div style={{ padding: '30px' }}>
-          
-          <div style={{ marginBottom: '10px' }}>
-            <div style={{ marginBottom: '10px' }}>
-              <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold' }}><EventAvailableIcon sx={{ marginRight: '3px' }} /><span style={{ verticalAlign: 'text-bottom' }}>월별 근태 현황</span></h2>
+        <div className="common-container monthly-page-wrap">
+          <div>
+            <div className="menu-title">
+              <h2><EventAvailableIcon sx={{ marginRight: '3px' }} /><span>월별 근태 현황</span></h2>
             </div>
+
             <div>
-              <div style={{ width: '100%', marginBottom: '25px' }}>
-             
+              <div className="cal-status-wrap"> 
                 <CalendarStatus />
               </div>
-              <div style={{ position: 'relative' }}>
-                <div style={{ display: 'flex' }}>
 
-
-
-                  <div style={{ width: '75%', marginTop: '5px' }}>
-
-
-
+              <div className="monthly-table-chart">
+                <div className="flex-dev">
+                  <div className="monthly-table-area">
                     <div>
-                      <div style={{ position: 'relative', textAlign: 'left', padding: '10px 20px', border: '1px solid lightgray', backgroundColor: 'whitesmoke', borderBottom: 'none' }}>
-                        <span style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>{year}년 {month}월</span>
+                      <div className="table-header-area">
+                        <span>{year}년 {month}월</span>
                         <ArrowBackIosNewIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '110px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(sesssionUserNo, year, month, 'prev'); }} />
                         <ArrowForwardIosIcon sx={{ cursor: 'pointer', fontSize: '1rem', position: 'absolute', top: '14px', left: '125px', border: '1px solid lightgray', color: 'gray' }} onClick={() => { onUpdateMonthData(sesssionUserNo, year, month, 'next'); }} />
                       </div>
                     </div>
-                    
                     <MonthlyTable />
                   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  <div style={{ width: '25%', paddingLeft: '35px' }}>
-                    <div style={{ marginBottom: '15px', position: 'relative' }}>
-                      <h3 style={{ width: '100%', fontSize: '0.9rem', fontWeight: 'bold' }}>{month}월 이상근태율</h3>
-                      <div style={{ border: '1px solid lightgray', marginTop: '11px', display: 'flex', justifyContent: 'center' }}>
-                        <div style={{ width: '100%', height: '277px' }}>
+                  <div className="chart-area">
+                    <div className="biz-chart-area">
+                      <h3>{month}월 이상근태율</h3>
+                      <div className="biz-chart-wrap">
+                        <div>
                           {statusData && <CalOddBizChart />}
                         </div>
                       </div>
-                      <p style={{ width: '90px', height: '50px', position: 'absolute', top: '46%', left: 'calc(50% - 45px)', textAlign: 'center', fontWeight: 'bold', fontSize: '1rem' }}>
+                      <p>
                         <span>이상근태율</span><br />
                         <span>{statusData.oddBizHourCount.oddBizCount !== 0 && statusData.oddBizHourCount.normalCount === 0 ? 100 : statusData.oddBizHourCount.oddBizCount === 0 || statusData.oddBizHourCount.normalCount === 0 ? 0 : Math.round(((statusData.oddBizHourCount.oddBizCount / (statusData.oddBizHourCount.normalCount + statusData.oddBizHourCount.oddBizCount)) * 100) * 10) / 10}%</span>
                       </p>
                     </div>
 
-
-                    <div style={{ position: 'relative' }}>
-                      <h3 style={{ width: '100%', fontSize: '0.9rem', fontWeight: 'bold' }}>{year}년 휴가 사용률</h3>
-                      <div style={{ border: '1px solid lightgray', marginTop: '11px', display: 'flex', justifyContent: 'center' }}>
-                        <div style={{ width: '100%', height: '277px' }}>
+                    <div className="leave-chart-area">
+                      <h3>{year}년 휴가 사용률</h3>
+                      <div className="leave-chart-wrap">
+                        <div>
                           {statusData && <CalLeaveChart />}
                         </div>
                       </div>
-                      <p style={{ width: '50px', height: '50px', position: 'absolute', top: '46%', left: 'calc(50% - 25px)', textAlign: 'center', fontWeight: 'bold' }}>
+                      <p>
                         <span>사용률</span><br />
-
                         <span>{statusData?.leaveUtilzition != null ? statusData?.leaveUtilzition.use_percent : 0}%</span>
                       </p>
                     </div>
+
                   </div>
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-
               </div>
             </div>
           </div>

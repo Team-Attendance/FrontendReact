@@ -139,7 +139,7 @@ export const columns = [
     },
     styleCallback: (grid, dataCell) => {
       switch (dataCell.value) {
-        case '결석':
+        case '결근':
           return {
             styleName: 'odd-biz'
           }
