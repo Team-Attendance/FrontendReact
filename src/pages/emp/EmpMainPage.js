@@ -14,9 +14,6 @@ import EmpMonthly from "../../components/empMain/EmpMonthly";
 
 
 export function EmpMainPage() {
-
-
-
     // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
     let empNo = sessionStorage.getItem('empNo');
 

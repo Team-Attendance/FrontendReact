@@ -1,9 +1,9 @@
 import {useEffect, useRef, useState} from "react"
 import {GridView, LocalDataProvider} from 'realgrid'
 import {columns, fields} from './realgrid-data'
-import '../../css/RealGrid.scss'
-import '../../css/ApprovalList.scss'
-import Paging from "../Paging"
+import '../../css/InfoRealGrid.scss'
+import '../../css/EmpInfoList.scss'
+import Paging from '../Paging';
 
 const EmpInfoList = ({empInfo, setEmpNo}) => {
 
@@ -56,9 +56,9 @@ const EmpInfoList = ({empInfo, setEmpNo}) => {
 
 
     return (
-        <div className="list-wrap">
-            <div className="grid-wrap">
-                <div className="real-grid" style={{width: '90%'}}
+        <div className="empInfolist-wrap">
+            <div className="empInfogrid-wrap">
+                <div className="real-grid"
                      ref={realgridElement}>
                 </div>
             </div>
@@ -69,7 +69,7 @@ const EmpInfoList = ({empInfo, setEmpNo}) => {
                     pageCount={5}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
-                    gridView={gridView}/>
+                    gridView={gridView} />
             }
         </div>
 

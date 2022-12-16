@@ -7,6 +7,7 @@ const LoginProc = ({
   }) => {
   /*로그인 페이지 로그아웃처리*/
     sessionStorage.clear();
+    localStorage.clear();
 
 
   return (

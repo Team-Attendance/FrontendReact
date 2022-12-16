@@ -22,7 +22,7 @@ const EmpInfoPage = () => {
   const [modiModal, setModiModal] = useState(false);
   const [empNo, setEmpNo] = useState(sessionStorage.getItem("empNo"));
   const [img, setImg] = useState('');
-  const [url2, setUrl2] = useState();
+  // const [url2, setUrl2] = useState();
 
   useEffect(() => {
     axios.get(API_URL+"/emp/emp-info/"+empNo)
@@ -68,7 +68,6 @@ const EmpInfoPage = () => {
   //             console.log(error);
   //         })
     , [empNo])
-    console.log("2: "+empNo)
     const dateFormatting = (millisec) =>{
     // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
     const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '-')

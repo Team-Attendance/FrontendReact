@@ -5,7 +5,6 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import HailIcon from '@mui/icons-material/Hail';
 import './empState.scss';
-import { element } from 'prop-types';
 
 const EmpState = ({ documentStatusData }) => {
   const deptBizStatus = documentStatusData.deptBizStatus;

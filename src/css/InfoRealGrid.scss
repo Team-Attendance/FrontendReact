@@ -1,0 +1,71 @@
+.real-grid {
+  height: 442px;
+  width: 100%;
+  border: none;
+
+  .rg-root.rg-grid {
+    font-size: 0.8em;
+    text-align: center;
+    border: none;
+    background-color: white;
+    border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    //border-bottom: 1px solid lightgray;
+  }
+
+  .rg-root .rg-table,
+  .rg-root .rg-table td,
+  .rg-root .rg-body .rg-table td {
+    vertical-align: middle;
+    height: 40px;
+  }
+
+  .rg-header tbody tr {
+    background-color: whitesmoke;
+  }
+
+  .rg-data-row.rg-alternate-row {
+    background-color: white;
+  }
+
+  .rg-checkbox {
+    height: 15px;
+    width: 15px;
+  }
+
+  .rg-empty-grid {
+    display: table;
+    padding: 10%;
+    background: #ffffff;
+    color: gray;
+    font-size: 2em;
+    text-align: center;
+    border-width: 0 1px 1px 1px;
+    border-color: lightgray;
+    border-style: solid;
+  }
+
+  .rg-header-focus {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .rg-header-cell.rg-header-select {
+    background-color: whitesmoke;
+  }
+
+  .rg-focus {
+    /* 포커스 셀의 색깔 변경 */
+    border: 2px solid rgba(117, 192, 221, 0.5);
+  }
+
+}
+
+.approved {
+  font-weight: bold;
+  color: lightseagreen;
+}
+
+.rejected {
+  font-weight: bold;
+  color: red;
+}
