@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReportActions from '../redux/modules/report/ReportActions';
 import { useParams } from 'react-router-dom';
 export default function MonthlyOdd({}){
-  
+
     const {empNo} = useParams();
     const currentYear = new Date().getFullYear()
     const dispatch = useDispatch;
@@ -14,9 +14,12 @@ export default function MonthlyOdd({}){
   const test = useRef('')
   const test1 = useRef('')
   console.log(MonthliyInfo)
-  if(MonthliyInfo != null &&  MonthliyInfo.data != null && MonthliyInfo.data[0] != null){
-    test.current = MonthliyInfo.data[0].oddcount;
-    test1.current =MonthliyInfo.data[1].oddcount;
+    if(MonthliyInfo.data){
+        if(MonthliyInfo.data[0] != null && MonthliyInfo.data[0].undefined){
+
+        test.current = MonthliyInfo.data[0].oddcount;
+        test1.current = MonthliyInfo.data[1].oddcount;
+    }
   }
 
   console.log(test.current)
@@ -39,7 +42,7 @@ export default function MonthlyOdd({}){
       series: [
         {
           color: [
-          
+
             '#45A5F5',
             '#e69d87',
             '#8dc1a9',
@@ -69,7 +72,7 @@ export default function MonthlyOdd({}){
       ]
     };
 
-  return (  
+  return (
     <div>
       <ReactEchart option={eChartsOption} style={{ height: "200px"}} MonthliyInfo={MonthliyInfo}/>
     </div>

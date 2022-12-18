@@ -5,9 +5,27 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import HailIcon from '@mui/icons-material/Hail';
 import './empState.scss';
+import axios from "axios";
+import {useState} from "react";
+import * as React from "react";
 
 const EmpState = ({ documentStatusData }) => {
   const deptBizStatus = documentStatusData.deptBizStatus;
+
+    const imgArr = []
+
+    const getImg = async (empNo) => {
+        await axios({
+            url: `http://localhost:8080/emp/images/${empNo}`,
+            method: "GET",
+            responseType: 'blob'
+        }).then((response) => {
+            imgArr.push(response.data)
+        })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
 // /emp/images/{empNo}
   return (
@@ -17,14 +35,16 @@ const EmpState = ({ documentStatusData }) => {
       </div>
       <div className='emp-state scroll-hidden'>
 
-        {deptBizStatus.map((element) => {
+        {deptBizStatus.map((element, index) => {
           const className = { 휴가: 'leave', 출근: 'work', 퇴근: 'leave-work', 지각: 'tardy', 조퇴: 'leave-early', 결근: 'absenteeism' };
-
           return (
             <div className="state-element">
               <div>
                 <div className="img-area">
-                  <img src="/user.jpg" alt='img' style={{ width: '100%', height: '100%' }} />
+                    {/*{imgArr &&*/}
+                    {/*    <img width={"100%"} height={"100%"} src={URL.createObjectURL(imgArr[index])} alt=''/>*/}
+                    {/*}*/}
+                  {/*<img src="/user.jpg" alt='img' style={{ width: '100%', height: '100%' }} />*/}
                 </div>
 
                 <div className="emp-info-area">

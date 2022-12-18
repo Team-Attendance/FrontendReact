@@ -3,7 +3,7 @@ import { modifyEmpAuthority } from '../../api/ConfigurationAPI'
 import './EmpAuthModiModal.scss'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import ConfigurationActions from "../../redux/modules/configuration/ConfigurationActions";
+import ConfigurationActions from "../../redux/modules/Configuration/ConfigurationActions";
 
 const EmpAuthModiModal = ({ empAllAuthInfo, data, closeModal, changeFlag }) => {
 
