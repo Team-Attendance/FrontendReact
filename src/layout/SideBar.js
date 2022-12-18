@@ -145,9 +145,9 @@ export function SideBar() {
                             </UserInfo>
                             <UserWork>
                                 <dt>출근 시간</dt>
-                                <dd>{data!==null?data.selectEmpNumTime[0].EMP_GET_INTO:'-'}</dd>
+                                <dd>{data!==null && data.selectEmpNumTime[0]? data.selectEmpNumTime[0].EMP_GET_INTO:'-'}</dd>
                                 <dt>퇴근 시간</dt>
-                                <dd>{data!==null?data.selectEmpNumTime[0].EMP_GET_OFF:'-'}</dd>
+                                <dd>{data!==null && data.selectEmpNumTime[0]? data.selectEmpNumTime[0].EMP_GET_OFF:'-'}</dd>
                             </UserWork>
                             {/* <IntoButton>출근</IntoButton> */}
                             <Button onClick={() => {
