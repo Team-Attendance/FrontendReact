@@ -1,0 +1,200 @@
+.admin-main-page-area {
+  padding: 30px;
+
+  &>.flex-div {
+    display: flex;
+
+    & .left-area {
+      width: 76%;
+
+      &>.top-area {
+        display: flex;
+        height: 430px;
+        margin-bottom: 25px;
+
+        & .wait-document-and-process-document {
+          width: 66%;
+          padding: 20px 20px;
+          height: 100%;
+          border: 1px solid gray;
+          margin-right: 15px;
+          border-radius: 7px;
+
+          & .wait-document-wrap {
+            margin-bottom: 15px;
+
+            & .title {
+              font-weight: bold;
+              font-size: 0.8rem;
+              margin-bottom: 5px;
+              line-height: 25px;
+            }
+
+            & .wait-document {
+              display: flex;
+
+              & .link {
+                width: 100%;
+
+                & .document-leave-item {
+                  height: 45px;
+                  border: 1px solid lightgray;
+                  border-radius: 8px;
+                  background-color: #4BC0C0;
+                  margin-right: 7px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  &>h2 {
+                    font-size: 0.9rem;
+                    font-weight: bold;
+                    color: white;
+                  }
+                }
+
+                & .document-odd-biz-item {
+                  height: 45px;
+                  border: 1px solid lightgray;
+                  border-radius: 8px;
+                  background-color: #36A2EB;
+                  margin-left: 7px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  &>h2 {
+                    font-size: 0.9rem;
+                    font-weight: bold;
+                    color: white;
+                  }
+                }
+
+              }
+            }
+          }
+
+          & .process-document-wrap {
+            & .title {
+              font-weight: bold;
+              font-size: 0.8rem;
+              margin-bottom: 5px;
+              line-height: 25px;
+            }
+
+            & .process-document {
+              height: 263px;
+              border: 1px solid lightgray;
+              display: flex;
+
+              & .process-document-item {
+                width: 34%;
+                flex-shrink: 1;
+                height: 100%;
+                border-right: 1px solid lightgray;
+                position: relative;
+                padding: 10px;
+
+                &:last-child {
+                  border-right: none;
+                }
+
+                &>h2 {
+                  font-weight: bold;
+                  font-size: 0.8rem;
+                  line-height: 20px;
+                  position: absolute;
+                  top: 10px;
+                  left: 10px;
+                }
+              }
+            }
+          }
+        }
+
+        & .high-odd-biz-and-hasty-dept-leave {
+          width: 34%;
+          border: 1px solid gray;
+          padding: 15px 20px;
+          border-radius: 7px;
+
+          & .high-odd-biz-wrap {
+            margin-bottom: 23px;
+
+            &>h2 {
+              font-weight: bold;
+              font-size: 0.8rem;
+              margin-bottom: 5px;
+              line-height: 25px;
+            }
+          }
+
+          & .hasty-dept-leave-wrap {
+            &>h2 {
+              font-weight: bold;
+              font-size: 0.8rem;
+              margin-bottom: 5px;
+              line-height: 25px;
+            }
+          }
+        }
+      }
+
+      & .bottom-area {
+        height: 390px;
+        display: flex;
+
+        & .dept-year-odd-biz-wrap {
+          width: 66%;
+          padding: 20px 20px;
+          margin-right: 15px;
+          border: 1px solid gray;
+          border-radius: 7px;
+
+          &>h2 {
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            line-height: 25px;
+          }
+
+          & .dept-year-odd-biz {
+            height: 315px;
+            border: 1px solid lightgray;
+          }
+        }
+
+        & .today-biz-status-wrap {
+          border: 1px solid gray;
+          width: 34%;
+          padding: 20px 20px;
+          border-radius: 7px;
+
+          &>h2 {
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            line-height: 25px;
+          }
+
+          & .today-biz-status {
+            height: 315px;
+            border: 1px solid lightgray;
+          }
+        }
+      }
+    }
+
+
+    & .right-area {
+      width: 24%;
+      padding-left: 15px;
+
+      & .emp-state-wrap{
+        border: 1px solid gray;
+        height: 100%;
+        border-radius: 7px;
+      }
+    }
+  }
+}

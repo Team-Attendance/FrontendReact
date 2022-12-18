@@ -2,13 +2,21 @@ import ReactEchart from "echarts-for-react"
 import React from "react";
 
 
-export default function Chart3() {
+export default function WeekWorkTimeChart({reportData}) {
 
+  const weekWorkTime = reportData.weekWorkTime;
+
+  let realData = [0, 0, 0, 0, 0, 0, 0];
+
+  weekWorkTime.forEach(element => {
+    
+    realData[(element.day - 1)] = element.work_time;
+  });
 
   const eChartsOption = {
 
     xAxis: {
-      data: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      data: ['월', '화', '수', '목', '금', '토', '일'],
     },
     yAxis: {
 
@@ -24,10 +32,10 @@ export default function Chart3() {
     series: [
       {
         type: 'bar',
-        data: [1, 0, 5, 0, 8, 8, 10, 0, 8, 0, 8, 0],
-        barWidth: '50%',
+        data: realData,
+        barWidth: '30%',
         itemStyle: {
-          color: '#059BFF',
+          color: '#4BC0C0',
           barBorderRadius: 0,
           borderWidth: 0,
           borderType: 'solid',

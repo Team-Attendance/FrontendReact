@@ -1,107 +1,121 @@
-.emp-state {
-  height: 787px;
-  overflow-y: scroll;
+.emp-state-area {
+  width: 100%;
+  padding: 5px 15px;
+  border-radius: 15px;
 
-  &.scroll-hidden::-webkit-scrollbar {
-    display: none;
+  &>h2.title{
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding-top: 15px;
+    margin-bottom: 5px;
+
   }
+  & .emp-state {
+    height: 787px;
+    overflow-y: scroll;
 
-  &>div.state-element {
-    display: flex;
-    justify-content: center;
+    &.scroll-hidden::-webkit-scrollbar {
+      display: none;
+    }
 
-    &>div {
+    &>div.state-element {
       display: flex;
-      margin: 12px 0;
+      justify-content: center;
 
-      & .img-area {
-        width: 40px;
-        height: 40px;
-        position: relative;
-        border-radius: 50%;
-        overflow: hidden;
-      }
+      &>div {
+        display: flex;
+        margin: 12px 0;
 
-      & .emp-info-area {
-        width: 100px;
-        padding-left: 15px;
-        line-height: 20px;
-
-        & .name {
-          font-weight: bold;
-          font-size: 0.9rem;
-        }
-
-        & .position {
-          font-weight: bold;
-          font-size: 0.75rem;
-          color: gray;
-        }
-      }
-
-      & .state-info-area {
-        width: 200px;
-        height: 40px;
-        font-size: 0.8rem;
-
-        &>div {
-          height: 100%;
-          border: 1px solid lightgray;
-          display: flex;
-          border-radius: 10px;
+        & .img-area {
+          width: 40px;
+          height: 40px;
+          position: relative;
+          border-radius: 50%;
           overflow: hidden;
+        }
 
-          & .state-icon {
-            width: 40%;
+        & .emp-info-area {
+          width: 100px;
+          padding-left: 15px;
+          line-height: 20px;
+
+          & .name {
+            font-weight: bold;
+            font-size: 0.9rem;
+          }
+
+          & .position {
+            font-weight: bold;
+            font-size: 0.75rem;
+            color: gray;
+          }
+        }
+
+        & .state-info-area {
+          width: 200px;
+          height: 40px;
+          font-size: 0.8rem;
+
+          &>div {
+            height: 100%;
+            border: 1px solid lightgray;
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+
+            & .state-icon {
+              width: 40%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              &.leave {
+                background-color: #4BC0C0;
+              }
+
+              &.work {
+                background-color: #2893F8;
+              }
+
+              &.leave-work {
+                background-color: #9966FF;
+              }
+
+              &.tardy {
+                background-color: #FF9F40;
+              }
+
+              &.leave-early {
+                background-color: #FF99D7;
+              }
+
+              &.absenteeism {
+                background-color: #FF6384;
+              }
+
+              & .state {
+                font-weight: bold;
+                line-height: 20px;
+                color: white;
+              }
+            }
+          }
+
+          & .time-area {
+            width: 60%;
             display: flex;
             align-items: center;
             justify-content: center;
 
-            &.leave {
-              background-color: #4BC0C0;
-            }
-
-            &.work {
-              background-color: #2893F8;
-            }
-
-            &.leave-work {
-              background-color: #9966FF;
-            }
-
-            &.tardy {
-              background-color: #FF9F40;
-            }
-
-            &.leave-early {
-              background-color: #FF99D7;
-            }
-
-            &.absenteeism {
-              background-color: #FF6384;
-            }
-
-            & .state {
+            &>span {
               font-weight: bold;
               line-height: 20px;
-              color: white;
             }
+
           }
-        }
-
-        & .time-area {
-          width: 60%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          &>span {
-            font-weight: bold;
-            line-height: 20px;
-          }
-
         }
       }
     }
   }
+
 }
