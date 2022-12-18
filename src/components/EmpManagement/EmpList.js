@@ -38,6 +38,7 @@ const EmpList = ({closeModal}) => {
                 return;
             }else{
             const empNo = empInfo.data[clickData.dataRow].empNo
+            
             navigate(`/admin/report/${empNo}`)
             }
             closeModal()

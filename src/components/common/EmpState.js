@@ -9,12 +9,9 @@ import './empState.scss';
 const EmpState = ({ documentStatusData }) => {
   const deptBizStatus = documentStatusData.deptBizStatus;
 
-// /emp/images/{empNo}
   return (
-    <div style={{ width: '100%', border: '', padding: '5px 15px', borderRadius: '15px' }}>
-      <div style={{ paddingTop: '15px', marginBottom: '5px' }}>
-        <h2 style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>부서원 현황</h2>
-      </div>
+    <div className="emp-state-area">
+      <h2 className="title">부서원 현황</h2>
       <div className='emp-state scroll-hidden'>
 
         {deptBizStatus.map((element) => {
@@ -24,7 +21,7 @@ const EmpState = ({ documentStatusData }) => {
             <div className="state-element">
               <div>
                 <div className="img-area">
-                  <img src="/user.jpg" alt='img' style={{ width: '100%', height: '100%' }} />
+                  <img src="/none.png" alt='img' style={{ width: '100%', height: '100%' }} />
                 </div>
 
                 <div className="emp-info-area">
@@ -50,6 +47,7 @@ const EmpState = ({ documentStatusData }) => {
                               return <DirectionsRunIcon sx={{ color: 'white', fontSize: '20px', lineHeight: '20px', marginRight: '5px' }} />
                             case '결근':
                               return <PersonOffIcon sx={{ color: 'white', fontSize: '20px', lineHeight: '20px', marginRight: '5px' }} />
+                            default :
                           }
                         })()
                       }
@@ -60,19 +58,19 @@ const EmpState = ({ documentStatusData }) => {
                       {
                         (() => {
                           const stateType = typeof element.stateTime;
-                          if(stateType === 'string'){
-                            if(element.stateTime === ''){
-                              return <span style={{color: 'gray'}}>결근 상태</span>
-                            }else{
+                          if (stateType === 'string') {
+                            if (element.stateTime === '') {
+                              return <span style={{ color: 'gray' }}>결근 상태</span>
+                            } else {
                               return <span>{element.stateTime}</span>
                             }
-                          }else{
-                            if(element.stateTime.hour >= 12){
+                          } else {
+                            if (element.stateTime.hour >= 12) {
                               return <span>오후 {`0${(element.stateTime.hour - 12)} : ${element.stateTime.minute < 10 ? "0" + element.stateTime.minute : element.stateTime.minute}`}</span>
-                            }else{
-                              if(element.stateTime.hour < 10){
+                            } else {
+                              if (element.stateTime.hour < 10) {
                                 return <span>오전 {`0${(element.stateTime.hour)} : ${element.stateTime.minute < 10 ? "0" + element.stateTime.minute : element.stateTime.minute}`}</span>
-                              }else{
+                              } else {
                                 return <span>오전 {`${(element.stateTime.hour)} : ${element.stateTime.minute < 10 ? element.stateTime.minute : element.stateTime.minute}`}</span>
                               }
                             }

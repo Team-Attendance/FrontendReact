@@ -1,3 +1,53 @@
+.monthly-table.test-leave-table, .monthly-table.test-odd-biz-table {
+  .rg-root.rg-grid {
+    text-align: center;
+    font-size: 0.75rem;
+    background-color: white;
+    border: none;
+  }
+
+  .rg-header tbody tr,
+  .rg-head .rg-table tr td {
+    background-color: whitesmoke;
+  }
+
+  .rg-root .rg-table,
+  .rg-root .rg-table td,
+  .rg-root .rg-body .rg-table td {
+    vertical-align: middle;
+  }
+
+  .rg-head .rg-table tr td {
+    border: none;
+    border-right: 1px solid lightgray;
+  }
+
+  .rg-header .rg-table tr td:last-child {
+    border: none;
+    border-left: none;
+    border-top: none;
+  }
+
+  .rg-rowbarcontainer .rg-table tr td {
+    border: 1px solid lightgray;
+    border-left: none;
+    border-top: none;
+  }
+
+  .rg-rowbarcontainer{
+    border-bottom: 1px solid lightgray;
+  }
+
+  .rg-data-row:last-child .rg-data-cell{
+    border-bottom: 1px solid lightgray;
+  }
+
+  .rg-body .rg-table tr td:last-child{
+    border-right: none;
+  }
+}
+
+
 .monthly-table {
   border: none;
 
@@ -64,8 +114,14 @@
     font-weight: bold;
   }
 
-  .normal-leave {
+  .normal-leave,
+  .state-ok {
     color: #2893F8;
+    font-weight: bold;
+  }
+
+  .state-ok {
+    color: #4BC0C0;
     font-weight: bold;
   }
 
@@ -74,12 +130,14 @@
     font-weight: bold;
   }
 
-  .state-companion {
+  .state-companion,
+  .state-no {
     color: #FF4673;
     font-weight: bold;
   }
 
-  .state-waiting {
+  .state-waiting,
+  .state-cancle {
     color: gray;
     font-weight: bold;
   }
