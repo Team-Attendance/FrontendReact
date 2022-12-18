@@ -1,0 +1,50 @@
+.modalUpdate {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+
+  .modalBody {
+    position: absolute;
+    width: 600px;
+    height: 750px;
+    padding: 30px;
+    //border: 1px solid gray;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 3px 4px 0 rgba(34, 36, 38, 0.15);
+
+    .modalCloseBtn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      border: none;
+      color: rgba(0, 0, 0, 0.7);
+      background-color: transparent;
+      font-size: 20px;
+    }
+
+    .modalCloseBtn:hover {
+      cursor: pointer;
+    }
+  }
+  .modalCloseBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
+    font-size: 20px;
+  }
+
+  .modalRegCloseBtn:hover {
+    cursor: pointer;
+  }
+}
+

@@ -39,7 +39,9 @@ export function Header() {
                         <Link to='admin/main'>
                             <Typography variant="h6" noWrap component="div"
                                         sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '1px' }}>
-                               <ManageAccountsIcon/>ADMIN
+                               <div style={{display: "flex", alignItems:"center"}}>
+                                    <ManageAccountsIcon/>ADMIN
+                               </div>
                             </Typography>
                         </Link>
                     </div>

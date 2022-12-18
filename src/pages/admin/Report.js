@@ -29,6 +29,7 @@ import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import GroupIcon from '@mui/icons-material/Group';
 import { SystemSecurityUpdate } from "@mui/icons-material";
 import { border } from "@mui/system";
+import ModalUpdate from "../../components/Modal/ModalUpdate";
 
 export function Report() {
 
@@ -72,7 +73,7 @@ export function Report() {
     const onSubmitt = () => {
         setModal(!modal);
     }
-    console.log("q케케케"+MonthliyInfo.data);
+
     // console.log(MonthliyInfo != null && MonthliyInfo.data != null  && MonthliyInfo.data[0].oddcount)
     return (
 
@@ -106,14 +107,13 @@ export function Report() {
                                 </div>
                                 <div className="emptable">
                                     <EmpInfoTable empInfoDetail={empInfoDetail}/>
-                                    
                                     {modal && (
-                                        <Modal closeModal={() => setModal(!modal)}>
+                                        <ModalUpdate closeModal={() => setModal(!modal)}>
                                             <EmpInfoUpdateModal
                                                 empInfoDetail={empInfoDetail}
                                                 closeModal={() => setModal(!modal)}
                                             />
-                                        </Modal>
+                                        </ModalUpdate>
                                     )}
                                     <button onClick={onSubmitt} className="butt">수정하기</button>
                                 </div>
