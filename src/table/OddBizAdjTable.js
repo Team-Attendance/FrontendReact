@@ -64,7 +64,7 @@ const OddBizAdjTable = ({ reportData }) => {
         <div style={{ width: '100%', position: 'absolute', top: '120px', left: '0', fontSize: '0.8rem', color: 'gray', textAlign: 'center' }}>
           <span>이상근태 조정 신청이 존재하지 않습니다.</span>
         </div>
-      };
+      }
     </div>
   )
 }
