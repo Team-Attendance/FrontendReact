@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
+import { Link } from "react-router-dom";
 
 
 // axios.get('test/home.do')
@@ -17,6 +18,7 @@ import { useSelector } from 'react-redux'
 export default function EmpMyInfo() {
 
   const data = useSelector(state => state.eChart.data);
+
 
   const empName = sessionStorage.getItem("empName");
   const position = sessionStorage.getItem("empPosition")
@@ -49,7 +51,9 @@ export default function EmpMyInfo() {
               <span>지각</span>
               <span style={{fontWeight: '900', fontSize: '1rem'}}>{data != null && data.oddBizHourCount.selectTardyCount}일</span>
             </p>
+            <Link to="/emp/leave-info" style={{width: '100%'}}>
             <button style={{ height: '45px', width: '100%', border: '1px solid lightgray', borderRadius: '8px', backgroundColor: '#4BC0C0', lineHeight: '45px', textAlign: 'center', color : 'white', fontWeight : '900' }}>휴가 신청 대기 : {data != null && data.oddBizHourCount.selectLeaveCount}</button>
+            </Link>
           </div>
           <div style={{ width: '48.5%', height:'100%' }}>
             <p style={{height: '45px', border:'1px solid lightgray', display:'flex', marginBottom:'11px', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
@@ -64,7 +68,9 @@ export default function EmpMyInfo() {
               <span>조퇴</span>
               <span style={{fontWeight: '900', fontSize: '1rem'}}>{data != null && data.oddBizHourCount.EarlyCount}일</span>
             </p>
+            <Link to="/emp/odd-info" style={{width: '100%'}}>
             <button style={{ height: '45px', width: '100%', border: '1px solid lightgray', borderRadius: '8px', backgroundColor: '#36A2EB', lineHeight: '45px', textAlign: 'center', color : 'white', fontWeight : '900' }}>이상근태 신청 대기 : {data != null && data.oddBizHourCount.selectOddbizCount}</button>
+            </Link>
           </div>
         </div>
       </div>

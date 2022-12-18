@@ -7,11 +7,12 @@ import Button from '@mui/material/Button';
 import styled from 'styled-components';
 import {AdminSide} from "./AdminSide";
 import {EmpSide} from "./EmpSide";
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useCallback} from 'react';
 import Modal from '../components/Modal/Modal';
 import EmpQrModal from '../components/empMain/EmpQrModal';
 import axios from "axios";
 import '../css/Side.scss'
+import { getChartData } from "../modules/eChart";
 import {Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {empInfoDetail} from "../redux/modules";
@@ -82,7 +83,9 @@ export function SideBar() {
     const position = empInfoDetail.empPosition;
     const deptName = empInfoDetail.deptName;
     const role = sessionStorage.getItem("empAuthority");
-
+    const data = useSelector(state => state.eChart.data);
+    const dispatch = useDispatch()
+    const empMain = useCallback(() => dispatch(getChartData(empNo, 2022, 12)), [dispatch]);
 
 
     const adminPage = () => {
@@ -111,6 +114,7 @@ export function SideBar() {
 
     useEffect(() => {
         getImg()
+        empMain();
     }, [])
 
     const token = localStorage.getItem('ACCESS_TOKEN');
@@ -141,9 +145,9 @@ export function SideBar() {
                             </UserInfo>
                             <UserWork>
                                 <dt>출근 시간</dt>
-                                <dd>08 : 00</dd>
+                                <dd>{data!==null?data.selectEmpNumTime[0].EMP_GET_INTO:'-'}</dd>
                                 <dt>퇴근 시간</dt>
-                                <dd>-</dd>
+                                <dd>{data!==null?data.selectEmpNumTime[0].EMP_GET_OFF:'-'}</dd>
                             </UserWork>
                             {/* <IntoButton>출근</IntoButton> */}
                             <Button onClick={() => {

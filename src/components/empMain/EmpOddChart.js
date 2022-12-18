@@ -55,13 +55,13 @@ export default function EmpOddChart() {
       data === null ?
           [
             { name: '결근', itemStyle: { color: '#FF5E80' } },
-            { value: 0, name: '잔여휴가', itemStyle: { color: '#36A2EB' } },
-            { value: 0, name: '결근', itemStyle: { color: '#FFC234' } },
+            { value: 0, name: '조퇴', itemStyle: { color: '#36A2EB' } },
+            { value: 0, name: '지각', itemStyle: { color: '#FFC234' } }
           ]
           :
           [
             { value: [data != null && data.oddBizHourCount.selectAbsentCount], name: '결근', itemStyle: { color: '#FF5E80' } },
-            { value: [data != null && data.oddBizHourCount.EalryCount], name: '조퇴', itemStyle: { color: '#36A2EB' } },
+            { value: [data != null && data.oddBizHourCount.EarlyCount], name: '조퇴', itemStyle: { color: '#36A2EB' } },
             { value: [data != null && data.oddBizHourCount.selectTardyCount], name: '지각', itemStyle: { color: '#FFC234' } },
           ]
     },
