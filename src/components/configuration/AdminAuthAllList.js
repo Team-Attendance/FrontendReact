@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { GridView, LocalDataProvider } from 'realgrid'
-import ConfigurationActions from "../../redux/modules/configuration/ConfigurationActions"
-import { columns, fields, filters } from './realgrid-dataAuth'
+import ConfigurationActions from "../../redux/modules/Configuration/ConfigurationActions"
+import { columns, fields, filters } from './realgrid-data'
 import { modifyEmpAuthority } from "../../api/ConfigurationAPI"
 import { useSelector } from "react-redux"
 import Paging from "../Paging"

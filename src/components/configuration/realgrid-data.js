@@ -29,106 +29,62 @@ export const filters =[
     },    {
         name: "ROLE_EMP",
         criteria: "value = 'ROLE_EMP'"
-      },
-  
-      
-      
+      }
     ];
-  
-
-
-
 
 export const columns = [{
     name: "empNo",
     fieldName: "empNo",
     type: "data",
-    width: "100",
     styles: {
         textAlignment: "center"
     },
     header: {
-        text: "사번",
-        showTooltip: false,
-    }
+        text: "사번"
+    },
+    editable: false
 },{
     name: "empName",
     fieldName: "empName",
     type: "data",
-    width: "80",
     styles: {
         textAlignment: "center"
     },
     header: {
-        text: "이름",
-        showTooltip: true,
-        tooltip:'<span style="color: red;">이름</span>',
+        text: "이름"
     },
-    renderer: {
-        type:"text",
-        showTooltip: true
-    }
-}, {
-    name: "deptName",
-    fieldName: "deptName",
-    type: "data",
-    width: "80",
-    styles: {
-        textAlignment: "center"
-    },
-    header: {
-        text: "부서",
-        showTooltip: false,
-    }
+    editable: false
 }, {
     name: "empPosition",
     fieldName: "empPosition",
     type: "data",
-    width: "80",
     styles: {
         textAlignment: "center"
     },
     header: {
-        text: "직급",
-        showTooltip: false,
-    }
+        text: "직급"
+    },
+    editable: false
 }, 
 {
     name: "empAuthority",
     fieldName: "empAuthority",
-    width: 100,
-    sortable: false,
     lookupDisplay: true,
     values: [
-        "ROLE_ADMIN",
-        "ROLE_EMP"
-        
+        "ROLE_EMP",
+        "ROLE_ADMIN"
     ],
     labels: [
-        "ROLE_ADMIN",
-        "ROLE_EMP",
-        
+        "사원",
+        "관리자",
     ],
     editor: {
-        type: "dropdown"
+        type: "dropdown",
+        domainOnly: true,
+        textReadOnly: true
     },
     header: {
-        text: "권한",
-        styleName: "orange-column"
+        text: "권한"
     }
-  },
-// {
-//     name: "empAuthority",
-//     fieldName: "empAuthority",
-//     type: "data",
-//     width: "80",
-//     styles: {
-//         textAlignment: "center"
-//     },
-//     header: {
-//         text: "권한",
-//         showTooltip: false,
-//     }
-// }
-
+  }
 ]

@@ -6,11 +6,14 @@ import Typography from '@mui/material/Typography';
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import {Link, Navigate} from 'react-router-dom';
-import ConfigMenu from "../components/configuration/ConfigMenu"
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import SettingsIcon from "@mui/icons-material/Settings";
+import {useState} from "react";
+import ConfigurationModal from "../components/Modal/ConfigurationModal";
 
 export function Header() {
 
+    const [configModal, setConfigModal] = useState(false)
     const role = sessionStorage.getItem("empAuthority");
     const logout = () => {
       sessionStorage.clear();
@@ -35,7 +38,7 @@ export function Header() {
               </Box>
                 {/*관리자 */}
                 { role === 'ROLE_ADMIN' ?
-                    <div>
+                    <div style={{display:'flex', alignItems:'center'}}>
                         <Link to='admin/main'>
                             <Typography variant="h6" noWrap component="div"
                                         sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '1px' }}>
@@ -44,11 +47,16 @@ export function Header() {
                                </div>
                             </Typography>
                         </Link>
+                        {/* 환경설정 버튼 */}
+                        <div style={{display:'flex', alignItems:'center', margin: '0 15px'}}>
+                            <SettingsIcon onClick={()=>{setConfigModal((!configModal))}}/>
+                            {configModal && (
+                                <ConfigurationModal closeModal={()=>{setConfigModal(!configModal)}}
+                                    />
+                            )}
+                        </div>
                     </div>
                     : null }
-
-              {/* 환경설정 버튼 */}
-                <ConfigMenu />
 
                {/* 로그아웃 버튼 */}
                <IconButton color='inherit'>

@@ -106,6 +106,7 @@ export function SideBar() {
             responseType: 'blob'
         }).then((response) => {
             setImg(response.data);
+            console.log(img)
         })
             .catch((error) => {
                 console.log(error);

@@ -27,7 +27,6 @@ const LeaveApproval = () => {
         } else {
             dispatch(LeaveApprovalActions.searchLeaveApproval(option, query, deptName, year))
         }
-
     }
 
     return (

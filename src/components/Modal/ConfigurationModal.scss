@@ -1,0 +1,186 @@
+@keyframes fade-in-dropdown-animation {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.configModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* modal창 */
+.modalBody {
+  position: absolute;
+  top: 130px;
+  left: 35%;
+  width: 650px;
+  height: 720px;
+  padding: 30px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 7px 1px lightgray;
+  z-index: 2;
+
+
+  #modalCloseBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
+    font-size: 20px;
+  }
+
+  #modalCloseBtn:hover {
+    cursor: pointer;
+  }
+
+  .config-modal {
+    width: 100%;
+    height: 100%;
+    color: black;
+
+    .config-title {
+      padding: 15px 0 10px 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-bottom: 2px solid gray;
+    }
+
+    .config-box {
+      display: flex;
+      width: 100%;
+      height: 90%;
+
+      .config-menu {
+        width: 25%;
+        padding: 8px 8px 8px 0;
+
+        p {
+          font-weight: bold;
+          font-size: 0.9em;
+          text-align: end;
+          vertical-align: center;
+          padding: 10px 0;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .menu-selected {
+          background-color: rgba(225, 241, 250, 0.7);
+
+        }
+      }
+
+      .config-content {
+        background-color: white;
+        width: 75%;
+        padding: 8px;
+
+        p{
+          padding: 0.5em 0;
+        }
+
+        .setting-time {
+          display: flex;
+
+          .select {
+            display: flex;
+            position: relative;
+            margin-right: 20px;
+
+            &:hover {
+              cursor: pointer;
+            }
+
+            span {
+              display: flex;
+              justify-items: center;
+              align-items: center;
+              border: 1px lightgray solid;
+              padding: 5px 10px;
+            }
+
+            .open {
+              border: 1px dodgerblue solid;
+            }
+
+            .options {
+              position: absolute;
+              top: 36px;
+              overflow: auto;
+              height: 144px;
+              width: 93px;
+              background-color: white;
+              z-index: 1;
+              border: 1px lightgray solid;
+              border-radius: 3px;
+              box-shadow: 0 6px 6px rgba(0, 0, 0, 0.23);
+              animation: fade-in-dropdown-animation .15s ease;
+
+              &::-webkit-scrollbar {
+                width: 5px;
+              }
+
+              &::-webkit-scrollbar-thumb {
+                background-color: lightgray;
+                border-radius: 10px;
+              }
+
+              &::-webkit-scrollbar-track {
+                background-color: whitesmoke;
+                border-radius: 10px;
+              }
+
+              li {
+                display: flex;
+                padding: 0 10px;
+                font-weight: normal;
+
+                &:hover {
+                  background-color: rgba(0, 0, 0, 0.25);
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+
+        }
+          .config-button {
+            font-size: 0.8em;
+            display: flex;
+            position: relative;
+            bottom: -2%;
+            justify-content: end;
+            margin-top: 1em;
+
+            button {
+              font-weight: bold;
+              border: 1px lightgray solid;
+              width: 80px;
+              padding: 7px;
+              background-color: whitesmoke;
+              margin-left: 1em;
+
+              &:hover {
+                background-color: lightgray;
+              }
+            }
+          }
+      }
+    }
+  }
+}

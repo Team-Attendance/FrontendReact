@@ -60,7 +60,6 @@ const EmpList = ({closeModal}) => {
                 </div>
             </div>
         </div>
-
     )
 }
 
