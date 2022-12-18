@@ -4,9 +4,9 @@
 | 주제,기능 선정 | :heavy_check_mark: |  |  |  |  |  |  |  |
 | 기능 및 DB구조 | :heavy_check_mark: | :heavy_check_mark:  |  |  |  |  |  |  |
 | 기능 구현 |  |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  |
-| 코드 리뷰 및 병합 |  |  |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  :heavy_check_mark: |  |
-| 프로젝트 추가작업 및 배포 시행 |  |  |  |  | | :heavy_check_mark: | :heavy_check_mark: |  :heavy_check_mark: |
-| 발표 준비 |  |  |  |  |  |  |  | :heavy_check_mark: | :heavy_check_mark:
+| 코드 리뷰 및 병합 |  |  |  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  :heavy_check_mark: | :heavy_check_mark: |
+| 프로젝트 추가작업 |  |  |  |  | | :heavy_check_mark: | :heavy_check_mark: |  :heavy_check_mark: |
+| 발표 준비 |  |  |  |  |  |  |  |  | :heavy_check_mark:
 | 발표 |  |  |  |  |  |  |  |  | :heavy_check_mark:
   
 <br/><br/>
