@@ -56,3 +56,18 @@ export const countLeave = (empNo, year) => {
 export const countOdd = (empNo, year) => {
     return axios.get(`${API_URL}/emp/odd/${empNo}/${year}`)
 }
+
+export const postAdmUpdate = (data) => {
+    return axios.post(`${API_URL}/report/empinfo-modify`, data)
+}
+
+// export const postAdmUpdate = (data) => {
+//     return axios({
+//         headers: {
+//             "Content-Type": "multipart/form-data",
+//         },
+//         url: `${API_URL}/report/empinfo-modify`,
+//         method: "POST",
+//         data: data
+//     })
+// }

@@ -20,7 +20,7 @@ const EmpRegistModal = ({closeModal, props}) => {
     const phoneRef = useRef();
 
 
-    let  regExp = /[ {}[\]/?,;:|)*~`!^\-_+┼<>#$%&'"\\(=]/gi;
+    let regExp = /[ {}[\]/?,;:|)*~`!^\-_+┼<>#$%&'"\\(=]/gi;
 
     const handleDeptName = (e) => {
         setDeptName(e.target.value);
@@ -35,30 +35,30 @@ const EmpRegistModal = ({closeModal, props}) => {
         setEmpPosition(e.target.value);
     }
     const handleEmpEmail = (e) => {
-        if(regExp.test(e.target.value)){
+        if (regExp.test(e.target.value)) {
             alert('특수문자가 포함됐습니다.');
         }
         setEmpEmail(e.target.value);
     }
 
-    const handleDupl=(e)=>{
+    const handleDupl = (e) => {
         e.preventDefault();
-        const data = { "empEmail":empEmail+"@douzone.com" }
-        api.empEmailCheck(data).then((res)=>{
-           if(res.data) {
-               alert("중복된 이메일입니다.");
-               setEmpEmail('');
-               emailRef.current.focus();
-           }else if(empEmail ===''){
-               alert("이메일아이디가 입력되지 않았습니다.");
-               setEmpEmail('');
-               emailRef.current.focus();
-           }else{
-               setChEmail(empEmail);
-               alert("사용가능한 메일주소입니다.");
-           }
+        const data = {"empEmail": empEmail + "@douzone.com"}
+        api.empEmailCheck(data).then((res) => {
+            if (res.data) {
+                alert("중복된 이메일입니다.");
+                setEmpEmail('');
+                emailRef.current.focus();
+            } else if (empEmail === '') {
+                alert("이메일아이디가 입력되지 않았습니다.");
+                setEmpEmail('');
+                emailRef.current.focus();
+            } else {
+                setChEmail(empEmail);
+                alert("사용가능한 메일주소입니다.");
+            }
 
-           setDupleEmail(res.data);
+            setDupleEmail(res.data);
         })
     }
     console.log("test" + dupleEmail);
@@ -71,7 +71,7 @@ const EmpRegistModal = ({closeModal, props}) => {
 
     const handleEmpCellPhone = (e) => {
         // 숫자가 아닌 문자 공백으로 변경
-        const value = phoneRef.current.value.replace(/\D+/g,"");
+        const value = phoneRef.current.value.replace(/\D+/g, "");
         const numLength = 11;
         let result;
         result = "";
@@ -113,49 +113,48 @@ const EmpRegistModal = ({closeModal, props}) => {
 
     function handleRegist(e) {
         e.preventDefault();
-        if(deptName == null){
+        if (deptName == null) {
             alert("부서를 선택해주세요");
-        }else if(regExp.test(empName) || empName == null){
+        } else if (regExp.test(empName) || empName == null) {
             alert("정확한 이름을 입력해주세요");
             nameRef.current.focus();
-        }else if(empPwd == null){
+        } else if (empPwd == null) {
             alert("비밀번호를 입력해주세요");
-        }else if(empPosition == null){
+        } else if (empPosition == null) {
             alert("직급을 해주세요");
 
-        }else if(chEmail != empEmail){
+        } else if (chEmail != empEmail) {
             alert("이메일이 중복 되었습니다.");
-        }else if( dupleEmail || empEmail== null || empEmail===''|| regExp.test(empEmail)){
+        } else if (dupleEmail || empEmail == null || empEmail === '' || regExp.test(empEmail)) {
             alert("이메일 형식이 맞지 않습니다.");
             setEmpEmail('');
             emailRef.current.focus();
-        }else if(empBirth == null){
+        } else if (empBirth == null) {
             alert("생년월일을 입력해주세요");
-        }else if(empFirstDayOfWork == null){
+        } else if (empFirstDayOfWork == null) {
             alert("입사일을 입력해주세요");
-        }else if(empCellPhone.length < 13){
-           alert("정확한 휴대폰 번호를 입력해주세요");
-           phoneRef.current.focus();
+        } else if (empCellPhone.length < 13) {
+            alert("정확한 휴대폰 번호를 입력해주세요");
+            phoneRef.current.focus();
         } else {
             let formData = new FormData()
-
             formData.append("deptName", deptName)
             formData.append("empName", empName)
             formData.append("empPwd", empPwd)
             formData.append("empPosition", empPosition)
-            formData.append("empEmail", `${empEmail}@douzone.com`)
+            formData.append("empEmail", empEmail)
             formData.append("empBirth", empBirth)
             formData.append("empCellPhone", empCellPhone)
             formData.append("empFirstDayOfWork", empFirstDayOfWork)
             formData.append("empPhoto", empImage)
 
-            api.postEmpRegist(formData).then((res)=>{
-               let result = res.data;
-               if(result){
-                   alert("사원등록이 완료 됐습니다.");
-                   window.location.href="/admin/report";
-                   closeModal();
-               }
+            api.postEmpRegist(formData).then((res) => {
+                let result = res.data;
+                if (result) {
+                    alert("사원등록이 완료 됐습니다.");
+                    window.location.href = "/admin/report";
+                    closeModal();
+                }
             });
         }
 
@@ -176,7 +175,7 @@ const EmpRegistModal = ({closeModal, props}) => {
                                     onChange={handleDeptName}>
                                 <option value={'none'}>부서</option>
                                 <option value={'인사'}>인사</option>
-                                <option value={'인사'}>영업</option>
+                                <option value={'영업'}>영업</option>
                                 <option value={'회계'}>회계</option>
                                 <option value={'경영지원'}>경영지원</option>
                                 <option value={'개발'}>개발</option>
@@ -185,7 +184,7 @@ const EmpRegistModal = ({closeModal, props}) => {
                         <li className="reginfoLi">
                             <div className="reginfoLabel"> 사원이름</div>
                             <input className="reginfoInput" type="text" name='empName' placeholder='사원이름'
-                                    ref={nameRef} onChange={handleEmpName}></input>
+                                   ref={nameRef} onChange={handleEmpName}></input>
                         </li>
                         <li className="reginfoLi">
                             <div className="reginfoLabel"> 비밀번호</div>
@@ -211,7 +210,7 @@ const EmpRegistModal = ({closeModal, props}) => {
                                    onChange={onUploadImage} style={{display: 'none'}}/>
                             <button className="imgBtn" onClick={onUploadImageButtonClick}>이미지 등록</button>
                             {empImage &&
-                                <img alt={''} src={URL.createObjectURL(empImage)} />
+                                <img alt={''} src={URL.createObjectURL(empImage)}/>
                             }
                         </li>
 
@@ -256,12 +255,9 @@ const EmpRegistModal = ({closeModal, props}) => {
                             <button className="reghandleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 취소
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
         </div>
     );
 }

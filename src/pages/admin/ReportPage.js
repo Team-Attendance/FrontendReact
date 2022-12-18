@@ -75,7 +75,6 @@ export function ReportPage() {
     dispatch(EmpInfoActions.getAllEmps())
   }
 
-  
 
 
   return (

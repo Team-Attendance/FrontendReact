@@ -1,14 +1,27 @@
 import "./basicInfo.scss";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import { formatDate, formatHyphenFulldate } from "../../modules/cal_function";
+import {useState} from "react";
+import ModalUpdate from "../../components/Modal/ModalUpdate";
+import EmpInfoUpdateModal from "../../components/Modal/EmpInfoUpdateModal";
+import {useSelector} from "react-redux";
 
 export default function BasicInfo({ reportData, img }) {
+  const [modal, setModal] = useState(false)
   return (
     <div className="basic-info-area">
+      {modal && (
+          <ModalUpdate closeModal={() => setModal(!modal)}>
+            <EmpInfoUpdateModal
+                empInfoDetail={reportData.empInfo}
+                closeModal={() => setModal(!modal)}
+            />
+          </ModalUpdate>
+      )}
       <div style={{ paddingRight: '15px' }}>
         <h3 className="title"><EventAvailableIcon sx={{ marginRight: '3px' }} />
           <span>기본 정보</span>
-          <button>수정하기</button>
+          <button onClick={()=>{setModal(!modal)}}>수정하기</button>
         </h3>
 
         <div className="basic-info-wrap">
