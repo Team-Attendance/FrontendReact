@@ -79,6 +79,7 @@ export function ReportPage() {
   return (
     <>
       {reportData &&
+
         <div className="common-container report-page-wrap">
           {empModal && (
             <EmpSearchModal
@@ -131,7 +132,7 @@ export function ReportPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="third-area">
                 <div className="odd-biz-adj-table-area">
                   <div>
