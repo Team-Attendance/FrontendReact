@@ -8,18 +8,12 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
     const [empName, setEmpName] = useState(empInfoDetail.emp_name);
     const [empPwd, setEmpPwd] = useState(empInfoDetail.emp_no);
     const [empPosition, setEmpPosition] = useState(empInfoDetail.emp_position);
-    const [empEmail, setEmpEmail] = useState(empInfoDetail.emp_email);
-    const [empBirth, setEmpBirth] = useState(empInfoDetail.emp_birth);
-    const [empFirstDayOfWork, setEmpFirstDayOfWork] = useState(empInfoDetail.emp_first_day_of_work);
-    const [dupleEmail, setDupleEmail] = useState();
-    const [chEmail, setChEmail] = useState();
     const nameRef = useRef();
     const emailRef = useRef();
     let regExp = /[ {}[\]/?,;:|)*~`!^\-_+┼<>#$%&'"\\(=]/gi;
 
 
     console.log(empInfoDetail)
-    console.log(empFirstDayOfWork)
     const handleDeptName = (e) => {
         setDeptName(e.target.value);
     }
@@ -31,37 +25,6 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
     }
     const handleEmpPosition = (e) => {
         setEmpPosition(e.target.value);
-    }
-    const handleEmpEmail = (e) => {
-        if (regExp.test(e.target.value)) {
-            alert('특수문자가 포함됐습니다.');
-        }
-        setEmpEmail(e.target.value);
-    }
-    const handleDupl = (e) => {
-        e.preventDefault();
-        const data = {"empEmail": empEmail}
-        console.log("empemail : "+empEmail);
-        api.empEmailCheck(data).then((res) => {
-            if (res.data) {
-                alert("중복된 이메일입니다.");
-                emailRef.current.focus();
-            } else if (empEmail === '') {
-                alert("이메일아이디가 입력되지 않았습니다.");
-                setEmpEmail('');
-                emailRef.current.focus();
-            } else {
-                setChEmail(empEmail);
-                alert("사용가능한 메일주소입니다.");
-            }
-            setDupleEmail(res.data);
-        })
-    }
-    const handleEmpBirth = (e) => {
-        setEmpBirth(e.target.value);
-    }
-    const handleEmpFirstDayOfWork = (e) => {
-        setEmpFirstDayOfWork(e.target.value);
     }
 
     // 이미지
@@ -110,9 +73,13 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
                 "empPwd": empPwd,
                 "empPosition": empPosition
             }
+            console.log("pwd : "+empPwd);
             api.postAdmUpdate(formData).then((res)=>{
                 let result = res.data;
                     if (result) {
+                        sessionStorage.setItem("deptName", deptName);
+                        sessionStorage.setItem("empName", empName);
+                        sessionStorage.setItem("empPosition", empPosition);
                         alert("사원수정이 완료 됐습니다.");
                         window.location.href = `/admin/report/${empInfoDetail.emp_no}`;
                         closeModal();
