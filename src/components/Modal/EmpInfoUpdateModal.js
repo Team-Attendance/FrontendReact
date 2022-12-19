@@ -73,7 +73,6 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
                 "empPwd": empPwd,
                 "empPosition": empPosition
             }
-            console.log("pwd : "+empPwd);
             api.postAdmUpdate(formData).then((res)=>{
                 let result = res.data;
                     if (result) {

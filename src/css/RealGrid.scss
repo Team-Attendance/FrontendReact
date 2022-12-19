@@ -10,7 +10,7 @@
     border: none;
     background-color: white;
     border-top: 1px solid lightgray;
-    border-left: 1px solid lightgray;
+    //border-left: 1px solid lightgray;
     //border-bottom: 1px solid lightgray;
   }
 
@@ -24,7 +24,9 @@
   .rg-header tbody tr {
     background-color: whitesmoke;
   }
-
+  .rg-data-row{
+    border-left: 1px solid lightgray;
+  }
   .rg-data-row.rg-alternate-row {
     background-color: white;
   }
@@ -56,7 +58,7 @@
 
   .rg-focus {
     /* 포커스 셀의 색깔 변경 */
-    border: 2px solid rgba(117, 192, 221, 0.5);
+    //border: 2px solid rgba(117, 192, 221, 0.5);
   }
 
 }

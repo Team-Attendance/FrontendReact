@@ -30,7 +30,7 @@ export function ReportPage() {
   const dispatch = useDispatch();
 
   const [reportData, setReportData] = useState(null);
-  const [empModal, setEmpModal] = useState(true);
+  const [empModal, setEmpModal] = useState(false);
   const [img, setImg] = useState('');
 
 

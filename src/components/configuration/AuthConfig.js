@@ -92,7 +92,7 @@ const AuthConfig = ({closeModal}) => {
         }
     }
     return (
-        <div>
+        <div style={{width:'99%'}}>
             <SearchBar onSubmit={onSubmit}/>
             <div className="list-wrap">
                 <div className="grid-wrap">
