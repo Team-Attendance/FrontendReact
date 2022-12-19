@@ -5,7 +5,6 @@ const initialState = {
         loading: false,
         data: {
             empNo: '',
-            deptName: '',
             empName: '',
             empPosition: '',
             empAuthority: ''

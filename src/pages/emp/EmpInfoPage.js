@@ -44,12 +44,6 @@ const EmpInfoPage = () => {
             })
     }, [empNo])
 
-    const dateFormatting = (millisec) => {
-        // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
-        const date = new Date(millisec).toLocaleDateString().replace(/\./g, '').replace(/\s/g, '-')
-        return date;
-    }
-
     // 수정권한 확인
     const chechAuth = () => {
         if (Number(empNo) === empInfoDetail.empNo && empName === empInfoDetail.empName) {
@@ -181,7 +175,7 @@ const EmpInfoPage = () => {
                                     <tbody>
                                     <tr>
                                         <th>생년월일</th>
-                                        <td>{dateFormatting(empInfoDetail.empBirth)}</td>
+                                        <td>{empInfoDetail.empBirth}</td>
                                     </tr>
                                     <tr>
                                         <th>비상연락망</th>
@@ -191,7 +185,7 @@ const EmpInfoPage = () => {
                                     <tfoot>
                                     <tr>
                                         <th>입사일</th>
-                                        <td>{dateFormatting(empInfoDetail.empFirstDayOfWork)}</td>
+                                        <td>{empInfoDetail.empFirstDayOfWork}</td>
                                     </tr>
                                     </tfoot>
                                 </table>

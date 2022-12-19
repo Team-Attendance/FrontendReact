@@ -68,11 +68,10 @@
         padding: 8px 8px 8px 0;
 
         p {
-          font-weight: bold;
           font-size: 0.9em;
           text-align: end;
           vertical-align: center;
-          padding: 10px 0;
+          padding: 10px 7px 10px 0;
 
           &:hover {
             cursor: pointer;
@@ -80,7 +79,8 @@
         }
 
         .menu-selected {
-          background-color: rgba(225, 241, 250, 0.7);
+          background-color: #EEEEEE;
+          font-weight: bold;
 
         }
       }
@@ -90,17 +90,21 @@
         width: 75%;
         padding: 8px;
 
-        p{
-          padding: 0.5em 0;
-        }
-
         .setting-time {
           display: flex;
+          width: 100%;
+          text-align: center;
+          margin-top: 30px;
+          .time-title{
+            padding: 0.5em 0;
+            margin: 0 10px 0 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+          }
 
           .select {
             display: flex;
             position: relative;
-            margin-right: 20px;
 
             &:hover {
               cursor: pointer;
@@ -108,10 +112,11 @@
 
             span {
               display: flex;
-              justify-items: center;
+              justify-content: center;
               align-items: center;
               border: 1px lightgray solid;
-              padding: 5px 10px;
+              padding: 3px 30px;
+              font-size: 0.8rem;
             }
 
             .open {
@@ -120,10 +125,10 @@
 
             .options {
               position: absolute;
-              top: 36px;
+              top: 32px;
               overflow: auto;
               height: 144px;
-              width: 93px;
+              width: 125px;
               background-color: white;
               z-index: 1;
               border: 1px lightgray solid;
@@ -148,6 +153,7 @@
               li {
                 display: flex;
                 padding: 0 10px;
+                font-size: 0.9rem;
                 font-weight: normal;
 
                 &:hover {
@@ -159,11 +165,14 @@
           }
 
         }
+        .current-time{
+          margin: 10px 0 0 84px;
+          font-size: 0.75rem;
+        }
           .config-button {
             font-size: 0.8em;
             display: flex;
-            position: relative;
-            bottom: -2%;
+            bottom: 5%;
             justify-content: end;
             margin-top: 1em;
 
@@ -179,8 +188,22 @@
                 background-color: lightgray;
               }
             }
+            .changed{
+              background-color: #3085d6;
+            }
           }
       }
     }
   }
 }
+.swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
+  z-index: 10000;
+}
+//.swal2-icon{
+//  height: 3em !important;
+//  width: 3em !important;
+//}
+//.swal2-title {
+//  font-size: 1.5rem !important;
+//  font-weight: normal;
+//}

@@ -31,18 +31,21 @@ const LeaveApprovalModal = ({auth, data, closeModal, changeFlag}) => {
                 case 1:
                     Swal.fire({
                         title: '승인되었습니다',
+                        confirmButtonColor: '#3085d6',
                         icon: 'success'
                     })
                     break;
                 case 2:
                     Swal.fire({
                         title: '반려되었습니다',
+                        confirmButtonColor: '#3085d6',
                         icon: 'success'
                     })
                     break;
                 case 3:
                     Swal.fire({
                         title: '취소되었습니다',
+                        confirmButtonColor: '#3085d6',
                         icon: 'success'
                     })
                     break;
@@ -53,6 +56,7 @@ const LeaveApprovalModal = ({auth, data, closeModal, changeFlag}) => {
         } else {
             Swal.fire({
                 title: '상태 변경에 실패했습니다.',
+                confirmButtonColor: '#3085d6',
                 icon: 'error'
             })
         }

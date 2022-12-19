@@ -26,7 +26,7 @@ function App() {
     const role = sessionStorage.getItem("empAuthority")
     return (
 
-        <Box sx={{display: 'flex'}}>
+        <Box sx={{display: 'flex', width:'1920px', height:'969px'}}>
 
             {/* CSS 리셋 */}
             <GlobalStyles/>

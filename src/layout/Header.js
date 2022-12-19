@@ -49,7 +49,7 @@ export function Header() {
                         </Link>
                         {/* 환경설정 버튼 */}
                         <div style={{display:'flex', alignItems:'center', margin: '0 15px'}}>
-                            <SettingsIcon onClick={()=>{setConfigModal((!configModal))}}/>
+                            <SettingsIcon sx={{cursor:'pointer'}} onClick={()=>{setConfigModal((!configModal))}}/>
                             {configModal && (
                                 <ConfigurationModal closeModal={()=>{setConfigModal(!configModal)}}
                                     />

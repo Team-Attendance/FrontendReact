@@ -116,7 +116,7 @@ export function SideBar() {
     useEffect(() => {
         getImg()
         empMain();
-    }, [])
+    }, [role])
 
     const token = localStorage.getItem('ACCESS_TOKEN');
 

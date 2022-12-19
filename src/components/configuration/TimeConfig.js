@@ -3,6 +3,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import {useDispatch, useSelector} from "react-redux";
 import ConfigurationActions from "../../redux/modules/Configuration/ConfigurationActions";
 import {updateBizHour} from "../../api/ConfigurationAPI"
+import Swal from "sweetalert2";
 
 const TimeConfig = ({closeModal}) => {
     const [startOpen, setStartOpen] = useState(false)
@@ -77,23 +78,31 @@ const TimeConfig = ({closeModal}) => {
     },[dispatch])
 
     useEffect(() => {
-        setStartTime(bizHourInfo.data?.bhGetInto.substring(0,5))
-        setFinTime(bizHourInfo.data?.bhGetOff.substring(0,5))
+        setStartTime(bizHourInfo.data?.bhGetInto?.substring(0,5))
+        setFinTime(bizHourInfo.data?.bhGetOff?.substring(0,5))
     },[bizHourInfo?.data])
 
     const updateTime = async() => {
+        if(bizHourInfo.data?.bhGetInto.substring(0,5) === startTime &&
+            bizHourInfo.data?.bhGetOff.substring(0,5) === finTime){
+            return
+        }
         const data = {
             'deptName': sessionStorage.getItem("deptName"),
             'bhGetInto': startTime,
             'bhGetOff': finTime
         }
-        await updateBizHour(data)
+        if(await updateBizHour(data)) {
+            alert('설정이 완료되었습니다.')
+        } else {
+            alert('설정을 변경하지 못했습니다.')
+        }
         // dispatch(ConfigurationActions.getBizHour(sessionStorage.getItem("deptName")))
     }
     return (
         <div>
-            <p>근무시간</p>
             <div className='setting-time'>
+            <span className='time-title'>근무시간</span>
                 <div className='select'>
                     <span className={startOpen ? 'open' : ''} onClick={openStartOptions} ref={startRef}>{startTime}
                         <AccessTimeIcon sx={{color: 'gray', marginLeft: '7px'}}/></span>
@@ -101,6 +110,7 @@ const TimeConfig = ({closeModal}) => {
                         <ul className={'options'}>
                             {timeArr1}
                         </ul>}
+                <span style={{border:"none", padding:"0 10px"}}>-</span>
                 </div>
                 <div className='select'>
                     <span className={finOpen ? 'open' : ''} onClick={openFinOptions} ref={finRef}>{finTime}
@@ -110,6 +120,12 @@ const TimeConfig = ({closeModal}) => {
                             {timeArr2}
                         </ul>}
                 </div>
+            </div>
+            <div className='current-time'>
+                <span>현재 정규 출퇴근 시간: </span>
+                {bizHourInfo.data &&
+                    <span>{bizHourInfo?.data?.bhGetInto?.substring(0,5)} ~ {bizHourInfo.data?.bhGetOff?.substring(0,5)}</span>
+                }
             </div>
             <div className="config-button">
                 <button onClick={updateTime}>저장</button>

@@ -1,4 +1,4 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -13,7 +13,7 @@ export function AdminSide() {
 
     const location = useLocation();
     const adminMenu = [
-        { img: <PeopleAltIcon sx={{ color: 'white' }} />, name: '사원 관리', path: '/admin/report' },
+        { img: <PeopleAltIcon sx={{ color: 'white' }} />, name: '사원 관리', path: `/admin/report/${sessionStorage.getItem("empNo")}` },
         { img: <EventAvailableIcon sx={{ color: 'white' }} />, name: '휴가 승인', path: '/admin/approval/leave' },
         { img: <WarningAmberIcon sx={{ color: 'white' }} />, name: '이상근태', path: '/admin/approval/odd' },
     ]
@@ -22,7 +22,7 @@ export function AdminSide() {
 
         <List sx={{ color: 'white' }}>
             {adminMenu.map((menu, index) => (
-                <div className={location.pathname === menu.path? 'side-on' : ''}>
+                <div className={(location.pathname.indexOf(menu.path)===0)? 'side-on' : ''}>
                     <Link to={menu.path} key={index}>
                         <ListItem key={index} disablePadding>
                             <ListItemButton>

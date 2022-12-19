@@ -124,12 +124,6 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
 
     }
 
-    const dateFormatting = (millisec) => {
-        // millisec를 날짜 형식으로,YYYY-MM-DD로 변경
-        const date = new Date(millisec).toISOString().substring(0,10)
-
-        return date
-    }
 
     return (
         <div className="emp-infoupdate">

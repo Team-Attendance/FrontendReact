@@ -12,11 +12,12 @@ const AuthConfig = ({closeModal}) => {
     const {empAuthInfo} = useSelector((state) => state.empAuthInfo)
     const realgridElement = useRef(null)
     const [dataProvider, setDataProvider] = useState(null)
+    const [flag, setFlag] = useState(false)
     const deptName = sessionStorage.getItem("deptName")
 
     useEffect(() => {
         dispatch(ConfigurationActions.getEmpAuth(deptName))
-    }, [dispatch])
+    }, [dispatch, flag])
 
     useEffect(() => {
         const container = realgridElement.current
@@ -63,15 +64,32 @@ const AuthConfig = ({closeModal}) => {
 
     const updateAuth = async() => {
         const data = []
+        let check = ''
         const updatedCells = dataProvider.getUpdatedCells()
+        if(!updatedCells.length){
+            return
+        }
         for(let i in updatedCells){
             const row = updatedCells[i].__rowId
+            if(dataProvider.getJsonRow(row).empNo === sessionStorage.getItem("empNo")){
+                check = dataProvider.getJsonRow(row).empAuthority
+            }
             data.push({
                 'empNo': dataProvider.getJsonRow(row).empNo,
                 'empAuthority': dataProvider.getJsonRow(row).empAuthority
             })
         }
-        await updateEmpAuth(data)
+        if(await updateEmpAuth(data)){
+            if(check){
+                sessionStorage.setItem(
+                    "empAuthority", check
+                )
+            }
+            alert('설정이 완료되었습니다.')
+            setFlag(!flag)
+        } else {
+            alert('설정을 변경하지 못했습니다.')
+        }
     }
     return (
         <div>

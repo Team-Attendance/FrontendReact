@@ -205,7 +205,7 @@ const EmpRegistModal = ({closeModal, props}) => {
                             </select>
                         </li>
                         <li className="reginfoLi">
-                            <div className="reginfoLabel"> 사원 사진</div>
+                            <div className="reginfoLabel regPhotoLi"> 사원 사진</div>
                             <input className="reginfoInputfile" type="file" accept="image/*" ref={inputRef}
                                    onChange={onUploadImage} style={{display: 'none'}}/>
                             <button className="imgBtn" onClick={onUploadImageButtonClick}>이미지 등록</button>
