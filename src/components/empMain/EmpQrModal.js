@@ -13,7 +13,7 @@ const EmpQrModal = ({ closeModal, props }) => {
     // 로그인시 회원정보 저장 store EmpInfoPage에서 사용
     let empNo = sessionStorage.getItem('empNo');
     const dispatch = useDispatch()
-    var links = 'http://3.39.232.206:8080/emp/attendance?empNo='+ empNo;
+    var links = process.env.REACT_APP_API_URL+'/emp/attendance?empNo='+ empNo;
 
 
     useEffect(() => {
