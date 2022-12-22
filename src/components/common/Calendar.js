@@ -34,7 +34,7 @@ export function Calendar({ setShowDeptCalendar }) {
   const [showOddBizModal, setShowOddBizModal] = useState(false);
 
   const onRealOpen = (onOpen, calendarDay) => {
-    axios.get('/leave-check', {
+    axios.get(process.env.REACT_APP_API_URL+'/leave-check', {
       params: {
         date: calendarDay.date,
         empNo: sessionUserNo
@@ -99,7 +99,7 @@ export function Calendar({ setShowDeptCalendar }) {
   }
 
   const oddBizModalOpen = (empNo, oddBizDate, oddBizType) => {
-    axios.get('/odd-biz-check', {
+    axios.get(process.env.REACT_APP_API_URL+'/odd-biz-check', {
       params: {
         empNo: empNo,
         oddBizDate: oddBizDate,

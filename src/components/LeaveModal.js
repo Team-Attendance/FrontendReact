@@ -74,7 +74,7 @@ const LeaveModal = () => {
             : endDate.getDay() === 0 || endDate.getDay() === 6 ? alert("휴가 종료일은 평일만 가능합니다.")
               : (startDate.getDay() > endDate.getDay()) || (8 - startDate.getDay() <= diffDate) ? alert("휴가 신청일과 동일한 주까지 신청이 가능합니다.")
                 : (leaveDetail.current.value).trim() === "" ? alert("휴가 사유를 입력해주세요.")
-                  : axios.get('/leave-check', {
+                  : axios.get(process.env.REACT_APP_API_URL+'/leave-check', {
                     params: {
                       date: leaveEndDate.current != null && leaveEndDate.current.value,
                       empNo: sessionEmpNo
