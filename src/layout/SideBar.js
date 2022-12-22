@@ -101,7 +101,7 @@ export function SideBar() {
 
     const getImg = async () => {
         await axios({
-            url: `http://localhost:8080/emp/images/${empNo}`,
+            url: `http://3.39.232.206:8080/emp/images/${empNo}`,
             method: "GET",
             responseType: 'blob'
         }).then((response) => {
