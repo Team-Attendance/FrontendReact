@@ -31,7 +31,7 @@ const initialState = {
 export const setCalendar = (empNo) => dispatch => {
   const calendar = initCalendar();
 
-  axios.get('/calendar-data', {
+  axios.get(process.env.REACT_APP_API_URL+'/calendar-data', {
     params: {
       empNo: empNo,
       year: calendar[6][0].thisYear,
@@ -54,7 +54,7 @@ export const setCalendar = (empNo) => dispatch => {
 export const updateCalendar = (empNo, year, month, direction, nowDate) => dispatch => {
   const calendar = moveMonth(year, month, direction, nowDate);
 
-  axios.get('/calendar-data', {
+  axios.get(process.env.REACT_APP_API_URL+'/calendar-data', {
     params: {
       empNo: empNo,
       year: calendar[6][0].thisYear,

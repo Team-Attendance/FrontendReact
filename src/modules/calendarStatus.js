@@ -37,7 +37,7 @@ export const getStatusData = (empNo, year, month) => dispatch => {
     calYear += 1;
   }
 
-  axios.get('/calendar-status-data', {
+  axios.get(process.env.REACT_APP_API_URL+'/calendar-status-data', {
     params: {
       empNo: empNo,
       year: calYear,

@@ -23,7 +23,7 @@ const initialState = {
 export const getAdminData = (deptNo) =>  dispatch => {
 
 
-  axios.get('/admin-main-data', {
+  axios.get(process.env.REACT_APP_API_URL+'/admin-main-data', {
     params: {
         deptNo: deptNo
     }

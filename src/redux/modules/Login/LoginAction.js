@@ -3,7 +3,7 @@ import axios from "axios";
 const LoginAction = axios.create();
 
 // linux
-LoginAction.defaults.baseURL = "http://3.39.232.206:8080/";
+LoginAction.defaults.baseURL = process.env.REACT_APP_API_URL;
 LoginAction.defaults.headers.common["Authorization"] =
     "Bearer " + sessionStorage.getItem("ACCESS_TOKEN");
 

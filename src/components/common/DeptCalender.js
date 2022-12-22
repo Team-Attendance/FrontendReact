@@ -35,7 +35,7 @@ export function DeptCalendar({ setShowDeptCalendar }) {
   let calCountData;
 
   const test = (date, deptName) => {
-    axios.get('/dept-leave-list', {
+    axios.get(process.env.REACT_APP_API_URL+'/dept-leave-list', {
       params: {
         date: date,
         deptName: deptName,

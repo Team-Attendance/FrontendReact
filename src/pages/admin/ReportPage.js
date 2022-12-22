@@ -48,7 +48,7 @@ export function ReportPage() {
   },[empNo])
 
   useEffect(() => {
-    axios.get('/report-data', {
+    axios.get(`${process.env.REACT_APP_API_URL}/report-data`, {
       params: {
         empNo: empNo,
       }

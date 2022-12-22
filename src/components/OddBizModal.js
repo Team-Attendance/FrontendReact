@@ -16,7 +16,7 @@ const OddBizModal = ({ oddBizData, showOddBizModal, setShowOddBizModal }) => {
 
   const oddBizRegistration = (empNo, oddBizDate, oddBizType, oddBizDetail) => {
 
-    axios.post('/odd-biz-adj', {
+    axios.post(process.env.REACT_APP_API_URL+'/odd-biz-adj', {
       empNo: empNo,
       oddBizDate: oddBizDate,
       oddBizType: oddBizType,

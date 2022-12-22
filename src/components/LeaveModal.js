@@ -40,7 +40,7 @@ const LeaveModal = () => {
 
 
   const leaveRegistration = () => {
-    axios.post('/emp-leave', {
+    axios.post(`${process.env.REACT_APP_API_URL}/emp-leave`, {
       leaveStartDate: leaveStartDate.current.value,
       leaveEndDate: leaveEndDate.current != null && leaveEndDate.current.value,
       empNo: sessionEmpNo,

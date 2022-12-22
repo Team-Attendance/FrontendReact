@@ -23,7 +23,7 @@ export function AdminMainPage() {
 
 
     useEffect(() => {
-        axios.get('/admin-main-data', {
+        axios.get(process.env.REACT_APP_API_URL +'/admin-main-data', {
             params: {
                 deptName: sessionDeptName
             }

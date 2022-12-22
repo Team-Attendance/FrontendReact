@@ -29,7 +29,7 @@ export const setMonthlyData = (empNo) => dispatch => {
 
   const monthCal = monthCalendar(year, month);
 
-  axios.get('/monthly-data', {
+  axios.get(process.env.REACT_APP_API_URL+'/monthly-data', {
     params: {
       empNo: empNo,
       year: year,

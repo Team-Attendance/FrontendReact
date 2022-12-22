@@ -23,7 +23,7 @@ const initialState = {
 export const getPtoData = (empNo, ptoYrNo, ptoUseNum) =>  dispatch => {
 
 
-  axios.get('/emp-main', {
+  axios.get(process.env.REACT_APP_API_URL+'/emp-main', {
     params: {
       empNo: empNo,
       ptoYrNo: ptoYrNo,

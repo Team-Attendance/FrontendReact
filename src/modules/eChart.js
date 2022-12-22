@@ -23,7 +23,7 @@ const initialState = {
 
 export const getChartData = (empNo, year, month) =>  dispatch => {
 
-  axios.get('/emp-main-data', {
+  axios.get(process.env.REACT_APP_API_URL+'/emp-main-data', {
     params: {
       empNo: empNo,
       year: year,
