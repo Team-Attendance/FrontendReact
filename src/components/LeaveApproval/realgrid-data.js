@@ -1,45 +1,45 @@
-import { ValueType } from "realgrid";
+import {ValueType} from "realgrid";
 
 export const fields = [{
     fieldName: 'leaveAdjDate',
     dataType: ValueType.DATETIME
 },
-{
-    fieldName: 'empNo',
-    dataType: ValueType.TEXT,
-},
-{
-    fieldName: 'empName',
-    dataType: ValueType.TEXT,
-},
-{
-    fieldName: 'empPosition',
-    dataType: ValueType.TEXT
-},
-{
-    fieldName: 'leaveType',
-    dataType: ValueType.TEXT
-},
-{
-    fieldName: 'leaveStartDate',
-    dataType: ValueType.DATETIME
-},
-{
-    fieldName: 'leaveEndDate',
-    dataType: ValueType.DATETIME
-},
-{
-    fieldName: 'leaveAdjState',
-    dataType: ValueType.TEXT
-},
-{
-    fieldName: 'leaveAdjApproDate',
-    dataType: ValueType.DATETIME
-},
-{
-    fieldName: 'leaveAdjAppro',
-    dataType: ValueType.TEXT
-}];
+    {
+        fieldName: 'empNo',
+        dataType: ValueType.TEXT,
+    },
+    {
+        fieldName: 'empName',
+        dataType: ValueType.TEXT,
+    },
+    {
+        fieldName: 'empPosition',
+        dataType: ValueType.TEXT
+    },
+    {
+        fieldName: 'leaveType',
+        dataType: ValueType.TEXT
+    },
+    {
+        fieldName: 'leaveStartDate',
+        dataType: ValueType.DATETIME
+    },
+    {
+        fieldName: 'leaveEndDate',
+        dataType: ValueType.DATETIME
+    },
+    {
+        fieldName: 'leaveAdjState',
+        dataType: ValueType.TEXT
+    },
+    {
+        fieldName: 'leaveAdjApproDate',
+        dataType: ValueType.DATETIME
+    },
+    {
+        fieldName: 'leaveAdjAppro',
+        dataType: ValueType.TEXT
+    }];
 
 export const columns = [{
     name: "leaveAdjDate",
@@ -48,26 +48,26 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: { text: "신청일자" },
+    header: {text: "신청일자"},
     datetimeFormat: "yyyy-MM-dd"
-},{
+}, {
     name: "empNo",
     fieldName: "empNo",
     type: "data",
     styles: {
         textAlignment: "center"
     },
-    header: { text: "사번" }
-},{
+    header: {text: "사번"}
+}, {
     name: "empName",
     fieldName: "empName",
     type: "data",
     styles: {
         textAlignment: "center"
     },
-    header: { text: "이름" },
+    header: {text: "이름"},
     renderer: {
-        type:"text"
+        type: "text"
     }
 }, {
     name: "empPosition",
@@ -76,7 +76,7 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: { text: "직급" }
+    header: {text: "직급"}
 }, {
     name: "leaveType",
     fieldName: "leaveType",
@@ -84,7 +84,25 @@ export const columns = [{
     styles: {
         textAlignment: "center"
     },
-    header: { text: "휴가 종류" }
+    header: {text: "휴가 종류"},
+    styleCallback: (grid, dataCell) => {
+        switch (dataCell.value) {
+            case '휴가':
+                return {
+                    styleName: 'normal-leave'
+                }
+            case '오전휴가':
+                return {
+                    styleName: 'morning-leave'
+                }
+            case '오후휴가':
+                return {
+                    styleName: 'afternoon-leave'
+                }
+            default:
+                return
+        }
+    }
 }, {
     name: "leaveStartDate",
     fieldName: "leaveStartDate",
@@ -94,7 +112,7 @@ export const columns = [{
     },
     header: "휴가 시작 일자",
     datetimeFormat: "yyyy-MM-dd"
-},{
+}, {
     name: "leaveEndDate",
     fieldName: "leaveEndDate",
     type: "data",
@@ -103,7 +121,7 @@ export const columns = [{
     },
     header: {text: "휴가 종료 일자"},
     datetimeFormat: "yyyy-MM-dd"
-},{
+}, {
     name: "leaveAdjState",
     fieldName: "leaveAdjState",
     type: "data",
@@ -112,20 +130,28 @@ export const columns = [{
     },
     header: {text: "상태"},
     styleCallback: (grid, dataCell) => {
-        switch(dataCell.value){
+        switch (dataCell.value) {
+            case '0':
+                return {
+                    styleName: 'state-wating'
+                }
             case '1':
                 return {
-                    styleName: 'approved'
+                    styleName: 'state-ok'
                 }
             case '2':
                 return {
-                    styleName: 'rejected'
+                    styleName: 'state-no'
+                }
+            case '3':
+                return {
+                    styleName: 'state-cancle'
                 }
             default:
                 return
         }
     },
-    displayCallback: (grid, index, value) =>{
+    displayCallback: (grid, index, value) => {
         switch (value) {
             case '0':
                 return '대기'
@@ -139,16 +165,16 @@ export const columns = [{
                 return '-'
         }
     }
-},{
+}, {
     name: "leaveAdjApproDate",
     fieldName: "leaveAdjApproDate",
     type: "data",
     styles: {
         textAlignment: "center"
     },
-    header: { text: "결재 일자" },
+    header: {text: "결재 일자"},
     datetimeFormat: "yyyy-MM-dd"
-},{
+}, {
     name: "leaveAdjAppro",
     fieldName: "leaveAdjAppro",
     type: "data",

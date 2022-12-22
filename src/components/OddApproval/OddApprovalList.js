@@ -34,7 +34,6 @@ const OddApprovalList = ({changeFlag}) => {
         // realGrid 설정
         gv.footer.visible = false
         gv.setEditOptions({editable: false})
-        gv.setRowIndicator({visible: false})
         gv.setStateBar({visible: false})
         gv.setCheckBar({width: 50})
         gv.setCheckableExpression("values['oddBizAdjState']='0'", true)

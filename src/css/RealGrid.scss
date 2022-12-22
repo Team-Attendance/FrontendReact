@@ -24,7 +24,13 @@
   .rg-header tbody tr {
     background-color: whitesmoke;
   }
-  .rg-data-row{
+
+  .rg-head-cell {
+    background-color: whitesmoke;
+  }
+
+  .rg-head-cell.rg-rowindicator-head,
+  .rg-row-bar .rg-rowindicator-cell{
     border-left: 1px solid lightgray;
   }
   .rg-data-row.rg-alternate-row {
@@ -47,28 +53,49 @@
     border-color: lightgray;
     border-style: solid;
   }
+  //.rg-rowindicator-focus,
+  //.rg-header-focus {
+  //  //background-color: rgba(0, 0, 0, 0.1) !important;
+  //  background-color: #f9d2b9 !important;
+  //}
 
-  .rg-header-focus {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-
-  .rg-header-cell.rg-header-select {
-    background-color: whitesmoke;
-  }
-
-  .rg-focus {
-    /* 포커스 셀의 색깔 변경 */
-    //border: 2px solid rgba(117, 192, 221, 0.5);
-  }
 
 }
 
-.approved {
+.morning-leave {
+  color: #FF9F40;
   font-weight: bold;
-  color: lightseagreen;
 }
 
-.rejected {
+.afternoon-leave {
+  color: #00B3B3;
   font-weight: bold;
-  color: red;
+}
+
+.normal-leave,
+.state-ok {
+  color: #2893F8;
+  font-weight: bold;
+}
+
+.state-ok {
+  color: #4BC0C0;
+  font-weight: bold;
+}
+
+.state-approve {
+  color: #4BC0C0;
+  font-weight: bold;
+}
+
+.state-companion,
+.state-no {
+  color: #FF4673;
+  font-weight: bold;
+}
+
+.state-waiting,
+.state-cancle {
+  color: gray;
+  font-weight: bold;
 }

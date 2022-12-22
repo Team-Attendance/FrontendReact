@@ -30,7 +30,6 @@ const AuthConfig = ({closeModal}) => {
         dp.setRows(empAuthInfo.data)
         // realGrid 설정
         gv.footer.visible = false
-        gv.setRowIndicator({visible: false})
         gv.setStateBar({visible: false})
         gv.setCheckBar({visible: false})
         gv.setDisplayOptions({

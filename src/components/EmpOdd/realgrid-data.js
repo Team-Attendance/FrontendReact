@@ -66,14 +66,22 @@ export const columns = [{
     },
     header: "상태",
     styleCallback: (grid, dataCell) => {
-        switch(dataCell.value){
+        switch (dataCell.value) {
+            case '0':
+                return {
+                    styleName: 'state-wating'
+                }
             case '1':
                 return {
-                    styleName: 'approved'
+                    styleName: 'state-ok'
                 }
             case '2':
                 return {
-                    styleName: 'rejected'
+                    styleName: 'state-no'
+                }
+            case '3':
+                return {
+                    styleName: 'state-cancle'
                 }
             default:
                 return

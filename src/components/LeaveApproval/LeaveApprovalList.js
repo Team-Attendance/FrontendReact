@@ -35,7 +35,6 @@ const LeaveApprovalList = ({changeFlag}) => {
         dp.setRows(leaveApprovalInfo.data)
         // realGrid 설정
         gv.footer.visible = false
-        gv.setRowIndicator({visible: false})
         gv.setEditOptions({editable: false})
         gv.setStateBar({visible: false})
         gv.setCheckBar({width: 50})

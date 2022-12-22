@@ -25,7 +25,6 @@ const EmpInfoList = ({empInfo, setEmpNo}) => {
         // realGrid 설정
         gv.footer.visible = false
         gv.setEditOptions({editable: false})
-        gv.setRowIndicator({visible: false})
         gv.setStateBar({visible: false})
         gv.setCheckBar({visible: false})
         gv.setDisplayOptions({

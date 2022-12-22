@@ -94,6 +94,24 @@ export const columns = [{
     header: {
         text: "이상 근태 종류",
         showTooltip: false,
+    },
+    styleCallback: (grid, dataCell) => {
+        switch (dataCell.value) {
+            case '결근':
+                return {
+                    styleName: 'state-no'
+                }
+            case '조퇴':
+                return {
+                    styleName: 'state-no'
+                }
+            case '지각':
+                return {
+                    styleName: 'state-no'
+                }
+            default:
+                return
+        }
     }
 }, {
     name: "oddBizDate",
@@ -113,14 +131,22 @@ export const columns = [{
     },
     header: "상태",
     styleCallback: (grid, dataCell) => {
-        switch(dataCell.value){
+        switch (dataCell.value) {
+            case '0':
+                return {
+                    styleName: 'state-wating'
+                }
             case '1':
                 return {
-                    styleName: 'approved'
+                    styleName: 'state-ok'
                 }
             case '2':
                 return {
-                    styleName: 'rejected'
+                    styleName: 'state-no'
+                }
+            case '3':
+                return {
+                    styleName: 'state-cancle'
                 }
             default:
                 return
