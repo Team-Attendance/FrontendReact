@@ -93,9 +93,18 @@ const TimeConfig = ({closeModal}) => {
             'bhGetOff': finTime
         }
         if(await updateBizHour(data)) {
-            alert('설정이 완료되었습니다.')
+            Swal.fire({ title: '설정이 완료되었습니다.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'success'
+            })
+
         } else {
-            alert('설정을 변경하지 못했습니다.')
+            Swal.fire({ title: '설정을 변경하지 못했습니다.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            })
         }
         // dispatch(ConfigurationActions.getBizHour(sessionStorage.getItem("deptName")))
     }

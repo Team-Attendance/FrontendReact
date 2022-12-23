@@ -5,6 +5,7 @@ import {GridView, LocalDataProvider} from "realgrid";
 import {columns, fields} from "./realgrid-data";
 import SearchBar from "../SearchBar";
 import {updateEmpAuth} from "../../api/ConfigurationAPI";
+import Swal from "sweetalert2";
 
 const AuthConfig = ({closeModal}) => {
 
@@ -84,10 +85,18 @@ const AuthConfig = ({closeModal}) => {
                     "empAuthority", check
                 )
             }
-            alert('설정이 완료되었습니다.')
+            Swal.fire({ title: '설정이 완료되었습니다.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'success'
+            })
             setFlag(!flag)
         } else {
-            alert('설정을 변경하지 못했습니다.')
+            Swal.fire({ title: '설정을 변경하지 못했습니다.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            })
         }
     }
     return (

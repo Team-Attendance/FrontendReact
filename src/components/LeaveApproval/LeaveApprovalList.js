@@ -84,12 +84,14 @@ const LeaveApprovalList = ({changeFlag}) => {
             if (await updateLeaveApproval(rowDatas)) {
                 Swal.fire({
                     title: (s === 1 ? '승인되었습니다.' : '반려되었습니다.'),
+                    confirmButtonText: '닫기',
                     confirmButtonColor: '#3085d6',
                     icon: 'success'
                 })
             } else {
                 Swal.fire({
                     title: '상태 변경에 실패했습니다.',
+                    confirmButtonText: '닫기',
                     confirmButtonColor: '#3085d6',
                     icon: 'error'
                 })
@@ -98,6 +100,7 @@ const LeaveApprovalList = ({changeFlag}) => {
         } else {
             Swal.fire({
                 title: "선택된 신청이 없습니다.",
+                confirmButtonText: '닫기',
                 confirmButtonColor: '#3085d6',
                 icon: 'warning'
             })

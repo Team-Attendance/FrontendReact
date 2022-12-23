@@ -15,7 +15,6 @@ import '../css/Side.scss'
 import { getChartData } from "../modules/eChart";
 import {Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {empInfoDetail} from "../redux/modules";
 import {API_URL} from "../utils/constants/Config";
 
 // Meterial UI

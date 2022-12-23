@@ -1,7 +1,7 @@
 import {useRef, useState, useCallback} from "react";
 import '../../css/EmpReg.scss'
 import * as api from "../../api/EmpAPI";
-import {equals} from "react-table/src/filterTypes";
+import Swal from "sweetalert2";
 
 const EmpRegistModal = ({closeModal, props}) => {
     // 초기 값 세팅
@@ -36,7 +36,11 @@ const EmpRegistModal = ({closeModal, props}) => {
     }
     const handleEmpEmail = (e) => {
         if (regExp.test(e.target.value)) {
-            alert('특수문자가 포함됐습니다.');
+            Swal.fire({ title: '특수문자가 포함됐습니다.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
         }
         setEmpEmail(e.target.value);
     }
@@ -46,16 +50,28 @@ const EmpRegistModal = ({closeModal, props}) => {
         const data = {"empEmail": empEmail + "@douzone.com"}
         api.empEmailCheck(data).then((res) => {
             if (res.data) {
-                alert("중복된 이메일입니다.");
+                Swal.fire({ title: '중복된 이메일입니다.',
+                    confirmButtonText: '닫기',
+                    confirmButtonColor: '#3085d6',
+                    icon: 'error'
+                });
                 setEmpEmail('');
                 emailRef.current.focus();
             } else if (empEmail === '') {
-                alert("이메일아이디가 입력되지 않았습니다.");
+                Swal.fire({ title: '이메일아이디가 입력되지 않았습니다.',
+                    confirmButtonText: '닫기',
+                    confirmButtonColor: '#3085d6',
+                    icon: 'error'
+                });
                 setEmpEmail('');
                 emailRef.current.focus();
             } else {
                 setChEmail(empEmail);
-                alert("사용가능한 메일주소입니다.");
+                Swal.fire({ title: '사용가능한 메일주소입니다.',
+                    confirmButtonText: '닫기',
+                    confirmButtonColor: '#3085d6',
+                    icon: 'success'
+                });
             }
 
             setDupleEmail(res.data);
@@ -114,27 +130,63 @@ const EmpRegistModal = ({closeModal, props}) => {
     function handleRegist(e) {
         e.preventDefault();
         if (deptName == null) {
-            alert("부서를 선택해주세요");
+            Swal.fire({ title: '부서를 선택해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
         } else if (regExp.test(empName) || empName == null) {
-            alert("정확한 이름을 입력해주세요");
+            Swal.fire({ title: '정확한 이름을 입력해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
             nameRef.current.focus();
         } else if (empPwd == null) {
-            alert("비밀번호를 입력해주세요");
+            Swal.fire({ title: '비밀번호를 입력해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
         } else if (empPosition == null) {
-            alert("직급을 해주세요");
+            Swal.fire({ title: '직급을 해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
 
         } else if (chEmail != empEmail) {
-            alert("이메일이 중복 되었습니다.");
+            Swal.fire({ title: '이메일이 중복 되었습니다.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
         } else if (dupleEmail || empEmail == null || empEmail === '' || regExp.test(empEmail)) {
-            alert("이메일 형식이 맞지 않습니다.");
+            Swal.fire({ title: '이메일 형식이 맞지 않습니다.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
             setEmpEmail('');
             emailRef.current.focus();
         } else if (empBirth == null) {
-            alert("생년월일을 입력해주세요");
+            Swal.fire({ title: '생년월일을 입력해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
         } else if (empFirstDayOfWork == null) {
-            alert("입사일을 입력해주세요");
+            Swal.fire({ title: '입사일을 입력해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
         } else if (empCellPhone.length < 13) {
-            alert("정확한 휴대폰 번호를 입력해주세요");
+            Swal.fire({ title: '정확한 휴대폰 번호를 입력해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
             phoneRef.current.focus();
         } else {
             let formData = new FormData()
@@ -142,7 +194,7 @@ const EmpRegistModal = ({closeModal, props}) => {
             formData.append("empName", empName)
             formData.append("empPwd", empPwd)
             formData.append("empPosition", empPosition)
-            formData.append("empEmail", empEmail)
+            formData.append("empEmail", `${empEmail}@douzone.com`)
             formData.append("empBirth", empBirth)
             formData.append("empCellPhone", empCellPhone)
             formData.append("empFirstDayOfWork", empFirstDayOfWork)
@@ -151,8 +203,15 @@ const EmpRegistModal = ({closeModal, props}) => {
             api.postEmpRegist(formData).then((res) => {
                 let result = res.data;
                 if (result) {
-                    alert("사원등록이 완료 됐습니다.");
-                    window.location.href = "/admin/report";
+                    Swal.fire({ title: '사원이 등록되었습니다.',
+                        confirmButtonText: '닫기',
+                        confirmButtonColor: '#3085d6',
+                        icon: 'success'
+                    }).then((result) => {
+                        if(result.isConfirmed){
+                            window.location.href = "/admin/report";
+                        }
+                    });
                     closeModal();
                 }
             });

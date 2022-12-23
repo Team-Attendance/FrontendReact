@@ -6,6 +6,7 @@ import "./leaveModal.scss";
 import { useRef } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const OddBizModal = ({ oddBizData, showOddBizModal, setShowOddBizModal }) => {
@@ -27,14 +28,22 @@ const OddBizModal = ({ oddBizData, showOddBizModal, setShowOddBizModal }) => {
         if (result) {
           setShowOddBizCompletion(true);
         } else {
-          alert("에러 발생");
+          Swal.fire({ title: '에러 발생',
+            confirmButtonText: '닫기',
+            confirmButtonColor: '#3085d6',
+            icon: 'error'
+          });
         }
       }
     );
   }
 
   const checkForm = () => {
-    (oddBizDetail.current.value).trim() === "" ? alert("조정 신청 사유를 입력해주세요.")
+    (oddBizDetail.current.value).trim() === "" ? Swal.fire({ title: '조정 신청 사유를 입력해주세요.',
+                                                                    confirmButtonText: '닫기',
+                                                                    confirmButtonColor: '#3085d6',
+                                                                    icon: 'error'
+                                                                  })
       : oddBizRegistration(oddBizData.empNo, formatHyphenFulldate(formatDate(oddBizData.oddBizDate)), oddBizData.oddBizType, oddBizDetail.current.value);
   }
 

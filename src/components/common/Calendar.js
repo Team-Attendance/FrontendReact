@@ -13,6 +13,7 @@ import { updateDeptCalendar } from "../../modules/deptCalendar";
 import OddBizModal from "../OddBizModal";
 import { useState } from "react";
 import "./calendar.scss";
+import Swal from "sweetalert2";
 
 export function Calendar({ setShowDeptCalendar }) {
 
@@ -44,7 +45,11 @@ export function Calendar({ setShowDeptCalendar }) {
         let result = response.data;
 
         if (result) {
-          alert("선택한 날짜와 중복되는 휴가 신청이 이미 존재합니다.");
+            Swal.fire({ title: '선택한 날짜와 중복되는 휴가 신청이 이미 존재합니다.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            })
         } else {
           onOpen(calendarDay);
         }
@@ -110,7 +115,11 @@ export function Calendar({ setShowDeptCalendar }) {
         let result = response.data;
 
         if (result) {
-          alert("선택한 이상근태의 조정 신청이 이미 존재합니다.");
+            Swal.fire({ title: '선택한 이상근태의 조정 신청이 이미 존재합니다.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            })
         } else {
           setOddBizData({ empNo: empNo, oddBizDate: oddBizDate, oddBizType: oddBizType });
           setShowOddBizModal(true);

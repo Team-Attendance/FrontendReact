@@ -1,6 +1,7 @@
 import '../../css/EmpPwdModiModal.scss';
 import {useRef, useState} from "react";
 import * as api from "../../api/EmpAPI";
+import Swal from "sweetalert2";
 
 const EmpPwdModiModal =({closeModal, props}) => {
     const [officeTel, setOfficeTel] = useState('');
@@ -99,10 +100,18 @@ const EmpPwdModiModal =({closeModal, props}) => {
             }
             api.empPVChange(data).then((res)=>{
                 if(res.data){
-                    alert("사원 정보가 변경되었습니다.");
+                    Swal.fire({ title: '사원 정보가 변경되었습니다.',
+                        confirmButtonText: '닫기',
+                        confirmButtonColor: '#3085d6',
+                        icon: 'success'
+                    });
                     window.location.href="/emp/emp-info";
                 }else {
-                    alert("정보 변경 실패하였습니다.");
+                    Swal.fire({ title: '정보 변경 실패하였습니다.',
+                        confirmButtonText: '닫기',
+                        confirmButtonColor: '#3085d6',
+                        icon: 'error'
+                    });
                 }
             })
         }

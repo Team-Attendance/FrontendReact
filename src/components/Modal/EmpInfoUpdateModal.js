@@ -1,7 +1,8 @@
-import React, {useCallback, useRef} from "react";
+import React, {useRef} from "react";
 import {useState} from "react";
 import './EmpInfoUpdateModal.scss';
 import * as api from "../../api/EmpAPI";
+import Swal from "sweetalert2";
 
 const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
     const [deptName, setDeptName] = useState(empInfoDetail.dept_name);
@@ -9,11 +10,9 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
     const [empPwd, setEmpPwd] = useState(empInfoDetail.emp_no);
     const [empPosition, setEmpPosition] = useState(empInfoDetail.emp_position);
     const nameRef = useRef();
-    const emailRef = useRef();
     let regExp = /[ {}[\]/?,;:|)*~`!^\-_+┼<>#$%&'"\\(=]/gi;
 
 
-    console.log(empInfoDetail)
     const handleDeptName = (e) => {
         setDeptName(e.target.value);
     }
@@ -49,14 +48,30 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
     function handleRegist(e) {
         e.preventDefault();
         if (deptName == null) {
-            alert("부서를 선택해주세요");
+            Swal.fire({ title: '부서를 선택해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
         } else if (regExp.test(empName) || empName == null) {
-            alert("정확한 이름을 입력해주세요");
+            Swal.fire({ title: '정확한 이름을 입력해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
             nameRef.current.focus();
         } else if (empPwd == null) {
-            alert("비밀번호를 입력해주세요");
+            Swal.fire({ title: '비밀번호를 입력해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
         } else if (empPosition == null) {
-            alert("직급을 해주세요");
+            Swal.fire({ title: '직급을 해주세요.',
+                confirmButtonText: '닫기',
+                confirmButtonColor: '#3085d6',
+                icon: 'error'
+            });
         // } else if (dupleEmail || empEmail == null || empEmail === '' || regExp.test(empEmail)) {
         //     alert("이메일 형식이 맞지 않습니다.");
         //     setEmpEmail('');
@@ -79,11 +94,19 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
                         sessionStorage.setItem("deptName", deptName);
                         sessionStorage.setItem("empName", empName);
                         sessionStorage.setItem("empPosition", empPosition);
-                        alert("사원수정이 완료 됐습니다.");
+                        Swal.fire({ title: '사원 정보 수정이 완료 됐습니다.',
+                            confirmButtonText: '닫기',
+                            confirmButtonColor: '#3085d6',
+                            icon: 'sucess'
+                        });
                         window.location.href = `/admin/report/${empInfoDetail.emp_no}`;
                         closeModal();
                     }else {
-                        alert("정보 수정에 실패했습니다.");
+                        Swal.fire({ title: '정보 수정에 실패했습니다.',
+                            confirmButtonText: '닫기',
+                            confirmButtonColor: '#3085d6',
+                            icon: 'error'
+                        });
                     }
             });
         }

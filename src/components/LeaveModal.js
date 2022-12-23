@@ -9,6 +9,7 @@ import { close } from "../modules/leaveModal";
 import "./leaveModal.scss";
 import { getStatusData } from "../modules/calendarStatus";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const LeaveModal = () => {
   const sessionEmpNo = sessionStorage.getItem("empNo");
@@ -53,7 +54,12 @@ const LeaveModal = () => {
         if (result) {
           setShowLeaveCompletion(true);
         } else {
-          alert("남은 휴가 일수가 부족합니다.");
+          Swal.fire({
+            title: '남은 휴가 일수가 부족합니다.',
+              confirmButtonText: '닫기',
+            confirmButtonColor: '#3085d6',
+            icon: 'warning'
+          })
         }
       }
     );
@@ -68,12 +74,36 @@ const LeaveModal = () => {
       endDate = new Date(leaveEndDate.current.value);
       diffDate = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24);
 
-      leaveType.current.value === "" ? alert("휴가 종류를 선택하세요.")
-        : leaveEndDate.current.value === "" ? alert("휴가 종료일을 선택하세요.")
-          : formatFulldate(leaveStartDate.current.value) > formatFulldate(leaveEndDate.current.value) ? alert("휴가 종료일이 잘못 설정 되었습니다.")
-            : endDate.getDay() === 0 || endDate.getDay() === 6 ? alert("휴가 종료일은 평일만 가능합니다.")
-              : (startDate.getDay() > endDate.getDay()) || (8 - startDate.getDay() <= diffDate) ? alert("휴가 신청일과 동일한 주까지 신청이 가능합니다.")
-                : (leaveDetail.current.value).trim() === "" ? alert("휴가 사유를 입력해주세요.")
+      leaveType.current.value === "" ? Swal.fire({ title: '휴가 종류를 선택하세요.',
+                                                          confirmButtonText: '닫기',
+                                                          confirmButtonColor: '#3085d6',
+                                                          icon: 'warning'
+                                                        })
+        : leaveEndDate.current.value === "" ? Swal.fire({ title: '휴가 종료일을 선택하세요.',
+                                                                 confirmButtonText: '닫기',
+                                                                 confirmButtonColor: '#3085d6',
+                                                                 icon: 'warning'
+                                                                })
+          : formatFulldate(leaveStartDate.current.value) > formatFulldate(leaveEndDate.current.value) ? Swal.fire({ title: '휴가 종료일이 잘못 설정 되었습니다.',
+                                                                                                                            confirmButtonText: '닫기',
+                                                                                                                            confirmButtonColor: '#3085d6',
+                                                                                                                            icon: 'warning'
+                                                                                                                          })
+            : endDate.getDay() === 0 || endDate.getDay() === 6 ? Swal.fire({ title: '휴가 종료일은 평일만 가능합니다.',
+                                                                                    confirmButtonText: '닫기',
+                                                                                    confirmButtonColor: '#3085d6',
+                                                                                    icon: 'warning'
+                                                                                  })
+              : (startDate.getDay() > endDate.getDay()) || (8 - startDate.getDay() <= diffDate) ? Swal.fire({ title: '휴가 신청일과 동일한 주까지 신청이 가능합니다.',
+                                                                                                                    confirmButtonText: '닫기',
+                                                                                                                    confirmButtonColor: '#3085d6',
+                                                                                                                    icon: 'warning'
+                                                                                                                  })
+                : (leaveDetail.current.value).trim() === "" ? Swal.fire({ title: '휴가 사유를 입력해주세요.',
+                                                                                  confirmButtonText: '닫기',
+                                                                                  confirmButtonColor: '#3085d6',
+                                                                                  icon: 'warning'
+                                                                                })
                   : axios.get(process.env.REACT_APP_API_URL+'/leave-check', {
                     params: {
                       date: leaveEndDate.current != null && leaveEndDate.current.value,
@@ -83,15 +113,27 @@ const LeaveModal = () => {
                     (response) => {
                       let result = response.data;
                       if (result) {
-                        alert("휴가 종료일과 중복되는 휴가 신청이 이미 존재합니다.");
+                        Swal.fire({ title: '휴가 종료일과 중복되는 휴가 신청이 이미 존재합니다.',
+                            confirmButtonText: '닫기',
+                            confirmButtonColor: '#3085d6',
+                            icon: 'error'
+                            })
                       } else {
                         leaveRegistration();
                       }
                     }
                   );
     } else {
-      leaveType.current.value === "" ? alert("휴가 종류를 선택하세요.")
-        : (leaveDetail.current.value).trim() === "" ? alert("휴가 사유를 입력해주세요.")
+      leaveType.current.value === "" ? Swal.fire({ title: '휴가 종류를 선택하세요.',
+                                                          confirmButtonText: '닫기',
+                                                          confirmButtonColor: '#3085d6',
+                                                          icon: 'error'
+                                                        })
+        : (leaveDetail.current.value).trim() === "" ? Swal.fire({ title: '휴가 사유를 입력해주세요.',
+                                                                          confirmButtonText: '닫기',
+                                                                          confirmButtonColor: '#3085d6',
+                                                                          icon: 'error'
+                                                                        })
           : leaveRegistration();
     }
   }

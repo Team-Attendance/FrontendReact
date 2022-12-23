@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginProc from "../components/LoginProc";
 import { changeField, changeFields } from "../redux/modules/Login/auth";
 import * as api from "../api/EmpAPI";
+import Swal from "sweetalert2";
 
 
 
@@ -63,8 +64,16 @@ const LoginPage = () => {
                     window.location.href = "/emp/main";
                 }
             }else{
-                alert('로그인에 실패했습니다.');
-                window.location.href = "/";
+                Swal.fire({ title: '로그인에 실패했습니다.',
+                    confirmButtonText: '닫기',
+                    confirmButtonColor: '#3085d6',
+                    icon: 'error'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        window.location.href = "/";
+                    }
+                });
+
             }
         })
     }
