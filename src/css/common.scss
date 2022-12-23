@@ -23,3 +23,7 @@
   font-size: 1.1rem;
   //font-weight: normal;
 }
+.swal2-container.swal2-backdrop-show,
+.swal2-container.swal2-noanimation {
+  z-index: 12000;
+}
