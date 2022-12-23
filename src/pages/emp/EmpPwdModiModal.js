@@ -90,13 +90,13 @@ const EmpPwdModiModal =({closeModal}) => {
                             <input className="infoInput" type="password"  pattern={pwd_reg}
                                    maxLength='13' placeholder="비밀번호 확인" onChange={handleChckPwd} />
                         </li>
-                        <li> 변경 비밀번호 일치 여부  {error}</li>
+                        <li style={{padding: '7px 0'}}> 변경 비밀번호 일치 여부  {error}</li>
 
                         <div className="button">
+                            <button className="handleBtn" value='닫기'  onClick={closeModal}> 취소
+                            </button>
                             <button className="handleBtn" onClick={onChangeCheck}>
                                 수정
-                            </button>
-                            <button className="handleBtn" value='닫기'  onClick={closeModal}> 취소
                             </button>
                         </div>
                     </div>

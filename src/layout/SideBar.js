@@ -16,6 +16,7 @@ import { getChartData } from "../modules/eChart";
 import {Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {API_URL} from "../utils/constants/Config";
+import QrModal from '../components/Modal/QrModal';
 
 // Meterial UI
 const drawerWidth = 240;
@@ -155,10 +156,10 @@ export function SideBar() {
                             }} variant="contained" color='primary'
                                     sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
                             {modal && (
-                                <Modal closeModal={() => setModal(!modal)}>
+                                <QrModal className="qr-modal" closeModal={() => setModal(!modal)}>
                                     <EmpQrModal
                                         closeModal={() => setModal(!modal)}/>
-                                </Modal>
+                                </QrModal>
                             )}
 
                         </Box>

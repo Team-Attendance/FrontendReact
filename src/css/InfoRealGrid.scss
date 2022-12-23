@@ -1,7 +1,6 @@
-.real-grid {
-  height: 442px;
+.empInfo-real-grid {
+  height: 542px;
   width: 100%;
-  border: none;
 
   .rg-root.rg-grid {
     font-size: 0.8em;
@@ -9,7 +8,7 @@
     border: none;
     background-color: white;
     border-top: 1px solid lightgray;
-    border-left: 1px solid lightgray;
+    //border-left: 1px solid lightgray;
     //border-bottom: 1px solid lightgray;
   }
 
@@ -17,11 +16,20 @@
   .rg-root .rg-table td,
   .rg-root .rg-body .rg-table td {
     vertical-align: middle;
-    height: 40px;
+    height: 45px;
   }
 
   .rg-header tbody tr {
     background-color: whitesmoke;
+  }
+
+  .rg-head-cell {
+    background-color: whitesmoke;
+  }
+
+  .rg-head-cell.rg-rowindicator-head,
+  .rg-row-bar .rg-rowindicator-cell{
+    border-left: 1px solid lightgray;
   }
 
   .rg-data-row.rg-alternate-row {
@@ -38,7 +46,7 @@
     padding: 10%;
     background: #ffffff;
     color: gray;
-    font-size: 2em;
+    font-size: 1.8em;
     text-align: center;
     border-width: 0 1px 1px 1px;
     border-color: lightgray;

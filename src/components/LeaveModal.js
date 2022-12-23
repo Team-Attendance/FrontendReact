@@ -174,8 +174,9 @@ const LeaveModal = () => {
 
                 </textarea>
               </div>
-              <div>
-                <input type="button" value="신청하기" onClick={checkLeave} />
+              <div className="btn-area">
+                <input type="button" value="닫기" onClick={onClose} />
+                <input type="button" value="신청" onClick={checkLeave} />
               </div>
             </div>
           </div>
@@ -202,7 +203,7 @@ const LeaveModal = () => {
                 <h3>휴가 신청이 완료 되었습니다.</h3>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div className="btn-area" style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Link to="/emp/leave-info"><input type="button" value="휴가 현황 페이지로 이동" /></Link>
                 <input type="button" value="확인" onClick={() => { setShowLeaveCompletion(false); onClose(); onUpdate(sessionEmpNo, year, month); }} />
               </div>

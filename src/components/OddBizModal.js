@@ -1,7 +1,7 @@
 import axios from "axios";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { formatDate,  formatHyphenFulldate, formatHyphenToKorean } from "../modules/cal_function";
+import { formatDate, formatHyphenFulldate, formatHyphenToKorean } from "../modules/cal_function";
 import "./leaveModal.scss";
 import { useRef } from "react";
 import { useState } from "react";
@@ -17,7 +17,7 @@ const OddBizModal = ({ oddBizData, showOddBizModal, setShowOddBizModal }) => {
 
   const oddBizRegistration = (empNo, oddBizDate, oddBizType, oddBizDetail) => {
 
-    axios.post(process.env.REACT_APP_API_URL+'/odd-biz-adj', {
+    axios.post(process.env.REACT_APP_API_URL + '/odd-biz-adj', {
       empNo: empNo,
       oddBizDate: oddBizDate,
       oddBizType: oddBizType,
@@ -84,8 +84,9 @@ const OddBizModal = ({ oddBizData, showOddBizModal, setShowOddBizModal }) => {
 
                 </textarea>
               </div>
-              <div>
-                <input type="button" value="신청하기" onClick={checkForm} />
+              <div className="btn-area">
+                <input type="button" value="닫기" onClick={() => { setShowOddBizModal(false); setShowOddBizCompletion(false) }} />
+                <input type="button" value="신청" onClick={checkForm} />
               </div>
             </div>
           </div>
@@ -109,10 +110,10 @@ const OddBizModal = ({ oddBizData, showOddBizModal, setShowOddBizModal }) => {
             </div>
             <div>
               <div className="form-item">
-                <h3>이상 근태 조정 신청이 완료 되었습니다.</h3>
+                <h3>이상근태 조정 신청이 완료 되었습니다.</h3>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div className="btn-area" style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Link to="/emp/odd-info"><input type="button" value="이상근태 현황 페이지로 이동" /></Link>
                 <input type="button" value="확인" onClick={() => { setShowOddBizModal(false); setShowOddBizCompletion(false); }} />
               </div>

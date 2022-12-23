@@ -52,7 +52,7 @@ const EmpInfoPage = () => {
                     <div className="pwd-btn">
                         <button onClick={() => {
                             setPwdModal(true)
-                        }}>비밀번호
+                        }}>비밀번호 수정
                         </button>
                         {pwdModal && (
                             <ModalPwd closeModal={() => setPwdModal(!pwdModal)}>
@@ -63,9 +63,9 @@ const EmpInfoPage = () => {
                         )}
                     </div>
                     <div className="modify-btn">
-                        <button onClick={() => {
+                        <button style={{padding: '7px 20px'}} onClick={() => {
                             setModiModal(true)
-                        }}>수정
+                        }}>사원 정보 수정
                         </button>
                         {modiModal && (
                             <ModalPwd closeModal={() => setModiModal(!modiModal)}>
@@ -104,11 +104,7 @@ const EmpInfoPage = () => {
                 </h2>
 
                 <div className="emp-infoP">
-                    <div className="emp-infoContent">
-                        <div className="empSearch">
-                            <div><span>사원 검색</span></div>
-                        </div>
-
+                    <div className="emp-infoContent" style={{marginTop: '59px', padding:'0 20px'}}>
                         <div className="company-info">
                             <InfoSearchBar onSubmit={onSubmit}/>
                             <EmpInfoList

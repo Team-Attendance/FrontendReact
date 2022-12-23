@@ -83,7 +83,7 @@ export function AdminMainPage() {
 
                                 <div className="high-odd-biz-and-hasty-dept-leave">
                                     <div className="high-odd-biz-wrap">
-                                        <h2>금월 이상근태율이 높은 사원</h2>
+                                        <h2>{new Date().getMonth() + 1}월 이상근태율이 높은 사원</h2>
                                         <DeptOddBizStatus documentStatusData={documentStatusData} />
                                     </div>
 

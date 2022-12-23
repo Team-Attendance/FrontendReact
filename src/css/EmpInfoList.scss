@@ -1,10 +1,9 @@
 .empInfolist-wrap {
-
   height: 100%;
   width: 100%;
 
   .empInfogrid-wrap{
-    height: 442px;
+     //height: 442px;
   }
 
   .state-button {
@@ -33,11 +32,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 90px;
-
-    #prev {
-      color: black;
-    }
 
     .current {
       color: red;

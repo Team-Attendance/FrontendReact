@@ -75,7 +75,7 @@ export function EmpDailyPage() {
           <div className="daily-page-chart-wrap">
             <div className="biz-chart-wrap">
               <h3>{month}월 이상근태율</h3>
-              <div className="chart-area">
+              <div className="chart-area" style={{marginTop: '9.5px'}}>
                 <div>
                   <CalOddBizChart />
                 </div>
@@ -88,7 +88,7 @@ export function EmpDailyPage() {
 
             <div className="leave-chart-wrap">
               <h3>{year}년 휴가 사용률</h3>
-              <div className="chart-area">
+              <div className="chart-area" style={{marginTop: '11px'}}>
                 <div>
                   <CalLeaveChart />
                 </div>

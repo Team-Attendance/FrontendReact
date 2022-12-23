@@ -35,7 +35,7 @@ const OddApproval = () => {
         <div className="common-container">
             <div className="menu-title">
                 <h2><WarningAmberIcon sx={{marginRight: '3px'}}/>
-                    <span>이상 근태 승인</span>
+                    <span>이상 근태 관리</span>
                 </h2>
             </div>
             <div>

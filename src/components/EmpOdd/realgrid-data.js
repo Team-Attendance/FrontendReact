@@ -47,6 +47,24 @@ export const columns = [{
     header: {
         text: "이상 근태 종류",
         showTooltip: false,
+    },
+    styleCallback: (grid, dataCell) => {
+        switch (dataCell.value) {
+            case '결근':
+                return {
+                    styleName: 'state-no'
+                }
+            case '조퇴':
+                return {
+                    styleName: 'state-no'
+                }
+            case '지각':
+                return {
+                    styleName: 'state-no'
+                }
+            default:
+                return
+        }
     }
 }, {
     name: "oddBizDate",

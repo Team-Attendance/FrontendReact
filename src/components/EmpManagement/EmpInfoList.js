@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react"
-import {GridView, LocalDataProvider} from 'realgrid'
+import {GridView, LocalDataProvider, SyncGridHeight} from 'realgrid'
 import {columns, fields} from './realgrid-data'
 import '../../css/InfoRealGrid.scss'
 import '../../css/EmpInfoList.scss'
@@ -31,7 +31,8 @@ const EmpInfoList = ({empInfo, setEmpNo}) => {
             selectionStyle: "rows",
             showEmptyMessage: true,
             emptyMessage: "조회된 데이터가 없습니다.",
-            fitStyle: "evenFill"
+            fitStyle: "evenFill",
+            // rowHeight: 49
         })
 
         gv.onCellDblClicked = (grid, clickData) => {
@@ -57,7 +58,7 @@ const EmpInfoList = ({empInfo, setEmpNo}) => {
     return (
         <div className="empInfolist-wrap">
             <div className="empInfogrid-wrap">
-                <div className="real-grid"
+                <div className="empInfo-real-grid"
                      ref={realgridElement}>
                 </div>
             </div>

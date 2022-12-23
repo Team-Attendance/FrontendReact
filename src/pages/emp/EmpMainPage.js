@@ -57,7 +57,7 @@ export function EmpMainPage() {
 
                     <div style={{ height: '410px', display: 'flex' }}>
                         <div style={{ width: '60%', padding: '20px 20px', marginRight: '15px', border: '1px solid gray', borderRadius: '7px' }}>
-                            <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>2022년 하반기 근태 차트</h2>
+                            <h2 style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '5px', lineHeight: '25px' }}>2022년 이상근태 현황</h2>
                             {/* <div style={{ height: 'calc(100% - 30px)', border: '1px solid lightgray' }}>
 
                                 

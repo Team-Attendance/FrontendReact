@@ -9,7 +9,7 @@ const ConfigurationModal = ({closeModal}) => {
     const [menu, setMenu] = useState('time')
 
     return (
-        <div>
+        <div className="configuration-modal">
             <div className="configModal" onClick={closeModal}></div>
             <div className="modalBody">
                 <button id="modalCloseBtn" onClick={closeModal}>

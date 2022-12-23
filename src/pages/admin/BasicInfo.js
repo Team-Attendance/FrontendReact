@@ -28,7 +28,7 @@ export default function BasicInfo({ reportData, img }) {
           <div>
             <div className="image-area">
               {img &&
-                <img style={{ width: '100%', height: '100%', border: '1px solid lightgray' }} src={URL.createObjectURL(img)} alt="user" />
+                <img style={{ width: '100%', height: '186px', border: '1px solid lightgray' }} src={URL.createObjectURL(img)} alt="user" />
               }
             </div>
             <div className="info-area">

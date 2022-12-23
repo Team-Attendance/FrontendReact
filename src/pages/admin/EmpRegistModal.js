@@ -297,21 +297,21 @@ const EmpRegistModal = ({closeModal, props}) => {
                                    maxLength='13' value={empCellPhone} ref={phoneRef}
                                    onChange={handleEmpCellPhone}></input>
                         </li>
-                        <li className="reginfoLi">
+                        {/* <li className="reginfoLi">
                             <div className="reginfoLabel"> 사내번호</div>
                             <input className="reginfoInput" name='empOfficePhone' placeholder='사원입력' readOnly></input>
                         </li>
                         <li className="reginfoLi">
                             <div className="reginfoLabel"> 비상연락</div>
                             <input className="reginfoInput" name='empContactList' placeholder='사원입력' readOnly></input>
-                        </li>
+                        </li> */}
 
                         <div className="regbutton">
+                            <button className="reghandleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 취소
+                            </button>
                             <button className="reghandleBtn" onClick={handleRegist}
                                     name='empRegistSubmit'>
                                 등록
-                            </button>
-                            <button className="reghandleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 취소
                             </button>
                         </div>
                     </div>

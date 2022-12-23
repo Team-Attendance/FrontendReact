@@ -44,11 +44,12 @@ const EmpSearchModal = ({closeModal}) => {
                                 <SearchBar onSubmit={onSubmit}/>
                                 <EmpList closeModal={closeModal}/>
                             <div className="search-button">
+                                
+                                <button onClick={closeModal}>닫기</button>
                                 <button onClick={() => {
                                     setRegiModal(true)
                                 }}> 사원등록
                                 </button>
-                                <button onClick={closeModal}>닫기</button>
                             </div>
                         </div>
                     </div>

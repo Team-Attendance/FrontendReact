@@ -173,11 +173,11 @@ const EmpInfoUpdateModal = ({empInfoDetail, closeModal}) => {
                         {/*</li>*/}
 
                         <div className="regbutton">
+                            <button className="reghandleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 취소
+                            </button>
                             <button className="reghandleBtn" onClick={handleRegist}
                                     name='empRegistSubmit'>
                                 수정
-                            </button>
-                            <button className="reghandleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 취소
                             </button>
                         </div>
                     </div>

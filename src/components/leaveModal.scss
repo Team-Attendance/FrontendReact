@@ -60,6 +60,7 @@
 
   & div.form-item{
     margin: 20px 0;
+    margin-bottom: 10px;
     &.dept{
       margin-top: 0;
       margin-bottom: 20px;
@@ -80,14 +81,18 @@
     }
   }
 
-  & input[type=button]{
-    width: 100%;
-    padding: 10px 0;
-    background-color: whitesmoke;
-    border: 1px solid lightgray;
-    box-shadow: 0 0 3px 0.5px lightgray;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
+  & .btn-area{
+    display: flex;
+    justify-content: space-between;
+
+    & input[type=button]{
+      padding: 7px 20px;
+      background-color: whitesmoke;
+      border: 1px solid lightgray;
+      // box-shadow: 0 0 3px 0.5px lightgray;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
   }
 }
