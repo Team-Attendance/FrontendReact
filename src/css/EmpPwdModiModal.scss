@@ -24,23 +24,24 @@
         .infoLi {
           display: flex;
           align-items: center;
-          border-bottom: 0.5px solid lightgray;
+          border-bottom: 1px solid lightgray;
           .infoLabel {
             font-weight: bold;
             display: flex;
             width: 30%;
             justify-content: flex-end;
             background-color: whitesmoke;
-            padding: 0.8em;
+            padding: 15px 0.8em;
             height: 100%;
           }
           .infoInput {
             display: flex;
-            width: 70%;
+            width: 68%;
             //border-radius: 0.5px;
             justify-content: flex-start;
             align-items: center;
             padding: 0.8em;
+            margin-left: 1%;
           }
         }
       }
@@ -49,8 +50,8 @@
         display: flex;
         position: relative;
         bottom: -3%;
-        justify-content: space-around;
-        margin-top: 2.3em;
+        justify-content: space-between;
+        margin-top: 15px;
         .handleBtn {
           font-weight: bold;
           width: 25%;

@@ -83,7 +83,7 @@ export function DeptCalendar({ setShowDeptCalendar }) {
       {deptCalendar && deptCalendarData &&
         <div>
           <DeptModal deptModalDate={deptModalDate} deptLeaveData={deptLeaveData} setDeptLeaveDate={setDeptLeaveDate} showDeptModal={showDeptModal} setShowDeptModal={setShowDeptModal} />
-          <div>
+          <div style={{marginTop: '31px'}}>
             <table className="cal-table">
               <tbody>
                 <tr>

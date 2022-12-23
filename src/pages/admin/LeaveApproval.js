@@ -33,7 +33,7 @@ const LeaveApproval = () => {
         <div className="common-container">
             <div className="menu-title">
                 <h2><EventAvailableIcon sx={{marginRight: '3px'}}/>
-                    <span>휴가 승인</span>
+                    <span>휴가 관리</span>
                 </h2>
             </div>
             <div>

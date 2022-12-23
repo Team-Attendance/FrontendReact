@@ -36,7 +36,7 @@ const MonthlyTable = () => {
       visible: false
     });
     gv.displayOptions.fitStyle = "evenFill";
-    gv.displayOptions.rowHeight = 35;
+    gv.displayOptions.rowHeight = 36;
     gv.setPaging(true, 15);
     gv.setPage(0);
 

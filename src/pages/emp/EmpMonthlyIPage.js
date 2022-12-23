@@ -46,7 +46,7 @@ export function EmpMonthlyPage() {
 
   return (
     <>
-      {statusData && 
+      {statusData &&
         <div className="common-container monthly-page-wrap">
           <div>
             <div className="menu-title">
@@ -54,13 +54,16 @@ export function EmpMonthlyPage() {
             </div>
 
             <div>
-              <div className="cal-status-wrap"> 
+              <div className="cal-status-wrap">
                 <CalendarStatus />
               </div>
 
               <div className="monthly-table-chart">
                 <div className="flex-dev">
                   <div className="monthly-table-area">
+                    <div>
+                      <h3 style={{fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '11px'}}>상세 근태 기록</h3>
+                    </div>
                     <div>
                       <div className="table-header-area">
                         <span>{year}년 {month}월</span>

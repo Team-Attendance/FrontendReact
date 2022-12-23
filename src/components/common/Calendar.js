@@ -147,7 +147,7 @@ export function Calendar({ setShowDeptCalendar }) {
         <div>
           <LeaveModal />
           <OddBizModal oddBizData={oddBizData} showOddBizModal={showOddBizModal} setShowOddBizModal={setShowOddBizModal} />
-          <div>
+          <div style={{paddingTop: '31px'}}>
             <table className="cal-table">
               <tbody>
                 <tr>

@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react"
-import {GridView, LocalDataProvider} from 'realgrid'
+import {GridView, LocalDataProvider, SyncGridHeight} from 'realgrid'
 import {columns, fields} from './realgrid-data'
 import '../../css/InfoRealGrid.scss'
 import '../../css/EmpInfoList.scss'
@@ -57,7 +57,7 @@ const EmpInfoList = ({empInfo, setEmpNo}) => {
     return (
         <div className="empInfolist-wrap">
             <div className="empInfogrid-wrap">
-                <div className="real-grid"
+                <div className="empInfo-real-grid"
                      ref={realgridElement}>
                 </div>
             </div>

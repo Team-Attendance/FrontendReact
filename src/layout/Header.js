@@ -28,7 +28,7 @@ export function Header() {
             <Toolbar sx={{ backgroundColor: '#00AAFF' }}>
               <Link to='emp/main'>
               <Typography variant="h6" noWrap component="div"
-                 sx={{ flexGrow: 1, fontWeight: 'bold', fontSize:'1.7rem',letterSpacing: '1px', marginLeft: '30px'}}>
+                 sx={{ flexGrow: 1, fontWeight: 'bold', fontSize:'1.7rem',letterSpacing: '1px', marginLeft: '20px'}}>
                 Amateur10
               </Typography>
               </Link>

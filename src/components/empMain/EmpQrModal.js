@@ -27,12 +27,12 @@ const EmpQrModal = ({ closeModal, props }) => {
                 <h1 className="infoTitle"><span>사원 Qr 코드</span>
                 </h1>
             </div>
-            <div style={{marginTop:'80px'}}>
+            <div style={{margin:'50px 0', marginBottom: '40px'}}>
             <QRCode value={links} />
             </div>
 
             <div className="button">
-                <Button variant="contained" size ="small"  style={{marginTop:'70px'}} className="handleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 닫기
+                <Button variant="contained" size ="small" className="handleBtn" value='취소' name='empRegistclose' onClick={closeModal}> 닫기
                 </Button>
             </div>
 
