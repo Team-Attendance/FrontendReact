@@ -98,18 +98,24 @@
           position: relative;
           bottom: -2%;
           justify-content: flex-end;
+          justify-content: space-between;
           margin-top: 1em;
 
           button {
             font-weight: bold;
             border: 1px lightgray solid;
-            width: 80px;
-            padding: 7px;
-            margin-left: 15px;
+            min-width: 80px;
+            // width: 80px;
+            padding: 7px 20px;
+            // margin-left: 15px;
             background-color: whitesmoke;
             &:hover{
               background-color: lightgray;
             }
+            &.mg-l-15{
+              margin-left: 15px;
+            }
+
           }
         }
       }

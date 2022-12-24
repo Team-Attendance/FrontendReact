@@ -5,18 +5,20 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
-import {AdminSide} from "./AdminSide";
-import {EmpSide} from "./EmpSide";
-import {useEffect, useState, useCallback} from 'react';
+import { AdminSide } from "./AdminSide";
+import { EmpSide } from "./EmpSide";
+import { useEffect, useState, useCallback } from 'react';
 import Modal from '../components/Modal/Modal';
 import EmpQrModal from '../components/empMain/EmpQrModal';
 import axios from "axios";
 import '../css/Side.scss'
 import { getChartData } from "../modules/eChart";
-import {Navigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {API_URL} from "../utils/constants/Config";
+import { Link, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { empInfoDetail } from "../redux/modules";
+import { API_URL } from "../utils/constants/Config";
 import QrModal from '../components/Modal/QrModal';
+import { Typography } from '@mui/material';
 
 // Meterial UI
 const drawerWidth = 240;
@@ -68,16 +70,16 @@ const SideWrap = styled.div`
 export function SideBar() {
 
 
-    const [empInfoDetail , setEmpInfoDetail] = useState([{}]);
-    useEffect(()=>{
-        axios.get(API_URL+"/emp/emp-info/"+empNo)
-            .then((res)=>{
+    const [empInfoDetail, setEmpInfoDetail] = useState([{}]);
+    useEffect(() => {
+        axios.get(API_URL + "/emp/emp-info/" + empNo)
+            .then((res) => {
                 setEmpInfoDetail(res.data);
             })
-    },[])
+    }, [])
     // 큐알 모달로 이동
     const [modal, setModal] = useState(false)
-    const [img, setImg] =  useState('')
+    const [img, setImg] = useState('')
     const empNo = sessionStorage.getItem("empNo");
     const empName = empInfoDetail.empName;
     const position = empInfoDetail.empPosition;
@@ -95,7 +97,7 @@ export function SideBar() {
     }
     const empPage = () => {
         if (role === 'ROLE_ADMIN' || role === 'ROLE_EMP') {
-            return <EmpSide/>
+            return <EmpSide />
         }
     }
 
@@ -127,51 +129,55 @@ export function SideBar() {
                 sx={{
                     width: drawerWidth,
                     flexShrink: 0,
-                    [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box'},
+                    [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', borderRight: 'none' },
                 }}
             >
-            <SideWrap className="scroll-hidden">
-                <List>
+                <Link to='emp/main' style={{position: 'absolute', left: '45px', top:'15px'}}>
+                    <div style={{fontWeight: 'bold', fontSize:'1.7rem',letterSpacing: '1px', color: 'white'}}>
+                        <span>Amateur10</span>
+                    </div>
+                </Link>
+                <SideWrap className="scroll-hidden">
+                    <List>
+                        <Box style={{ margin: '0 15px', padding: '15px', textAlign: 'center', fontWeight: '' }}>
+                            <UserImage>
+                                {img &&
+                                    <img width={"100%"} height={"100%"} src={URL.createObjectURL(img)} alt='' />
+                                }
+                            </UserImage>
+                            <Box>
+                                <UserInfo style={{ textAlign: 'center' }}>
+                                    {empName} {position}<br />
+                                    {deptName} 부서<br />
+                                </UserInfo>
+                                <UserWork>
+                                    <dt>출근 시간</dt>
+                                    <dd>{data !== null && data.selectEmpNumTime[0] ? data.selectEmpNumTime[0].EMP_GET_INTO : '-'}</dd>
+                                    <dt>퇴근 시간</dt>
+                                    <dd>{data !== null && data.selectEmpNumTime[0] ? data.selectEmpNumTime[0].EMP_GET_OFF : '-'}</dd>
+                                </UserWork>
+                                {/* <IntoButton>출근</IntoButton> */}
+                                <Button onClick={() => {
+                                    setModal(true)
+                                }} variant="contained" color='primary'
+                                    sx={{ padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none' }}>출근</Button>
+                                {modal && (
+                                    <QrModal className="qr-modal" closeModal={() => setModal(!modal)}>
+                                        <EmpQrModal
+                                            closeModal={() => setModal(!modal)} />
+                                    </QrModal>
+                                )}
 
-                    <Box style={{margin: '0 15px', padding: '15px', textAlign: 'center', fontWeight: ''}}>
-                        <UserImage>
-                            {img &&
-                                <img width={"100%"} height={"100%"} src={URL.createObjectURL(img)} alt=''/>
-                            }
-                        </UserImage>
-                        <Box>
-                            <UserInfo style={{textAlign:'center'}}>
-                                {empName} {position}<br/>
-                                {deptName} 부서<br/>
-                            </UserInfo>
-                            <UserWork>
-                                <dt>출근 시간</dt>
-                                <dd>{data!==null && data.selectEmpNumTime[0]? data.selectEmpNumTime[0].EMP_GET_INTO:'-'}</dd>
-                                <dt>퇴근 시간</dt>
-                                <dd>{data!==null && data.selectEmpNumTime[0]? data.selectEmpNumTime[0].EMP_GET_OFF:'-'}</dd>
-                            </UserWork>
-                            {/* <IntoButton>출근</IntoButton> */}
-                            <Button onClick={() => {
-                                setModal(true)
-                            }} variant="contained" color='primary'
-                                    sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
-                            {modal && (
-                                <QrModal className="qr-modal" closeModal={() => setModal(!modal)}>
-                                    <EmpQrModal
-                                        closeModal={() => setModal(!modal)}/>
-                                </QrModal>
-                            )}
-
+                            </Box>
                         </Box>
-                    </Box>
-                </List>
-                <Divider/>
-                {adminPage()}
-                <Divider/>
-                {empPage()}
-                <Divider/>
-            </SideWrap>
-        </Drawer>
-        :  < Navigate to='/'/>
+                    </List>
+                    <Divider />
+                    {adminPage()}
+                    <Divider />
+                    {empPage()}
+                    <Divider />
+                </SideWrap>
+            </Drawer>
+            : < Navigate to='/' />
     );
 }

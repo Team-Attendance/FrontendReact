@@ -24,7 +24,7 @@ const EmpOddPage = () => {
         <div className="common-container">
             <div className="menu-title">
                 <h2><WarningAmberIcon sx={{marginRight: '3px'}}/>
-                    <span>이상 근태 신청 현황</span>
+                    <span>이상근태 신청 내역</span>
                 </h2>
             </div>
             <div>

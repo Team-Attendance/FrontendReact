@@ -142,7 +142,7 @@ const EmpPwdModiModal =({closeModal, props}) => {
                                    placeholder="비상연락망" ref={ctList} onChange={handleCtList}/>
                         </li>
 
-                        <div className="button" style={{marginTop: '30px'}}>
+                        <div className="button" style={{marginTop: '15px'}}>
                             
                             <button className="handleBtn" value='닫기'  onClick={closeModal}> 취소
                             </button>

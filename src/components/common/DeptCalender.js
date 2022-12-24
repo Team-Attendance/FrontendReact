@@ -83,7 +83,8 @@ export function DeptCalendar({ setShowDeptCalendar }) {
       {deptCalendar && deptCalendarData &&
         <div>
           <DeptModal deptModalDate={deptModalDate} deptLeaveData={deptLeaveData} setDeptLeaveDate={setDeptLeaveDate} showDeptModal={showDeptModal} setShowDeptModal={setShowDeptModal} />
-          <div style={{marginTop: '31px'}}>
+          <div style={{ fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '8.5px' }}>부서 휴가 일정</div>
+          <div>
             <table className="cal-table">
               <tbody>
                 <tr>

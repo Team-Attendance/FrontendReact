@@ -7,10 +7,10 @@ import { getStatusData, clear } from "../../modules/calendarStatus";
 import { close } from "../../modules/leaveModal";
 import CalLeaveChart from "./CalLeaveChart";
 import CalOddBizChart from "./CalOddBizChart";
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import { Calendar } from "../../components/common/Calendar";
 import { DeptCalendar } from "../../components/common/DeptCalender";
 import { setDeptCalendar } from "../../modules/deptCalendar";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import './empDailyPage.scss';
 
 
@@ -59,46 +59,55 @@ export function EmpDailyPage() {
       {calendar && calendarData && year && month && nowDate && statusData &&
         <div className="common-container daily-page-wrap">
           <div className="menu-title">
-            <h2><EventAvailableIcon sx={{ marginRight: '3px' }} /><span>일별 근태 현황</span></h2>
+            <h2><CalendarMonthIcon sx={{ marginRight: '3px' }} /><span>근태 현황</span></h2>
           </div>
 
           <div className="cal-status-wrap">
             <CalendarStatus />
           </div>
 
-          <div className="cal-wrap">
-            {
-              showDeptCalendar === true ? <Calendar setShowDeptCalendar={setShowDeptCalendar} /> : <DeptCalendar setShowDeptCalendar={setShowDeptCalendar} />
-            }
-          </div>
-
-          <div className="daily-page-chart-wrap">
-            <div className="biz-chart-wrap">
-              <h3>{month}월 이상근태율</h3>
-              <div className="chart-area" style={{marginTop: '9.5px'}}>
-                <div>
-                  <CalOddBizChart />
-                </div>
-              </div>
-              <p>
-                <span>이상근태율</span><br />
-                <span>{statusData.oddBizHourCount.oddBizCount !== 0 && statusData.oddBizHourCount.normalCount === 0 ? 100 : statusData.oddBizHourCount.oddBizCount === 0 || statusData.oddBizHourCount.normalCount === 0 ? 0 : Math.round(((statusData.oddBizHourCount.oddBizCount / (statusData.oddBizHourCount.normalCount + statusData.oddBizHourCount.oddBizCount)) * 100) * 10) / 10}%</span>
-              </p>
+          <div style={{display: 'flex'}}>
+            <div className="cal-wrap">
+              {
+                showDeptCalendar === true ? <Calendar setShowDeptCalendar={setShowDeptCalendar} /> : <DeptCalendar setShowDeptCalendar={setShowDeptCalendar} />
+              }
             </div>
 
-            <div className="leave-chart-wrap">
-              <h3>{year}년 휴가 사용률</h3>
-              <div className="chart-area" style={{marginTop: '11px'}}>
-                <div>
-                  <CalLeaveChart />
+            <div className="daily-page-chart-wrap">
+              <div className="biz-chart-wrap">
+                <h3>{month}월 이상근태율</h3>
+                <div className="chart-area" style={{ marginTop: '8.5px' }}>
+                  <div>
+                    <CalOddBizChart />
+                  </div>
                 </div>
+                <p>
+                  <span>이상근태율</span><br />
+                  <span>{statusData.oddBizHourCount.oddBizCount !== 0 && statusData.oddBizHourCount.normalCount === 0 ? 100 : statusData.oddBizHourCount.oddBizCount === 0 || statusData.oddBizHourCount.normalCount === 0 ? 0 : Math.round(((statusData.oddBizHourCount.oddBizCount / (statusData.oddBizHourCount.normalCount + statusData.oddBizHourCount.oddBizCount)) * 100) * 10) / 10}%</span>
+                </p>
               </div>
-              <p>
-                <span>사용률</span><br />
-                <span>{statusData.leaveUtilzition != null ? statusData.leaveUtilzition.use_percent : 0}%</span>
-              </p>
+
+              <div className="leave-chart-wrap">
+                <h3>{year}년 휴가 사용률</h3>
+                <div className="chart-area" style={{ marginTop: '11px' }}>
+                  <div>
+                    <CalLeaveChart />
+                  </div>
+                </div>
+                <p>
+                  <span>사용률</span><br />
+                  <span>{statusData.leaveUtilzition != null ? statusData.leaveUtilzition.use_percent : 0}%</span>
+                </p>
+              </div>
             </div>
+
+
           </div>
+
+
+
+
+
         </div>
       }
     </>

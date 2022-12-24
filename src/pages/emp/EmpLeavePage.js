@@ -27,7 +27,7 @@ const EmpLeavePage = () => {
         <div className="common-container">
             <div className="menu-title">
                 <h2><FlightIcon sx={{marginRight: '3px'}}/>
-                    <span>휴가 신청 현황</span>
+                    <span>휴가 신청 내역</span>
                 </h2>
             </div>
             <div>

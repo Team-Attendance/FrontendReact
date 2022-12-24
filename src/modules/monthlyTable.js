@@ -142,7 +142,7 @@ export const updateMonthlyData = (empNo, year, month, direction) => dispatch => 
       break;
   }
 
-  axios.get('/monthly-data', {
+  axios.get(process.env.REACT_APP_API_URL+'/monthly-data', {
     params: {
       empNo: empNo,
       year: calYear,
