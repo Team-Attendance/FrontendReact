@@ -40,7 +40,9 @@ const LeaveApproval = () => {
                 <div className="sub-title">
                     <span>연도별 휴가 신청 내역</span>
                 </div>
-                <LeaveApprovalStatus/>
+                <LeaveApprovalStatus
+                    deptName={deptName}
+                    year={year}/>
                 <SearchBar onSubmit={onSubmit}/>
                 <div className="sub-title">
                     <Dropdown

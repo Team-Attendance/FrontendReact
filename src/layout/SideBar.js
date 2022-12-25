@@ -157,10 +157,11 @@ export function SideBar() {
                                     <dd>{data !== null && data.selectEmpNumTime[0] ? data.selectEmpNumTime[0].EMP_GET_OFF : '-'}</dd>
                                 </UserWork>
                                 {/* <IntoButton>출근</IntoButton> */}
-                                <Button onClick={() => {
-                                    setModal(true)
-                                }} variant="contained" color='primary'
-                                    sx={{ padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none' }}>출근</Button>
+                                {!data?.selectEmpNumTime[0]?.EMP_GET_INTO?
+                                    <Button onClick={() => {setModal(true)}} variant="contained" color='primary'
+                                            sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>출근</Button>
+                                    : <Button onClick={() => {setModal(true)}} variant="contained" color='primary'
+                                              sx={{padding: '5px 60px', fontWeight: 'bold', boxShadow: 'none'}}>퇴근</Button>}
                                 {modal && (
                                     <QrModal className="qr-modal" closeModal={() => setModal(!modal)}>
                                         <EmpQrModal

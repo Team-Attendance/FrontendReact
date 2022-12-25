@@ -11,13 +11,12 @@ import SearchBar from "../../components/SearchBar";
 
 const EmpLeavePage = () => {
     const currentYear = new Date().getFullYear()
-
+    const empNo = sessionStorage.getItem("empNo")
     const [flag, setFlag] = useState(false)
     const [year, setYear] = useState(currentYear)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const empNo = sessionStorage.getItem("empNo")
         dispatch(LeaveApprovalActions.getLeaveRequest(empNo, year))
         dispatch(EmpInfoActions.countLeave(empNo, year))
     }, [dispatch, flag, year])
@@ -34,7 +33,9 @@ const EmpLeavePage = () => {
                 <div className="sub-title">
                     <span>연도별 휴가 사용내역</span>
                 </div>
-                <LeaveStatus/>
+                <LeaveStatus
+                    empNo={empNo}
+                    year={year}/>
                 <div className="sub-title" style={{marginTop:'50px'}}>
                     <Dropdown
                         year={year}
