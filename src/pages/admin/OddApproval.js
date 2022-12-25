@@ -42,7 +42,9 @@ const OddApproval = () => {
                 <div className="sub-title">
                     <span>연도별 이상 근태 조정 신청 내역</span>
                 </div>
-                <OddApprovalStatus/>
+                <OddApprovalStatus
+                    deptName={deptName}
+                    year={year}/>
                 <SearchBar onSubmit={onSubmit}/>
                 <div className="sub-title">
                     <Dropdown

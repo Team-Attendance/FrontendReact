@@ -98,6 +98,7 @@ const TimeConfig = ({closeModal}) => {
                 confirmButtonColor: '#3085d6',
                 icon: 'success'
             })
+            dispatch(ConfigurationActions.getBizHour(sessionStorage.getItem("deptName")))
 
         } else {
             Swal.fire({ title: '설정을 변경하지 못했습니다.',
@@ -106,7 +107,6 @@ const TimeConfig = ({closeModal}) => {
                 icon: 'error'
             })
         }
-        // dispatch(ConfigurationActions.getBizHour(sessionStorage.getItem("deptName")))
     }
     return (
         <div>

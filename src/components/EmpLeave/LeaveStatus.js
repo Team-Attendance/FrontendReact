@@ -1,10 +1,13 @@
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import '../../css/statusSummary.scss'
 import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
 import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
 import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
-const LeaveStatus = () => {
+import LeaveApprovalActions from "../../redux/modules/LeaveApproval/LeaveApprovalActions";
+const LeaveStatus = ({empNo, year}) => {
     const {countLeave} = useSelector((state) => state.countLeave)
+
+    const dispatch = useDispatch()
 
     const leaveStatusList = []
     if (countLeave.data !== undefined) {

@@ -1,5 +1,6 @@
 import Types from "../../ActionConstants"
 import * as OddApprovalAPI from "../../../api/OddApprovalAPI"
+import {getOddApprovalByState, getOddRequestByState} from "../../../api/OddApprovalAPI";
 
 const OddApprovalActions = {
     getAllOddApproval: (deptName, year) => async(dispatch) => {
@@ -7,6 +8,23 @@ const OddApprovalActions = {
 
         try {
             const oddApproval = await OddApprovalAPI.getAllOddApproval(deptName, year)
+
+            dispatch({
+                type: Types.GET_ODD_APPROVAL_SUCCESS,
+                payload: oddApproval.data
+            })
+        } catch(error){
+            dispatch({
+                type: Types.GET_ODD_APPROVAL_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+    getOddApprovalByState: (state, deptName, year) => async(dispatch) => {
+        dispatch({type: Types.GET_ODD_APPROVAL})
+
+        try {
+            const oddApproval = await OddApprovalAPI.getOddApprovalByState(state, deptName, year)
 
             dispatch({
                 type: Types.GET_ODD_APPROVAL_SUCCESS,
@@ -41,6 +59,23 @@ const OddApprovalActions = {
 
         try {
             const oddApproval = await OddApprovalAPI.getOddRequest(empNo, year)
+
+            dispatch({
+                type: Types.GET_ODD_APPROVAL_SUCCESS,
+                payload: oddApproval.data
+            })
+        } catch(error){
+            dispatch({
+                type: Types.GET_ODD_APPROVAL_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+    getOddRequestByState: (state, empNo, year) => async(dispatch) => {
+        dispatch({type: Types.GET_ODD_APPROVAL})
+
+        try {
+            const oddApproval = await OddApprovalAPI.getOddRequestByState(state, empNo, year)
 
             dispatch({
                 type: Types.GET_ODD_APPROVAL_SUCCESS,
