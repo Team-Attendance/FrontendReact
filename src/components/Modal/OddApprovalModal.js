@@ -1,15 +1,15 @@
 import React from "react";
-import {updateOddApproval} from "../../api/OddApprovalAPI";
+import { updateOddApproval } from "../../api/OddApprovalAPI";
 import './ApprovalModal.scss'
 import Swal from "sweetalert2";
 
-const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
+const OddApprovalModal = ({ auth, data, closeModal, changeFlag }) => {
 
     const approver = sessionStorage.getItem("empName")
 
     const dateFormatting = (millisec) => {
         // millisec를 날짜 형식으로, YYYY. MM. DD.를 YYYY-MM-DD로 변경
-        const date = new Date(millisec).toISOString().substring(0,10)
+        const date = new Date(millisec).toISOString().substring(0, 10)
 
         return date
     }
@@ -66,7 +66,7 @@ const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
 
     return (
         <div className="approvalModal" onClick={closeModal}>
-            <div className="modalBody" onClick={(e) => e.stopPropagation()} style={{height: '550px'}}>
+            <div className="modalBody" onClick={(e) => e.stopPropagation()} style={{ height: '550px' }}>
                 <button id="modalCloseBtn" onClick={closeModal}>
                     ✖
                 </button>
@@ -107,20 +107,21 @@ const OddApprovalModal = ({auth, data, closeModal, changeFlag}) => {
                                 </li>
                             </ul>
                             <div className="approval-button">
+                                <button onClick={closeModal}>닫기</button>
                                 {auth === 1 ?
                                     !data.oddBizAdjState && (
                                         <div>
-                                            <button onClick={() => changeState(1)}>승인</button>
-                                            <button onClick={() => changeState(2)}>반려</button>
+                                            <button className="mg-l-15" onClick={() => changeState(1)}>승인</button>
+                                            <button className="mg-l-15" onClick={() => changeState(2)}>반려</button>
                                         </div>
                                     ) :
                                     !data.oddBizAdjState && (
                                         <div>
-                                            <button onClick={() => changeState(3)}>취소</button>
+                                            <button onClick={() => changeState(3)}>신청 취소</button>
                                         </div>
                                     )
                                 }
-                                <button onClick={closeModal}>닫기</button>
+
                             </div>
 
                         </div>

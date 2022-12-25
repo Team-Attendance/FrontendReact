@@ -13,6 +13,8 @@ import CalOddBizChart from './CalOddBizChart';
 import CalLeaveChart from './CalLeaveChart';
 import { setMonthlyData, updateMonthlyData } from '../../modules/monthlyTable';
 import MonthlyTable from '../../table/MonthlyTable';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+
 
 export function EmpMonthlyPage() {
   const sesssionUserNo = sessionStorage.getItem("empNo");
@@ -50,7 +52,7 @@ export function EmpMonthlyPage() {
         <div className="common-container monthly-page-wrap">
           <div>
             <div className="menu-title">
-              <h2><EventAvailableIcon sx={{ marginRight: '3px' }} /><span>월별 근태 현황</span></h2>
+              <h2><ListAltIcon sx={{ marginRight: '3px' }} /><span>근태 현황</span></h2>
             </div>
 
             <div>
@@ -62,7 +64,7 @@ export function EmpMonthlyPage() {
                 <div className="flex-dev">
                   <div className="monthly-table-area">
                     <div>
-                      <h3 style={{fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '11px'}}>상세 근태 기록</h3>
+                      <h3 style={{fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '11px'}}>상세 근태 현황</h3>
                     </div>
                     <div>
                       <div className="table-header-area">

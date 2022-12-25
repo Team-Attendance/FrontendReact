@@ -45,11 +45,11 @@ export function Calendar({ setShowDeptCalendar }) {
         let result = response.data;
 
         if (result) {
-            Swal.fire({ title: '선택한 날짜와 중복되는 휴가 신청이 이미 존재합니다.',
-                confirmButtonText: '닫기',
-                confirmButtonColor: '#3085d6',
-                icon: 'error'
-            })
+          Swal.fire({ title: '선택한 날짜와 중복되는 휴가 신청이 이미 존재합니다.',
+              confirmButtonText: '닫기',
+              confirmButtonColor: '#3085d6',
+              icon: 'error'
+          })
         } else {
           onOpen(calendarDay);
         }
@@ -115,7 +115,7 @@ export function Calendar({ setShowDeptCalendar }) {
         let result = response.data;
 
         if (result) {
-            Swal.fire({ title: '선택한 이상근태의 조정 신청이 이미 존재합니다.',
+          Swal.fire({ title: '선택한 이상근태의 조정 신청이 이미 존재합니다.',
                 confirmButtonText: '닫기',
                 confirmButtonColor: '#3085d6',
                 icon: 'error'
@@ -156,7 +156,8 @@ export function Calendar({ setShowDeptCalendar }) {
         <div>
           <LeaveModal />
           <OddBizModal oddBizData={oddBizData} showOddBizModal={showOddBizModal} setShowOddBizModal={setShowOddBizModal} />
-          <div style={{paddingTop: '31px'}}>
+          <div style={{ fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '8.5px' }}>근태 달력</div>
+          <div>
             <table className="cal-table">
               <tbody>
                 <tr>
@@ -190,7 +191,7 @@ export function Calendar({ setShowDeptCalendar }) {
                                 return "";
                               }
                             }).join('')}
-                            
+
 
 
                             onClick={() => {

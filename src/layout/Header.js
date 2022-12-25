@@ -24,7 +24,7 @@ export function Header() {
     const token = localStorage.getItem('ACCESS_TOKEN');
     return (
       token != null ?
-          <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
+          <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 0 }} elevation={0}>
             <Toolbar sx={{ backgroundColor: '#00AAFF' }}>
               <Link to='emp/main'>
               <Typography variant="h6" noWrap component="div"

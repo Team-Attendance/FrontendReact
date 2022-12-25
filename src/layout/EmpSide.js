@@ -9,16 +9,18 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 export function EmpSide() {
 
     const location = useLocation();
     const empMenu = [
         { img: <PersonIcon sx={{ color: 'white' }} />, name: '사원 정보', path: '/emp/emp-info' },
-        { img: <EqualizerIcon sx={{ color: 'white' }} />, name: '근태 현황(일)', path: '/emp/daily-attendance-info' },
-        { img: <EqualizerIcon sx={{ color: 'white' }} />, name: '근태 현황(월)', path: '/emp/monthly-attendance-info' },
-        { img: <FlightIcon sx={{ color: 'white' }} />, name: '휴가 현황', path: '/emp/leave-info' },
-        { img: <WarningAmberIcon sx={{ color: 'white' }} />, name: '이상근태 현황', path: '/emp/odd-info' }
+        { img: <CalendarMonthIcon sx={{ color: 'white' }} />, name: '근태 현황(달력)', path: '/emp/daily-attendance-info' },
+        { img: <ListAltIcon sx={{ color: 'white' }} />, name: '근태 현황(목록)', path: '/emp/monthly-attendance-info' },
+        { img: <FlightIcon sx={{ color: 'white' }} />, name: '휴가 신청 내역', path: '/emp/leave-info' },
+        { img: <WarningAmberIcon sx={{ color: 'white' }} />, name: '이상근태 신청 내역', path: '/emp/odd-info' }
     ]
 
 

@@ -95,8 +95,9 @@
         .reghandleBtn {
           font-weight: bold;
           //border: 1px lightgray solid;
-          width: 25%;
-          padding: 10px 0;
+          min-width: 80px;
+          // width: 25%;
+          padding: 7px 20px;
           background-color: whitesmoke;
           border: 1px solid lightgray;
         }

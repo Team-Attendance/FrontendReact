@@ -66,8 +66,10 @@
             button {
               font-weight: bold;
               border: 1px lightgray solid;
-              width: 90px;
-              padding: 7px;
+              min-width: 80px;
+
+              // width: 90px;
+              padding: 7px 20px;
               background-color: whitesmoke;
 
               &:hover{
