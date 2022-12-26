@@ -8,6 +8,8 @@ import './empState.scss';
 
 const EmpState = ({ documentStatusData }) => {
   const deptBizStatus = documentStatusData.deptBizStatus;
+  const imgEng = {강보라 : 'KBR', 김경욱 : 'KKU', 김민욱 : 'KMU', 김현민 : 'KHM', 박상민 : 'PSM', 박수용 : 'PSY', 손용민 : 'SYM', 이동훈 : 'EDH', 정주현 : 'JJH', 이광석 : 'EKS'};
+  
 
   return (
     <div className="emp-state-area">
@@ -21,7 +23,7 @@ const EmpState = ({ documentStatusData }) => {
             <div className="state-element">
               <div>
                 <div className="img-area">
-                  <img src="/none.png" alt='img' style={{ width: '100%', height: '100%' }} />
+                  <img src={`/${imgEng[element.empName]}.jpg`} alt='img' style={{ width: '100%', height: '100%' }} />
                 </div>
 
                 <div className="emp-info-area">

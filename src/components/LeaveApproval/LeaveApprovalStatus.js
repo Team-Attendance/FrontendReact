@@ -30,7 +30,7 @@ const LeaveApprovalStatus = ({deptName, year}) => {
                     <div className='approval-status-item-list'>
                         {approvalStatusList.map((item, index) => {
                             return (
-                                <div className='approval-status-item' onClick={() => {stateClick(index)}}>
+                                <div className='approval-status-item' onClick={() => {stateClick(index)}} style={{cursor: 'pointer'}}>
                                     <div className='icon'>{item.icon}</div>
                                     <h2>{item.title}</h2>
                                     <div className='text'>
