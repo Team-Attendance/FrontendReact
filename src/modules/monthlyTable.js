@@ -6,14 +6,16 @@ import { deleteHyphen, formatDate, formatFulldate, formatHyphenFulldate, monthCa
 
 // 액션 타입
 //               모듈 이름 / 액션 이름
-const SETMONTHLYDATA = 'monthlyTable/SETMONTHLYDATA'
-const UPDATEMONTHLYDATA = 'monthlyTable/UPDATEMONTHLYDATA'
+const SETMONTHLYDATA = 'monthlyTable/SETMONTHLYDATA';
+const UPDATEMONTHLYDATA = 'monthlyTable/UPDATEMONTHLYDATA';
+const CLEARDATA = 'monthlyTable/CLEARDATA';
 const ERROR = 'monthlyTable/ERROR';
 
 // 액션 생성 함수
 // export는 여러개 가능
 // export const setCalendar = () => ({ type: SETCALENDAR });
 export const error = () => ({ type: ERROR });
+export const clearData = () => ({ type: CLEARDATA });
 
 // 초기 상태값 설정(리덕스에서 관리 할 상태 정의)
 const initialState = {
@@ -229,6 +231,7 @@ const monthlyTable = handleActions(
   {
     [SETMONTHLYDATA]: (state, action) => ({ ...state, data: action.data, year: action.year, month: action.month }),
     [UPDATEMONTHLYDATA]: (state, action) => ({ ...state, data: action.data, year: action.year, month: action.month }),
+    [CLEARDATA]: (state, action) => ({  data: null, year: 0, month: 0, }),
   },
   initialState,
 )

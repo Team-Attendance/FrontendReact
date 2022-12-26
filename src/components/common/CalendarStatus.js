@@ -4,7 +4,8 @@ import "./calendarStatus.scss";
 const CalendarStatus = () => {
   const calendarMonth = useSelector(state => state.calendar.month);
   const data = useSelector(state => state.calendarStatus.data);
-  
+  const month = useSelector(state => state.monthlyTable.month);
+
   const oddStatusItem1 = [{ title: '정상 근무', class: 'normal', value: data?.oddBizHourCount.normalCount },
   { title: '이상 근무', class: 'odd-biz', value: data?.oddBizHourCount.oddBizCount }];
 
@@ -20,7 +21,8 @@ const CalendarStatus = () => {
       {data && calendarMonth &&
         <div style={{ display: 'flex' }}>
           <div className='odd-biz-wrap'>
-            <h2>{calendarMonth}월 근태 현황</h2>
+            
+            <h2>{month != 0 ? month : calendarMonth}월 근태 현황</h2>
 
             <div className='odd-status-item-list'>
 
@@ -61,7 +63,7 @@ const CalendarStatus = () => {
 
 
           <div className='leave-status-wrap'>
-            <h3>{calendarMonth}월 휴가 현황</h3>
+            <h3>{month != 0 ? month : calendarMonth}월 휴가 현황</h3>
 
             <div className='leave-status-item-list'>
 

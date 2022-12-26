@@ -11,7 +11,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import "./empMonthlyPage.scss";
 import CalOddBizChart from './CalOddBizChart';
 import CalLeaveChart from './CalLeaveChart';
-import { setMonthlyData, updateMonthlyData } from '../../modules/monthlyTable';
+import { clearData, setMonthlyData, updateMonthlyData } from '../../modules/monthlyTable';
 import MonthlyTable from '../../table/MonthlyTable';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 
@@ -39,6 +39,7 @@ export function EmpMonthlyPage() {
 
     return () => {
       dispatch(clear());
+      dispatch(clearData());
     };
   }, [onSetMonthData, onUpdateMonthData, sesssionUserNo, dispatch, setCalDate]);
 
